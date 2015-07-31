@@ -5,6 +5,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class DatabaseSeeder extends Seeder
 {
+
+    private $tables = [
+        'users',
+        'password_resets',
+        'categories',
+        'blogs',
+        'photos',
+
+    ];
+
     /**
      * Run the database seeds.
      *
@@ -14,8 +24,19 @@ class DatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        // $this->call(UserTableSeeder::class);
+        $this->truncateDatabaseTables();
+
+        $this->call(UserTableSeeder::class);
 
         Model::reguard();
     }
+
+
+    private function truncateDatabaseTables()
+    {
+        foreach ($this->tables as $table) {
+            DB::table($table)->truncate();
+        }
+    }
+
 }
