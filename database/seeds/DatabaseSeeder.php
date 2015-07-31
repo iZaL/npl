@@ -26,7 +26,8 @@ class DatabaseSeeder extends Seeder
 
         $this->truncateDatabaseTables();
 
-        $this->call(UserTableSeeder::class);
+        factory('App\Src\User\User', 1)->create();
+//        $this->call(UserTableSeeder::class);
 
         Model::reguard();
     }
