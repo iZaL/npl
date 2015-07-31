@@ -2,30 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e03b0739-8d62-4e14-b76c-24c8a83016fb" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Src/Album/Album.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Src/Album/AlbumRepository.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Src/Blog/Blog.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Src/Blog/BlogRepository.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Src/Category/Category.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Src/Category/CategoryRepository.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Src/Meta/CountableTrait.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Src/Meta/Download.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Src/Meta/DownloadableTrait.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Src/Album/ImageService.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Src/Blog/ImageService.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Src/Category/ImageService.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Src/Photo/ImageService.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Src/Meta/Meta.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Src/Meta/MetaRepository.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Src/Photo/Photo.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Src/Photo/PhotoRepository.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Src/Track/Track.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Src/Track/TrackCrawler.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Src/Track/TrackManager.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Src/Track/TrackRepository.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Src/User/User.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Src/User/UserRepository.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/blade.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Core/BaseImageService.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Core/BaseMailer.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Core/BaseModel.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Core/BaseRepository.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Core/LocaleTrait.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Core/Exceptions/MailSendingFailedException.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Core/Contracts/MailerContract.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Core/helpers.php" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Src/Meta/CountableTrait.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Src/Meta/Download.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Src/Meta/DownloadableTrait.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Src/Meta/Meta.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Src/Meta/MetaRepository.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Src/Track/Track.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Src/Track/TrackCrawler.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Src/Track/TrackManager.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Src/Track/TrackRepository.php" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Src/User/User.php" afterPath="$PROJECT_DIR$/app/Src/User/User.php" />
     </list>
     <ignored path="noprblm.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -44,21 +38,17 @@
     <favorites_list name="noprblm" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="Blog.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Src/Blog/Blog.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/app/Src/User/User.php" />
+      </list>
+    </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" />
   <component name="JsGulpfileManager">
@@ -150,6 +140,10 @@
               <option name="myItemId" value="Src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="User" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -166,10 +160,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Blog" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -223,7 +213,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35815147" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
@@ -231,7 +221,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32991013" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -257,11 +247,39 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Src/Blog/Blog.php">
+    <entry file="file://$PROJECT_DIR$/app/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.23834887">
+          <caret line="9" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding>
+            <element signature="e#23#59#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Core/Contracts/MailerContract.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Src/Blog/Blog.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.29294273">
+          <caret line="12" column="35" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Src/User/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.07989348">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding>
+            <element signature="e#27#63#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
