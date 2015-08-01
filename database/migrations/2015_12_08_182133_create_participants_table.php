@@ -3,7 +3,8 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePhotosTable extends Migration {
+class CreateParticipantsTable extends Migration
+{
 
     /**
      * Run the migrations.
@@ -12,19 +13,14 @@ class CreatePhotosTable extends Migration {
      */
     public function up()
     {
-        Schema::create('photos', function(Blueprint $table)
-        {
+        Schema::create('participants', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->nullable();
-            $table->integer('imageable_id')->nullable();
-            $table->string('imageable_type')->nullable();
-            $table->boolean('thumbnail')->defaults(0);
-            $table->timestamps();
+            $table->integer('question_id')->index();
+            $table->integer('user_id')->index();
+            $table->timestamp('last_read')->nullable()->default(null);
             $table->softDeletes();
-
         });
     }
-
 
     /**
      * Reverse the migrations.
@@ -33,7 +29,7 @@ class CreatePhotosTable extends Migration {
      */
     public function down()
     {
-        Schema::drop('photos');
+        Schema::drop('participants');
     }
 
 }
