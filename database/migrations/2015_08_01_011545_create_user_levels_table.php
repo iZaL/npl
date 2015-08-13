@@ -12,7 +12,7 @@ class CreateUserLevelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_levels', function (Blueprint $table) {
+        Schema::create('user_level', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
             $table->integer('level_id');
@@ -29,6 +29,6 @@ class CreateUserLevelsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('user_levels');
+        Schema::drop('user_level');
     }
 }

@@ -18,18 +18,9 @@
     "select2": null,
     "fontawesome": null,
     "bootstrap-rtl": null,
-    "nivoslider": "*",
-    "modernizr": "~2.8.3",
-    "colorbox": "~1.6.0",
-    "respond": "~1.4.2",
-    "startbootstrap-sb-admin-2": null,
-    "bootstrap-datepicker": "~1.4.0",
     "tinymce": "~4.1.10",
     "datatables": "~1.10.4",
     "datatables-plugins": "~1.0.1",
-    "datatables-responsive": "~1.0.3",
-    "multifile": "~2.2.0",
-    "jplayer": "~2.9.2",
-    "jquery-ui": "~1.11.4"
+    "datatables-responsive": "~1.0.3"
   }
 }

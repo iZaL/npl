@@ -1,18 +1,40 @@
-<footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 col-xs-12">
-                <div class="col-md-1 col-xs-4 "><a href="https://twitter.com/"><i
-                                class="fa fa-twitter "></i></a></div>
-                <div class="col-md-1 col-xs-4 "><a href="http://www.youtube.com/user/"><i
-                                class="fa fa-youtube "></i></a></div>
-                <div class="col-md-1 col-xs-4 "><a href="http://instagram.com/hojairat_sounds"><i
-                                class="fa fa-instagram "></i></a></div>
+<div class="row">
+    <div class="col-md-12">
+        <div id="footerWrap">
+            <div class="container">
+                <div class="col-md-3"><a href="#"><img src="images/no-problem-learning-1.png" alt=""/></a></div>
+                <div class="col-md-3">
+                    <div class="title">Contact Us</div>
+                    <p>Lorem Ipsum<br/>
+                        8000 Salmiya<br/>
+                        Kuwait</p>
+
+                    <p>+ 45 - So Call me Maybe</p>
+
+                    <p>Send us an e-mail</p>
+                </div>
+                <div class="col-md-3">
+                    <div class="title">Navigation</div>
+                    <a href="#">- Home</a>
+                    <a href="#">- About</a>
+                    <a href="#">- Students</a>
+                    <a href="#">- Educators</a>
+                    <a href="#">- Subjects</a>
+                    <a href="#">- Level</a>
+                    <a href="#">- Contact</a>
+                </div>
+                <div class="col-md-3">
+                    <div class="title">Submit to our news letter</div>
+                    <p>Submit and get all the info about our work, new positions and new blog inputs.</p>
+
+                    <form action="" method="get">
+                        <input name="" type="text" class="form-control" placeholder="Your Name"/>
+                        <input name="" type="text" class="form-control" placeholder="Your Email"/>
+                        <input name="" type="button" class="form-control btn btn-primary" value="Submit"/>
+                    </form>
+                </div>
             </div>
-            <div class="col-md-8 col-xs-12">
-                Copyrights &copy; sound.com {{ date('Y') }}.
-                Site Developed By <a href="http://ideasowners.net" target="_blank">IdeasOwners.net</a>
-            </div>
+            <div class="copyright">All rights reserved - No problem.com 2014</div>
         </div>
     </div>
-</footer>
+</div>

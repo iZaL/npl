@@ -1,24 +1,42 @@
-<nav class="navbar navbar-static">
-    <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="{{ url('home') }}"><i class="fa fa-home"></i><b> {{ trans('word.home') }}</b></a>
-            <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <i class="fa fa-chevron-down"></i>
-            </a>
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                @include('partials.category-menu')
-
-                <li><a class="{{ (Request::segment('1') == 'blog' ? 'active' :  false ) }}"
-                       href="{{ action('BlogController@index') }}">{{ trans('word.blog') }}</a></li>
-
-
-                <li><a class="{{ (Request::segment('1') == 'about' ? 'active' :  false ) }}"
-                       href="{{ action('PageController@getAbout') }}">{{ trans('word.about_us') }}</a></li>
-                <li><a class="{{ (Request::segment('1') == 'contact' ? 'active' :  false ) }}"
-                       href="{{ action('PageController@getContact') }}">{{ trans('word.contact_us') }}</a></li>
-            </ul>
-        </div>
+<div class="navbar">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
     </div>
-</nav>
+    <div class="collapse navbar-collapse navbar-ex1-collapse" id="menu">
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="/">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Students Page</a></li>
+            <li><a href="#">Educators Page</a></li>
+            <li class="submenu"><a href="#">Subjects</a>
+                <ul>
+                    <li><a href="#">Sub menu 1</a></li>
+                    <li><a href="#">Sub menu 2</a></li>
+                    <li><a href="#">Sub menu 3</a></li>
+                    <li><a href="#">Sub menu 4</a></li>
+                </ul>
+            </li>
+            <li class="submenu"><a href="#">Level</a>
+                <ul>
+                    <li><a href="#">Sub menu 1</a></li>
+                    <li><a href="#">Sub menu 2</a></li>
+                    <li><a href="#">Sub menu 3</a></li>
+                    <li><a href="#">Sub menu 4</a></li>
+                </ul>
+            </li>
+            <li>
+                @if(Auth::check())
+                    <a href="/ask"> Ask </a>
+                @else
+                    <a href="/auth/login">Login/Register</a>
+                @endif
+            </li>
+            <li style="padding-right:0px;"><a href="#">Contact Us</a></li>
+        </ul>
+    </div>
+</div>

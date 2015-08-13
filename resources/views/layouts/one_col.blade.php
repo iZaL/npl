@@ -1,7 +1,9 @@
 @extends('layouts.master')
 
 <div class="row">
-    @section('content')
+    <div class="col-md-12">
+        @section('content')
 
-    @endsection
+        @endsection
+    </div>
 </div>

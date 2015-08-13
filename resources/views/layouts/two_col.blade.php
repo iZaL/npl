@@ -2,22 +2,15 @@
 
 @section('content')
 
-    <div class="no-gutter row">
-        <div class="col-md-12">
-            @yield('banner')
-        </div>
-    </div>
+    <div class="row">
 
-    <div class="no-gutter row">
-
-        <div class="col-md-6">
+        <div class="col-md-8">
             @yield('right')
         </div>
 
-        <div class="col-md-6" id="content">
+        <div class="col-md-4">
             @yield('left')
         </div>
 
     </div>
-
 @endsection

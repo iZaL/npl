@@ -2,12 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Src\Subject\SubjectRepository;
+
 class HomeController extends Controller
 {
 
-    public function index()
+    /**
+     * @param SubjectRepository $subjectRepository
+     * @return \Illuminate\View\View
+     */
+    public function index(SubjectRepository $subjectRepository)
     {
-        return view('home');
+        $subjects = $subjectRepository->model->all();
+        return view('home',compact('subjects'));
     }
 
 }

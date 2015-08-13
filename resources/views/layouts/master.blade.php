@@ -1,58 +1,54 @@
-<!doctype html>
-<!--[if lt IE 7]>
-<html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="nl"><![endif]-->
-<!--[if IE 7]>
-<html class="no-js lt-ie9 lt-ie8" lang="nl"><![endif]-->
-<!--[if IE 8]>
-<html class="no-js lt-ie9" lang="nl"><![endif]-->
-<!--[if IE]>
-<html class="no-js ie" lang="nl"><![endif]-->
-<!--[if !IE]><!-->
-<html class="no-js" lang="nl"><!--<![endif]-->
-
+<!doctype html >
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-
     <meta charset="utf-8">
     <title>@yield(e('title'),'No Problem Learning')</title>
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="viewport" content="width=device-width">
-
     @section('style')
+        <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="/css/style.css">
-        <style>
-            @import url(http://fonts.googleapis.com/earlyaccess/droidarabickufi.css);
-
-            html, body {
-                font-family: 'Droid Arabic Kufi' !important;
-            }
-
-            h1, h2, h3, h4, span, p, div, table {
-                font-family: 'Droid Arabic Kufi' !important;
-            }
-        </style>
     @show
-
 </head>
-
 <body>
-
-@include('partials.header')
-@include('partials.nav')
-
 <div class="container">
 
+    @include('partials.header')
+    @include('partials.nav')
+
+    @yield('banner')
+
     @include('partials.notifications')
-
-    @section('content')
-    @show
-
 </div>
+<div class="contentWrap2">
+    <div class="container">
+        @section('content')
+        @show
+    </div>
+</div>
+
+@section('testimonials')
+@show
 
 @include('partials.footer')
 
 @section('script')
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/js/slides.min.jquery.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#slider').slides({
+                preload: true,
+                preloadImage: 'images/loading.gif',
+                play: 2000,
+                pause: 2500,
+                hoverPause: true
+            });
+        });
+    </script>
 @show
-</body>
 
+</body>
 </html>
