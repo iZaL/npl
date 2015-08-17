@@ -20,7 +20,6 @@ class QuestionController extends Controller
      */
     public function __construct(QuestionRepository $questionRepository)
     {
-
         Auth::loginUsingId(1);
         $this->questionRepository = $questionRepository;
     }
@@ -49,7 +48,13 @@ class QuestionController extends Controller
     public function store(Request $request)
     {
         $user = Auth::user();
+
+        if (!is_a($user->getType(), Student::class)) {
+            return Redirect::back()->with('warning', 'Sorry You Cannot ask a Question');
+        }
+
         $level = $user->levels->last();
+
         $this->validate($request, [
             'subject_id' => 'integer|required',
             'body_en'    => 'required'
@@ -62,7 +67,7 @@ class QuestionController extends Controller
             ], $request->all())
         );
 
-        return Redirect::action('HomeController@index')->with('success','Question posted');
+        return Redirect::action('HomeController@index')->with('success', 'Question posted');
 
     }
 }

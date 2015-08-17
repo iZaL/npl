@@ -13,6 +13,10 @@ Route::post('/register/student', 'Auth\AuthController@postStudentRegistration');
 Route::get('/register/educator', 'Auth\AuthController@educatorRegistration');
 Route::post('/register/educator', 'Auth\AuthController@postEducatorRegistration');
 
+Route::get('student','StudentController@index');
+
+Route::get('educator','EducatorController@index');
+
 Route::resource('question', 'QuestionController');
 
 Route::resource('subject', 'SubjectController');

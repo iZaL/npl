@@ -11,8 +11,8 @@
         <ul class="nav navbar-nav">
             <li class="active"><a href="/">Home</a></li>
             <li><a href="#">About</a></li>
-            <li><a href="#">Students Page</a></li>
-            <li><a href="#">Educators Page</a></li>
+            <li><a href="{{ action('StudentController@index') }}">Students Page</a></li>
+            <li><a href="{{ action('EducatorController@index') }}">Educators Page</a></li>
             <li class="submenu"><a href="#">Subjects</a>
                 <ul>
                     @foreach($subjects as $subject)
