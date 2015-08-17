@@ -15,23 +15,21 @@
             <li><a href="#">Educators Page</a></li>
             <li class="submenu"><a href="#">Subjects</a>
                 <ul>
-                    <li><a href="#">Sub menu 1</a></li>
-                    <li><a href="#">Sub menu 2</a></li>
-                    <li><a href="#">Sub menu 3</a></li>
-                    <li><a href="#">Sub menu 4</a></li>
+                    @foreach($subjects as $subject)
+                        <li><a href="{{ action('SubjectController@show',$subject->id) }}">{{ ucfirst($subject->name) }}</a></li>
+                    @endforeach
                 </ul>
             </li>
             <li class="submenu"><a href="#">Level</a>
                 <ul>
-                    <li><a href="#">Sub menu 1</a></li>
-                    <li><a href="#">Sub menu 2</a></li>
-                    <li><a href="#">Sub menu 3</a></li>
-                    <li><a href="#">Sub menu 4</a></li>
+                    @foreach($levels as $level)
+                        <li><a href="{{ action('LevelController@show',$level->id) }}">{{ ucfirst($level->name) }}</a></li>
+                    @endforeach
                 </ul>
             </li>
             <li>
                 @if(Auth::check())
-                    <a href="/ask"> Ask </a>
+                    <a href="{{ action('QuestionController@create') }}"> Ask </a>
                 @else
                     <a href="/auth/login">Login/Register</a>
                 @endif

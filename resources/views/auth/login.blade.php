@@ -5,35 +5,32 @@
 @stop
 
 @section('content')
-    <div class="col-md-6 col-md-offset-3">
-        <div class="login-panel panel panel-default">
-            <div class="panel-heading"><h3>Please Sign In</h3></div>
-            <div class="panel-body">
+
+        <div class="col-md-8">
+            <h2 class="blockhead">Login</h2>
+
+            <div class="blockpara">
                 <form role="form" method="POST" action="{{ url('/auth/login') }}">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-                    <fieldset>
-                        <div class="form-group">
-                            <input type="email" class="form-control" name="email"
-                                   value="{{ old('email') }}" placeholder="E-mail" autofocus>
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control" name="password" placeholder="Password">
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" name="remember"> Remember Me
-                            </label>
-                        </div>
-                        <button type="submit" name="submit" class="btn btn-primary">Login</button>
+                    <input name="email" id="email" type="text" class="form-control" placeholder="&nbsp;Email"
+                           style="padding:0 0 0 0 !important;"/>
+                    <input name="password" id="password" type="password" class="form-control"
+                           placeholder="&nbsp;Password" style="padding:0 0 0 0 !important;"/>
+                    <input name="login" id="login" type="submit" class="blueButton" value="Login"
+                           style="margin:12px 0 0 237px !important;"/>
 
-                        <a class="btn btn-link" href="{{ url('/password/email') }}">Forgot Your
-                            Password?</a>
-                        <!-- Change this to a button or input when using this as a form -->
-                    </fieldset>
                 </form>
             </div>
+            <a href="{{ action('Auth\AuthController@studentRegistration') }}" class="buttonRegistration">STUDENT REGISTRATION</a>
+            <span style="float:right"><a href="{{ action('Auth\AuthController@educatorRegistration') }}" class="buttonRegistration">EDUCATOR
+                    REGISTRATION</a></span>
         </div>
-    </div>
+        <div class="col-md-4">
+            <a href="#" class="button6">ASK FOR FREE</a>
+
+            <div class="ads">Advertising</div>
+        </div>
+        <div class="clear"></div>
 @stop
 

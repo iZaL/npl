@@ -21,15 +21,15 @@
 
     @include('partials.notifications')
 </div>
+
+@section('testimonials')
+@show
 <div class="contentWrap2">
     <div class="container">
         @section('content')
         @show
     </div>
 </div>
-
-@section('testimonials')
-@show
 
 @include('partials.footer')
 

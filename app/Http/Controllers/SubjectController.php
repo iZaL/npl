@@ -18,7 +18,6 @@ class SubjectController extends Controller
      */
     public function __construct(SubjectRepository $subjectRepository)
     {
-
         $this->subjectRepository = $subjectRepository;
     }
 
@@ -30,7 +29,12 @@ class SubjectController extends Controller
      */
     public function show($id, LevelRepository $levelRepository)
     {
-        $levels = $levelRepository->model->all();
+        $levels = $levelRepository->model->with([
+            'latestQuestions' => function ($q) use ($id) {
+                $q->where('subject_id', $id);
+            }
+        ])->get();
+
         $subject = $this->subjectRepository->model->find($id);
 
         return view('modules.subject.view', compact('subject', 'levels'));

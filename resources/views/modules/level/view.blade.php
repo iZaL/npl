@@ -9,13 +9,13 @@
 
 @section('right')
 
-    @foreach($levels as $level)
+    @foreach($subjects as $subject)
         <ul class="list-group">
             <li class="list-group-item">
-                <h4>{{ ucfirst($level->name) }}</h4>
+                <h4>{{ ucfirst($subject->name) }}</h4>
                 <ul>
-                    @if(count($level->latestQuestions))
-                        @foreach($level->latestQuestions as $question)
+                    @if(count($subject->latestQuestions))
+                        @foreach($subject->latestQuestions as $question)
                             <li>{{$question->body}}</li>
                         @endforeach
                     @else

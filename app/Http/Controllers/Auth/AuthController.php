@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Events\UserRegistered;
+use App\Src\Level\LevelRepository;
+use App\Src\Student\StudentRepository;
+use App\Src\Subject\SubjectRepository;
 use App\Src\User\UserRepository;
 use App\User;
+use Illuminate\Http\Request;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -28,16 +32,31 @@ class AuthController extends Controller
      * @var UserRepository
      */
     private $userRepository;
+    /**
+     * @var SubjectRepository
+     */
+    private $subjectRepository;
+    /**
+     * @var LevelRepository
+     */
+    private $levelRepository;
 
     /**
      * Create a new authentication controller instance.
      *
      * @param UserRepository $userRepository
+     * @param SubjectRepository $subjectRepository
+     * @param LevelRepository $levelRepository
      */
-    public function __construct(UserRepository $userRepository)
-    {
+    public function __construct(
+        UserRepository $userRepository,
+        SubjectRepository $subjectRepository,
+        LevelRepository $levelRepository
+    ) {
         $this->middleware('guest', ['except' => 'getLogout']);
         $this->userRepository = $userRepository;
+        $this->subjectRepository = $subjectRepository;
+        $this->levelRepository = $levelRepository;
     }
 
     /**
@@ -55,22 +74,72 @@ class AuthController extends Controller
         ]);
     }
 
+    public function studentRegistration()
+    {
+        $subjects = $this->subjectRepository->model->get(['name_en', 'id']);
+        $levels = $this->levelRepository->model->get(['name_en', 'id']);
+
+        return view('auth.student-register', compact('subjects', 'levels'));
+    }
+
+    public function educatorRegistration()
+    {
+        $subjects = $this->subjectRepository->model->get(['name_en', 'id']);
+        $levels = $this->levelRepository->model->get(['name_en', 'id']);
+
+        return view('auth.educator-register', compact('subjects', 'levels'));
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function postEducatorRegistration(Request $request)
+    {
+        $user = $this->registerUser($request);
+
+        $user->educator()->create([]);
+
+        //@todo : send verificiation email
+        return redirect('/auth/login')->with('message', 'registration success');
+    }
+
+
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array $data
+     * @param Request $request
      * @return User
+     * @internal param array $data
      */
-    protected function create(array $data)
+    protected function postStudentRegistration(Request $request)
     {
-        $user = $this->userRepository->model->create([
-            'name'     => $data['name'],
-            'email'    => $data['email'],
-            'password' => bcrypt($data['password']),
 
+        $user = $this->registerUser($request);
+
+        $user->student()->create([]);
+
+        //@todo : send verificiation email
+        return redirect('/auth/login')->with('message', 'registration success');
+
+    }
+
+    public function registerUser($request)
+    {
+        $this->validate($request, [
+            'email'        => 'required|email|unique:users,email',
+            'password'     => 'required|confirmed|max:255|min:5',
+            'firstname_en' => 'required',
         ]);
+
+        $user = $this->userRepository->model->create($request->except(['levels', 'subjects', 'password_confirmation']));
 
         event(new UserRegistered($user));
 
+        $user->levels()->sync($request->levels);
+
+        $user->subjects()->sync($request->subjects);
+
+        return $user;
     }
 }

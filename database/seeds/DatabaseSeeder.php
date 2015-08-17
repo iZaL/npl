@@ -14,7 +14,10 @@ class DatabaseSeeder extends Seeder
         'photos',
         'subjects',
         'levels',
-        'user_level'
+        'user_levels',
+        'user_subjects',
+        'students',
+        'educators'
     ];
 
     /**

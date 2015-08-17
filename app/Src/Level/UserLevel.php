@@ -6,7 +6,7 @@ use App\Core\LocaleTrait;
 class UserLevel extends BaseModel
 {
 
-    protected $table = 'user_level';
+    protected $table = 'user_levels';
 
     protected $guarded = ['id'];
 

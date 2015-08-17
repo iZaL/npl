@@ -12,7 +12,7 @@ class Question extends BaseModel
 
     protected $guarded = ['id'];
 
-    protected $localeStrings = ['name', 'description'];
+    protected $localeStrings = ['body'];
 
     public function photos()
     {

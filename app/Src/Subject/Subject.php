@@ -2,6 +2,7 @@
 
 use App\Core\BaseModel;
 use App\Core\LocaleTrait;
+use App\Src\Question\Question;
 
 class Subject extends BaseModel
 {
@@ -27,5 +28,15 @@ class Subject extends BaseModel
     public function setSlugAttribute($value)
     {
         return $this->attributes['slug'] = slug($value);
+    }
+
+    public function questions()
+    {
+        return $this->hasMany(Question::class);
+    }
+
+    public function latestQuestions()
+    {
+        return $this->questions()->latest()->limit(5);
     }
 }

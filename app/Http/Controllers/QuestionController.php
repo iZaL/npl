@@ -10,20 +10,27 @@ use Illuminate\Support\Facades\Auth;
 
 class QuestionController extends Controller
 {
-
-    public function __construct()
-    {
-
-        Auth::loginUsingId(1);
-    }
+    /**
+     * @var QuestionRepository
+     */
+    private $questionRepository;
 
     /**
      * @param QuestionRepository $questionRepository
+     */
+    public function __construct(QuestionRepository $questionRepository)
+    {
+
+        Auth::loginUsingId(1);
+        $this->questionRepository = $questionRepository;
+    }
+
+    /**
      * @return \Illuminate\View\View
      */
-    public function index(QuestionRepository $questionRepository)
+    public function index()
     {
-        $questions = $questionRepository->model->all();
+        $questions = $this->questionRepository->model->all();
 
         return view('home', compact('subjects'));
     }
@@ -41,13 +48,21 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        $user  = Auth::user();
+        $user = Auth::user();
+        $level = $user->levels->last();
         $this->validate($request, [
             'subject_id' => 'integer|required',
             'body_en'    => 'required'
         ]);
 
-        $level = $user->levels->last();
+        $question = $this->questionRepository->model->create(
+            array_merge([
+                'user_id'  => $user->id,
+                'level_id' => $level->id
+            ], $request->all())
+        );
+
+        return Redirect::action('HomeController@index')->with('success','Question posted');
 
     }
 }
