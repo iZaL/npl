@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 
 use App\Src\Question\QuestionRepository;
+use App\Src\Student\Student;
 use App\Src\Subject\SubjectRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class QuestionController extends Controller
 {
@@ -20,7 +22,7 @@ class QuestionController extends Controller
      */
     public function __construct(QuestionRepository $questionRepository)
     {
-        Auth::loginUsingId(1);
+        Auth::loginUsingId(2);
         $this->questionRepository = $questionRepository;
     }
 
@@ -29,14 +31,17 @@ class QuestionController extends Controller
      */
     public function index()
     {
+        Auth::loginUsingId(3);
         $questions = $this->questionRepository->model->all();
 
-        return view('home', compact('subjects'));
+        return view('modules.question.index', compact('questions'));
     }
 
     public function create(SubjectRepository $subjectRepository)
     {
-        $subjects = $subjectRepository->model->lists('name_en', 'id');
+        $user = Auth::user();
+        $userSubjects = $user->subjects->lists('id');
+        $subjects = $subjectRepository->model->whereIn('id',$userSubjects)->lists('name_en', 'id');
 
         return view('modules.question.create', compact('subjects'));
     }

@@ -19,9 +19,15 @@ Route::get('educator','EducatorController@index');
 
 Route::resource('question', 'QuestionController');
 
+Route::get('question/{id}/answer', 'AnswerController@createAnswer');
+
 Route::resource('subject', 'SubjectController');
 
 Route::resource('level', 'LevelController');
+
+Route::get('profile/edit','ProfileController@editProfile');
+
+Route::get('profile/questions','ProfileController@getQuestions');
 
 Route::get('home', 'HomeController@index');
 

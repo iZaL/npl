@@ -27,10 +27,10 @@
     </div>
 
     @if($student)
-        <a href="" class="btn btn-primary">YOUR PROFILE</a>&nbsp;&nbsp;&nbsp;
-        <a href="inside.php?action=ask_a_question" class="btn btn-success">ASK A
+        <a href="{{ action('ProfileController@editProfile') }}" class="btn btn-primary">YOUR PROFILE</a>&nbsp;&nbsp;&nbsp;
+        <a href="{{ action('QuestionController@create') }}" class="btn btn-success">ASK A
             QUESTION</a>&nbsp;&nbsp;&nbsp;
-        <a href="inside.php?action=student_questions" class="btn btn-primary">YOUR QUESTIONS</a><br><br>
+        <a href="{{ action('ProfileController@getQuestions') }}" class="btn btn-primary">YOUR QUESTIONS</a><br><br>
 
     @endif
 @endsection

@@ -4,6 +4,7 @@ namespace App\Src\User;
 
 use App\Src\Educator\Educator;
 use App\Src\Level\Level;
+use App\Src\Question\Question;
 use App\Src\Student\Student;
 use App\Src\Subject\Subject;
 use Illuminate\Auth\Authenticatable;
@@ -37,6 +38,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    public function questions()
+    {
+        return $this->hasMany(Question::class);
+    }
 
     public function levels()
     {

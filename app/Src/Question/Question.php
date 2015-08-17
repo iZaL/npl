@@ -2,6 +2,8 @@
 
 use App\Core\BaseModel;
 use App\Core\LocaleTrait;
+use App\Src\Level\Level;
+use App\Src\Subject\Subject;
 
 class Question extends BaseModel
 {
@@ -27,5 +29,15 @@ class Question extends BaseModel
     public function setSlugAttribute($value)
     {
         return $this->attributes['slug'] = slug($value);
+    }
+
+    public function subject()
+    {
+        return $this->belongsTo(Subject::class);
+    }
+
+    public function level()
+    {
+        return $this->belongsTo(Level::class);
     }
 }
