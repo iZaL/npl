@@ -37,6 +37,6 @@ class ProfileController extends Controller
         $user = Auth::user();
         $questions = $user->questions;
 
-        return view('modules.user.question',compact('questions'));
+        return view('modules.user.question',compact('questions','answers'));
     }
 }

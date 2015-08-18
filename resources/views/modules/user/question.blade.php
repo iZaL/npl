@@ -6,7 +6,6 @@
 
 @endsection
 
-
 @section('right')
 
     <h2 class="blockhead">My Questions</h2>
@@ -21,23 +20,20 @@
                         </font>
                     </strong>
                 </div>
-                <div style="float:right;"><i><font color="#f96464">{{ $question->created_at->format('d-m-Y')  }}</font></i></div>
+                <div style="float:right;"><i><font color="#f96464">{{ $question->created_at->format('d-m-Y')  }}</font></i>
+                </div>
                 <br/>
 
                 <p align="justify"><b>{{ $question->body }}</b></p>
 
-                @foreach($answers as $answer)
-                <p align="justify">
-                    <a href="student_question_answer_history.php?qid=<?php echo $value['question_id'];?>&educator_id=<?php echo $dvalue['educator_id'];?>"
-                       class="np_code">
-                        <i>Answer from <?php echo $dvalue['np_code'];?></i>&nbsp;&nbsp;&nbsp;
-                        <!--<img src="images/view_profile.ico" height="16" width="16">-->
-                    </a>
-                </p>
+                @foreach($question->parentAnswers as $answer)
+                    <p align="justify">
+                        <a href="{{ action('AnswerController@createReply',['question_id'=>$question->id,'answer_id'=>$answer->id]) }}"
+                           class="np_code">
+                            <i>Answer from {{ $answer->body }} | {{ $answer->user->np_code }}</i>
+                        </a>
+                    </p>
                 @endforeach
-                {{--<p align="justify">--}}
-                    {{--No answer posted for this question--}}
-                {{--</p>--}}
             </div>
         @endforeach
     </div>

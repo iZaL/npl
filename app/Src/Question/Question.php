@@ -2,6 +2,7 @@
 
 use App\Core\BaseModel;
 use App\Core\LocaleTrait;
+use App\Src\Answer\Answer;
 use App\Src\Level\Level;
 use App\Src\Subject\Subject;
 
@@ -39,5 +40,20 @@ class Question extends BaseModel
     public function level()
     {
         return $this->belongsTo(Level::class);
+    }
+
+    public function answers()
+    {
+        return $this->hasMany(Answer::class);
+    }
+
+    public function childAnswers()
+    {
+        return $this->answers()->where('parent_id', '!', 0);
+    }
+
+    public function parentAnswers()
+    {
+        return $this->answers()->where('parent_id', 0);
     }
 }

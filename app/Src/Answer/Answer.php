@@ -25,4 +25,9 @@ class Answer extends BaseModel
     {
         return $this->belongsTo(User::class);
     }
+
+    public function childAnswers()
+    {
+        return $this->hasMany(Answer::class,'parent_id');
+    }
 }
