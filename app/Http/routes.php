@@ -41,7 +41,7 @@ Route::get('home', 'HomeController@index');
 Route::get('test', function () {
 
     $user = Auth::loginUsingId(1);
-    dd($user->password);
+//    dd($user->password);
 //    $hash = Hash::make('admin');
     dd(password_verify('password',$user->password));
     dd($user->password);
