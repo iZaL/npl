@@ -44,7 +44,7 @@ Route::get('test', function () {
     $user = Auth::loginUsingId(1);
     dd($user->password);
 //    $hash = Hash::make('admin');
-    dd(password_verify('admin',$user->password));
+    dd(password_verify('password',$user->password));
     dd($user->password);
 //    dd($user->getType());
 //    dd($user->educator);
