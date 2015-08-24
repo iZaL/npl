@@ -40,7 +40,6 @@ Route::get('home', 'HomeController@index');
 
 Route::get('test', function () {
 
-    dd(Auth::attempt(['email'=>'admin@test.com','password'=>'admin']));
     $user = Auth::loginUsingId(1);
     dd($user->password);
 //    $hash = Hash::make('admin');
