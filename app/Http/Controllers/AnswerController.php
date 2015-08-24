@@ -26,7 +26,7 @@ class AnswerController extends Controller
      */
     public function __construct(AnswerRepository $answerRepository, QuestionRepository $questionRepository)
     {
-        Auth::loginUsingId(3);
+        Auth::user();
         $this->answerRepository = $answerRepository;
         $this->questionRepository = $questionRepository;
     }

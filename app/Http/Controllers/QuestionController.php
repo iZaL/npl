@@ -22,7 +22,7 @@ class QuestionController extends Controller
      */
     public function __construct(QuestionRepository $questionRepository)
     {
-        Auth::loginUsingId(3);
+        Auth::user();
         $this->questionRepository = $questionRepository;
     }
 

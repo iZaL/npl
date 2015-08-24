@@ -20,7 +20,7 @@ class ProfileController extends Controller
      */
     public function __construct(UserRepository $userRepository)
     {
-        Auth::loginUsingId(2);
+        Auth::user();
         $this->userRepository = $userRepository;
     }
 

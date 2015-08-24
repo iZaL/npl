@@ -36,7 +36,7 @@ class DatabaseSeeder extends Seeder
         factory('App\Src\User\User', 1)->create(['email' => 'student@test.com', 'np_code' => 'NP2123']);
         factory('App\Src\Educator\Educator', 1)->create(['user_id' => 2]);
         factory('App\Src\Student\Student', 1)->create(['user_id' => 3]);
-        factory('App\Src\Subject\Subject', 1)->create();
+        factory('App\Src\Subject\Subject', 1)->create(['name_ar' => 'physics', 'name_en' => 'physics']);
         factory('App\Src\Subject\Subject', 1)->create(['name_ar' => 'chemistry', 'name_en' => 'chemistry']);
         factory('App\Src\Subject\Subject', 1)->create(['name_ar' => 'math', 'name_en' => 'math']);
         factory('App\Src\Subject\Subject', 1)->create(['name_ar' => 'english', 'name_en' => 'english']);
@@ -47,7 +47,10 @@ class DatabaseSeeder extends Seeder
         factory('App\Src\Level\Level', 1)->create(['name_ar' => 'elementary', 'name_en' => 'elementary']);
         factory('App\Src\Level\Level', 1)->create(['name_ar' => 'high school', 'name_en' => 'high school']);
         factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 1, 'level_id' => 1]);
+        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 2, 'level_id' => 2]);
+        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 3, 'level_id' => 2]);
         factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 3, 'subject_id' => 1]);
+        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 2, 'subject_id' => 1]);
 //        $this->call(UserTableSeeder::class);
 
         Model::reguard();
