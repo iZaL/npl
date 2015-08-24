@@ -45,7 +45,7 @@ class DatabaseSeeder extends Seeder
         factory('App\Src\Level\Level', 1)->create(['name_ar'=>'elementary','name_en'=>'elementary']);
         factory('App\Src\Level\Level', 1)->create(['name_ar'=>'high school','name_en'=>'high school']);
         factory('App\Src\Level\UserLevel', 1)->create(['user_id'=>1,'level_id'=>1]);
-        factory('App\Src\Subject\UserSubject', 1)->create(['user_id'=>1,'subject_id'=>1]);
+        factory('App\Src\Subject\UserSubject', 1)->create(['user_id'=>2,'subject_id'=>1]);
 //        $this->call(UserTableSeeder::class);
 
         Model::reguard();
