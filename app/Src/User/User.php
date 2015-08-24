@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Support\Facades\Hash;
 
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract
@@ -73,8 +74,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->student ?: ($this->educator ?: $this);
     }
 
-    public function setPasswordAttribute($value)
-    {
-        return $this->attributes['password'] = bcrypt($value);
-    }
+//    public function setPasswordAttribute($value)
+//    {
+//        return $this->attributes['password'] = Hash::make($value);
+//    }
 }

@@ -32,6 +32,8 @@ class DatabaseSeeder extends Seeder
         $this->truncateDatabaseTables();
 
         factory('App\Src\User\User', 1)->create();
+        factory('App\Src\User\User', 1)->create(['email'=>'educator@test.com','np_code'=>'NP2122']);
+        factory('App\Src\User\User', 1)->create(['email'=>'student@test.com','np_code'=>'NP2123']);
         factory('App\Src\Subject\Subject', 1)->create();
         factory('App\Src\Subject\Subject', 1)->create(['name_ar'=>'chemistry','name_en'=>'chemistry']);
         factory('App\Src\Subject\Subject', 1)->create(['name_ar'=>'math','name_en'=>'math']);

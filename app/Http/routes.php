@@ -2,6 +2,7 @@
 
 use App\Events\UserRegistered;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 Route::controllers([
     'auth'     => 'Auth\AuthController',
@@ -39,7 +40,12 @@ Route::get('home', 'HomeController@index');
 
 Route::get('test', function () {
 
-    $user = Auth::loginUsingId(2);
+    dd(Auth::attempt(['email'=>'admin@test.com','password'=>'admin']));
+    $user = Auth::loginUsingId(1);
+    dd($user->password);
+//    $hash = Hash::make('admin');
+    dd(password_verify('admin',$user->password));
+    dd($user->password);
 //    dd($user->getType());
 //    dd($user->educator);
 //    event(new UserRegistered($user));

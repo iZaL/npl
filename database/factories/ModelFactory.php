@@ -19,7 +19,8 @@ $factory->define(App\Src\User\User::class, function (Faker\Generator $faker) {
         'password'       => bcrypt('admin'),
         'remember_token' => str_random(10),
         'active'         => 1,
-        'admin'          => 1
+        'admin'          => 1,
+        'np_code'   => 'NP1234'
     ];
 });
 
