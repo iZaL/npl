@@ -39,6 +39,7 @@ class QuestionController extends Controller
 
     public function create(SubjectRepository $subjectRepository)
     {
+        Auth::loginUsingId(2);
         $user = Auth::user();
         $userSubjects = $user->subjects->lists('id');
         $subjects = $subjectRepository->model->whereIn('id',$userSubjects)->lists('name_en', 'id');
