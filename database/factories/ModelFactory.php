@@ -51,6 +51,13 @@ $factory->define(App\Src\Level\UserLevel::class, function (Faker\Generator $fake
     ];
 });
 
+$factory->define(App\Src\Level\UserSubject::class, function (Faker\Generator $faker) {
+    return [
+        'user_id' => '1',
+        'subject_id' => '1',
+    ];
+});
+
 
 
 $factory->define(App\Src\Question\Question::class, function (Faker\Generator $faker) {
