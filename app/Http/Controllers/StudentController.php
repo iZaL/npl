@@ -38,4 +38,24 @@ class StudentController extends Controller
         return view('modules.student.index', compact('student'));
     }
 
+    public function getQuestions()
+    {
+        $user = Auth::user();
+
+        $student = $user->getType();
+
+        if (!is_a($student, Student::class)) {
+            return redirect()->back()->with('warning', 'Wrong Access');
+        }
+
+        $student->load('questions');
+
+        $questions = $student->questions;
+
+        $questions->load('subject');
+        $questions->load('parentAnswers.user');
+
+        return view('modules.user.question', compact('questions', 'answers'));
+    }
+
 }

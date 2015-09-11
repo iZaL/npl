@@ -42,7 +42,7 @@ class QuestionControllerTest extends TestCase
                 'level_id'   => $level->id
             ]);
 
-        $this->onPage('/profile/questions');
+        $this->onPage('student/questions');
 
     }
 

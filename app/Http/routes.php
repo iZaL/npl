@@ -1,66 +1,68 @@
 <?php
 
-use App\Events\UserRegistered;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-
+/*********************************************************************************************************
+ * Auth Routes
+ ********************************************************************************************************/
 Route::controllers([
     'auth'     => 'Auth\AuthController',
     'password' => 'Auth\PasswordController'
 ]);
 
-Route::get('/register/student', 'Auth\AuthController@studentRegistration');
-Route::post('/register/student', 'Auth\AuthController@postStudentRegistration');
-Route::get('/register/educator', 'Auth\AuthController@educatorRegistration');
-Route::post('/register/educator', 'Auth\AuthController@postEducatorRegistration');
+Route::get('register/student', 'Auth\AuthController@studentRegistration');
+Route::get('register/educator', 'Auth\AuthController@educatorRegistration');
 
-Route::get('student','StudentController@index');
+Route::post('register/student', 'Auth\AuthController@postStudentRegistration');
+Route::post('register/educator', 'Auth\AuthController@postEducatorRegistration');
 
-Route::get('educator','EducatorController@index');
+/*********************************************************************************************************
+ * Educator Routes
+ ********************************************************************************************************/
+Route::get('educator', 'EducatorController@index');
 
-Route::get('profile/recent-questions','EducatorController@recentQuestions');
-Route::get('profile/answers','EducatorController@answers');
+Route::get('educator/recent-questions', 'EducatorController@recentQuestions');
 
+Route::get('educator/answers', 'EducatorController@answers');
+
+/*********************************************************************************************************
+ * Student Routes
+ ********************************************************************************************************/
+Route::get('student', 'StudentController@index');
+
+Route::get('student/questions', 'StudentController@getQuestions');
+
+/*********************************************************************************************************
+ * Questions Controller
+ ********************************************************************************************************/
 Route::resource('question', 'QuestionController');
 
 /*********************************************************************************************************
  * Answer Routes
  ********************************************************************************************************/
-
-Route::resource('answer', 'AnswerController');
-
-Route::get('question/{question_id}/reply/{answer_id}','AnswerController@createReply');
-
-Route::post('question/reply','AnswerController@storeReply');
+Route::get('question/{question_id}/reply/{answer_id}', 'AnswerController@createReply');
 
 Route::get('question/{id}/answer', 'AnswerController@createAnswer');
 
+Route::post('question/reply', 'AnswerController@storeReply');
+
+Route::resource('answer', 'AnswerController');
+
 /*********************************************************************************************************
- *
+ * Profile Routes
+ ********************************************************************************************************/
+Route::get('profile/edit', 'ProfileController@editProfile');
+
+/*********************************************************************************************************
+ * Misc Routes
  ********************************************************************************************************/
 
 Route::resource('subject', 'SubjectController');
-
 Route::resource('level', 'LevelController');
-
-Route::get('profile/edit','ProfileController@editProfile');
-
-Route::get('profile/questions','ProfileController@getQuestions');
-
 Route::get('home', 'HomeController@index');
 
 Route::get('test', function () {
 
-    $user = Auth::loginUsingId(1);
-//    dd($user->password);
-//    $hash = Hash::make('admin');
-    dd(password_verify('password',$user->password));
-    dd($user->password);
-//    dd($user->getType());
-//    dd($user->educator);
-//    event(new UserRegistered($user));
-
 });
+
 Route::get('/', 'HomeController@index');
 
 /*********************************************************************************************************

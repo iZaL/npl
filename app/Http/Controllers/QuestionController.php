@@ -70,7 +70,7 @@ class QuestionController extends Controller
             ], $request->all())
         );
 
-        return Redirect::action('ProfileController@getQuestions')->with('success', 'Question posted');
+        return Redirect::action('StudentController@getQuestions')->with('success', 'Question posted');
 
     }
 }
