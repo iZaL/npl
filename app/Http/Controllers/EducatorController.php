@@ -38,7 +38,7 @@ class EducatorController extends Controller
     }
 
 
-    public function answers()
+    public function getAnswers()
     {
         $user = Auth::user();
         $answers = $user->parentAnswers;
@@ -69,7 +69,7 @@ class EducatorController extends Controller
         $questions = $questionRepository->model->whereIn('subject_id', $subjectIds)->whereIn('level_id',
             $levelIds)->get();
 
-        return view('modules.educator.recent-questions', compact('questions'));
+        return view('modules.educator.questions', compact('questions'));
     }
 
 }

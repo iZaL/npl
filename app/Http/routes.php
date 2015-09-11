@@ -21,7 +21,7 @@ Route::get('educator', 'EducatorController@index');
 
 Route::get('educator/questions', 'EducatorController@getQuestions');
 
-Route::get('educator/answers', 'EducatorController@answers');
+Route::get('educator/answers', 'EducatorController@getAnswers');
 
 /*********************************************************************************************************
  * Student Routes
