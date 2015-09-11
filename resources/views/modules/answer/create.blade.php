@@ -5,14 +5,6 @@
 
     <h1>{{ $question->body }}</h1>
 
-    <ul class="list-group">
-        @foreach($answers as $answer)
-            <li class="list-group-item">
-                <a href="{{ action('AnswerController@createReply',['question_id'=>$question->id,'answer_id'=>$answer->id]) }}">{{ $answer->body }} | {{ $answer->user->np_code }}</a>
-            </li>
-        @endforeach
-    </ul>
-
     {!! Form::open(['action' => 'AnswerController@store', 'method' => 'post','files'=>true, 'class'=>'form-horizontal'])
     !!}
 

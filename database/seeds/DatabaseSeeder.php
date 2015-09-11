@@ -39,8 +39,8 @@ class DatabaseSeeder extends Seeder
         factory('App\Src\User\User', 1)->create();
         factory('App\Src\User\User', 1)->create(['email' => 'educator@test.com', 'np_code' => 'NP2122']);
         factory('App\Src\User\User', 1)->create(['email' => 'student@test.com', 'np_code' => 'NP2123']);
-        factory('App\Src\User\User', 1)->create(['email' => 'educator1@test.com', 'np_code' => 'NP2124']);
-        factory('App\Src\User\User', 1)->create(['email' => 'student1@test.com', 'np_code' => 'NP2124']);
+        factory('App\Src\User\User', 1)->create(['email' => 'educator1@test.com', 'np_code' => 'NP2125']);
+        factory('App\Src\User\User', 1)->create(['email' => 'student1@test.com', 'np_code' => 'NP2126']);
 
         factory('App\Src\Educator\Educator', 1)->create(['user_id' => 2]);
         factory('App\Src\Educator\Educator', 1)->create(['user_id' => 4]);
@@ -67,7 +67,7 @@ class DatabaseSeeder extends Seeder
         factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 4, 'level_id' => 2]);
         factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 4, 'level_id' => 3]);
         factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 4, 'level_id' => 4]);
-        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 5, 'level_id' => 4]);
+        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 5, 'level_id' => 2]);
 
         factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 2, 'subject_id' => 1]);
         factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 4, 'subject_id' => 1]);

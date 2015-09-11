@@ -62,9 +62,7 @@ class AnswerController extends Controller
         }
 
         //Users Parent Answer
-        $question->load('answers');
-
-        return view('modules.answer.create', compact('user', 'question', 'answers', 'answered'));
+        return view('modules.answer.create', compact('user', 'question'));
 
     }
 
