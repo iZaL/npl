@@ -16,7 +16,7 @@
                 <div style="float:left;">
                     <strong>
                         <font color="#f96464">
-                            {{ $question->subject->name }}
+                            {{ ucfirst($question->subject->name) }}
                         </font>
                     </strong>
                 </div>
@@ -24,7 +24,7 @@
                 </div>
                 <br/>
 
-                <p align="justify"><b>{{ $question->body }}</b></p>
+                <p align="justify"><b>{{ ucfirst($question->body) }}</b></p>
 
                 @foreach($question->parentAnswers as $answer)
                     <p align="justify">
@@ -34,6 +34,7 @@
                         </a>
                     </p>
                 @endforeach
+
             </div>
         @endforeach
     </div>

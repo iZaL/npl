@@ -58,8 +58,6 @@ $factory->define(App\Src\Subject\UserSubject::class, function (Faker\Generator $
     ];
 });
 
-
-
 $factory->define(App\Src\Question\Question::class, function (Faker\Generator $faker) {
     return [
 

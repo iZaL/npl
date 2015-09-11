@@ -1,12 +1,13 @@
 <?php
 
+use App\Src\User\User;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 
-class QuestionControllerTest extends TestCase
+class AnswerControllerTest extends TestCase
 {
 
     use DatabaseTransactions;
@@ -18,32 +19,34 @@ class QuestionControllerTest extends TestCase
     {
         parent::setUp();
 
-        $this->user = Auth::loginUsingId(3); // student
 
     }
 
-    public function testStore()
+    public function testAnswerIsSuccessful()
     {
-        $body = uniqid();
-        $subjectID = 2;
+        $educator = User::find(2); // Educator
+        $student = User::find(3); // student
 
-        $this->actingAs($this->user)
-            ->visit('/question/create')
-            ->select($subjectID, 'subject_id')
-            ->type($body, 'body_en')
+        $questionBody = 'How much is 1+1 ? ';
+        $answerBody = 'answer is 2 ';
+        $question = factory('App\Src\Question\Question',
+            1)->create(['user_id' => $student->id, 'subject_id' => 3, 'body_en' => $questionBody]);
+
+        $this->actingAs($educator)
+            ->visit('/question/'.$question->id.'/answer')
+            ->type($question->id, 'question_id')
+            ->type($answerBody, 'body_en')
             ->press('Submit');
 
-        $level = $this->user->levels->last();
-
-        $this->seeInDatabase('questions',
+        $this->seeInDatabase('answers',
             [
-                'body_en'    => $body,
-                'user_id'    => $this->user->id,
-                'subject_id' => 2,
-                'level_id'   => $level->id
+                'body_en'    => $answerBody,
+                'user_id'    => $educator->id,
+                'question_id' => $question->id,
+                'parent_id ' => 0,
             ]);
 
-        $this->onPage('/profile/questions');
+        $this->onPage('question/'.$question->id.'/answer');
 
     }
 

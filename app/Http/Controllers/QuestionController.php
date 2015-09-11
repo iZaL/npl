@@ -22,7 +22,7 @@ class QuestionController extends Controller
      */
     public function __construct(QuestionRepository $questionRepository)
     {
-        Auth::user();
+        $this->middleware('auth');
         $this->questionRepository = $questionRepository;
     }
 
@@ -31,7 +31,6 @@ class QuestionController extends Controller
      */
     public function index()
     {
-//        Auth::loginUsingId(3);
         $questions = $this->questionRepository->model->all();
 
         return view('modules.question.index', compact('questions'));
@@ -39,10 +38,7 @@ class QuestionController extends Controller
 
     public function create(SubjectRepository $subjectRepository)
     {
-//        Auth::loginUsingId(3);
-        $user = Auth::user();
-        $userSubjects = $user->subjects->lists('id');
-        $subjects = $subjectRepository->model->whereIn('id',$userSubjects)->lists('name_en', 'id');
+        $subjects = $subjectRepository->model->lists('name_en', 'id');
 
         return view('modules.question.create', compact('subjects'));
     }
@@ -53,6 +49,12 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
+
+        $this->validate($request, [
+            'subject_id' => 'integer|required',
+            'body_en'    => 'required'
+        ]);
+
         $user = Auth::user();
 
         if (!is_a($user->getType(), Student::class)) {
@@ -61,11 +63,6 @@ class QuestionController extends Controller
 
         $level = $user->levels->last();
 
-        $this->validate($request, [
-            'subject_id' => 'integer|required',
-            'body_en'    => 'required'
-        ]);
-
         $question = $this->questionRepository->model->create(
             array_merge([
                 'user_id'  => $user->id,
@@ -73,7 +70,7 @@ class QuestionController extends Controller
             ], $request->all())
         );
 
-        return Redirect::action('HomeController@index')->with('success', 'Question posted');
+        return Redirect::action('ProfileController@getQuestions')->with('success', 'Question posted');
 
     }
 }

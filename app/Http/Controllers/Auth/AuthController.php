@@ -54,7 +54,7 @@ class AuthController extends Controller
         SubjectRepository $subjectRepository,
         LevelRepository $levelRepository
     ) {
-        $this->middleware('guest', ['except' => 'getLogout']);
+//        $this->middleware('guest', ['except' => 'getLogout']);
         $this->userRepository = $userRepository;
         $this->subjectRepository = $subjectRepository;
         $this->levelRepository = $levelRepository;
@@ -63,7 +63,8 @@ class AuthController extends Controller
     public function postLogin(Request $request)
     {
         $this->validate($request, [
-            'email' => 'required', 'password' => 'required',
+            'email'    => 'required',
+            'password' => 'required',
         ]);
 
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
@@ -77,7 +78,9 @@ class AuthController extends Controller
 
         $credentials = $this->getCredentials($request);
 
-        if (Auth::attempt((['email' => $request->get('email'), 'password' => $request->get('password'), 'active' => 1]), $request->has('remember'))) {
+        if (Auth::attempt((['email' => $request->get('email'), 'password' => $request->get('password'), 'active' => 1]),
+            $request->has('remember'))
+        ) {
             return $this->handleUserWasAuthenticated($request, $throttles);
         }
 
@@ -94,6 +97,7 @@ class AuthController extends Controller
                 $this->loginUsername() => $this->getFailedLoginMessage(),
             ]);
     }
+
     /**
      * Get a validator for an incoming registration request.
      *
@@ -111,16 +115,16 @@ class AuthController extends Controller
 
     public function studentRegistration()
     {
-        $subjects = $this->subjectRepository->model->get(['name_en', 'id']);
-        $levels = $this->levelRepository->model->get(['name_en', 'id']);
+//        $subjects = $this->subjectRepository->model->get(['name_en', 'id']);
+        $levels = $this->levelRepository->model->lists('name_en','id');
 
-        return view('auth.student-register', compact('subjects', 'levels'));
+        return view('auth.student-register', compact('levels'));
     }
 
     public function educatorRegistration()
     {
-        $subjects = $this->subjectRepository->model->get(['name_en', 'id']);
-        $levels = $this->levelRepository->model->get(['name_en', 'id']);
+        $subjects = $this->subjectRepository->model->lists('name_en', 'id');
+        $levels = $this->levelRepository->model->lists('name_en', 'id');
 
         return view('auth.educator-register', compact('subjects', 'levels'));
     }
@@ -131,7 +135,19 @@ class AuthController extends Controller
      */
     public function postEducatorRegistration(Request $request)
     {
+
+        $this->validate($request, [
+            'email'        => 'required|email|unique:users,email',
+            'password'     => 'required|confirmed|max:255|min:5',
+            'firstname_en' => 'required',
+            'levels'       => 'required|array',
+            'subjects'     => 'required|array'
+        ]);
+
+
         $user = $this->registerUser($request);
+
+        $user->subjects()->sync($request->subjects);
 
         $user->educator()->create([]);
 
@@ -150,6 +166,12 @@ class AuthController extends Controller
     protected function postStudentRegistration(Request $request)
     {
 
+        $this->validate($request, [
+            'email'        => 'required|email|unique:users,email',
+            'password'     => 'required|confirmed|max:255|min:5',
+            'firstname_en' => 'required',
+            'levels'       => 'required|array',
+        ]);
         $user = $this->registerUser($request);
 
         $user->student()->create([]);
@@ -161,19 +183,12 @@ class AuthController extends Controller
 
     public function registerUser($request)
     {
-        $this->validate($request, [
-            'email'        => 'required|email|unique:users,email',
-            'password'     => 'required|confirmed|max:255|min:5',
-            'firstname_en' => 'required',
-        ]);
 
         $user = $this->userRepository->model->create($request->except(['levels', 'subjects', 'password_confirmation']));
 
-        event(new UserRegistered($user));
-
         $user->levels()->sync($request->levels);
 
-        $user->subjects()->sync($request->subjects);
+        event(new UserRegistered($user));
 
         return $user;
     }

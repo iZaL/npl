@@ -20,6 +20,10 @@ Route::get('educator','EducatorController@index');
 
 Route::resource('question', 'QuestionController');
 
+/*********************************************************************************************************
+ * Answer Routes
+ ********************************************************************************************************/
+
 Route::resource('answer', 'AnswerController');
 
 Route::get('question/{question_id}/reply/{answer_id}','AnswerController@createReply');
@@ -27,6 +31,10 @@ Route::get('question/{question_id}/reply/{answer_id}','AnswerController@createRe
 Route::post('question/reply','AnswerController@storeReply');
 
 Route::get('question/{id}/answer', 'AnswerController@createAnswer');
+
+/*********************************************************************************************************
+ * 
+ ********************************************************************************************************/
 
 Route::resource('subject', 'SubjectController');
 

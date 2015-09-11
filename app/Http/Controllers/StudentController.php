@@ -26,10 +26,8 @@ class StudentController extends Controller
 
     public function index()
     {
-
         $student = false;
 
-        Auth::loginUsingId(2);
         if (Auth::check()) {
             $user = Auth::user();
             if (is_a($user->getType(), Student::class)) {

@@ -22,4 +22,15 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
 
         return $app;
     }
+
+    public function storeInput($element, $text, $force = false)
+    {
+        if ($force) {
+            $this->inputs[$element] = $text;
+            return $this;
+        }
+        else {
+            return parent::storeInput($element, $text);
+        }
+    }
 }
