@@ -35,27 +35,24 @@ class EducatorController extends Controller
         }
 
         return view('modules.educator.index', compact('educator'));
-
     }
 
 
     public function answers()
     {
         $user = Auth::user();
-
         $answers = $user->parentAnswers;
 
         return view('modules.educator.answers', compact('answers'));
-
     }
+
     /**
      * Recent Questions For an Educator
      * @param QuestionRepository $questionRepository
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
-    public function recentQuestions(QuestionRepository $questionRepository)
+    public function getQuestions(QuestionRepository $questionRepository)
     {
-
         // Check if the current user is an Educator
         // Get the recent 10 Questions For the Educator filtering by his subjects and levels
 

@@ -23,7 +23,8 @@
     </div>
     @if($educator)
         <a href="{{ action('ProfileController@editProfile') }}" class="btn btn-primary">My Profile</a>&nbsp;&nbsp;&nbsp;
-        <a href="{{ action('EducatorController@recentQuestions') }}" class="btn btn-success">Recent Questions</a>&nbsp;&nbsp;&nbsp;
+        <a href="{{ action('EducatorController@getQuestions') }}" class="btn btn-success">Recent
+            Questions</a>&nbsp;&nbsp;&nbsp;
         <a href="{{ action('EducatorController@answers') }}" class="btn btn-primary">My Answers</a><br><br>
     @endif
 

@@ -9,9 +9,9 @@ Route::controllers([
 ]);
 
 Route::get('register/student', 'Auth\AuthController@studentRegistration');
-Route::get('register/educator', 'Auth\AuthController@educatorRegistration');
-
 Route::post('register/student', 'Auth\AuthController@postStudentRegistration');
+
+Route::get('register/educator', 'Auth\AuthController@educatorRegistration');
 Route::post('register/educator', 'Auth\AuthController@postEducatorRegistration');
 
 /*********************************************************************************************************
@@ -19,7 +19,7 @@ Route::post('register/educator', 'Auth\AuthController@postEducatorRegistration')
  ********************************************************************************************************/
 Route::get('educator', 'EducatorController@index');
 
-Route::get('educator/recent-questions', 'EducatorController@recentQuestions');
+Route::get('educator/questions', 'EducatorController@getQuestions');
 
 Route::get('educator/answers', 'EducatorController@answers');
 
