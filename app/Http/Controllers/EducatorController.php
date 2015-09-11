@@ -3,10 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Src\Educator\Educator;
+use App\Src\Educator\EducatorRepository;
+use App\Src\Question\QuestionRepository;
 use Illuminate\Support\Facades\Auth;
 
 class EducatorController extends Controller
 {
+    /**
+     * @var EducatorRepository
+     */
+    private $educatorRepository;
+
+    /**
+     * @param EducatorRepository $educatorRepository
+     */
+    public function __construct(EducatorRepository $educatorRepository)
+    {
+        $this->middleware('auth', ['except' => 'index']);
+        $this->educatorRepository = $educatorRepository;
+    }
 
     public function index()
     {
@@ -21,6 +36,43 @@ class EducatorController extends Controller
 
         return view('modules.educator.index', compact('educator'));
 
+    }
+
+
+    public function answers()
+    {
+        $user = Auth::user();
+
+        $answers = $user->parentAnswers;
+
+        return view('modules.educator.answers', compact('answers'));
+
+    }
+    /**
+     * Recent Questions For an Educator
+     * @param QuestionRepository $questionRepository
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
+    public function recentQuestions(QuestionRepository $questionRepository)
+    {
+
+        // Check if the current user is an Educator
+        // Get the recent 10 Questions For the Educator filtering by his subjects and levels
+
+        $user = Auth::user();
+
+        if (!is_a($user->getType(), Educator::class)) {
+            return redirect()->back()->with('warning', 'Invalid Access');
+        }
+
+        $subjectIds = $user->subjects->modelKeys();
+        $levelIds = $user->levels->modelKeys();
+
+        // questions for the educator
+        $questions = $questionRepository->model->whereIn('subject_id', $subjectIds)->whereIn('level_id',
+            $levelIds)->get();
+
+        return view('modules.educator.recent-questions', compact('questions'));
     }
 
 }

@@ -2,6 +2,7 @@
 
 use App\Core\BaseModel;
 use App\Core\LocaleTrait;
+use App\Src\Answer\Answer;
 use App\Src\Question\Question;
 
 class Educator extends BaseModel
@@ -11,4 +12,13 @@ class Educator extends BaseModel
 
     protected $guarded = ['id'];
 
+//    public function answers()
+//    {
+//        return $this->hasMany(Answer::class,'user_id');
+//    }
+//
+//    public function parentAnswers()
+//    {
+//        return $this->hasMany(Answer::class)->where('parent_id', 0);
+//    }
 }

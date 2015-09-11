@@ -2,8 +2,8 @@
 
 @section('content')
 
-    <h1>{{ $question->body }}</h1>
 
+    <h1>{{ $question->body }}</h1>
 
     <ul class="list-group">
         @foreach($answers as $answer)
@@ -16,8 +16,7 @@
     {!! Form::open(['action' => 'AnswerController@store', 'method' => 'post','files'=>true, 'class'=>'form-horizontal'])
     !!}
 
-    {{--<input type="text" name="question_id" id="question_id" value="{{ $question->id }}">--}}
-    {!! Form::text('question_id',$question->id) !!}
+    {!! Form::hidden('question_id',$question->id) !!}
 
     <div class="form-group">
         {!! Form::label('body', 'body', ['class' => 'control-label']) !!} <span class="red">*</span>

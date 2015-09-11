@@ -1,11 +1,8 @@
 @extends('layouts.two_col')
 
 @section('left')
-
     <h1>AD</h1>
-
 @endsection
-
 
 @section('right')
     <div class="blockpara">
@@ -27,10 +24,8 @@
     </div>
 
     @if($student)
-        <a href="{{ action('ProfileController@editProfile') }}" class="btn btn-primary">YOUR PROFILE</a>&nbsp;&nbsp;&nbsp;
-        <a href="{{ action('QuestionController@create') }}" class="btn btn-success">ASK A
-            QUESTION</a>&nbsp;&nbsp;&nbsp;
-        <a href="{{ action('ProfileController@getQuestions') }}" class="btn btn-primary">YOUR QUESTIONS</a><br><br>
-
+        <a href="{{ action('ProfileController@editProfile') }}" class="btn btn-primary">My Profile</a>&nbsp;&nbsp;&nbsp;
+        <a href="{{ action('QuestionController@create') }}" class="btn btn-success">Ask</a>&nbsp;&nbsp;&nbsp;
+        <a href="{{ action('ProfileController@getQuestions') }}" class="btn btn-primary">My Questions</a><br><br>
     @endif
 @endsection

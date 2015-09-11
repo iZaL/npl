@@ -82,3 +82,13 @@ $factory->define(App\Src\Student\Student::class, function (Faker\Generator $fake
     ];
 });
 
+
+$factory->define(App\Src\Answer\Answer::class, function (Faker\Generator $faker) {
+    return [
+        'user_id'    => 3,
+        'parent_id'  => 0,
+        'body_en'   => 'bla bla',
+        'question_id' => 1
+    ];
+});
+

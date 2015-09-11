@@ -35,12 +35,14 @@ class ProfileController extends Controller
     public function getQuestions()
     {
         $user = Auth::user();
+
         $user->load('questions');
 
         $questions = $user->questions;
         $questions->load('subject');
-        $questions->load('parentAnswers');
+        $questions->load('parentAnswers.user');
 
         return view('modules.user.question',compact('questions','answers'));
     }
+
 }

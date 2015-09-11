@@ -18,6 +18,9 @@ Route::get('student','StudentController@index');
 
 Route::get('educator','EducatorController@index');
 
+Route::get('profile/recent-questions','EducatorController@recentQuestions');
+Route::get('profile/answers','EducatorController@answers');
+
 Route::resource('question', 'QuestionController');
 
 /*********************************************************************************************************
@@ -33,7 +36,7 @@ Route::post('question/reply','AnswerController@storeReply');
 Route::get('question/{id}/answer', 'AnswerController@createAnswer');
 
 /*********************************************************************************************************
- * 
+ *
  ********************************************************************************************************/
 
 Route::resource('subject', 'SubjectController');

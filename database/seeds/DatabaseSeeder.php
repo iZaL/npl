@@ -17,7 +17,9 @@ class DatabaseSeeder extends Seeder
         'user_levels',
         'user_subjects',
         'students',
-        'educators'
+        'educators',
+        'questions',
+        'answers'
     ];
 
     /**
@@ -76,7 +78,9 @@ class DatabaseSeeder extends Seeder
         factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 4, 'subject_id' => 6]);
 
 
-//        factory('App\Src\Question\Question', 1)->create(['user_id' => 4, 'subject_id' => 6]);
+        factory('App\Src\Question\Question', 1)->create(['user_id' => 5, 'subject_id' => 1, 'level_id'=>2,'body_en'=>'what is physics ?']);
+        factory('App\Src\Question\Question', 1)->create(['user_id' => 5, 'subject_id' => 2, 'level_id'=>2,'body_en'=>'what is chemistryy ?']);
+        factory('App\Src\Question\Question', 1)->create(['user_id' => 2, 'subject_id' => 2, 'level_id'=>2,'body_en'=>'is chemistry easy ?']);
 
 
 //        $this->call(UserTableSeeder::class);

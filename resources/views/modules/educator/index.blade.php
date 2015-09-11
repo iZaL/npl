@@ -1,11 +1,8 @@
 @extends('layouts.two_col')
 
 @section('left')
-
     <h1>AD</h1>
-
 @endsection
-
 
 @section('right')
 
@@ -25,8 +22,9 @@
         </p>
     </div>
     @if($educator)
-        <a href="" class="btn btn-primary">YOUR PROFILE</a>&nbsp;&nbsp;&nbsp;
-        <a href="inside.php?action=latest_questions" class="btn btn-success">LATEST  QUESTIONS</a>&nbsp;&nbsp;&nbsp;
-        <a href="inside.php?action=educator_answers" class="btn btn-primary">YOUR QUESTIONS</a><br><br>
+        <a href="{{ action('ProfileController@editProfile') }}" class="btn btn-primary">My Profile</a>&nbsp;&nbsp;&nbsp;
+        <a href="{{ action('EducatorController@recentQuestions') }}" class="btn btn-success">Recent Questions</a>&nbsp;&nbsp;&nbsp;
+        <a href="{{ action('EducatorController@answers') }}" class="btn btn-primary">My Answers</a><br><br>
     @endif
+
 @endsection

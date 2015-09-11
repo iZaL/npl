@@ -32,34 +32,39 @@ class AnswerController extends Controller
         $this->questionRepository = $questionRepository;
     }
 
-    /**
-     * @return \Illuminate\View\View
-     */
-    public function index()
-    {
-
-    }
 
     /**
      * @param $id
+     * @return \Illuminate\View\View
      */
     public function createAnswer($id)
     {
-        // check if valid question
-        // check if the educator can answer the question ( Has Subject and Valid Level )
-        $question = $this->questionRepository->model->find($id);
-
         $user = Auth::user();
 
-        if (!$this->answerRepository->canAnswer($user, $question)) {
-            return redirect()->back()->with('warning', ' You Cannot Answer This Question');
+
+        $question = $this->questionRepository->model->find($id);
+
+        // Check IF the Current User Can Answer This Question
+        try {
+            $this->answerRepository->canAnswer($user, $question);
+        } catch (\Exception $e) {
+            return redirect()->back()->with('warning', $e->getMessage());
         }
 
         $answers = $question->parentAnswers;
 
+        $userIds = $answers->lists('user_id')->toArray();
+
+        // If the User has already answered once, then just redirect to Conversation Page
+        if (in_array($user->id, $userIds)) {
+            $parentAnswer = $answers->where('user_id',$user->id)->first();
+            return Redirect::action('AnswerController@createReply', [$id, $parentAnswer->id]);
+        }
+
+        //Users Parent Answer
         $question->load('answers');
 
-        return view('modules.answer.create', compact('user', 'question', 'answers'));
+        return view('modules.answer.create', compact('user', 'question', 'answers', 'answered'));
 
     }
 
@@ -72,8 +77,10 @@ class AnswerController extends Controller
 
         $question = $this->questionRepository->model->find($request->question_id);
 
-        if (!$this->answerRepository->canAnswer($user, $question)) {
-            return redirect()->back()->with('warning', ' You Cannot Answer This Question');
+        try {
+            $this->answerRepository->canAnswer($user, $question);
+        } catch (\Exception $e) {
+            return redirect()->back()->with('warning', $e->getMessage());
         }
 
         $question->answers()->create([
@@ -88,25 +95,28 @@ class AnswerController extends Controller
     public function createReply($questionId, $answerId)
     {
         // check whether valid subject, valid level, valid chat
-
         $user = Auth::user();
         $question = $this->questionRepository->model->find($questionId);
 
         // Check If the Reply is from Educator
-        if(is_a($user->getType(),Educator::class)) {
-            if (!$this->answerRepository->canAnswer($user, $question)) {
-                return redirect()->back()->with('warning', ' You Cannot Reply This Question 1');
+        if (is_a($user->getType(), Educator::class)) {
+            try {
+                $this->answerRepository->canAnswer($user, $question);
+            } catch (\Exception $e) {
+                return redirect()->back()->with('warning', $e->getMessage());
             }
         } elseif (is_a($user->getType(), Student::class)) {
             // Check If the Student Who asked this Question is Replying
             if (!($question->user_id === $user->id)) {
-                return redirect()->back()->with('warning', ' You Cannot Reply This Question 2');
+                return redirect()->back()->with('warning', 'You Cannot Reply This Question');
             }
         } else {
-            dd('cant reply');
+            return redirect()->back()->with('warning', 'Wrong Access');
         }
 
         $answer = $this->answerRepository->model->find($answerId);
+
+        $answer->load('childAnswers');
 
         $childAnswers = $answer->childAnswers;
 

@@ -2,6 +2,7 @@
 
 namespace App\Src\User;
 
+use App\Src\Answer\Answer;
 use App\Src\Educator\Educator;
 use App\Src\Level\Level;
 use App\Src\Question\Question;
@@ -66,6 +67,16 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function educator()
     {
         return $this->hasOne(Educator::class);
+    }
+
+    public function answers()
+    {
+        return $this->hasMany(Answer::class);
+    }
+
+    public function parentAnswers()
+    {
+        return $this->hasMany(Answer::class)->where('parent_id',0);
     }
 
     /**
