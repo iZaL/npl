@@ -44,11 +44,6 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      */
     protected $hidden = ['password', 'remember_token'];
 
-    public function questions()
-    {
-        return $this->hasMany(Question::class);
-    }
-
     public function levels()
     {
         return $this->belongsToMany(Level::class, 'user_levels');
@@ -67,16 +62,6 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function educator()
     {
         return $this->hasOne(Educator::class);
-    }
-
-    public function answers()
-    {
-        return $this->hasMany(Answer::class);
-    }
-
-    public function parentAnswers()
-    {
-        return $this->hasMany(Answer::class)->where('parent_id',0);
     }
 
     /**

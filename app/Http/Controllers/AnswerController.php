@@ -41,7 +41,6 @@ class AnswerController extends Controller
     {
         $user = Auth::user();
 
-
         $question = $this->questionRepository->model->find($id);
 
         // Check IF the Current User Can Answer This Question

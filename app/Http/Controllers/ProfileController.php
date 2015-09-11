@@ -36,9 +36,16 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
 
-        $user->load('questions');
+        $student = $user->getType();
 
-        $questions = $user->questions;
+        if(!is_a($student,Student::class)) {
+            return redirect()->back()->with('warning', 'Wrong Access');
+        }
+
+//        $student->load('questions');
+
+        $questions = $student->questions;
+
         $questions->load('subject');
         $questions->load('parentAnswers.user');
 

@@ -5,6 +5,7 @@
 
         <div class="topRight">
             @if(Auth::check())
+                <p> Welcome, {{ Auth::user()->email }}</p>
                 <p><a href="/auth/logout" class="">logout</a></p>
             @endif
             Do you have a Question? No problem

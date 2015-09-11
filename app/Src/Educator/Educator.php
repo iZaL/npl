@@ -12,13 +12,13 @@ class Educator extends BaseModel
 
     protected $guarded = ['id'];
 
-//    public function answers()
-//    {
-//        return $this->hasMany(Answer::class,'user_id');
-//    }
-//
-//    public function parentAnswers()
-//    {
-//        return $this->hasMany(Answer::class)->where('parent_id', 0);
-//    }
+    public function answers()
+    {
+        return $this->hasMany(Answer::class, 'user_id');
+    }
+
+    public function parentAnswers()
+    {
+        return $this->hasMany(Answer::class, 'user_id')->where('parent_id', 0);
+    }
 }

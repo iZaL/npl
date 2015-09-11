@@ -12,13 +12,10 @@ class QuestionControllerTest extends TestCase
     use DatabaseTransactions;
     use WithoutMiddleware;
 
-    protected $user;
-
     public function setUp()
     {
         parent::setUp();
 
-        $this->user = Auth::loginUsingId(3); // student
 
     }
 
@@ -27,18 +24,20 @@ class QuestionControllerTest extends TestCase
         $body = uniqid();
         $subjectID = 2;
 
-        $this->actingAs($this->user)
+        $user = Auth::loginUsingId(3); // student
+
+        $this->actingAs($user)
             ->visit('/question/create')
             ->select($subjectID, 'subject_id')
             ->type($body, 'body_en')
             ->press('Submit');
 
-        $level = $this->user->levels->last();
+        $level = $user->levels->last();
 
         $this->seeInDatabase('questions',
             [
                 'body_en'    => $body,
-                'user_id'    => $this->user->id,
+                'user_id'    => $user->id,
                 'subject_id' => 2,
                 'level_id'   => $level->id
             ]);

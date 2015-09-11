@@ -23,7 +23,7 @@ class AnswerControllerTest extends TestCase
         $student = User::find(3); // student
 
         $questionBody = 'How much is 1+1 ? ';
-        $answerBody = 'answer is 2 ';
+        $answerBody = uniqid();
         $question = factory('App\Src\Question\Question',
             1)->create(['user_id' => $student->id, 'subject_id' => 1, 'body_en' => $questionBody, 'level_id' => 2]);
 
@@ -31,7 +31,7 @@ class AnswerControllerTest extends TestCase
             ->visit('/question/' . $question->id . '/answer')
             ->type($question->id, 'question_id')
             ->type($answerBody, 'body_en')
-            ->press('Submit');;
+            ->press('Submit');
         $this->seeInDatabase('answers',
             [
                 'body_en'     => $answerBody,
@@ -40,7 +40,8 @@ class AnswerControllerTest extends TestCase
                 'parent_id'   => 0,
             ]);
 
-        $this->onPage('question/' . $question->id . '/answer');
+        $answer = App\Src\Answer\Answer::where('body_en',$answerBody)->first();
+        $this->onPage('question/' . $question->id . '/reply/'.$answer->id);
 
     }
 

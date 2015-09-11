@@ -11,4 +11,10 @@ class Student extends BaseModel
 
     protected $guarded = ['id'];
 
+    public function questions()
+    {
+        return $this->hasMany(Question::class, 'user_id','user_id');
+    }
+
 }
+
