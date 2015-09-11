@@ -19,6 +19,6 @@ class Educator extends BaseModel
 
     public function parentAnswers()
     {
-        return $this->hasMany(Answer::class, 'user_id')->where('parent_id', 0);
+        return $this->hasMany(Answer::class, 'user_id', 'user_id')->where('parent_id', 0);
     }
 }

@@ -41,7 +41,8 @@ class EducatorController extends Controller
     public function getAnswers()
     {
         $user = Auth::user();
-        $answers = $user->parentAnswers;
+        $educator = $user->getType();
+        $answers = $educator->parentAnswers;
 
         return view('modules.educator.answers', compact('answers'));
     }

@@ -112,9 +112,7 @@ class AnswerController extends Controller
         }
 
         $answer = $this->answerRepository->model->find($answerId);
-
         $answer->load('childAnswers');
-
         $childAnswers = $answer->childAnswers;
 
         return view('modules.answer.reply', compact('user', 'question', 'answer', 'childAnswers'));
@@ -123,10 +121,8 @@ class AnswerController extends Controller
 
     public function storeReply(Request $request)
     {
-
         $user = Auth::user();
         $question = $this->questionRepository->model->find($request->question_id);
-
         $answer = $this->answerRepository->model->find($request->answer_id);
 
         $this->answerRepository->model->create([

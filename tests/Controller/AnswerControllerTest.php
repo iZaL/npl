@@ -8,7 +8,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 class AnswerControllerTest extends TestCase
 {
 
-//    use DatabaseTransactions;
+    use DatabaseTransactions;
     use WithoutMiddleware;
 
     public function setUp()
