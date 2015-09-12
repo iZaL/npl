@@ -45,22 +45,21 @@ class AnswerController extends Controller
 
         // Check IF the Current User Can Answer This Question
         try {
-            $this->answerRepository->canAnswer($user, $question);
+            $user->canAnswer($question);
         } catch (\Exception $e) {
             return redirect()->back()->with('warning', $e->getMessage());
         }
 
+        // Get The Parent answers for the question
         $answers = $question->parentAnswers;
 
-        $userIds = $answers->lists('user_id')->toArray();
-
         // If the User has already answered once, then just redirect to Conversation Page
-        if (in_array($user->id, $userIds)) {
-            $parentAnswer = $answers->where('user_id',$user->id)->first();
+        if ($answers->contains('user_id', $user->id)) {
+            $parentAnswer = $answers->where('user_id', $user->id)->first();
+
             return Redirect::action('AnswerController@createReply', [$id, $parentAnswer->id]);
         }
 
-        //Users Parent Answer
         return view('modules.answer.create', compact('user', 'question'));
 
     }
@@ -75,7 +74,7 @@ class AnswerController extends Controller
         $question = $this->questionRepository->model->find($request->question_id);
 
         try {
-            $this->answerRepository->canAnswer($user, $question);
+            $user->canAnswer($question);
         } catch (\Exception $e) {
             return redirect()->back()->with('warning', $e->getMessage());
         }
@@ -98,7 +97,7 @@ class AnswerController extends Controller
         // Check If the Reply is from Educator
         if (is_a($user->getType(), Educator::class)) {
             try {
-                $this->answerRepository->canAnswer($user, $question);
+                $user->canAnswer($question);
             } catch (\Exception $e) {
                 return redirect()->back()->with('warning', $e->getMessage());
             }

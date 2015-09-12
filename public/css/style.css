@@ -48,7 +48,7 @@ body {
 
 .topRight {
     float: right;
-    padding-top: 90px;
+    padding-top: 20px;
     font-weight: 700;
     color: #032b62;
     font-size: 19.19px;
@@ -125,7 +125,7 @@ body {
 #banner {
     width: 1002px;
     height: 358px;
-    padding-top: 16px;
+    padding-top: 0px;
 }
 
 .bannerLeft {
@@ -385,7 +385,6 @@ a.button2 {
     background: #10ae98;
     width: 213px;
     display: inline-block;
-    margin-left: 177px;
     margin-top: 25px;
 }
 
@@ -399,7 +398,6 @@ a.button3 {
     background: #3074bf;
     width: 213px;
     display: inline-block;
-    margin-left: 177px;
     margin-top: 25px;
 }
 

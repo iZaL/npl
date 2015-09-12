@@ -2,7 +2,6 @@
 
 namespace App\Src\User;
 
-use App\Src\Answer\Answer;
 use App\Src\Educator\Educator;
 use App\Src\Level\Level;
 use App\Src\Question\Question;
@@ -16,7 +15,6 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
-use Illuminate\Support\Facades\Hash;
 
 
 class User extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
@@ -77,4 +75,33 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     {
         return $this->attributes['password'] = bcrypt($value);
     }
+
+
+    /**
+     * Determine whether the user can answer the question
+     * @param Question $question
+     * @return $this
+     * @throws \Exception
+     */
+    public function canAnswer(Question $question)
+    {
+        if (!is_a($this->getType(), Educator::class)) {
+            throw new \Exception('Your cannot answer this question. Not an educator');
+        }
+
+        $userSubjects = $this->subjects->modelKeys();
+        $userLevels = $this->levels->modelKeys();
+
+        if (!in_array($question->subject_id, $userSubjects)) {
+            throw new \Exception('Your cannot answer this question. Subject not in ur list');
+        }
+
+        if (!in_array($question->level_id, $userLevels)) {
+            throw new \Exception('Your cannot answer this question. Level not in ur list');
+        }
+
+        return $this;
+
+    }
+
 }
