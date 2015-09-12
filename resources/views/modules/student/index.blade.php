@@ -26,6 +26,6 @@
     @if($student)
         <a href="{{ action('ProfileController@editProfile') }}" class="btn btn-primary">My Profile</a>&nbsp;&nbsp;&nbsp;
         <a href="{{ action('QuestionController@create') }}" class="btn btn-success">Ask</a>&nbsp;&nbsp;&nbsp;
-        <a href="{{ action('ProfileController@getQuestions') }}" class="btn btn-primary">My Questions</a><br><br>
+        <a href="{{ action('StudentController@getQuestions') }}" class="btn btn-primary">My Questions</a><br><br>
     @endif
 @endsection
