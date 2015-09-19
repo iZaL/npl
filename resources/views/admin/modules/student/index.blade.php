@@ -1,7 +1,7 @@
 @extends('admin.layouts.one_col')
 
 @section('title')
-    <h1>Subjects</h1>
+    <h1>Students</h1>
 @endsection
 
 @section('style')
@@ -15,37 +15,35 @@
 @section('middle')
     <div class="panel panel-default">
         <div class="panel-heading">
-            <b>Subjects</b>
+            <b>Students</b>
         </div>
 
         <!-- /.panel-heading -->
         <div class="panel-body">
-            <a class="btn btn-primary btn-md" role="button" href="{{ action('Admin\SubjectController@create') }}"> Add Subject </a>
-            <hr>
             <div class="dataTable_wrapper mTop10">
                 <table class="table table-striped table-bordered table-hover" id="dataTables">
                     <thead>
                     <tr>
-                        <th>Subjects</th>
+                        <th>Students</th>
                         <th>Actions</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($subjects as $subject)
+                    @foreach($students as $student)
                         <tr class="gradeU">
                             <td>
-                                <a href="{{ action('Admin\SubjectController@show',$subject->id) }}">{{ ucfirst($subject->name) }}</a>
+                                @if($student->profile)
+                                    <a href="{{ action('Admin\StudentController@show',$student->id) }}">{{ ucfirst($student->profile->firstname) }}</a>
+                                @else
+                                    Unknown User
+                                @endif
                                 <small class="pull-right">
-                                    {{ $subject->educatorsCount ? 'Total '. $subject->educatorsCount .' Educators. ': ' 0 Educators.' }}
-                                    <br>
-                                    {{ $subject->questionsCount ? 'Total '. $subject->questionsCount .' Questions. ': ' 0 Questions.' }}
+                                    {{ $student->questionsCount ? 'Total '. $student->questionsCount .' Questions. ': ' 0 Questions.' }}
                                 </small>
                             </td>
                             <td>
-                                <a href="{{ action('Admin\SubjectController@edit',$subject->id)  }}"
-                                   class="btn btn-sm btn-primary" role="button">Edit</a>
                                 <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteModalBox"
-                                        data-link="{{action('Admin\SubjectController@destroy',$subject->id)}}">Delete
+                                        data-link="{{action('Admin\StudentController@destroy',$student->id)}}">Remove as Student
                                 </button>
                             </td>
                         </tr>
@@ -54,7 +52,8 @@
                 </table>
             </div>
             <!-- /.table-responsive -->
-            @include('admin.partials.delete-modal',['info' => 'This will also delete the Questions and Answers related to the Subject .'])
+            @include('admin.partials.delete-modal',['info' => 'This will only remove the User as Student and delete all his questions.
+             You can delete the user from Students Page.','deleteText'=>'Remove as Student'])
         </div>
         <!-- /.panel-body -->
 

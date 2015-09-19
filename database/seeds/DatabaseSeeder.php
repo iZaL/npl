@@ -80,7 +80,7 @@ class DatabaseSeeder extends Seeder
 
         factory('App\Src\Question\Question', 1)->create(['user_id' => 5, 'subject_id' => 1, 'level_id'=>2,'body_en'=>'what is physics ?']);
         factory('App\Src\Question\Question', 1)->create(['user_id' => 5, 'subject_id' => 2, 'level_id'=>2,'body_en'=>'what is chemistryy ?']);
-        factory('App\Src\Question\Question', 1)->create(['user_id' => 2, 'subject_id' => 2, 'level_id'=>2,'body_en'=>'is chemistry easy ?']);
+        factory('App\Src\Question\Question', 1)->create(['user_id' => 3, 'subject_id' => 2, 'level_id'=>2,'body_en'=>'is chemistry easy ?']);
 
         factory('App\Src\Answer\Answer', 1)->create(['user_id' => 2, 'question_id' => 1, 'parent_id'=>0,'body_en'=>' physics is aa asdas asd ']);
         factory('App\Src\Answer\Answer', 1)->create(['user_id' => 5, 'question_id' => 1, 'parent_id'=>1,'body_en'=>' physics is aa asdas asd aa aa ']);

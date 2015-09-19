@@ -1,7 +1,7 @@
 @extends('admin.layouts.one_col')
 
 @section('title')
-    <h1>Level</h1>
+    <h1>Levels</h1>
 @endsection
 
 @section('style')
@@ -15,7 +15,7 @@
 @section('middle')
     <div class="panel panel-default">
         <div class="panel-heading">
-            <b>Level</b>
+            <b>Levels</b>
         </div>
 
         <!-- /.panel-heading -->

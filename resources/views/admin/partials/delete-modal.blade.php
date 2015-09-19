@@ -4,7 +4,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Confirm Delete ? </h4>
+                <h4 class="modal-title">Confirm {{ isset($deleteText) ? $deleteText : 'Delete' }} ? </h4>
             </div>
             <div class="modal-body">
                 {{ $info }}
@@ -12,7 +12,7 @@
             <div class="modal-footer">
                 {!! Form::open(['url'=> '/admin', 'method'=>'delete', 'id'=>'deleteModal']) !!}
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-danger" value="Delete">Delete</button>
+                <button type="submit" class="btn btn-danger" >{{ isset($deleteText) ? $deleteText : 'Delete' }}</button>
                 {!! Form::close() !!}
             </div>
         </div>

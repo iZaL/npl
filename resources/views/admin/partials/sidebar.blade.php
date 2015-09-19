@@ -82,7 +82,6 @@
                     <ul class="nav nav-second-level">
                         <li>
                             <a href="{{ action('Admin\StudentController@index') }}"><i class="fa fa-list"></i> List</a>
-                            <a href="{{ action('Admin\StudentController@create') }}"><i class="fa fa-plus"></i> Add</a>
                         </li>
 
                     </ul>
@@ -93,7 +92,6 @@
                     <ul class="nav nav-second-level">
                         <li>
                             <a href="{{ action('Admin\EducatorController@index') }}"><i class="fa fa-list"></i> List</a>
-                            <a href="{{ action('Admin\EducatorController@create') }}"><i class="fa fa-plus"></i> Add</a>
                         </li>
 
                     </ul>
