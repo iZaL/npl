@@ -3,29 +3,29 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Src\Educator\EducatorRepository;
+use App\Src\Subject\SubjectRepository;
 
 class HomeController extends Controller
 {
 
-    /*
-    |--------------------------------------------------------------------------
-    | Admin Home Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller renders your application's "dashboard" for users that
-    | are authenticated. Of course, you are free to change or remove the
-    | controller as you wish. It is just here to get your app started!
-    |
-    */
-
     /**
      * Show the application dashboard to the user.
      *
+     * @param EducatorRepository $educatorRepository
+     * @param SubjectRepository $subjectRepository
      * @return Response
      */
-    public function index()
+    public function index(EducatorRepository $educatorRepository, SubjectRepository $subjectRepository)
     {
-        return view('admin.home');
+        // Find newly Registered Educators and their Subjects to Approve
+        $educators = $educatorRepository->model->with([
+            'profile.activeSubjects',
+            'profile.inActiveSubjects'
+        ])->latest()->paginate(100);
+
+        $subjects = $subjectRepository->model->get(['id','name_en']);
+        return view('admin.home', compact('educators','subjects'));
     }
 
 }

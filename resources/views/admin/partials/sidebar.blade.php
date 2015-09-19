@@ -6,7 +6,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/" target="_blank">Sound App</a>
+        <a class="navbar-brand" href="/" target="_blank">No Problem Learning</a>
     </div>
     <!-- /.navbar-header -->
 

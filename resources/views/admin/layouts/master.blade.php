@@ -14,10 +14,12 @@
         <link href="/css/sb-admin-2.css" rel="stylesheet">
         <link href="/css/bootstrap-flat.css" rel="stylesheet">
         <link href="/css/bootstrap-flat-extras.css" rel="stylesheet">
+        <link href="/css/bootstrap-flat-extras.css" rel="stylesheet">
 
         <link href="/css/admin.css" rel="stylesheet">
 
         <!-- Custom Fonts -->
+        <link href="/bower_components/select2/dist/css/select2.min.css" rel="stylesheet" type="text/css">
         <link href="/bower_components/fontawesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     @show
@@ -55,6 +57,8 @@
     <!-- DataTables JavaScript -->
     <script src="/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
     <script src="/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
+
+    <script src="/bower_components/select2/dist/js/select2.full.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
     <script src="/js/sb-admin-2.js"></script>

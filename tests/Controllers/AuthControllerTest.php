@@ -28,11 +28,7 @@ class AuthControllerTest extends TestCase
 
     public function testRegisterStudent()
     {
-//        $this->user = factory('App\Src\User\User', 1)->create(['email' => uniqid() . '@email.com']);
-//        $this->subjects = factory('App\Src\Subject\Subject', 3)->create(['name_en' => uniqid()]);
-//        $this->levels = factory('App\Src\Level\Level', 3)->create(['name_en' => uniqid()]);
-
-        $email = uniqid().'@email.com';
+        $email = uniqid() . '@email.com';
         $firstname = uniqid();
         $levels = [1];
 
@@ -58,7 +54,7 @@ class AuthControllerTest extends TestCase
             ]);
         $this->seeInDatabase('user_levels',
             [
-                'user_id' => $user->id,
+                'user_id'  => $user->id,
                 'level_id' => array_pop($levels)
             ]);
 
@@ -67,7 +63,7 @@ class AuthControllerTest extends TestCase
 
     public function testRegisterEducator()
     {
-        $email = uniqid().'@email.com';
+        $email = uniqid() . '@email.com';
         $firstname = uniqid();
         $levels = [1];
         $subjects = [1];
@@ -95,19 +91,19 @@ class AuthControllerTest extends TestCase
             ]);
         $this->seeInDatabase('user_levels',
             [
-                'user_id' => $user->id,
+                'user_id'  => $user->id,
                 'level_id' => array_pop($levels)
             ]);
 
         $this->seeInDatabase('user_subjects',
             [
-                'user_id' => $user->id,
-                'subject_id' => array_pop($subjects)
+                'user_id'    => $user->id,
+                'subject_id' => array_pop($subjects),
+                'active'     => 0
             ]);
 
         $this->onPage('/auth/login');
     }
-
 
 
 }

@@ -55,6 +55,7 @@ $factory->define(App\Src\Subject\UserSubject::class, function (Faker\Generator $
     return [
         'user_id' => '1',
         'subject_id' => '1',
+        'active' => '1'
     ];
 });
 

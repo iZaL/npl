@@ -16,6 +16,7 @@ class CreateUserSubjectsTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->integer('subject_id');
+            $table->boolean('active')->default(0);
             $table->timestamps();
             $table->softDeletes();
 

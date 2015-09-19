@@ -63,7 +63,7 @@ class EducatorController extends Controller
             return redirect()->back()->with('warning', 'Invalid Access');
         }
 
-        $subjectIds = $user->subjects->modelKeys();
+        $subjectIds = $user->activeSubjects->modelKeys();
         $levelIds = $user->levels->modelKeys();
 
         // questions for the educator

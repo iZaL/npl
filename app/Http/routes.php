@@ -61,6 +61,8 @@ Route::get('home', 'HomeController@index');
 
 Route::get('test', function () {
 
+   $user = Auth::loginUsingId(2);
+    dd($user->subjects->toArray());
 });
 
 Route::get('/', 'HomeController@index');
@@ -70,6 +72,10 @@ Route::get('/', 'HomeController@index');
  ********************************************************************************************************/
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['admin']], function () {
 
+    Route::post('educator/{educator}/de-activate-subjects','EducatorController@deActivateSubjects');
+
+    Route::post('educator/{educator}/activate-subjects','EducatorController@activateSubjects');
+
     Route::resource('user', 'UserController');
     Route::resource('subject', 'SubjectController');
     Route::resource('level', 'LevelController');
@@ -77,6 +83,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['adm
     Route::resource('student', 'StudentController');
     Route::resource('question', 'QuestionController');
     Route::resource('answer', 'AnswerController');
+
     Route::get('/', 'HomeController@index');
 
 });

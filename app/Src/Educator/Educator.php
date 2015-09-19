@@ -41,7 +41,6 @@ class Educator extends BaseModel
         return ($related) ? (int)$related->aggregate : 0;
     }
 
-
     public function parentAnswers()
     {
         return $this->hasMany(Answer::class, 'user_id', 'user_id')->where('parent_id', 0);

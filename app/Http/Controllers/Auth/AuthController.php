@@ -147,9 +147,9 @@ class AuthController extends Controller
 
         $user = $this->registerUser($request);
 
+        $user->subjects()->sync($request->subjects);
 
-//        $user->subjects()->sync($request->subjects);
-
+        //Fire Event to Notify Admin
         $user->educator()->create([]);
 
         //@todo : send verificiation email

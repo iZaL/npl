@@ -69,13 +69,15 @@ class DatabaseSeeder extends Seeder
         factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 4, 'level_id' => 4]);
         factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 5, 'level_id' => 2]);
 
-        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 2, 'subject_id' => 1]);
-        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 4, 'subject_id' => 1]);
-        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 4, 'subject_id' => 2]);
-        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 4, 'subject_id' => 3]);
-        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 4, 'subject_id' => 4]);
-        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 4, 'subject_id' => 5]);
-        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 4, 'subject_id' => 6]);
+        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 2, 'subject_id' => 1, 'active'=>1]);
+        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 2, 'subject_id' => 2, 'active'=>0]);
+        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 2, 'subject_id' => 3, 'active'=>0]);
+        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 4, 'subject_id' => 1, 'active'=>1]);
+        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 4, 'subject_id' => 2, 'active'=>1]);
+        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 4, 'subject_id' => 3, 'active'=>1]);
+        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 4, 'subject_id' => 4, 'active'=>1]);
+        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 4, 'subject_id' => 5, 'active'=>1]);
+        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 4, 'subject_id' => 6, 'active'=>1]);
 
 
         factory('App\Src\Question\Question', 1)->create(['user_id' => 5, 'subject_id' => 1, 'level_id'=>2,'body_en'=>'what is physics ?']);

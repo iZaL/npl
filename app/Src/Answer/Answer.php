@@ -26,6 +26,11 @@ class Answer extends BaseModel
         return $this->belongsTo(User::class);
     }
 
+    public function parentAnswers()
+    {
+        return $this->hasMany(Answer::class, 'id')->where('parent_id', 0);
+    }
+
     public function childAnswers()
     {
         return $this->hasMany(Answer::class, 'parent_id');
@@ -51,8 +56,4 @@ class Answer extends BaseModel
         return ($related) ? (int)$related->aggregate : 0;
     }
 
-    public function parentAnswers()
-    {
-        return $this->hasMany(Answer::class, 'id')->where('parent_id', 0);
-    }
 }

@@ -17,7 +17,6 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 
-
 class User extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
 {
     use Authenticatable, Authorizable, CanResetPassword, LocaleTrait;
@@ -55,6 +54,16 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         return $this->belongsToMany(Subject::class, 'user_subjects');
     }
 
+    public function activeSubjects()
+    {
+        return $this->subjects()->wherePivot('active', 1);
+    }
+
+    public function inActiveSubjects()
+    {
+        return $this->subjects()->wherePivot('active', 0);
+    }
+
     public function student()
     {
         return $this->hasOne(Student::class);
@@ -79,7 +88,6 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         return $this->attributes['password'] = bcrypt($value);
     }
 
-
     /**
      * Determine whether the user can answer the question
      * @param Question $question
@@ -92,7 +100,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
             throw new \Exception('Your cannot answer this question. Not an educator');
         }
 
-        $userSubjects = $this->subjects->modelKeys();
+        $userSubjects = $this->activeSubjects->modelKeys();
         $userLevels = $this->levels->modelKeys();
 
         if (!in_array($question->subject_id, $userSubjects)) {
