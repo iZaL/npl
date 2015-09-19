@@ -147,7 +147,8 @@ class AuthController extends Controller
 
         $user = $this->registerUser($request);
 
-        $user->subjects()->sync($request->subjects);
+
+//        $user->subjects()->sync($request->subjects);
 
         $user->educator()->create([]);
 

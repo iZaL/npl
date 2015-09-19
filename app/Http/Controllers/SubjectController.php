@@ -35,6 +35,8 @@ class SubjectController extends Controller
             }
         ])->get();
 
+        $levels-load('latestQuestions');
+
         $subject = $this->subjectRepository->model->find($id);
 
         return view('modules.subject.view', compact('subject', 'levels'));

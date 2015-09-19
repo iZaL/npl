@@ -70,6 +70,13 @@ Route::get('/', 'HomeController@index');
  ********************************************************************************************************/
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['admin']], function () {
 
+    Route::resource('user', 'UserController');
+    Route::resource('subject', 'SubjectController');
+    Route::resource('level', 'LevelController');
+    Route::resource('educator', 'EducatorController');
+    Route::resource('student', 'StudentController');
+    Route::resource('question', 'QuestionController');
+    Route::resource('answer', 'AnswerController');
     Route::get('/', 'HomeController@index');
 
 });
