@@ -1,4 +1,4 @@
-<div class="modal fade deleteModal">
+<div class="modal fade" id="deleteModalBox">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header">
@@ -7,6 +7,9 @@
                 <h4 class="modal-title">Confirm Delete ? </h4>
             </div>
             <div class="modal-body">
+                {{ $info }}
+            </div>
+            <div class="modal-footer">
                 {!! Form::open(['url'=> '/admin', 'method'=>'delete', 'id'=>'deleteModal']) !!}
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                 <button type="submit" class="btn btn-danger" value="Delete">Delete</button>

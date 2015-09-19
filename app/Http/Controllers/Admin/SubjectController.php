@@ -24,6 +24,9 @@ class SubjectController extends Controller
 
     public function index()
     {
+        $subjects = $this->subjectRepository->model->all();
+
+        return view('admin.modules.subject.index',compact('subjects'));
 
     }
 
@@ -75,6 +78,8 @@ class SubjectController extends Controller
      */
     public function destroy($id)
     {
+        // delete whole questions and answers
+        // unsync subjects for educators
 
     }
 

@@ -28,6 +28,31 @@ class Answer extends BaseModel
 
     public function childAnswers()
     {
-        return $this->hasMany(Answer::class,'parent_id');
+        return $this->hasMany(Answer::class, 'parent_id');
+    }
+
+    public function childAnswersCount()
+    {
+        return $this->hasOne(Answer::class,'parent_id')
+            ->selectRaw('parent_id, count(*) as aggregate')
+            ->groupBy('parent_id');
+    }
+
+    public function getChildAnswersCountAttribute()
+    {
+        // if relation is not loaded already, let's do it first
+        if (!$this->relationLoaded('childAnswersCount')) {
+            $this->load('childAnswersCount');
+        }
+
+        $related = $this->getRelation('childAnswersCount');
+
+        // then return the count directly
+        return ($related) ? (int)$related->aggregate : 0;
+    }
+
+    public function parentAnswers()
+    {
+        return $this->hasMany(Answer::class, 'id')->where('parent_id', 0);
     }
 }

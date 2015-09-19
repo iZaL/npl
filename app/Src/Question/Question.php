@@ -5,6 +5,7 @@ use App\Core\LocaleTrait;
 use App\Src\Answer\Answer;
 use App\Src\Level\Level;
 use App\Src\Subject\Subject;
+use App\Src\User\User;
 
 class Question extends BaseModel
 {
@@ -17,6 +18,10 @@ class Question extends BaseModel
 
     protected $localeStrings = ['body'];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
     public function photos()
     {
         return $this->morphMany('App\Src\Photo\Photo', 'imageable');
@@ -45,6 +50,26 @@ class Question extends BaseModel
     public function answers()
     {
         return $this->hasMany(Answer::class);
+    }
+
+    public function answersCount()
+    {
+        return $this->hasOne(Answer::class)
+            ->selectRaw('question_id, count(*) as aggregate')
+            ->groupBy('question_id');
+    }
+
+    public function getAnswersCountAttribute()
+    {
+        // if relation is not loaded already, let's do it first
+        if (!$this->relationLoaded('answersCount')) {
+            $this->load('answersCount');
+        }
+
+        $related = $this->getRelation('answersCount');
+
+        // then return the count directly
+        return ($related) ? (int)$related->aggregate : 0;
     }
 
     public function childAnswers()

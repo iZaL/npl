@@ -23,7 +23,7 @@ class AnswerController extends Controller
      * @param AnswerRepository $answerRepository
      * @param QuestionRepository $questionRepository
      */
-    public function __construct(AnswerRepository $answerRepository,QuestionRepository $questionRepository)
+    public function __construct(AnswerRepository $answerRepository, QuestionRepository $questionRepository)
     {
         $this->questionRepository = $questionRepository;
         $this->answerRepository = $answerRepository;
@@ -31,6 +31,12 @@ class AnswerController extends Controller
 
     public function index()
     {
+        $answers = $this->answerRepository->model->has('parentAnswers')->paginate(50);
+
+        $answers->load('question');
+        $answers->load('childAnswersCount');
+
+        return view('admin.modules.answer.index', compact('answers'));
 
     }
 
@@ -72,16 +78,10 @@ class AnswerController extends Controller
     /**
      * @param $id
      */
-    public function delete($id)
-    {
-
-    }
-
-    /**
-     * @param $id
-     */
     public function destroy($id)
     {
+        // IF Parent Answer delete All Child Answers
+        dd('deleting answer '.$id);
 
     }
 }

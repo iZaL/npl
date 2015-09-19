@@ -24,7 +24,10 @@ class QuestionController extends Controller
 
     public function index()
     {
-        $questions = $this->questionRepository->model->all();
+        $questions = $this->questionRepository->model->with(['user'])->paginate(50);
+
+        $questions->load('answersCount');
+
         return view('admin.modules.question.index',compact('questions'));
     }
 
@@ -76,6 +79,7 @@ class QuestionController extends Controller
      */
     public function destroy($id)
     {
+        // delete all the answers for the question
         dd('deleting' .$id);
     }
 }

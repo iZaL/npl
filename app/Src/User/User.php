@@ -2,6 +2,7 @@
 
 namespace App\Src\User;
 
+use App\Core\LocaleTrait;
 use App\Src\Educator\Educator;
 use App\Src\Level\Level;
 use App\Src\Question\Question;
@@ -19,7 +20,7 @@ use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 
 class User extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
 {
-    use Authenticatable, Authorizable, CanResetPassword;
+    use Authenticatable, Authorizable, CanResetPassword, LocaleTrait;
 
     /**
      * The database table used by the model.
@@ -41,6 +42,8 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    protected $localeStrings = ['firstname', 'lastname', 'city', 'address', 'country'];
 
     public function levels()
     {
