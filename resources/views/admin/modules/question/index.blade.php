@@ -17,6 +17,18 @@
         <div class="panel-heading">
             Questions
         </div>
+
+        <!-- Small modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button>
+
+        <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <h1>hey how r u ? </h1>
+                </div>
+            </div>
+        </div>
+
         <!-- /.panel-heading -->
         <div class="panel-body">
             <div class="dataTable_wrapper">
@@ -34,7 +46,11 @@
                             <td> {{ $question->body }}</td>
                             <td> {{ $question->created_at->format('m-d-Y') }}</td>
                             <td>
-                                @include('admin.partials.edit-delete-buttons',['id'=>$question->id,'link'=>action('Admin\QuestionController@edit',$question->id)])
+                                <a href="{{ action('Admin\QuestionController@edit',$question->id)  }}"
+                                   class="btn btn-sm btn-primary" role="button">Edit</a>
+                                <button class="btn btn-sm btn-danger" data-toggle="modal" data-target=".deleteModal"
+                                        data-link="{{action('Admin\QuestionController@destroy',$question->id)}}">Delete
+                                </button>
                             </td>
                         </tr>
                     @endforeach
@@ -42,12 +58,16 @@
                 </table>
             </div>
             <!-- /.table-responsive -->
-
-            @include('admin.partials.delete-modal',['link'=> action('Admin\QuestionController@destroy',$question->id) ])
+            @include('admin.partials.delete-modal')
         </div>
         <!-- /.panel-body -->
 
     </div>
     <!-- /.panel -->
+
+@endsection
+
+@section('script')
+    @parent
 
 @endsection

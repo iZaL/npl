@@ -20,9 +20,6 @@
         <!-- Custom Fonts -->
         <link href="/bower_components/fontawesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-        <!-- DataTables Responsive CSS -->
-        <link href="/bower_components/datatables-responsive/css/responsive.bootstrap.scss" rel="stylesheet">
-
     @show
 </head>
 
@@ -82,6 +79,15 @@
             toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image jbimages | print preview media fullpage | forecolor backcolor emoticons | ltr rtl ",
             relative_urls: false
         });
+
+        $(document).on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            if ( $( "#deleteModal" ).length ) {
+                var link = button.data('link') // Extract info from data-* attributes
+                $("#deleteModal").attr("action", link);
+            }
+        });
+
     </script>
 @show
 

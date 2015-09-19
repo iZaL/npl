@@ -7,7 +7,7 @@
                 <h4 class="modal-title">Confirm Delete ? </h4>
             </div>
             <div class="modal-body">
-                {!! Form::open(['url'=> $link, 'method'=>'delete']) !!}
+                {!! Form::open(['url'=> '/admin', 'method'=>'delete', 'id'=>'deleteModal']) !!}
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                 <button type="submit" class="btn btn-danger" value="Delete">Delete</button>
                 {!! Form::close() !!}
