@@ -1,7 +1,5 @@
-@extends('admin.layouts.master')
+@extends('admin.layouts.one_col')
 
-@section('content')
-
-    <h1> Admin Panel </h1>
-
+@section('middle')
+    <pre> Admin Dashboard </pre>
 @endsection

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 
+use App\Http\Controllers\Controller;
 use App\Src\Question\QuestionRepository;
 use Illuminate\Http\Request;
 
@@ -18,13 +19,13 @@ class QuestionController extends Controller
      */
     public function __construct(QuestionRepository $questionRepository)
     {
-        $this->middleware('auth');
         $this->questionRepository = $questionRepository;
     }
 
     public function index()
     {
-
+        $questions = $this->questionRepository->model->all();
+        return view('admin.modules.question.index',compact('questions'));
     }
 
     public function show()
@@ -75,6 +76,6 @@ class QuestionController extends Controller
      */
     public function destroy($id)
     {
-
+        dd('deleting' .$id);
     }
 }

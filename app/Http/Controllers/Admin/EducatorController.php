@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Src\Educator\EducatorRepository;
 
 class EducatorController extends Controller

@@ -1,7 +1,9 @@
 @extends('admin.layouts.master')
 
-<div class="row">
-    @section('content')
-
-    @endsection
-</div>
+@section('content')
+    <div class="row">
+        <div class="mTop10">
+            @yield('middle')
+        </div>
+    </div>
+@endsection

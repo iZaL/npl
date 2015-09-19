@@ -33,18 +33,11 @@
 
     <div id="page-wrapper">
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    @include('admin.partials.notifications')
+            @include('admin.partials.notifications')
 
-                    @section('content')
+            @section('content')
 
-                    @show
-
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
+            @show
         </div>
         <!-- /.container-fluid -->
     </div>
