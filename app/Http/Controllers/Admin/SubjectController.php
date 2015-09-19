@@ -25,10 +25,7 @@ class SubjectController extends Controller
 
     public function index()
     {
-        $subjects = $this->subjectRepository->model->all();
-
-        $subjects->load('questionsCount');
-        $subjects->load('educatorsCount');
+        $subjects = $this->subjectRepository->model->with(['questionsCount','educatorsCount'])->paginate(100);
 
         return view('admin.modules.subject.index', compact('subjects'));
 
@@ -82,6 +79,7 @@ class SubjectController extends Controller
     /**
      * @param Request $request
      * @param $id
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
     {

@@ -1,7 +1,7 @@
 @extends('admin.layouts.one_col')
 
 @section('title')
-    <h1>Subject</h1>
+    <h1>Level</h1>
 @endsection
 
 @section('style')
@@ -15,37 +15,37 @@
 @section('middle')
     <div class="panel panel-default">
         <div class="panel-heading">
-            <b>Subject</b>
+            <b>Level</b>
         </div>
 
         <!-- /.panel-heading -->
         <div class="panel-body">
-            <a class="btn btn-primary btn-md" role="button" href="{{ action('Admin\SubjectController@create') }}"> Add Subject </a>
+            <a class="btn btn-primary btn-md" role="button" href="{{ action('Admin\LevelController@create') }}"> Add Level </a>
             <hr>
             <div class="dataTable_wrapper mTop10">
                 <table class="table table-striped table-bordered table-hover" id="dataTables">
                     <thead>
                     <tr>
-                        <th>Subjects</th>
+                        <th>Levels</th>
                         <th>Actions</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($subjects as $subject)
+                    @foreach($levels as $level)
                         <tr class="gradeU">
                             <td>
-                                <a href="{{ action('Admin\SubjectController@show',$subject->id) }}">{{ ucfirst($subject->name) }}</a>
+                                <a href="{{ action('Admin\LevelController@show',$level->id) }}">{{ ucfirst($level->name) }}</a>
                                 <small class="pull-right">
-                                    {{ $subject->educatorsCount ? 'Total '. $subject->educatorsCount .' Educators. ': ' 0 Educators.' }}
+                                    {{ $level->usersCount ? 'Total '. $level->usersCount .' Educators. ': ' 0 Educators.' }}
                                     <br>
-                                    {{ $subject->questionsCount ? 'Total '. $subject->questionsCount .' Questions. ': ' 0 Questions.' }}
+                                    {{ $level->questionsCount ? 'Total '. $level->questionsCount .' Questions. ': ' 0 Questions.' }}
                                 </small>
                             </td>
                             <td>
-                                <a href="{{ action('Admin\SubjectController@edit',$subject->id)  }}"
+                                <a href="{{ action('Admin\LevelController@edit',$level->id)  }}"
                                    class="btn btn-sm btn-primary" role="button">Edit</a>
                                 <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteModalBox"
-                                        data-link="{{action('Admin\SubjectController@destroy',$subject->id)}}">Delete
+                                        data-link="{{action('Admin\LevelController@destroy',$level->id)}}">Delete
                                 </button>
                             </td>
                         </tr>
@@ -54,7 +54,7 @@
                 </table>
             </div>
             <!-- /.table-responsive -->
-            @include('admin.partials.delete-modal',['info' => 'This will also delete the Questions and Answers related to the Subject .'])
+            @include('admin.partials.delete-modal',['info' => 'This will also delete the Questions and Answers related to the Level .'])
         </div>
         <!-- /.panel-body -->
 

@@ -63,6 +63,10 @@ class Subject extends BaseModel
         return $this->attributes['slug'] = slug($value);
     }
 
+    /*********************************************************************************************************
+     * Questions
+     ********************************************************************************************************/
+
     public function questions()
     {
         return $this->hasMany(Question::class);
