@@ -61,8 +61,3 @@
     <!-- /.panel -->
 
 @endsection
-
-@section('script')
-    @parent
-
-@endsection
