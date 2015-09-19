@@ -38,24 +38,21 @@
                                         for question
                                         <a href="{{ action('QuestionController@show',$answer->question->id) }}">{{ $answer->question->body }}</a>
                                     @else
-                                        unknown question
+                                        Unknown Question
                                     @endif
-                                </small>
-                                <br>
-
-                                <small class="pull-right">
+                                    <br>
 
                                     @if($answer->user)
-                                        by <a href="{{ action('Admin\UserController@show',$answer->user->id)}}">{{ $answer->user->firstname }} </a>
+                                        by
+                                        <a href="{{ action('Admin\UserController@show',$answer->user->id)}}">{{ $answer->user->firstname }} </a>
                                     @else
                                         by Unkown User
                                     @endif
-                                    on <i>{{ $answer->created_at->format('d-m-y') }}</i>
-                                </small>
 
-                                <br>
-                                <small class="pull-right">view all <a href="#">{{ $answer->childAnswersCount }}</a>
-                                    conversations
+                                    on <i>{{ $answer->created_at->format('d-m-y') }}</i>
+
+                                    <br>
+                                    View all <a href="#">{{ $answer->childAnswersCount }}</a> Conversations
                                 </small>
                             </td>
                             <td>

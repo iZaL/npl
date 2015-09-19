@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Http\Controllers\Controller;
+use App\Src\Educator\Educator;
 use App\Src\Subject\SubjectRepository;
 use Illuminate\Http\Request;
 
@@ -26,61 +27,106 @@ class SubjectController extends Controller
     {
         $subjects = $this->subjectRepository->model->all();
 
-        return view('admin.modules.subject.index',compact('subjects'));
+        $subjects->load('questionsCount');
+        $subjects->load('educatorsCount');
+
+        return view('admin.modules.subject.index', compact('subjects'));
 
     }
 
-    public function show()
+    /**
+     * @param $id
+     * @return \Illuminate\View\View
+     */
+    public function show($id)
     {
-
+        return view('admin.modules.subject.view');
     }
 
     public function create()
     {
-
+        return view('admin.modules.subject.create');
 
     }
 
     /**
      * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'name_en' => 'required|unique:subjects,name_en'
+        ]);
 
+        $this->subjectRepository->model->create([
+            'name_en'        => $request->name_en,
+            'description_en' => $request->description_en,
+            'slug'           => $request->name_en
+        ]);
+
+        return redirect()->action('Admin\SubjectController@index')->with('success', 'Subject Created');
     }
 
     /**
      * @param $id
+     * @return \Illuminate\View\View
      */
     public function edit($id)
     {
+        $subject = $this->subjectRepository->model->find($id);
 
+        return view('admin.modules.subject.edit', compact('subject'));
     }
 
     /**
+     * @param Request $request
      * @param $id
      */
-    public function update($id)
+    public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'name_en' => 'required|unique:subjects,name_en'
+        ]);
+
+        $subject = $this->subjectRepository->model->find($id);
+
+        $subject->update([
+            'name_en'        => $request->name_en,
+            'description_en' => $request->description_en,
+            'slug'           => $request->name_en
+        ]);
+
+        return redirect()->action('Admin\SubjectController@index')->with('success', 'Subject Updated');
 
     }
 
     /**
      * @param $id
-     */
-    public function delete($id)
-    {
-
-    }
-
-    /**
-     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {
         // delete whole questions and answers
         // unsync subjects for educators
 
+        $subject = $this->subjectRepository->model->find($id);
+
+        // delete questions and answers related to the subject
+        foreach ($subject->questions as $question) {
+            foreach ($question->answers as $answer) {
+                $answer->delete();
+            }
+            $question->delete();
+        }
+
+        // unsync educators from the subjects table
+        $educators = $subject->educators->modelKeys();
+        $subject->educators()->detach($educators);
+
+        $subject->delete();
+
+        return redirect()->action('Admin\SubjectController@index')->with('success', 'Subject Deleted');
     }
 
 }

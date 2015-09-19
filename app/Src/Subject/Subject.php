@@ -3,6 +3,7 @@
 use App\Core\BaseModel;
 use App\Core\LocaleTrait;
 use App\Src\Question\Question;
+use App\Src\User\User;
 
 class Subject extends BaseModel
 {
@@ -15,6 +16,38 @@ class Subject extends BaseModel
 
     protected $localeStrings = ['name', 'description'];
 
+    /*********************************************************************************************************
+     * Educator
+     ********************************************************************************************************/
+    
+    public function educators()
+    {
+        return $this->belongsToMany(User::class, 'user_subjects');
+    }
+
+    public function educatorsCount()
+    {
+        return $this->belongsToMany(User::class, 'user_subjects')
+            ->selectRaw('count(users.id) as aggregate')
+            ->groupBy('pivot_subject_id');
+    }
+
+    // accessor for easier fetching the count
+    public function getEducatorsCountAttribute()
+    {
+        if (!$this->relationLoaded('educatorsCount')) {
+            $this->load('educatorsCount');
+        }
+
+        $related = $this->getRelation('educatorsCount')->first();
+
+        return ($related) ? $related->aggregate : 0;
+    }
+
+    /*********************************************************************************************************
+     * 
+     ********************************************************************************************************/
+    
     public function photos()
     {
         return $this->morphMany('App\Src\Photo\Photo', 'imageable');
@@ -34,6 +67,27 @@ class Subject extends BaseModel
     {
         return $this->hasMany(Question::class);
     }
+
+    public function questionsCount()
+    {
+        return $this->hasOne(Question::class)
+            ->selectRaw('subject_id, count(*) as aggregate')
+            ->groupBy('subject_id');
+    }
+
+    public function getQuestionsCountAttribute()
+    {
+        // if relation is not loaded already, let's do it first
+        if (!$this->relationLoaded('questionsCount')) {
+            $this->load('questionsCount');
+        }
+
+        $related = $this->getRelation('questionsCount');
+
+        // then return the count directly
+        return ($related) ? (int)$related->aggregate : 0;
+    }
+
 
     public function latestQuestions()
     {

@@ -47,6 +47,10 @@ class Question extends BaseModel
         return $this->belongsTo(Level::class);
     }
 
+    /*********************************************************************************************************
+     * Answers
+     ********************************************************************************************************/
+    
     public function answers()
     {
         return $this->hasMany(Answer::class);
@@ -74,11 +78,16 @@ class Question extends BaseModel
 
     public function childAnswers()
     {
-        return $this->answers()->where('parent_id', '!', 0);
+        return $this->answers()->where('parent_id', '!=', 0);
     }
 
     public function parentAnswers()
     {
         return $this->answers()->where('parent_id', 0);
     }
+
+    /*********************************************************************************************************
+     * 
+     ********************************************************************************************************/
+    
 }
