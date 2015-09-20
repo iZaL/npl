@@ -24,62 +24,24 @@ class QuestionController extends Controller
 
     public function index()
     {
-        $questions = $this->questionRepository->model->with(['user'])->paginate(50);
-
-        $questions->load('answersCount');
+        $questions = $this->questionRepository->model->with(['user','answersCount'])->paginate(50);
 
         return view('admin.modules.question.index',compact('questions'));
     }
 
-    public function show()
-    {
-
-    }
-
-    public function create()
-    {
-
-
-    }
-
-    /**
-     * @param Request $request
-     */
-    public function store(Request $request)
-    {
-
-    }
-
     /**
      * @param $id
-     */
-    public function edit($id)
-    {
-
-    }
-
-    /**
-     * @param $id
-     */
-    public function update($id)
-    {
-
-    }
-
-    /**
-     * @param $id
-     */
-    public function delete($id)
-    {
-
-    }
-
-    /**
-     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {
         // delete all the answers for the question
-        dd('deleting' .$id);
+        $question = $this->questionRepository->model->find($id);
+
+        $question->answers()->delete();
+
+        $question->delete();
+
+        return redirect()->back()->with('success','Question Deleted');
     }
 }

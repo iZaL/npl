@@ -81,7 +81,13 @@ class AnswerController extends Controller
     public function destroy($id)
     {
         // IF Parent Answer delete All Child Answers
-        dd('deleting answer '.$id);
+        $answer = $this->answerRepository->model->find($id);
+
+        $answer->question()->delete();
+
+        $answer->childAnswers()->delete();
+
+        $answer->delete();
 
     }
 }

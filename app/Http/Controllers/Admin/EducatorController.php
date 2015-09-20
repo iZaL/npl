@@ -42,14 +42,58 @@ class EducatorController extends Controller
 
     public function index()
     {
-        $educators = $this->educatorRepository->model->with(['profile', 'answersCount'])->paginate(100);
+        // Find newly Registered Educators and their Subjects to Approve
+        $educators = $this->educatorRepository->model->with([
+            'profile.activeSubjects',
+            'profile.inActiveSubjects',
+            'answersCount'
+        ])->latest()->paginate(100);
 
-        return view('admin.modules.educator.index', compact('educators'));
+        $subjects = $this->subjectRepository->model->get(['id', 'name_en']);
+
+        return view('admin.modules.educator.index', compact('educators', 'subjects'));
     }
 
     public function show($id)
     {
 
+    }
+
+    public function activateSubjects(Request $request, $id)
+    {
+        $educator = $this->educatorRepository->model->find($id);
+
+        if ($request->subjects) {
+
+            foreach ($request->subjects as $subject) {
+
+                // Check  whether the Subject is not already active
+                if (!in_array($subject, $educator->profile->activeSubjects->modelKeys())) {
+
+                    // remove where active = 0 , to avoid duplicate records
+                    $educator->profile->subjects()->detach($subject);
+
+                    // create a new record with active set to 1
+                    $educator->profile->subjects()->attach($subject, ['active' => '1']);
+                }
+            }
+
+            $deletingSubjects = $educator->profile->inActiveSubjects->modelKeys();
+            foreach ($deletingSubjects as $subject) {
+                $educator->profile->subjects()->detach($subject);
+            }
+
+        } else {
+            // if empty
+            // find all the inactive and delete
+            $deletingSubjects = $educator->profile->inActiveSubjects->modelKeys();
+            foreach ($deletingSubjects as $subject) {
+                $educator->profile->subjects()->detach($subject);
+            }
+        }
+
+
+        return redirect()->back()->with('success', 'Educator\'s Subjects updated');
     }
 
     public function deActivateSubjects(Request $request, $id)
@@ -78,43 +122,6 @@ class EducatorController extends Controller
             // Empty Array, Delete all
             $educator->profile->activeSubjects()->detach();
         }
-
-        return redirect()->back()->with('success', 'Educator\'s Subjects updated');
-    }
-
-    public function activateSubjects(Request $request, $id)
-    {
-        $educator = $this->educatorRepository->model->find($id);
-
-        if ($request->subjects) {
-
-            foreach ($request->subjects as $subject) {
-
-                // Check  whether the Subject is not already active
-                if (!in_array($subject, $educator->profile->activeSubjects->modelKeys())) {
-
-                    // remove where active = 0 , to avoid duplicate records
-                    $educator->profile->subjects()->detach($subject);
-
-                    // create a new record with active set to 1
-                    $educator->profile->subjects()->attach($subject, ['active' => 1]);
-                }
-            }
-
-            $deletingSubjects = $educator->profile->inActiveSubjects->modelKeys();
-            foreach ($deletingSubjects as $subject) {
-                $educator->profile->subjects()->detach($subject);
-            }
-
-        } else {
-            // if empty
-            // find all the inactive and delete
-            $deletingSubjects = $educator->profile->inActiveSubjects->modelKeys();
-            foreach ($deletingSubjects as $subject) {
-                $educator->profile->subjects()->detach($subject);
-            }
-        }
-
 
         return redirect()->back()->with('success', 'Educator\'s Subjects updated');
     }

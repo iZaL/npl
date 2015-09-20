@@ -20,7 +20,7 @@ $factory->define(App\Src\User\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
         'active'         => 1,
         'admin'          => 1,
-        'np_code'   => 'NP1234'
+        'np_code'        => 'NP1234'
     ];
 });
 
@@ -46,16 +46,16 @@ $factory->define(App\Src\Level\Level::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Src\Level\UserLevel::class, function (Faker\Generator $faker) {
     return [
-        'user_id' => '1',
+        'user_id'  => '1',
         'level_id' => '1',
     ];
 });
 
 $factory->define(App\Src\Subject\UserSubject::class, function (Faker\Generator $faker) {
     return [
-        'user_id' => '1',
+        'user_id'    => '1',
         'subject_id' => '1',
-        'active' => '1'
+        'active'     => '1'
     ];
 });
 
@@ -71,24 +71,23 @@ $factory->define(App\Src\Question\Question::class, function (Faker\Generator $fa
 
 $factory->define(App\Src\Educator\Educator::class, function (Faker\Generator $faker) {
     return [
-
-        'user_id'    => 2,
+        'user_id' => 2,
     ];
 });
 
 $factory->define(App\Src\Student\Student::class, function (Faker\Generator $faker) {
     return [
 
-        'user_id'    => 3,
+        'user_id' => 3,
     ];
 });
 
 
 $factory->define(App\Src\Answer\Answer::class, function (Faker\Generator $faker) {
     return [
-        'user_id'    => 3,
-        'parent_id'  => 0,
-        'body_en'   => 'bla bla',
+        'user_id'     => 3,
+        'parent_id'   => 0,
+        'body_en'     => 'bla bla',
         'question_id' => 1
     ];
 });

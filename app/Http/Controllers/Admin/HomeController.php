@@ -21,8 +21,9 @@ class HomeController extends Controller
         // Find newly Registered Educators and their Subjects to Approve
         $educators = $educatorRepository->model->with([
             'profile.activeSubjects',
-            'profile.inActiveSubjects'
-        ])->latest()->paginate(100);
+            'profile.inActiveSubjects',
+            'answersCount'
+        ])->has('profile.inActiveSubjects')->latest()->paginate(100);
 
         $subjects = $subjectRepository->model->get(['id','name_en']);
         return view('admin.home', compact('educators','subjects'));
