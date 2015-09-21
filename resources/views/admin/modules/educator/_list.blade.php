@@ -50,7 +50,7 @@
 
                             <input hidden="user_id" value="{{ $educator->id }}">
                             <select name="subjects[]" class="col-lg-12 select2 select2-offscreen" multiple>
-                                @foreach($subjects as $subject)
+                                @foreach($activeSubjects as $subject)
                                     <option value="{{ $subject->id }}"
                                             @if(in_array($subject->id, $activeSubjects->modelKeys()))
                                             selected="selected"

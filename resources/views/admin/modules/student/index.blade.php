@@ -24,28 +24,47 @@
                 <table class="table table-striped table-bordered table-hover" id="dataTables">
                     <thead>
                     <tr>
-                        <th>Students</th>
+                        <th>Student</th>
+                        <th>NP CODE</th>
+                        <th>Level</th>
                         <th>Actions</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($students as $student)
                         <tr class="gradeU">
-                            <td>
-                                @if($student->profile)
+                            @if($student->profile)
+                                <td>
                                     <a href="{{ action('Admin\StudentController@show',$student->id) }}">{{ ucfirst($student->profile->firstname) }}</a>
-                                @else
-                                    Unknown User
-                                @endif
-                                <small class="pull-right">
-                                    {{ $student->questionsCount ? 'Total '. $student->questionsCount .' Questions. ': ' 0 Questions.' }}
-                                </small>
-                            </td>
-                            <td>
-                                <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteModalBox"
-                                        data-link="{{action('Admin\StudentController@destroy',$student->id)}}">Remove as Student
+
+                                    <small class="pull-right">
+                                        {{ $student->questionsCount ? 'Total '. $student->questionsCount .' Questions. ': ' 0 Questions.' }}
+                                    </small>
+                                </td>
+                                <td>
+                                    {{ $student->profile->np_code }}
+                                </td>
+                                <td>
+                                    {{ $student->profile->levels ? $student->profile->levels->lists('name_en') : '' }}
+                                </td>
+
+                                <td>
+                                    <button class="btn btn-sm btn-danger" data-toggle="modal"
+                                            data-target="#deleteModalBox"
+                                            data-link="{{action('Admin\StudentController@destroy',$student->id)}}">
+                                        Remove as
+                                        Student
+                                    </button>
+                                </td>
+                            @else
+                                Unknown User
+                                <button class="btn btn-sm btn-danger" data-toggle="modal"
+                                        data-target="#deleteModalBox"
+                                        data-link="{{action('Admin\StudentController@destroy',$student->id)}}">
+                                    Remove as
+                                    Student
                                 </button>
-                            </td>
+                            @endif
                         </tr>
                     @endforeach
                     </tbody>
