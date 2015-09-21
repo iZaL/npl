@@ -54,11 +54,6 @@ class EducatorController extends Controller
         return view('admin.modules.educator.index', compact('educators', 'subjects'));
     }
 
-    public function show($id)
-    {
-
-    }
-
     public function activateSubjects(Request $request, $id)
     {
         $educator = $this->educatorRepository->model->find($id);
@@ -78,20 +73,10 @@ class EducatorController extends Controller
                 }
             }
 
-            $deletingSubjects = $educator->profile->inActiveSubjects->modelKeys();
-            foreach ($deletingSubjects as $subject) {
-                $educator->profile->subjects()->detach($subject);
-            }
-
-        } else {
-            // if empty
-            // find all the inactive and delete
-            $deletingSubjects = $educator->profile->inActiveSubjects->modelKeys();
-            foreach ($deletingSubjects as $subject) {
-                $educator->profile->subjects()->detach($subject);
-            }
         }
 
+        // delete in active subjects
+        $educator->profile->inActiveSubjects()->detach();
 
         return redirect()->back()->with('success', 'Educator\'s Subjects updated');
     }
@@ -100,21 +85,21 @@ class EducatorController extends Controller
     {
         $educator = $this->educatorRepository->model->with(['answers.question'])->find($id);
 
+        // Find the deleted subjects by comparing the active subjects and the get request
         $educatorSubjects = collect($educator->profile->activeSubjects->modelKeys());
 
         $deletedSubjects = $educatorSubjects->diff($request->subjects);
 
-
-        $educatorAnswersForDeletedQuestions = $this->educatorRepository->model->with([
+        // find and delete all the answers for the educator for the subject that was de-activated
+        $educatorAnswersForDeletedSubjects = $this->educatorRepository->model->with([
             'answers.question' => function ($q) use ($deletedSubjects) {
                 $q->whereIn('questions.subject_id', $deletedSubjects);
             }
         ])->find($id);
 
-        foreach ($educatorAnswersForDeletedQuestions->answers as $answer) {
-            $answer->delete();
-        }
+        $educatorAnswersForDeletedSubjects->answers()->delete();
 
+        // sync with database results only the subjects in get request (active subjects) and delete the rest(inactive).
         if ($request->subjects) {
             $educator->profile->activeSubjects()->sync($request->subjects);
 
@@ -139,17 +124,13 @@ class EducatorController extends Controller
             'profile.subjects'
         ])->find($id);
 
-        // delete questions
-        foreach ($educator->answers as $answer) {
-            $answer->delete();
-        }
+        // delete answers
+        $educator->answers()->delete();
 
-        $subjects = $educator->profile->subjects->modelKeys();
-        $educator->profile->subjects()->detach($subjects);
+        $educator->profile->subjects()->detach();
 
         // delete levels
-        $levels = $educator->profile->levels->modelKeys();
-        $educator->profile->levels()->detach($levels);
+        $educator->profile->levels()->detach();
 
         // delete as student
         $educator->delete();

@@ -40,40 +40,6 @@ class AnswerController extends Controller
 
     }
 
-    public function show()
-    {
-
-    }
-
-    public function create()
-    {
-
-
-    }
-
-    /**
-     * @param Request $request
-     */
-    public function store(Request $request)
-    {
-
-    }
-
-    /**
-     * @param $id
-     */
-    public function edit($id)
-    {
-
-    }
-
-    /**
-     * @param $id
-     */
-    public function update($id)
-    {
-
-    }
 
     /**
      * @param $id
@@ -83,9 +49,9 @@ class AnswerController extends Controller
         // IF Parent Answer delete All Child Answers
         $answer = $this->answerRepository->model->find($id);
 
-        $answer->question()->delete();
-
         $answer->childAnswers()->delete();
+
+        $answer->question()->delete();
 
         $answer->delete();
 

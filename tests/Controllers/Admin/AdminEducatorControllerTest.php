@@ -138,6 +138,27 @@ class AdminEducatorControllerTest extends TestCase
             'active'     => 0
         ]);
 
+        $question = factory('App\Src\Question\Question')->create([
+            'body_en'    => uniqid(),
+            'user_id'    => '3',
+            'subject_id' => $sub3->subject_id,
+            'level_id'   => '2'
+        ]);
+
+        $answer = factory('App\Src\Answer\Answer')->create([
+            'question_id' => $question->id,
+            'user_id'     => $educator->profile->id,
+            'body_en'     => uniqid(),
+            'parent_id'   => 0
+        ]);
+
+        $answers = factory('App\Src\Answer\Answer', 5)->create([
+            'question_id' => $question->id,
+            'user_id'     => $educator->profile->id,
+            'body_en'     => uniqid(),
+            'parent_id'   => $answer->id
+        ]);
+
         $this->actingAs(Auth::loginUsingId(1));
         $this->call('POST', '/admin/educator/' . $educator->id . '/de-activate-subjects',
             ['user_id' => $educator->profile->id, 'subjects' => [$sub1->subject_id, $sub2->subject_id]]);
@@ -154,6 +175,10 @@ class AdminEducatorControllerTest extends TestCase
 
         $this->seeInDatabase('user_subjects',
             ['user_id' => $educator->profile->id, 'subject_id' => $sub4->subject_id, 'active' => 0]);
+
+        // check the educators question related to the de-activated subjects are also deleted
+        $this->notSeeInDatabase('answers',
+            ['user_id' => $educator->profile->id, 'question_id' => $question->id]);
 
     }
 

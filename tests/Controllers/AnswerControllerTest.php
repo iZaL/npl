@@ -55,7 +55,7 @@ class AnswerControllerTest extends TestCase
             1)->create(['user_id' => $student->id, 'subject_id' => 1, 'body_en' => $questionBody, 'level_id' => 3]);
 
         $this->actingAs($educator)->visit('/question/' . $question->id . '/answer')
-            ->see('Your cannot answer this question. Level not in ur list');
+            ->see('You cannot answer this question. Level not in ur list');
     }
 
     public function testAnswerFailsAsEducatorSubjectDoesntMatch()
@@ -69,7 +69,7 @@ class AnswerControllerTest extends TestCase
             1)->create(['user_id' => $student->id, 'subject_id' => 3, 'body_en' => $questionBody, 'level_id' => 2]);
 
         $this->actingAs($educator)->visit('/question/' . $question->id . '/answer')
-            ->see('Your cannot answer this question. Subject not in ur list');
+            ->see('You cannot answer this question. Subject not in ur list');
     }
 
     public function testAnswerFailsAsInvalidEducator()
@@ -82,7 +82,7 @@ class AnswerControllerTest extends TestCase
             1)->create(['user_id' => $student->id, 'subject_id' => 1, 'body_en' => $questionBody, 'level_id' => 2]);
 
         $this->actingAs($educator)->visit('/question/' . $question->id . '/answer')
-            ->see('Your cannot answer this question. Not an educator');
+            ->see('You cannot answer this question. Not an educator');
     }
 
     /*********************************************************************************************************
@@ -183,7 +183,7 @@ class AnswerControllerTest extends TestCase
 
         $this->actingAs($educator)
             ->visit('/question/' . $question->id . '/reply/' . $parentAnswer->id)
-            ->see('Your cannot answer this question. Level not in ur list');
+            ->see('You cannot answer this question. Level not in ur list');
 
     }
 

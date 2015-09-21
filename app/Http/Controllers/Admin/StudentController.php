@@ -30,15 +30,9 @@ class StudentController extends Controller
 
     public function index()
     {
-
         $students = $this->studentRepository->model->with(['profile', 'questionsCount'])->paginate(100);
 
         return view('admin.modules.student.index', compact('students'));
-    }
-
-    public function show($id)
-    {
-
     }
 
     /**
@@ -51,15 +45,12 @@ class StudentController extends Controller
 
         // delete questions
         foreach ($student->questions as $question) {
-            foreach($question->answers as $answer) {
-                $answer->delete();
-            }
+            $question->answers()->delete();
             $question->delete();
         }
 
         // delete levels
-        $levels = $student->profile->levels->modelKeys();
-        $student->profile->levels()->detach($levels);
+        $student->profile->levels()->detach();
 
         // delete as student
         $student->delete();

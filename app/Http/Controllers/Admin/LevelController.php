@@ -112,9 +112,7 @@ class LevelController extends Controller
 
         // delete questions and answers related to the subject
         foreach ($level->questions as $question) {
-            foreach ($question->answers as $answer) {
-                $answer->delete();
-            }
+            $question->answers()->delete();
             $question->delete();
         }
 

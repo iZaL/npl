@@ -2,6 +2,7 @@
 
 use App\Src\Educator\Educator;
 use App\Src\Student\Student;
+use App\Src\Subject\UserSubject;
 use App\Src\User\User;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -50,16 +51,31 @@ class AdminSubjectControllerTest extends TestCase
         $subjectName1 = uniqid();
         $questionBody = uniqid();
         $answerBody = uniqid();
+        $educator1 = uniqid();
 
         $subject = factory('App\Src\Subject\Subject')->create(['name_en' => $subjectName1]);
 
-//        $user = App::make(User::class);
+        $user = App::make(User::class);
 
-//        factory(User::class)->make()->create(['email' => uniqid()]);
-//        $educator = factory(Educator::class)->create(['user_id' => $user->all()->last()->id]);
-//
-//        factory(User::class)->make()->create(['email' => uniqid()]);
-//        $student = factory(Student::class)->create(['user_id' => $user->all()->last()->id]);
+        factory(User::class)->make()->create(['email' => uniqid()]);
+        $educator = factory(Educator::class)->create(['user_id' => $user->all()->last()->id]);
+
+
+        factory(User::class)->make()->create(['email' => uniqid()]);
+        $educator2 = factory(Educator::class)->create(['user_id' => $user->all()->last()->id]);
+
+        factory(UserSubject::class)->create([
+            'user_id'    => $educator->profile->id,
+            'subject_id' => $subject->id
+        ]);
+        factory(UserSubject::class)->create([
+            'user_id'    => $educator1,
+            'subject_id' => $subject->id
+        ]);
+        $userSubjectEducator2 = factory(UserSubject::class)->create([
+            'user_id'    => $educator1,
+            'subject_id' => uniqid()
+        ]);
 
         $question = factory('App\Src\Question\Question')->create([
             'body_en'    => $questionBody,
@@ -69,18 +85,17 @@ class AdminSubjectControllerTest extends TestCase
 
         $answer = factory('App\Src\Answer\Answer')->create([
             'question_id' => $question->id,
-            'user_id'     => rand(100,200),
+            'user_id'     => rand(100, 200),
             'body_en'     => $answerBody,
             'parent_id'   => 0
         ]);
 
         $answers = factory('App\Src\Answer\Answer', 5)->create([
             'question_id' => $question->id,
-            'user_id'     => rand(100,200),
+            'user_id'     => rand(100, 200),
             'body_en'     => $answerBody,
             'parent_id'   => $answer->id
         ]);
-
 
         $this->actingAs(Auth::loginUsingId(1));
         $this->call('DELETE', '/admin/subject/' . $subject->id);
@@ -89,6 +104,11 @@ class AdminSubjectControllerTest extends TestCase
         $this->notSeeInDatabase('answers', ['id' => $answers->first()->id]);
         $this->notSeeInDatabase('answers', ['id' => $answers->last()->id]);
         $this->notSeeInDatabase('subjects', ['id' => $subject->id]);
+        $this->notSeeInDatabase('user_subjects', ['user_id' => $educator->profile->id, 'subject_id' => $subject->id]);
+        $this->notSeeInDatabase('user_subjects', ['user_id' => $educator2->profile->id, 'subject_id' => $subject->id]);
+
+        $this->seeInDatabase('user_subjects',
+            ['user_id' => $userSubjectEducator2->user_id, 'subject_id' => $userSubjectEducator2->subject_id]);
     }
 
 }

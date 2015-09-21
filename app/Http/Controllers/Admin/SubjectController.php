@@ -112,15 +112,13 @@ class SubjectController extends Controller
 
         // delete questions and answers related to the subject
         foreach ($subject->questions as $question) {
-            foreach ($question->answers as $answer) {
-                $answer->delete();
-            }
-            $question->delete();
+            $question->answers()->delete();
         }
 
+        $subject->questions()->delete();
+
         // unsync educators from the subjects table
-        $educators = $subject->educators->modelKeys();
-        $subject->educators()->detach($educators);
+        $subject->educators()->detach();
 
         $subject->delete();
 

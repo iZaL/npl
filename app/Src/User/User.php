@@ -97,18 +97,18 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function canAnswer(Question $question)
     {
         if (!is_a($this->getType(), Educator::class)) {
-            throw new \Exception('Your cannot answer this question. Not an educator');
+            throw new \Exception('You cannot answer this question. Not an educator');
         }
 
         $userSubjects = $this->activeSubjects->modelKeys();
         $userLevels = $this->levels->modelKeys();
 
         if (!in_array($question->subject_id, $userSubjects)) {
-            throw new \Exception('Your cannot answer this question. Subject not in ur list');
+            throw new \Exception('You cannot answer this question. Subject not in ur list');
         }
 
         if (!in_array($question->level_id, $userLevels)) {
-            throw new \Exception('Your cannot answer this question. Level not in ur list');
+            throw new \Exception('You cannot answer this question. Level not in ur list');
         }
 
         return $this;
