@@ -4,8 +4,8 @@
             <thead>
             <tr>
                 <th>Educators</th>
-                <th>Activate Subjects</th>
-                <th>Deactivate Subjects</th>
+                <th>In Active Subjects</th>
+                <th>Active Subjects</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -40,7 +40,7 @@
                                 @endforeach
                             </select>
 
-                            <input type="submit" class="btn btn-info btn-sm" role="button" value="Save">
+                            <input type="submit" class="btn btn-info btn-sm" role="button" value="Activate">
                             {!! Form::close() !!}
                         @endif
                     </td>
@@ -60,7 +60,9 @@
                                 @endforeach
                             </select>
 
-                            <input type="submit" class="btn btn-info btn-sm" role="button" value="Save">
+                            <input type="submit" class="btn btn-info btn-sm btn-warning" role="button" value="Deactivate">
+                            <br>
+                            <small>Remove the subjects from the list <br> that you want to deactivate for Educator</small>
                             {!! Form::close() !!}
                         @endif
                     </td>
@@ -80,3 +82,4 @@
     @include('admin.partials.delete-modal',['info' => 'This will only remove the User as Educator and delete all his answers.
      You can delete the user from Educators Page.','deleteText'=>'Remove as Educator'])
 </div>
+

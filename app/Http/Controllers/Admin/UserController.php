@@ -34,9 +34,9 @@ class UserController extends Controller
 
     }
 
-    public function show()
+    public function show($id)
     {
-
+        return redirect()->back()->with('info', 'Method Not Yet Implemented');
     }
 
     public function create()

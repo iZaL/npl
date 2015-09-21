@@ -32,7 +32,7 @@
                     @foreach($questions as $question)
                         <tr class="gradeU">
                             <td>
-                                <a href="{{ action('QuestionController@show',$question->id) }}">{{ $question->body }}</a>
+                                <a href="{{ action('Admin\QuestionController@show',$question->id) }}">{{ $question->body }}</a>
                                 <small class="pull-right">
                                     by
                                     @if($question->user)

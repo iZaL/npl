@@ -37,7 +37,7 @@ class SubjectController extends Controller
      */
     public function show($id)
     {
-        return view('admin.modules.subject.view');
+        return redirect()->back()->with('info', 'Method Not Yet Implemented');
     }
 
     public function create()
@@ -84,7 +84,7 @@ class SubjectController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name_en' => 'required|unique:subjects,name_en'
+            'name_en' => 'required|unique:subjects,name_en,'.$id
         ]);
 
         $subject = $this->subjectRepository->model->find($id);

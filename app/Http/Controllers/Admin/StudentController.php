@@ -35,6 +35,10 @@ class StudentController extends Controller
         return view('admin.modules.student.index', compact('students'));
     }
 
+    public function show($id)
+    {
+        return redirect()->back()->with('info', 'Method Not Yet Implemented');
+    }
     /**
      * @param $id
      * @return \Illuminate\Http\RedirectResponse

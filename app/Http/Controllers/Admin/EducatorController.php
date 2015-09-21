@@ -54,6 +54,11 @@ class EducatorController extends Controller
         return view('admin.modules.educator.index', compact('educators', 'subjects'));
     }
 
+    public function show($id)
+    {
+        return redirect()->back()->with('info', 'Method Not Yet Implemented');
+    }
+
     public function activateSubjects(Request $request, $id)
     {
         $educator = $this->educatorRepository->model->find($id);

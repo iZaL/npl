@@ -40,6 +40,36 @@ class AnswerController extends Controller
 
     }
 
+    public function show($id)
+    {
+        return redirect()->back()->with('info', 'Method Not Yet Implemented');
+    }
+
+    public function edit($id)
+    {
+        $answer = $this->answerRepository->model->with(['user','question'])->find($id);
+
+        return view('admin.modules.answer.edit', compact('answer'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $this->validate($request, [
+            'body_en'    => 'required'
+        ]);
+        $answer = $this->answerRepository->model->find($id);
+
+        $answer->fill($request->all());
+
+        if ($answer->isDirty('body_en')) {
+            // @todo: fire event to notify educators about new question
+        }
+        $answer->save($request->all());
+
+        return redirect()->back()->with('success', 'Answer Updated');
+
+    }
+
 
     /**
      * @param $id

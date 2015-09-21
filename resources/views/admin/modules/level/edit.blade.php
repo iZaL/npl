@@ -4,14 +4,6 @@
     <h1>Edit Level {{ $level->name }}</h1>
 @endsection
 
-@section('style')
-    @parent
-@endsection
-
-@section('script')
-    @parent
-@endsection
-
 @section('middle')
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -32,15 +24,13 @@
                 </div>
 
                 <div class="form-group">
-                    {!! Form::submit('Save', ['class' => 'btn btn-primary form-control']) !!}
+                    {!! Form::submit('Save', ['class' => 'btn btn-success form-control']) !!}
                 </div>
 
                 {!! Form::close() !!}
 
             </div>
-
         </div>
-
     </div>
     <!-- /.panel -->
 @endsection

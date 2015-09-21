@@ -39,7 +39,7 @@ class LevelController extends Controller
 
     public function show($id)
     {
-
+        return redirect()->back()->with('info', 'Method Not Yet Implemented');
     }
 
     public function create()
