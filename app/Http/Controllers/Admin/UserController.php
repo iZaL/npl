@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Src\Educator\Educator;
+use App\Src\Student\Student;
 use App\Src\User\UserRepository;
+use Auth;
 use Illuminate\Http\Request;
+use Route;
 
 class UserController extends Controller
 {
@@ -31,57 +35,65 @@ class UserController extends Controller
 
     public function index()
     {
+        $currentUser = Auth::user();
 
+        $users = $this->userRepository->model->paginate(100);
+
+        return view('admin.modules.user.index', compact('users', 'currentUser'));
     }
 
-    public function show($id)
+    public function show()
     {
-        return redirect()->back()->with('info', 'Method Not Yet Implemented');
     }
 
-    public function create()
-    {
-
-
-    }
-
-    /**
-     * @param Request $request
-     */
-    public function store(Request $request)
-    {
-
-    }
-
-    /**
-     * @param $id
-     */
     public function edit($id)
     {
+        return redirect()->back()->with('info', 'Method not yet implemented');
+        $currentUser = Auth::user();
 
+        $user = $this->userRepository->model->find($id);
+
+        return view('admin.modules.user.edit', compact('user', 'currentUser'));
     }
 
-    /**
-     * @param $id
-     */
-    public function update($id)
+    public function update(Request $request, $id)
     {
+        $currentUser = Auth::user();
 
+        $user = $this->userRepository->model->find($id);
+
+        if (($request->admin == 0) && ($currentUser->id == $user->id)) {
+            return redirect()->back()->with('warning', 'You Cannot Un Admin Yourself');
+        }
+
+        $user->update($request->all());
+
+        return redirect()->back()->with('success', 'User Updated');
     }
 
-    /**
-     * @param $id
-     */
-    public function delete($id)
-    {
-
-    }
-
-    /**
-     * @param $id
-     */
     public function destroy($id)
     {
+        //@todo : update subjects,answers,user_subjects,user_levels
+        $currentUser = Auth::user();
+
+        $user = $this->userRepository->model->find($id);
+//
+        if (is_a($student = $user->getType(), Student::class)) {
+            $request = Request::create('/admin/student/' . $student->id, 'DELETE', []);
+            Route::dispatch($request);
+
+        } elseif (is_a($educator = $user->getType(), Educator::class)) {
+            $request = Request::create('/admin/educator/' . $educator->id, 'DELETE', []);
+            Route::dispatch($request);
+        }
+
+        if (($currentUser->id == $user->id)) {
+            return redirect()->back()->with('warning', 'You Cannot Delete Yourself');
+        }
+
+        $user->delete();
+
+        return redirect()->back()->with('success', 'User Deleted');
 
     }
 }

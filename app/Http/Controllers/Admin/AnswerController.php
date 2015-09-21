@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-
 use App\Http\Controllers\Controller;
 use App\Src\Answer\AnswerRepository;
 use App\Src\Question\QuestionRepository;

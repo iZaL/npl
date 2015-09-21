@@ -40,6 +40,11 @@ class EducatorController extends Controller
         $this->subjectRepository = $subjectRepository;
     }
 
+    public function aa()
+    {
+     dd('aa');
+    }
+
     public function index()
     {
         // Find newly Registered Educators and their Subjects to Approve
@@ -130,7 +135,7 @@ class EducatorController extends Controller
         ])->find($id);
 
         // delete answers
-        $educator->answers()->delete();
+        $educator->answers ? $educator->answers()->delete() : '';
 
         $educator->profile->subjects()->detach();
 

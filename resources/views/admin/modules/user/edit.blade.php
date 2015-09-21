@@ -24,9 +24,9 @@
         </div>
 
         <div class="form-group">
-            {!! Form::hidden('isAdmin',0) !!}
+            {!! Form::hidden('admin',0) !!}
 
-            {!! Form::checkbox('isAdmin', $user->isAdmin, ['class' => 'form-control','placeholder'=>'Name']) !!} Admin
+            {!! Form::checkbox('admin', $user->admin, ['class' => 'form-control','placeholder'=>'Name']) !!} Admin
         </div>
 
         <div class="form-group">
