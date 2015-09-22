@@ -6,7 +6,6 @@ use App\Src\Subject\SubjectRepository;
 
 class HomeController extends Controller
 {
-
     /**
      * @param SubjectRepository $subjectRepository
      * @return \Illuminate\View\View
@@ -14,7 +13,7 @@ class HomeController extends Controller
     public function index(SubjectRepository $subjectRepository)
     {
         $subjects = $subjectRepository->model->all();
-        return view('home',compact('subjects'));
+        return view('land',compact('subjects'));
     }
 
 }

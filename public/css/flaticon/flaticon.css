@@ -1,0 +1,316 @@
+@font-face {
+	font-family: "Flaticon";
+	src: url("flaticon.eot");
+	src: url("flaticon.eot#iefix") format("embedded-opentype"),
+	url("flaticon.woff") format("woff"),
+	url("flaticon.ttf") format("truetype"),
+	url("flaticon.svg") format("svg");
+	font-weight: normal;
+	font-style: normal;
+}
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before,
+[class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
+	font-family: Flaticon;
+        font-size: 20px;
+font-style: normal;
+margin-left: 20px;
+}.flaticon-abecedary1:before {
+	content: "\e000";
+}
+.flaticon-abecedary2:before {
+	content: "\e001";
+}
+.flaticon-artistic22:before {
+	content: "\e002";
+}
+.flaticon-astronomy12:before {
+	content: "\e003";
+}
+.flaticon-award94:before {
+	content: "\e004";
+}
+.flaticon-ball86:before {
+	content: "\e005";
+}
+.flaticon-blackboard23:before {
+	content: "\e006";
+}
+.flaticon-book59:before {
+	content: "\e007";
+}
+.flaticon-book-bag4:before {
+	content: "\e008";
+}
+.flaticon-book-bag5:before {
+	content: "\e009";
+}
+.flaticon-books109:before {
+	content: "\e00a";
+}
+.flaticon-books110:before {
+	content: "\e00b";
+}
+.flaticon-calculating12:before {
+	content: "\e00c";
+}
+.flaticon-calculating13:before {
+	content: "\e00d";
+}
+.flaticon-cap10:before {
+	content: "\e00e";
+}
+.flaticon-certification4:before {
+	content: "\e00f";
+}
+.flaticon-clocks23:before {
+	content: "\e010";
+}
+.flaticon-clothes26:before {
+	content: "\e011";
+}
+.flaticon-cloud428:before {
+	content: "\e012";
+}
+.flaticon-computer278:before {
+	content: "\e013";
+}
+.flaticon-computering1:before {
+	content: "\e014";
+}
+.flaticon-computer-mouse46:before {
+	content: "\e015";
+}
+.flaticon-craft2:before {
+	content: "\e016";
+}
+.flaticon-cut71:before {
+	content: "\e017";
+}
+.flaticon-degree4:before {
+	content: "\e018";
+}
+.flaticon-degree5:before {
+	content: "\e019";
+}
+.flaticon-detective2:before {
+	content: "\e01a";
+}
+.flaticon-direction178:before {
+	content: "\e01b";
+}
+.flaticon-drawing36:before {
+	content: "\e01c";
+}
+.flaticon-exclamations:before {
+	content: "\e01d";
+}
+.flaticon-file247:before {
+	content: "\e01e";
+}
+.flaticon-flowers68:before {
+	content: "\e01f";
+}
+.flaticon-fruit170:before {
+	content: "\e020";
+}
+.flaticon-fruit171:before {
+	content: "\e021";
+}
+.flaticon-geometry58:before {
+	content: "\e022";
+}
+.flaticon-graduation64:before {
+	content: "\e023";
+}
+.flaticon-hat53:before {
+	content: "\e024";
+}
+.flaticon-laboratory11:before {
+	content: "\e025";
+}
+.flaticon-leaves36:before {
+	content: "\e026";
+}
+.flaticon-letters27:before {
+	content: "\e027";
+}
+.flaticon-letters28:before {
+	content: "\e028";
+}
+.flaticon-letters29:before {
+	content: "\e029";
+}
+.flaticon-letters30:before {
+	content: "\e02a";
+}
+.flaticon-letters31:before {
+	content: "\e02b";
+}
+.flaticon-library65:before {
+	content: "\e02c";
+}
+.flaticon-light180:before {
+	content: "\e02d";
+}
+.flaticon-light-bulbs14:before {
+	content: "\e02e";
+}
+.flaticon-maths83:before {
+	content: "\e02f";
+}
+.flaticon-maths84:before {
+	content: "\e030";
+}
+.flaticon-medals11:before {
+	content: "\e031";
+}
+.flaticon-molecule18:before {
+	content: "\e032";
+}
+.flaticon-musical-instrument38:before {
+	content: "\e033";
+}
+.flaticon-notepad39:before {
+	content: "\e034";
+}
+.flaticon-numbers19:before {
+	content: "\e035";
+}
+.flaticon-numbers20:before {
+	content: "\e036";
+}
+.flaticon-numbers21:before {
+	content: "\e037";
+}
+.flaticon-origami30:before {
+	content: "\e038";
+}
+.flaticon-paint124:before {
+	content: "\e039";
+}
+.flaticon-pen112:before {
+	content: "\e03a";
+}
+.flaticon-pencil141:before {
+	content: "\e03b";
+}
+.flaticon-pencils27:before {
+	content: "\e03c";
+}
+.flaticon-pencils28:before {
+	content: "\e03d";
+}
+.flaticon-pens18:before {
+	content: "\e03e";
+}
+.flaticon-pins13:before {
+	content: "\e03f";
+}
+.flaticon-puzzle-pieces1:before {
+	content: "\e040";
+}
+.flaticon-quaver40:before {
+	content: "\e041";
+}
+.flaticon-quaver41:before {
+	content: "\e042";
+}
+.flaticon-rain96:before {
+	content: "\e043";
+}
+.flaticon-reading38:before {
+	content: "\e044";
+}
+.flaticon-ruler34:before {
+	content: "\e045";
+}
+.flaticon-ruler35:before {
+	content: "\e046";
+}
+.flaticon-rulers19:before {
+	content: "\e047";
+}
+.flaticon-science62:before {
+	content: "\e048";
+}
+.flaticon-science63:before {
+	content: "\e049";
+}
+.flaticon-science64:before {
+	content: "\e04a";
+}
+.flaticon-science65:before {
+	content: "\e04b";
+}
+.flaticon-science66:before {
+	content: "\e04c";
+}
+.flaticon-science67:before {
+	content: "\e04d";
+}
+.flaticon-science68:before {
+	content: "\e04e";
+}
+.flaticon-scientific5:before {
+	content: "\e04f";
+}
+.flaticon-screen139:before {
+	content: "\e050";
+}
+.flaticon-sharpen1:before {
+	content: "\e051";
+}
+.flaticon-shoes43:before {
+	content: "\e052";
+}
+.flaticon-soccer5:before {
+	content: "\e053";
+}
+.flaticon-speech-bubble90:before {
+	content: "\e054";
+}
+.flaticon-sports-ball33:before {
+	content: "\e055";
+}
+.flaticon-square278:before {
+	content: "\e056";
+}
+.flaticon-sunny69:before {
+	content: "\e057";
+}
+.flaticon-tool128:before {
+	content: "\e058";
+}
+.flaticon-transport654:before {
+	content: "\e059";
+}
+.flaticon-whiteboard16:before {
+	content: "\e05a";
+}
+.flaticon-whiteboard17:before {
+	content: "\e05b";
+}
+.flaticon-world11:before {
+	content: "\e05c";
+}
+.flaticon-writing87:before {
+	content: "\e05d";
+}
+.flaticon-writing88:before {
+	content: "\e05e";
+}
+.flaticon-writing89:before {
+	content: "\e05f";
+}
+.flaticon-writing90:before {
+	content: "\e060";
+}
+.flaticon-writing91:before {
+	content: "\e061";
+}
+.flaticon-writing92:before {
+	content: "\e062";
+}
+.flaticon-writing93:before {
+	content: "\e063";
+}

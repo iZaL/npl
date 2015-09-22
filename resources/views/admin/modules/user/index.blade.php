@@ -16,8 +16,8 @@
                     <table class="table table-striped table-bordered table-hover" id="dataTables">
                         <thead>
                         <tr>
-                            <th>Basic Info</th>
-                            <th>Email</th>
+                            <th><i class="fa fa-info"></i> Basic Info</th>
+                            <th><i class="fa fa-map-marker"></i> Address</th>
                             <th>Active</th>
                             <th>Admin</th>
                             <th>Action</th>
@@ -30,7 +30,7 @@
                                     <i class="fa fa-user"></i> &nbsp; {{ $user->firstname . ' '.$user->lastname }} <br>
                                     <i class="fa fa-envelope"></i> &nbsp; {{ $user->email }}
                                 </td>
-                                <td> {{ $user->email  }}</td>
+                                <td> {{ $user->city }} <br> {{ $user->address }} <br> {{ $user->country  }}</td>
                                 <td> {{ $user->admin ? 'true' : 'false' }}</td>
                                 <td> {{ $user->active ? 'true' : 'false' }}</td>
                                 <td>

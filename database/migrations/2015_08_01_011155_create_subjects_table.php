@@ -19,6 +19,7 @@ class CreateSubjectsTable extends Migration
             $table->string('slug')->nullable();
             $table->string('description_ar')->nullable();
             $table->string('description_en')->nullable();
+            $table->string('icon')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

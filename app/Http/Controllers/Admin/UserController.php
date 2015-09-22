@@ -77,7 +77,11 @@ class UserController extends Controller
         $currentUser = Auth::user();
 
         $user = $this->userRepository->model->find($id);
-//
+
+        if (($currentUser->id == $user->id)) {
+            return redirect()->back()->with('warning', 'You Cannot Delete Yourself');
+        }
+
         if (is_a($student = $user->getType(), Student::class)) {
             $request = Request::create('/admin/student/' . $student->id, 'DELETE', []);
             Route::dispatch($request);
@@ -85,10 +89,6 @@ class UserController extends Controller
         } elseif (is_a($educator = $user->getType(), Educator::class)) {
             $request = Request::create('/admin/educator/' . $educator->id, 'DELETE', []);
             Route::dispatch($request);
-        }
-
-        if (($currentUser->id == $user->id)) {
-            return redirect()->back()->with('warning', 'You Cannot Delete Yourself');
         }
 
         $user->delete();
