@@ -1,40 +1,57 @@
-<div class="navbar">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-    </div>
-    <div class="collapse navbar-collapse navbar-ex1-collapse" id="menu">
-        <ul class="nav navbar-nav">
-            <li class="active"><a href="/">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="{{ action('StudentController@index') }}">Students Page</a></li>
-            <li><a href="{{ action('EducatorController@index') }}">Educators Page</a></li>
-            <li class="submenu"><a href="#">Subjects</a>
-                <ul>
-                    @foreach($subjects as $subject)
-                        <li><a href="{{ action('SubjectController@show',$subject->id) }}">{{ ucfirst($subject->name) }}</a></li>
-                    @endforeach
-                </ul>
-            </li>
-            <li class="submenu"><a href="#">Level</a>
-                <ul>
-                    @foreach($levels as $level)
-                        <li><a href="{{ action('LevelController@show',$level->id) }}">{{ ucfirst($level->name) }}</a></li>
-                    @endforeach
-                </ul>
-            </li>
-            <li>
-                @if(Auth::check())
-                    <a href="{{ action('QuestionController@create') }}"> Ask </a>
+<div id="navigation" class="yamm">
+    <div class="navbar-collapse collapse">
+        <div class="container">
+
+            <a class="navbar-brand scroll-to" href="#top"><img src="/images/logo.png" class="logo" alt=""></a>
+
+            <ul class="nav navbar-nav">
+
+                @if($isEducator)
+                    <li><a href="{{ action('EducatorController@getQuestions') }}">Home</a></li>
+                @elseif($isStudent)
+                    <li><a href="{{ action('StudentController@getQuestions',$user->id) }}">Home</a></li>
                 @else
-                    <a href="/auth/login">Login/Register</a>
+                    <li><a href="{{ route('index') }}">Home</a></li>
                 @endif
-            </li>
-            <li style="padding-right:0px;"><a href="#">Contact Us</a></li>
-        </ul>
+                <li><a href="{{ route('home') }}">About</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle js-activated">Subjects</a>
+
+                    <ul class="dropdown-menu">
+                        @foreach($subjects as $subject)
+                            <li>
+                                <a href="{{ action('SubjectController@show',$subject->id) }}">{{ ucfirst($subject->name) }}</a>
+                            </li>
+                        @endforeach
+                    </ul>
+                    <!-- /.dropdown-menu -->
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle js-activated">Levels</a>
+
+                    <ul class="dropdown-menu">
+                        @foreach($levels as $level)
+                            <li>
+                                <a href="{{ action('LevelController@show',$level->id) }}">{{ ucfirst($level->name) }}</a>
+                            </li>
+                        @endforeach
+                    </ul>
+                    <!-- /.dropdown-menu -->
+                </li>
+                @if(Auth::check())
+                    <li><a href="{{ action('QuestionController@create') }}"> Ask </a></li>
+                    <li><a href="/auth/logout">Logout</a></li>
+                @else
+                    <li><a href="/auth/login">Login</a></li>
+                    <li><a href="{{ route('home') }}">Register</a></li>
+                @endif
+                <li><a href="{{ route('contact') }}">Contact</a></li>
+            </ul>
+            <!-- /.nav -->
+
+        </div>
+        <!-- /.container -->
     </div>
+    <!-- /.navbar-collapse -->
 </div>
+

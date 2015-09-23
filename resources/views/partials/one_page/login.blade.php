@@ -3,15 +3,12 @@
 
         <div class="row">
             <div class="col-md-8 col-sm-9 center-block text-center">
-                <header>
-                    <h1> <a href="/auth/login">Login </a></h1>
-                    <h2> Or </h2>
-                </header>
+                        <a href="/auth/login" class="btn btn-positive" role="button">Login To You Account</a>
+                        <h2> Or </h2>
             </div>
             <!-- /.col -->
         </div>
         <!-- /.row -->
-
     </div>
     <!-- /.container -->
 </section>

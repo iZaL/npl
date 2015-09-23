@@ -1,14 +1,10 @@
 @extends('layouts.two_col')
 
-@section('left')
-
+@section('right')
     <h1>AD</h1>
-
 @endsection
 
-
-@section('right')
-
+@section('left')
     @foreach($subjects as $subject)
         <ul class="list-group">
             <li class="list-group-item">
@@ -24,6 +20,5 @@
                 </ul>
             </li>
         </ul>
-
     @endforeach
 @endsection

@@ -1,10 +1,10 @@
 @extends('layouts.two_col')
 
-@section('left')
+@section('right')
     <h1>AD</h1>
 @endsection
 
-@section('right')
+@section('left')
 
     <div class="blockpara">
         <p>The main objectives of this educational are to :<br><br>

@@ -2,8 +2,11 @@
 namespace App\Http\Composers;
 
 use App\Src\Category\CategoryRepository;
+use App\Src\Educator\Educator;
 use App\Src\Level\LevelRepository;
+use App\Src\Student\Student;
 use App\Src\Subject\SubjectRepository;
+use Auth;
 use Illuminate\Contracts\View\View;
 
 class NavigationMenu
@@ -32,7 +35,20 @@ class NavigationMenu
     {
         $subjects = $this->subjectRepository->model->get(['id', 'name_en']);
         $levels = $this->levelRepository->model->get(['id', 'name_en']);
-        $view->with(['subjects' => $subjects, 'levels' => $levels]);
+        $isEducator = false;
+        $isStudent = false;
+        $user = false;
+
+        if (Auth::check()) {
+            $user = Auth::user();
+            if (is_a($user->getType(), Educator::class)) {
+                $isEducator = true;
+            } elseif (is_a($user->getType(), Student::class)) {
+                $isStudent = true;
+            }
+        }
+        $view->with(['subjects' => $subjects, 'levels' => $levels, 'user' => $user, 'isEducator'=>$isEducator, 'isStudent'=>$isStudent]);
+
     }
 
 }

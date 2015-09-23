@@ -13,11 +13,13 @@ class HomeController extends Controller
     public function index(SubjectRepository $subjectRepository)
     {
         $subjects = $subjectRepository->model->all();
-        return view('land',compact('subjects'));
+
+        return view('land', compact('subjects'));
     }
 
     public function home()
     {
+
         return view('home');
     }
 

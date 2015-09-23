@@ -21,7 +21,6 @@ class SubjectController extends Controller
         $this->subjectRepository = $subjectRepository;
     }
 
-
     /**
      * @param $id
      * @param LevelRepository $levelRepository
@@ -34,8 +33,6 @@ class SubjectController extends Controller
                 $q->where('subject_id', $id);
             }
         ])->get();
-
-        $levels-load('latestQuestions');
 
         $subject = $this->subjectRepository->model->find($id);
 

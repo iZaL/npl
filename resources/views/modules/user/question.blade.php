@@ -1,12 +1,12 @@
 @extends('layouts.two_col')
 
-@section('left')
+@section('right')
 
     <h1>AD</h1>
 
 @endsection
 
-@section('right')
+@section('left')
 
     <h2 class="blockhead">My Questions</h2>
     <div class="blockpara">

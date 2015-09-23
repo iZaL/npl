@@ -1,6 +1,6 @@
-@extends('layouts.one_col')
+@extends('layouts.two_col')
 
-@section('content')
+@section('left')
 
     {!! Form::open(['action' => 'AnswerController@storeReply', 'method' => 'post','files'=>true, 'class'=>'form-horizontal'])
     !!}
@@ -26,7 +26,7 @@
         {!! Form::textarea('body_en', null, ['class' => 'form-control','placeholder'=>'Your Question']) !!}
     </div>
     <div class="form-group">
-        {!! Form::submit('Submit',  ['class' => 'form-control','placeholder'=>'Your Question']) !!}
+        {!! Form::submit('Submit',  ['class' => 'form-control btn btn-positive','placeholder'=>'Your Question']) !!}
     </div>
     {!! Form::close() !!}
 @endsection

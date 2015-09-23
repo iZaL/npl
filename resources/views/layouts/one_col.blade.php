@@ -2,7 +2,7 @@
 
 @section('content')
     <main>
-        <section class="main">
+        <section class="light-bg main">
             <div class="container inner-top-md">
                 @include('partials.notifications')
 

@@ -13,12 +13,18 @@
                 <div class="col-md-offset-3 col-md-6 col-sm-6 inner-right-xs inner-bottom-xs">
                     <form role="form" method="POST" action="{{ url('/auth/login') }}">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <div class="form-group">
+                            <label class="control-label pull-left ">Email</label>
+                            {!! Form::text('email',null,['class'=>'form-control','placeholder'=>'Email']) !!}
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label pull-left ">Password</label>
+                            {!! Form::password('password',null,['class'=>'form-control','placeholder'=>'Password']) !!}
+                        </div>
 
-                        <input name="email" id="email" type="text" class="form-control" placeholder="&nbsp;Email"
-                               style="padding:0 0 0 0 !important;"/>
-                        <input name="password" id="password" type="password" class="form-control"
-                               placeholder="&nbsp;Password" style="padding:0 0 0 0 !important;"/>
-                        <input name="login" id="login" type="submit" class="" value="Login" />
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-positive" value="Login"/>
+                        </div>
 
                     </form>
                 </div><!-- /.col -->

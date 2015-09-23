@@ -1,7 +1,6 @@
-@extends('layouts.one_col')
+@extends('layouts.two_col')
 
-@section('content')
-
+@section('left')
 
     <h1>{{ $question->body }}</h1>
 
@@ -15,7 +14,7 @@
         {!! Form::textarea('body_en', null, ['class' => 'form-control','placeholder'=>'Your Question']) !!}
     </div>
     <div class="form-group">
-        {!! Form::submit('Submit',  ['class' => 'form-control']) !!}
+        {!! Form::submit('Submit',  ['class' => 'form-control btn btn-positive']) !!}
     </div>
     {!! Form::close() !!}
 @endsection

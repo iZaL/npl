@@ -2,10 +2,8 @@
     <div class="container inner" style="padding-top: 0">
 
         <div class="row">
-            <div class="col-md-8 col-sm-9 center-block text-center">
-                <header>
-                    <h1>Sign up Now !!</h1>
-                </header>
+            <div class="col-md-8 col-sm-9 center-block text-center" >
+                <h1>Sign up Now !!</h1>
             </div>
             <!-- /.col -->
         </div>
