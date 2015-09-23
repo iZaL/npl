@@ -7,7 +7,6 @@
     <meta name="author" content="">
     <meta name="viewport" content="width=device-width">
     @section('style')
-        <link href="/css/flaticon/flaticon.css" rel="stylesheet">
         <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="/bower_components/fontawesome/css/font-awesome.min.css">
 
@@ -19,7 +18,7 @@
         <link href="/css/animate.min.css" rel="stylesheet">
         <link href="/css/custom.css" rel="stylesheet">
         <!-- Fonts -->
-
+        <link href="/css/flaticon/flaticon.css" rel="stylesheet">
         <!-- Icons/Glyphs -->
         <link href="/fonts/fontello.css" rel="stylesheet">
 
@@ -223,7 +222,7 @@
                                     </div>
                                     <!-- /.info -->
                                 </figcaption>
-                                <div class="flaticon-abecedary1 subject-icon"></div>
+                                <div class="flaticon-abecedary2 subject-icon"></div>
                             </figure>
                         </a>
                     </div>
@@ -280,7 +279,7 @@
                                     </div>
                                     <!-- /.info -->
                                 </figcaption>
-                                <div class="flaticon-abecedary1 subject-icon"></div>
+                                <div class="flaticon-islam55 subject-icon"></div>
                             </figure>
                         </a>
                     </div>
@@ -293,7 +292,7 @@
                                     </div>
                                     <!-- /.info -->
                                 </figcaption>
-                                <div class="flaticon-abecedary1 subject-icon"></div>
+                                <div class="flaticon-monument33 subject-icon"></div>
                             </figure>
                         </a>
                     </div>
