@@ -40,7 +40,19 @@
 
 <header>
     <div class="navbar">
+        <div class="navbar-header">
+            <div class="container">
 
+                <!-- ============================================================= LOGO MOBILE ============================================================= -->
+
+                <a class="navbar-brand" href="#"><img src="assets/images/logo.png" class="logo" alt=""></a>
+
+                <!-- ============================================================= LOGO MOBILE : END ============================================================= -->
+
+                <a class="btn responsive-menu pull-right" data-toggle="collapse" data-target=".navbar-collapse"><i class='icon-menu-1'></i></a>
+
+            </div><!-- /.container -->
+        </div>
         <div class="yamm">
             <div class="navbar-collapse collapse">
                 <div class="container">
