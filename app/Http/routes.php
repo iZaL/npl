@@ -56,17 +56,20 @@ Route::get('profile/edit', 'ProfileController@editProfile');
  ********************************************************************************************************/
 
 Route::resource('subject', 'SubjectController');
+
 Route::resource('level', 'LevelController');
-Route::get('home', 'HomeController@index');
+
+Route::get('contact',['as'=>'contact','uses'=>'PageController@getContact']);
+
+Route::get('home', ['as'=>'home','uses'=>'HomeController@home']);
+
+Route::get('/', ['as'=>'index','uses'=>'HomeController@index']);
 
 Route::get('test', function () {
 
     $user = Auth::loginUsingId(2);
     dd($user->subjects->toArray());
 });
-
-Route::get('/', 'HomeController@index');
-
 
 /*********************************************************************************************************
  * Admin Routes

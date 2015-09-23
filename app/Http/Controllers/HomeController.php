@@ -16,4 +16,9 @@ class HomeController extends Controller
         return view('land',compact('subjects'));
     }
 
+    public function home()
+    {
+        return view('home');
+    }
+
 }

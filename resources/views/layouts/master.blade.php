@@ -7,48 +7,22 @@
     <meta name="author" content="">
     <meta name="viewport" content="width=device-width">
     @section('style')
-        <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/css/style.css">
+        @include('partials.one_page.style')
     @show
 </head>
-<body>
-<div class="container">
+<body id="top">
 
-    @include('partials.header')
-    @include('partials.nav')
+@include('partials.header')
 
-    @yield('banner')
+<main>
+    @section('content')
 
-    @include('partials.notifications')
-</div>
+    @show
+</main>
 
-@section('testimonials')
-@show
-<div class="contentWrap2">
-    <div class="container">
-        @section('content')
-        @show
-    </div>
-</div>
-
-@include('partials.footer')
-
+@include('partials.one_page.footer')
 @section('script')
-    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="/js/slides.min.jquery.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('#slider').slides({
-                preload: true,
-                preloadImage: 'images/loading.gif',
-                play: 2000,
-                pause: 2500,
-                hoverPause: true
-            });
-        });
-    </script>
+    @include('partials.one_page.script')
 @show
-
 </body>
 </html>

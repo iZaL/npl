@@ -1,9 +1,14 @@
 @extends('layouts.master')
 
-<div class="row">
-    <div class="col-md-12">
-        @section('content')
+@section('content')
+    <main>
+        <section class="main">
+            <div class="container inner-top-md">
+                @include('partials.notifications')
 
-        @endsection
-    </div>
-</div>
+                @yield('middle')
+            </div>
+            <!-- /.container -->
+        </section>
+    </main>
+@endsection

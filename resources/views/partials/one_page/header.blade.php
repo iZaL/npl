@@ -23,20 +23,12 @@
 
                     <ul class="nav navbar-nav pull-right">
 
-                        @if(Auth::check())
-                            <li><a href="{{ route('home') }}">Home</a></li>
-                        @else
-                            <li><a href="{{ route('index') }}">Home</a></li>
-                        @endif
-                        <li><a href="{{ route('home') }}">About</a></li>
-                        <li><a href="{{ route('home') }}">Subjects</a></li>
-                        @if(Auth::check())
-                            <li><a href="/auth/logout">Logout</a></li>
-                        @else
-                            <li><a href="{{ route('home') }}">Login</a></li>
-                            <li><a href="{{ route('home') }}">Register</a></li>
-                        @endif
-                        <li><a href="{{ route('contact') }}">Contact</a></li>
+                        <li><a href="#home" class="scroll-to" data-anchor-offset="0">Home</a></li>
+                        <li><a href="#about" class="scroll-to" data-anchor-offset="0">About</a></li>
+                        <li><a href="#subjects" class="scroll-to" data-anchor-offset="0">Subjects</a></li>
+                        <li><a href="#login" class="scroll-to" data-anchor-offset="0">Login</a></li>
+                        <li><a href="#signup" class="scroll-to" data-anchor-offset="0">Register</a></li>
+                        <li><a href="#contact" class="scroll-to" data-anchor-offset="0">Contact</a></li>
                     </ul>
                     <!-- /.nav -->
 
