@@ -61,6 +61,7 @@
 
                     <ul class="nav navbar-nav pull-right">
 
+                        <li><a href="#home" class="scroll-to" data-anchor-offset="0">Home</a></li>
                         <li><a href="#about" class="scroll-to" data-anchor-offset="0">About</a></li>
                         <li><a href="#subjects" class="scroll-to" data-anchor-offset="0">Subjects</a></li>
                         <li><a href="#signup" class="scroll-to" data-anchor-offset="0">Register</a></li>
@@ -80,7 +81,7 @@
 
 <main>
 
-    <section id="hero">
+    <section id="home">
         <div id="owl-main" class="owl-carousel height-md owl-inner-nav owl-ui-lg" style="opacity:0.7;">
 
             <div class="item" style="background-image: url(/images/slider/slider17.png);">
@@ -225,89 +226,22 @@
             <div class="row inner-top-sm">
                 <div id="owl-latest-works" class="owl-carousel owl-item-gap">
 
+                    @foreach($subjects as $subject)
                     <div class="item">
                         <a href="#">
                             <figure>
                                 <figcaption class="text-overlay">
                                     <div class="info">
-                                        <h4>Science</h4>
+                                        <h4>{{ ucfirst($subject->name) }}</h4>
                                     </div>
                                     <!-- /.info -->
                                 </figcaption>
-                                <div class="flaticon-abecedary2 subject-icon"></div>
+                                <div class="{{ strtolower($subject->icon) }} subject-icon"></div>
                             </figure>
                         </a>
                     </div>
                     <!-- /.item -->
-
-                    <div class="item">
-                        <a href="#">
-                            <figure>
-                                <figcaption class="text-overlay">
-                                    <div class="info">
-                                        <h4>Mathematics</h4>
-                                    </div>
-                                    <!-- /.info -->
-                                </figcaption>
-                                <div class="flaticon-calculating12 subject-icon"></div>
-                            </figure>
-                        </a>
-                    </div>
-                    <!-- /.item -->
-                    <div class="item">
-                        <a href="#">
-                            <figure>
-                                <figcaption class="text-overlay">
-                                    <div class="info">
-                                        <h4>Chemistry</h4>
-                                    </div>
-                                    <!-- /.info -->
-                                </figcaption>
-                                <div class="flaticon-science62 subject-icon"></div>
-                            </figure>
-                        </a>
-                    </div>
-                    <!-- /.item -->
-                    <div class="item">
-                        <a href="#">
-                            <figure>
-                                <figcaption class="text-overlay">
-                                    <div class="info">
-                                        <h4>Physics</h4>
-                                    </div>
-                                    <!-- /.info -->
-                                </figcaption>
-                                <div class="flaticon-science65 subject-icon"></div>
-                            </figure>
-                        </a>
-                    </div>
-                    <!-- /.item -->
-                    <div class="item">
-                        <a href="#">
-                            <figure>
-                                <figcaption class="text-overlay">
-                                    <div class="info">
-                                        <h4>Arabic</h4>
-                                    </div>
-                                    <!-- /.info -->
-                                </figcaption>
-                                <div class="flaticon-islam55 subject-icon"></div>
-                            </figure>
-                        </a>
-                    </div>
-                    <div class="item">
-                        <a href="#">
-                            <figure>
-                                <figcaption class="text-overlay">
-                                    <div class="info">
-                                        <h4>French</h4>
-                                    </div>
-                                    <!-- /.info -->
-                                </figcaption>
-                                <div class="flaticon-monument33 subject-icon"></div>
-                            </figure>
-                        </a>
-                    </div>
+                    @endforeach
                 </div>
                 <!-- /.owl-carousel -->
             </div>

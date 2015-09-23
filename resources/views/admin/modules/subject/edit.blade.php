@@ -32,6 +32,11 @@
                 </div>
 
                 <div class="form-group">
+                    {!! Form::label('icon', 'Icon', ['class' => 'control-label']) !!} <span class="red">*</span>
+                    {!! Form::text('icon', null, ['class' => 'form-control','placeholder'=>'Icon Name']) !!}
+                </div>
+
+                <div class="form-group">
                     {!! Form::submit('Save', ['class' => 'btn btn-primary form-control']) !!}
                 </div>
 

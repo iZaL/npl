@@ -25,7 +25,7 @@ class SubjectController extends Controller
 
     public function index()
     {
-        $subjects = $this->subjectRepository->model->with(['questionsCount','educatorsCount'])->paginate(100);
+        $subjects = $this->subjectRepository->model->with(['questionsCount', 'educatorsCount'])->paginate(100);
 
         return view('admin.modules.subject.index', compact('subjects'));
 
@@ -59,7 +59,8 @@ class SubjectController extends Controller
         $this->subjectRepository->model->create([
             'name_en'        => $request->name_en,
             'description_en' => $request->description_en,
-            'slug'           => $request->name_en
+            'slug'           => $request->name_en,
+            'icon'           => $request->icon
         ]);
 
         return redirect()->action('Admin\SubjectController@index')->with('success', 'Subject Created');
@@ -84,7 +85,7 @@ class SubjectController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name_en' => 'required|unique:subjects,name_en,'.$id
+            'name_en' => 'required|unique:subjects,name_en,' . $id
         ]);
 
         $subject = $this->subjectRepository->model->find($id);
@@ -92,7 +93,8 @@ class SubjectController extends Controller
         $subject->update([
             'name_en'        => $request->name_en,
             'description_en' => $request->description_en,
-            'slug'           => $request->name_en
+            'slug'           => $request->name_en,
+            'icon'           => $request->icon
         ]);
 
         return redirect()->action('Admin\SubjectController@index')->with('success', 'Subject Updated');
