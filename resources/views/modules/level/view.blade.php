@@ -1,4 +1,7 @@
 @extends('layouts.two_col')
+@section('breadcrumb')
+    <h1> Questions For {{ ucfirst($level->name) }}</h1>
+@endsection
 
 @section('right')
     <h1>AD</h1>

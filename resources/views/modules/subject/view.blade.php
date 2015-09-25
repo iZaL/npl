@@ -8,7 +8,6 @@
     <h1>AD</h1>
 @endsection
 
-
 @section('left')
     @foreach($levels as $level)
         <ul class="list-group">
