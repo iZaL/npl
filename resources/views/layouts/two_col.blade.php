@@ -2,7 +2,21 @@
 
 @section('content')
 
-    <section id="blog" class="light-bg">
+    <section id="page-breadcrumb">
+        <div class="vertical-center sun ">
+            <div class="container">
+                <div class="row">
+                    <div class="action">
+                        <div class="col-sm-12">
+                            @yield('breadcrumb')
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="blog" >
         <div class="container inner-top-sm inner-bottom">
 
             <div class="row">

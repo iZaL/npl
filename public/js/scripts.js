@@ -569,7 +569,7 @@ $(document).ready(function () {
 $(document).ready(function () {
 	
 	$('.tabs.tabs-reasons').easytabs({
-		cycle: 1500
+		cycle: 20000
 	});
 	
 	$('.tabs.tabs-top, .tabs.tabs-circle-top, .tabs.tabs-2-big-top, .tabs.tabs-side').easytabs({

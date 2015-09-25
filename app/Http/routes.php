@@ -4,8 +4,8 @@
  * Auth Routes
  ********************************************************************************************************/
 Route::controllers([
-    'auth'     => 'Auth\AuthController',
-    'password' => 'Auth\PasswordController'
+    'auth'       => 'Auth\AuthController',
+    'password'   => 'Auth\PasswordController'
 ]);
 
 Route::get('register/student', 'Auth\AuthController@studentRegistration');
@@ -59,11 +59,11 @@ Route::resource('subject', 'SubjectController');
 
 Route::resource('level', 'LevelController');
 
-Route::get('contact',['as'=>'contact','uses'=>'PageController@getContact']);
+Route::get('contact', ['as' => 'contact', 'uses' => 'PageController@getContact']);
 
-Route::get('home', ['as'=>'home','uses'=>'HomeController@home']);
+Route::get('home', ['as' => 'home', 'uses' => 'HomeController@home']);
 
-Route::get('/', ['as'=>'index','uses'=>'HomeController@index']);
+Route::get('/', ['as' => 'index', 'uses' => 'HomeController@index']);
 
 Route::get('test', function () {
 

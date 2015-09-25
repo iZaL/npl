@@ -1,3 +1,45 @@
 .subject-icon {
-	font-size:250px;
+    font-size: 250px;
 }
+
+#footer {
+    background-image: url(/images/breadcrumb.png);
+    background-repeat: repeat-x;
+    background-position: bottom;
+    background-size: contain;
+    background-color:#ffffff;
+}
+
+.newsletter input[type="email"] {
+    background: rgba(125, 94, 94, 0.15);
+    padding-right: 100px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    border: none;
+    color: #10373E !important ;
+}
+
+.newsletter input[type="email"]:focus {
+    background: rgba(136, 125, 125, 0.2);
+}
+#page-breadcrumb {
+    background-image: url(/images/breadcrumb.png);
+    background-color: #ffffff;
+    background-repeat: repeat-x;
+    height: 130px;
+    background-position: center;
+    display: table;
+    position: relative;
+    width: 100%;
+}
+
+.vertical-center{
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+    position: static;
+}
+.navbar-collapse {
+    border-bottom: 0;
+}
+

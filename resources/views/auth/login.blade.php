@@ -1,13 +1,13 @@
 @extends('layouts.one_col')
 
+@section('breadcrumb')
+    <h1 class="text-center"> Login to your Account</h1>
+@endsection
 @section('middle')
 
     <div class="row">
         <div class="col-sm-12 text-center">
 
-            <header>
-                <h1> Login to your Account</h1>
-            </header>
             <div class="row inner-top-xs">
 
                 <div class="col-md-offset-3 col-md-6 col-sm-6 inner-right-xs inner-bottom-xs">

@@ -16,7 +16,7 @@
 
                 @foreach($subjects as $subject)
                     <div class="item">
-                        <a href="#">
+                        <a href="{{ action('SubjectController@show',$subject->id) }}">
                             <figure>
                                 <figcaption class="text-overlay">
                                     <div class="info">

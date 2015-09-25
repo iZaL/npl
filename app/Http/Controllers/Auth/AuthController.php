@@ -54,7 +54,7 @@ class AuthController extends Controller
         SubjectRepository $subjectRepository,
         LevelRepository $levelRepository
     ) {
-//        $this->middleware('guest', ['except' => 'getLogout']);
+        $this->middleware('guest', ['except' => 'getLogout']);
         $this->userRepository = $userRepository;
         $this->subjectRepository = $subjectRepository;
         $this->levelRepository = $levelRepository;
