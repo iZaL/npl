@@ -1,13 +1,12 @@
 @extends('layouts.one_col')
-
+@section('breadcrumb')
+    <h1 class="text-center"> Ask a Question </h1>
+@endsection
 @section('middle')
 
     <div class="row">
         <div class="col-sm-12 text-center">
 
-            <header>
-                <h1> Ask a Question </h1>
-            </header>
             <div class="row inner-top-xs">
                 <div class="col-md-offset-3 col-md-6 col-sm-6 inner-right-xs inner-bottom-xs">
                     {!! Form::open(['action' => 'QuestionController@store', 'method' => 'post','files'=>true, 'class'=>'form-horizontal'])

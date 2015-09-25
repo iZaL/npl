@@ -1,15 +1,16 @@
 @extends('layouts.two_col')
 
+@section('breadcrumb')
+    <h1>My Questions</h1>
+@endsection
+
 @section('left')
-
     <h1>AD</h1>
-
 @endsection
 
 
 @section('right')
 
-    <h2 class="blockhead">My Questions</h2>
     <div class="blockpara">
 
         @foreach($answers as $answer)
