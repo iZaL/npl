@@ -39,7 +39,7 @@ class SendActivationEmail extends BaseMailer
     {
         $user = $event->user;
         $this->mailer->view = 'emails.auth.activation';
-        $this->mailer->subject = 'Activate your No-problem-learning.com Account';
+        $this->mailer->subject = 'Activate your No-problem-learning  Account';
 
         $this->mailer->toEmail = $user->email;
         $this->mailer->toName = $user->firstname;
@@ -50,11 +50,8 @@ class SendActivationEmail extends BaseMailer
             'name' => $user->firstname
         ];
 
-        try {
-            $this->mailer->fire($mailArray);
-        } catch (\Exception $e) {
-//            dd($e->getMessage());
-        }
+        $this->mailer->fire($mailArray);
+
     }
 
 }

@@ -236,7 +236,7 @@ class AuthController extends Controller
         }
 
         // redirect to home with active message
-        return redirect('home')->with('success', trans('auth.alerts.account_activated'));
+        return redirect('auth/login')->with('success', trans('auth.alerts.account_activated'));
 
     }
 
