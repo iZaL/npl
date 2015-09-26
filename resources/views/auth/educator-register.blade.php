@@ -1,4 +1,21 @@
 @extends('layouts.one_col')
+
+@section('style')
+    @parent
+    <link href="/bower_components/select2/dist/css/select2.min.css" rel="stylesheet" type="text/css">
+@endsection
+
+@section('script')
+    @parent
+    <script src="/bower_components/select2/dist/js/select2.full.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".select2").select2();
+        });
+    </script>
+
+@endsection
+
 @section('title')
     <h1 class="text-center"> Sign up for Educator Account</h1>
 @endsection
@@ -8,7 +25,8 @@
             <div class="row ">
 
                 <div class="col-md-offset-3 col-md-6 col-sm-6 inner-right-xs inner-bottom-xs">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ action('Auth\AuthController@postEducatorRegistration') }}">
+                    <form class="form-horizontal" role="form" method="POST"
+                          action="{{ action('Auth\AuthController@postEducatorRegistration') }}">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                         <div class="form-group">
@@ -43,7 +61,7 @@
 
                         <div class="form-group">
                             <label class="control-label pull-left ">Subjects</label>
-                            {!! Form::select('subjects[]', $subjects , null , ['class' => 'form-control']) !!}
+                            {!! Form::select('subjects[]', $subjects , null , ['class' => 'form-control select2 multiselect multiselect-inverse', 'multiple'=>'multiple']) !!}
                         </div>
 
                         <div class="form-group">

@@ -47,7 +47,7 @@ class AuthControllerTest extends TestCase
             [
                 'email'        => $email,
                 'firstname_en' => $firstname,
-                'active' => 0
+                'active'       => '0'
             ]);
 
         $user = \App\Src\User\User::where('email', $email)->first();
@@ -62,13 +62,23 @@ class AuthControllerTest extends TestCase
                 'level_id' => array_pop($levels)
             ]);
 
-        $this->expectsEvents(UserRegistered::class);
 
-        $this->onPage('/auth/login');
+        // activate account
+        $this->visit('/account/activate/'.$user->activation_code);
+
+        $this->seeInDatabase('users',
+            [
+                'email'        => $email,
+                'firstname_en' => $firstname,
+                'active'       => '1'
+            ]
+        );
     }
 
     public function testRegisterEducator()
     {
+        $this->withoutEvents();
+
         $email = uniqid() . '@email.com';
         $firstname = uniqid();
         $levels = [1];

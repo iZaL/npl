@@ -156,7 +156,9 @@ class AuthController extends Controller
 
         $user = $this->registerUser($request);
 
-        $user->subjects()->sync($request->subjects);
+        if ($request->subjects) {
+            $user->subjects()->sync($request->subjects);
+        }
 
         //Fire Event to Notify Admin
         $user->educator()->create([]);
@@ -184,7 +186,6 @@ class AuthController extends Controller
 
         $user = $this->registerUser($request);
 
-        dd($user);
         $user->student()->create([]);
 
         return redirect('/auth/login')->with('message', 'registration success');
@@ -198,15 +199,18 @@ class AuthController extends Controller
 
         array_add($request, 'activation_code', $activationCode);
 
-        $request->replace(['password' => bcrypt($request->password)]);
+        $request->merge(['password' => bcrypt($request->password)]);
 
-        $user = $this->userRepository->model->create( $request->except([
-                'levels',
-                'subjects',
-                'password_confirmation',
-            ]));
+        $user = $this->userRepository->model->create($request->except([
+            'levels',
+            'subjects',
+            'password_confirmation',
+        ]));
 
-        $user->levels()->sync($request->levels);
+        if ($request->levels) {
+
+            $user->levels()->sync($request->levels);
+        }
 
         event(new UserRegistered($user));
 
