@@ -16,4 +16,11 @@ return [
     'failed' => 'These credentials do not match our records.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 
+    'account_confirmation' => [
+        'subject'   => 'لتفعيل حسابك في كايزن',
+        'greetings' => 'مرحبا :name',
+        'body'      => 'To activate your account, Click the link',
+        'farewell'  => 'نشكرك لتسجيلك معنا',
+    ],
+
 ];

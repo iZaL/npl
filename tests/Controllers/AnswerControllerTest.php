@@ -52,7 +52,7 @@ class AnswerControllerTest extends TestCase
 
         $questionBody = 'How much is 1+1 ? ';
         $question = factory('App\Src\Question\Question',
-            1)->create(['user_id' => $student->id, 'subject_id' => 1, 'body_en' => $questionBody, 'level_id' => 3]);
+            1)->create(['user_id' => $student->id, 'subject_id' => 1, 'body_en' => $questionBody, 'level_id' => 78]);
 
         $this->actingAs($educator)->visit('/question/' . $question->id . '/answer')
             ->see('You cannot answer this question. Level not in ur list');
@@ -66,7 +66,7 @@ class AnswerControllerTest extends TestCase
         $questionBody = 'How much is 1+1 ? ';
         $answerBody = 'answer is 2 ';
         $question = factory('App\Src\Question\Question',
-            1)->create(['user_id' => $student->id, 'subject_id' => 3, 'body_en' => $questionBody, 'level_id' => 2]);
+            1)->create(['user_id' => $student->id, 'subject_id' => 300, 'body_en' => $questionBody, 'level_id' => 2]);
 
         $this->actingAs($educator)->visit('/question/' . $question->id . '/answer')
             ->see('You cannot answer this question. Subject not in ur list');

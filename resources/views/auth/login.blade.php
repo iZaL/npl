@@ -1,6 +1,6 @@
 @extends('layouts.one_col')
 
-@section('breadcrumb')
+@section('title')
     <h1 class="text-center"> Login to your Account</h1>
 @endsection
 @section('middle')
@@ -29,8 +29,9 @@
                     </form>
                 </div><!-- /.col -->
 
-                <div class="col-sm-6 inner-left-xs inner-bottom-xs">
-                </div><!-- /.col -->
+                <div class="col-md-offset-3 col-md-6 col-sm-6 inner-right-xs inner-bottom-xs">
+                    <a href="{{ action('Auth\PasswordController@getEmail') }}">Forgot Password</a>
+                </div>
 
             </div><!-- /.row -->
 

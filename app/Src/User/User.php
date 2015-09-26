@@ -83,11 +83,6 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         return $this->student ?: ($this->educator ?: $this);
     }
 
-    public function setPasswordAttribute($value)
-    {
-        return $this->attributes['password'] = bcrypt($value);
-    }
-
     /**
      * Determine whether the user can answer the question
      * @param Question $question

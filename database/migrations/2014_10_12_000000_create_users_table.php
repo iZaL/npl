@@ -21,7 +21,8 @@ class CreateUsersTable extends Migration
             $table->string('lastname_ar')->nullable();
             $table->string('email')->unique();
             $table->string('password', 60);
-            $table->boolean('active')->default(1);
+            $table->boolean('active')->default(0);
+            $table->string('activation_code')->nullable();
             $table->boolean('admin')->nullable()->default(0);
             $table->string('city_en')->nullable();
             $table->string('city_ar')->nullable();

@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Events\UserActivated;
 use App\Events\UserRegistered;
 use App\Src\Level\LevelRepository;
-use App\Src\Student\StudentRepository;
 use App\Src\Subject\SubjectRepository;
+use App\Src\User\AuthManager;
 use App\Src\User\UserRepository;
 use App\User;
 use Illuminate\Http\Request;
@@ -60,6 +61,18 @@ class AuthController extends Controller
         $this->levelRepository = $levelRepository;
     }
 
+    // deactive default registration
+    public function getRegister()
+    {
+        return null;
+    }
+
+    // deactive default registration
+    public function postRegister()
+    {
+        return null;
+    }
+
     public function postLogin(Request $request)
     {
         $this->validate($request, [
@@ -75,8 +88,6 @@ class AuthController extends Controller
         if ($throttles && $this->hasTooManyLoginAttempts($request)) {
             return $this->sendLockoutResponse($request);
         }
-
-        $credentials = $this->getCredentials($request);
 
         if (Auth::attempt((['email' => $request->get('email'), 'password' => $request->get('password'), 'active' => 1]),
             $request->has('remember'))
@@ -115,8 +126,7 @@ class AuthController extends Controller
 
     public function studentRegistration()
     {
-//        $subjects = $this->subjectRepository->model->get(['name_en', 'id']);
-        $levels = $this->levelRepository->model->lists('name_en','id');
+        $levels = $this->levelRepository->model->lists('name_en', 'id');
 
         return view('auth.student-register', compact('levels'));
     }
@@ -144,7 +154,6 @@ class AuthController extends Controller
             'subjects'     => 'required|array'
         ]);
 
-
         $user = $this->registerUser($request);
 
         $user->subjects()->sync($request->subjects);
@@ -152,7 +161,6 @@ class AuthController extends Controller
         //Fire Event to Notify Admin
         $user->educator()->create([]);
 
-        //@todo : send verificiation email
         return redirect('/auth/login')->with('message', 'registration success');
     }
 
@@ -173,11 +181,12 @@ class AuthController extends Controller
             'firstname_en' => 'required',
             'levels'       => 'required|array',
         ]);
+
         $user = $this->registerUser($request);
 
+        dd($user);
         $user->student()->create([]);
 
-        //@todo : send verificiation email
         return redirect('/auth/login')->with('message', 'registration success');
 
     }
@@ -185,7 +194,17 @@ class AuthController extends Controller
     public function registerUser($request)
     {
 
-        $user = $this->userRepository->model->create($request->except(['levels', 'subjects', 'password_confirmation']));
+        $activationCode = str_random(30);
+
+        array_add($request, 'activation_code', $activationCode);
+
+        $request->replace(['password' => bcrypt($request->password)]);
+
+        $user = $this->userRepository->model->create( $request->except([
+                'levels',
+                'subjects',
+                'password_confirmation',
+            ]));
 
         $user->levels()->sync($request->levels);
 
@@ -193,4 +212,28 @@ class AuthController extends Controller
 
         return $user;
     }
+
+    /**
+     * @param AuthManager $authManager
+     * @param $token
+     * Confirm the User and Activate
+     * Lands on this page When User Clicks the Activation Link in Email
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function getActivate(AuthManager $authManager, $token)
+    {
+        // If not activated ( errors )
+        try {
+            $user = $authManager->activateUser($token);
+            event(new UserActivated($user));
+        } catch (\Exception $e) {
+
+            return redirect('home')->with('error', 'Could\'nt activate your account. please contact admin');
+        }
+
+        // redirect to home with active message
+        return redirect('home')->with('success', trans('auth.alerts.account_activated'));
+
+    }
+
 }

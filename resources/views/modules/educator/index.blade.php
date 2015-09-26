@@ -1,6 +1,6 @@
 @extends('layouts.two_col')
 
-@section('breadcrumb')
+@section('title')
     <h1>Educator</h1>
 @endsection
 

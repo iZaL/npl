@@ -1,0 +1,1 @@
+hello, NPL Test Mail <?php echo date('D-y-m h:m:s'); ?>

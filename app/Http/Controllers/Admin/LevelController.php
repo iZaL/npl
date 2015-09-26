@@ -85,7 +85,7 @@ class LevelController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name_en' => 'required|unique:levels,name_en'
+            'name_en' => 'required|unique:levels,name_en,'.$id
         ]);
 
         $subject = $this->levelRepository->model->find($id);

@@ -3,6 +3,8 @@
 use App\Src\Educator\Educator;
 use App\Src\Level\UserLevel;
 use App\Src\Student\Student;
+use App\Src\Subject\Subject;
+use App\Src\Subject\UserSubject;
 use App\Src\User\User;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -99,6 +101,9 @@ class AdminUserControllerTest extends TestCase
             'body_en'     => uniqid(),
             'parent_id'   => $answer->id
         ]);
+
+        $admin = Auth::loginUsingId(1);
+        $this->actingAs($admin)->call('delete','/admin/user/'.$educator->profile->id);
 
         // deactivate subjects that are not in get request
         $this->notSeeInDatabase('user_subjects',

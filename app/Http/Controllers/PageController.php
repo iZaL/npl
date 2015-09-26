@@ -32,7 +32,14 @@ class PageController extends Controller
         ]);
 
         $job = (new SendContactMail($request));
-        $this->dispatch($job);
+
+        try {
+            $this->dispatch($job);
+
+        } catch (\Exception $e) {
+            return redirect()->back()->with('info', 'Sorry Couldnt Send you Mail this time. Please try again later');
+
+        }
 
         return redirect('home')->with('success', trans('word.mail_sent'));
     }

@@ -1,13 +1,13 @@
 @extends('layouts.master')
 
 @section('content')
-    <section id="page-breadcrumb">
+    <section id="page-title">
         <div class="vertical-center sun ">
             <div class="container">
                 <div class="row">
                     <div class="action">
                         <div class="col-sm-12">
-                            @yield('breadcrumb')
+                            @yield('title')
                         </div>
                     </div>
                 </div>

@@ -1,5 +1,5 @@
 @extends('layouts.two_col')
-@section('breadcrumb')
+@section('title')
     <h1 class="text-center"> Ask a Question </h1>
 @endsection
 @section('left')

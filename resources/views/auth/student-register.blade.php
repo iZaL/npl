@@ -1,5 +1,5 @@
 @extends('layouts.one_col')
-@section('breadcrumb')
+@section('title')
     <h1 class="text-center"> Sign up for Student Account</h1>
 @endsection
 @section('middle')
@@ -55,7 +55,7 @@
 
                         <div class="form-group">
                             <label class="control-label pull-left ">Country</label>
-                            {!! Form::text('country_en',null,['class'=>'form-control','placeholder'=>'Country']) !!}
+                            @include('partials._country-dropdown')
                         </div>
 
                         <div class="form-group">

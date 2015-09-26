@@ -22,11 +22,10 @@
 .newsletter input[type="email"]:focus {
     background: rgba(136, 125, 125, 0.2);
 }
-#page-breadcrumb {
+#page-title {
     background-image: url(/images/breadcrumb.png);
     background-color: #ffffff;
     background-repeat: repeat-x;
-    height: 130px;
     background-position: center;
     display: table;
     position: relative;
@@ -43,3 +42,7 @@
     border-bottom: 0;
 }
 
+.owl-carousel .item .text-overlay {
+    background-color: rgba(26, 187, 156, 0.6);
+    font-weight: bold;
+}

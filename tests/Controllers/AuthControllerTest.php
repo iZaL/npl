@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\UserRegistered;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -28,6 +29,8 @@ class AuthControllerTest extends TestCase
 
     public function testRegisterStudent()
     {
+        $this->withoutEvents();
+
         $email = uniqid() . '@email.com';
         $firstname = uniqid();
         $levels = [1];
@@ -43,7 +46,8 @@ class AuthControllerTest extends TestCase
         $this->seeInDatabase('users',
             [
                 'email'        => $email,
-                'firstname_en' => $firstname
+                'firstname_en' => $firstname,
+                'active' => 0
             ]);
 
         $user = \App\Src\User\User::where('email', $email)->first();
@@ -57,6 +61,8 @@ class AuthControllerTest extends TestCase
                 'user_id'  => $user->id,
                 'level_id' => array_pop($levels)
             ]);
+
+        $this->expectsEvents(UserRegistered::class);
 
         $this->onPage('/auth/login');
     }

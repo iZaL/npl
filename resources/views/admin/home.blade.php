@@ -12,7 +12,7 @@
     <script>
         //Slide Info Function
         $(document).ready(function () {
-            $(".select2").select2({tags: true});
+            $(".select2").select2();
         });
     </script>
 @endsection

@@ -28,8 +28,7 @@
                             {!! Form::open(['action'=>['Admin\EducatorController@activateSubjects',$educator->id], 'method'=>'post']) !!}
 
                             <input hidden="user_id" value="{{ $educator->id }}">
-
-                            <select name="subjects[]" class="col-lg-12 select2 select2-offscreen" multiple>
+                            <select name="subjects[]" class="col-lg-12 select2 multiselect multiselect-inverse" multiple>
                                 @foreach($subjects as $subject)
                                     <option value="{{ $subject->id }}"
                                             @if(in_array($subject->id, $inActiveSubjects->modelKeys()))
@@ -40,7 +39,7 @@
                                 @endforeach
                             </select>
 
-                            <input type="submit" class="btn btn-info btn-sm" role="button" value="Activate">
+                            <input type="submit" class="btn btn-success btn-sm" role="button" value="Activate">
                             {!! Form::close() !!}
                         @endif
                     </td>
@@ -49,7 +48,7 @@
                             {!! Form::open(['action'=>['Admin\EducatorController@deActivateSubjects',$educator->id], 'method'=>'post']) !!}
 
                             <input hidden="user_id" value="{{ $educator->id }}">
-                            <select name="subjects[]" class="col-lg-12 select2 select2-offscreen" multiple>
+                            <select name="subjects[]" class="col-lg-12 select2 multiselect multiselect-inverse" multiple>
                                 @foreach($activeSubjects as $subject)
                                     <option value="{{ $subject->id }}"
                                             @if(in_array($subject->id, $activeSubjects->modelKeys()))

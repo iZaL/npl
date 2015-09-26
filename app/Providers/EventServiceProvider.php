@@ -15,6 +15,10 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         'App\Events\UserRegistered' => [
             'App\Listeners\CreateUserCode',
+            'App\Listeners\SendActivationEmail'
+        ],
+        'App\Events\UserActivated' => [
+            'App\Listeners\SendWelcomeEmail'
         ],
     ];
 
