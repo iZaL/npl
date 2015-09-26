@@ -77,7 +77,7 @@ class AuthControllerTest extends TestCase
 
     public function testRegisterEducator()
     {
-        $this->withoutEvents();
+//        $this->withoutEvents();
 
         $email = uniqid() . '@email.com';
         $firstname = uniqid();

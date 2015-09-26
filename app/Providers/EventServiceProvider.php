@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Events\EducatorAddedSubjects;
+use App\Listeners\SendAdminSubjectRequestMail;
+use App\Listeners\SendEducatorSubjectPendingAdminApprovalMail;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -15,11 +18,16 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         'App\Events\UserRegistered' => [
             'App\Listeners\CreateUserCode',
-            'App\Listeners\SendActivationEmail'
+            'App\Listeners\SendActivationMail'
         ],
         'App\Events\UserActivated' => [
-            'App\Listeners\SendWelcomeEmail'
+            'App\Listeners\SendWelcomeMail'
         ],
+        EducatorAddedSubjects::class => [
+//            SendAdminSubjectRequestMail::class,
+            SendEducatorSubjectPendingAdminApprovalMail::class
+
+        ]
     ];
 
     /**

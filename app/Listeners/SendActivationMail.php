@@ -8,7 +8,7 @@ use App\Src\User\UserRepository;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class SendActivationEmail extends BaseMailer
+class SendActivationMail
 {
 
     /**

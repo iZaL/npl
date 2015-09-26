@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Events\EducatorAddedSubject;
+use App\Events\EducatorAddedSubjects;
 use App\Events\UserActivated;
 use App\Events\UserRegistered;
+use App\Jobs\NotifySubjectPendingApproval;
 use App\Src\Level\LevelRepository;
 use App\Src\Subject\SubjectRepository;
 use App\Src\User\AuthManager;
@@ -161,6 +164,10 @@ class AuthController extends Controller
         }
 
         //Fire Event to Notify Admin
+        // Fire Event to Notify Admin
+
+        event(new EducatorAddedSubjects($user, (array)$request->subjects));
+
         $user->educator()->create([]);
 
         return redirect('/auth/login')->with('message', 'registration success');
