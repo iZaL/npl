@@ -15,7 +15,7 @@
 @include('partials.one_page.header')
 
 <main>
-
+    @include('partials.notifications')
     @include('partials.one_page.banner')
     @include('partials.one_page.about')
     @include('partials.one_page.subject',['subjects'=>$subjects])

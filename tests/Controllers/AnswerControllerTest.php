@@ -113,7 +113,7 @@ class AnswerControllerTest extends TestCase
             ->type($question->id, 'question_id')
             ->type($parentAnswer->id, 'answer_id')
             ->type($reply1, 'body_en')
-            ->press('Submit');;
+            ->press('Reply');;
         $this->seeInDatabase('answers',
             [
                 'body_en'     => $reply1,
@@ -150,7 +150,7 @@ class AnswerControllerTest extends TestCase
             ->type($question->id, 'question_id')
             ->type($parentAnswer->id, 'answer_id')
             ->type($reply1, 'body_en')
-            ->press('Submit');
+            ->press('Reply');
         $this->seeInDatabase('answers',
             [
                 'body_en'     => $reply1,

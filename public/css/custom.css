@@ -46,3 +46,10 @@
     background-color: rgba(26, 187, 156, 0.6);
     font-weight: bold;
 }
+
+.text-rtl {
+    direction: rtl;
+}
+.message {
+    display: block;
+}

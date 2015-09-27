@@ -1,16 +1,18 @@
 @extends('layouts.two_col')
 
+@section('title')
+    <h1>My Questions</h1>
+@endsection
+
 @section('right')
     <h1>AD</h1>
 @endsection
 
 @section('left')
-
-    <h2 class="blockhead">My Questions</h2>
     <div class="blockpara">
 
         @foreach($questions as $question)
-            <div class="questionBorder">
+            <div class="questionBorder inner-bottom-md">
                 <div style="float:left;">
                     <strong>
                         <font color="#f96464">
@@ -22,15 +24,15 @@
                 </div>
                 <br/>
 
-                <p align="justify"><b>{{ ucfirst($question->body) }}</b></p>
+                <div align="justify" class=""><b>{{ ucfirst($question->body) }}</b></div>
 
                 @foreach($question->parentAnswers as $answer)
-                    <p align="justify">
+                    <div class="" align="justify">
                         <a href="{{ action('AnswerController@createReply',['question_id'=>$question->id,'answer_id'=>$answer->id]) }}"
                            class="np_code">
-                            <i>Answer from {{ $answer->body }} | {{ $answer->user->np_code }}</i>
+                            <i>Answer from  {{ $answer->user->np_code }} </i> | {{ $answer->body }}
                         </a>
-                    </p>
+                    </div>
                 @endforeach
 
             </div>

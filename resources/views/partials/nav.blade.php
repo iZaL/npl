@@ -9,7 +9,7 @@
                 @if($isEducator)
                     <li><a href="{{ action('EducatorController@getQuestions') }}">Home</a></li>
                 @elseif($isStudent)
-                    <li><a href="{{ action('StudentController@getQuestions',$user->id) }}">Home</a></li>
+                    <li><a href="{{ action('StudentController@getQuestions') }}">Home</a></li>
                 @elseif($user)
                     <li><a href="{{ route('home') }}">Home</a></li>
                 @else

@@ -77,7 +77,7 @@ class AuthControllerTest extends TestCase
 
     public function testRegisterEducator()
     {
-//        $this->withoutEvents();
+        $this->withoutEvents();
 
         $email = uniqid() . '@email.com';
         $firstname = uniqid();
@@ -96,7 +96,8 @@ class AuthControllerTest extends TestCase
         $this->seeInDatabase('users',
             [
                 'email'        => $email,
-                'firstname_en' => $firstname
+                'firstname_en' => $firstname,
+                'active' => '0'
             ]);
 
         $user = \App\Src\User\User::where('email', $email)->first();
@@ -118,7 +119,15 @@ class AuthControllerTest extends TestCase
                 'active'     => 0
             ]);
 
-        $this->onPage('/auth/login');
+        $this->visit('/account/activate/'.$user->activation_code);
+
+        $this->seeInDatabase('users',
+            [
+                'email'        => $email,
+                'firstname_en' => $firstname,
+                'active'       => '1'
+            ]
+        );
     }
 
 
