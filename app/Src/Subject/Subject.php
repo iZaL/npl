@@ -2,8 +2,10 @@
 
 use App\Core\BaseModel;
 use App\Core\LocaleTrait;
+use App\Src\Educator\Educator;
 use App\Src\Question\Question;
 use App\Src\User\User;
+use Auth;
 
 class Subject extends BaseModel
 {
@@ -97,4 +99,5 @@ class Subject extends BaseModel
     {
         return $this->questions()->latest()->limit(5);
     }
+
 }

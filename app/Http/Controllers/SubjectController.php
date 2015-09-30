@@ -32,7 +32,7 @@ class SubjectController extends Controller
             'latestQuestions' => function ($q) use ($id) {
                 $q->where('subject_id', $id);
             }
-        ])->get();
+        ,'latestQuestions.user'])->get();
 
         $subject = $this->subjectRepository->model->find($id);
 

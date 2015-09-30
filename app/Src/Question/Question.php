@@ -3,9 +3,11 @@
 use App\Core\BaseModel;
 use App\Core\LocaleTrait;
 use App\Src\Answer\Answer;
+use App\Src\Educator\Educator;
 use App\Src\Level\Level;
 use App\Src\Subject\Subject;
 use App\Src\User\User;
+use Auth;
 
 class Question extends BaseModel
 {
@@ -18,10 +20,13 @@ class Question extends BaseModel
 
     protected $localeStrings = ['body'];
 
+//    protected $appends = ['canAnswer'];
+
     public function user()
     {
         return $this->belongsTo(User::class);
     }
+
     public function photos()
     {
         return $this->morphMany('App\Src\Photo\Photo', 'imageable');
@@ -50,7 +55,7 @@ class Question extends BaseModel
     /*********************************************************************************************************
      * Answers
      ********************************************************************************************************/
-    
+
     public function answers()
     {
         return $this->hasMany(Answer::class);
@@ -87,7 +92,27 @@ class Question extends BaseModel
     }
 
     /*********************************************************************************************************
-     * 
+     *
      ********************************************************************************************************/
-    
+
+//    /**
+//     * @return bool
+//     * Check whether the user can answer the question
+//     */
+//    public function getCanAnswerAttribute()
+//    {
+//        if (!Auth::check()) {
+//            return false;
+//        }
+//        $user = Auth::user();
+//        if (is_a($educator = $user->getType(), Educator::class)) {
+//            try {
+//                $user->canAnswer($this);
+//            } catch (\Exception $e) {
+//                return false;
+//            }
+//
+//            return true;
+//        }
+//    }
 }

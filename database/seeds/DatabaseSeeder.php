@@ -86,6 +86,16 @@ class DatabaseSeeder extends Seeder
                                                          'body_en'    => 'what is physics ?'
         ]);
         factory('App\Src\Question\Question', 1)->create(['user_id'    => 5,
+                                                         'subject_id' => 1,
+                                                         'level_id'   => 3,
+                                                         'body_en'    => 'again what is physics ?'
+        ]);
+        factory('App\Src\Question\Question', 1)->create(['user_id'    => 5,
+                                                         'subject_id' => 1,
+                                                         'level_id'   => 1,
+                                                         'body_en'    => 'again again what is physics ?'
+        ]);
+        factory('App\Src\Question\Question', 1)->create(['user_id'    => 5,
                                                          'subject_id' => 2,
                                                          'level_id'   => 2,
                                                          'body_en'    => 'what is chemistryy ?'
