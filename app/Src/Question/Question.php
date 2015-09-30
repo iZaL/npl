@@ -20,8 +20,6 @@ class Question extends BaseModel
 
     protected $localeStrings = ['body'];
 
-//    protected $appends = ['canAnswer'];
-
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -95,24 +93,4 @@ class Question extends BaseModel
      *
      ********************************************************************************************************/
 
-//    /**
-//     * @return bool
-//     * Check whether the user can answer the question
-//     */
-//    public function getCanAnswerAttribute()
-//    {
-//        if (!Auth::check()) {
-//            return false;
-//        }
-//        $user = Auth::user();
-//        if (is_a($educator = $user->getType(), Educator::class)) {
-//            try {
-//                $user->canAnswer($this);
-//            } catch (\Exception $e) {
-//                return false;
-//            }
-//
-//            return true;
-//        }
-//    }
 }

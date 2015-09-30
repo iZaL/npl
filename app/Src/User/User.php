@@ -99,7 +99,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         $userLevels = $this->levels->modelKeys();
 
         if (!in_array($question->subject_id, $userSubjects)) {
-            throw new \Exception('You cannot answer this question. Subject not in ur list');
+            throw new \Exception('You cannot answer this question. Subject either not in ur list or not approved by admin');
         }
 
         if (!in_array($question->level_id, $userLevels)) {
