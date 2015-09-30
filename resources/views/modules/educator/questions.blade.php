@@ -52,7 +52,7 @@
                         </h2>
                     </div>
                     <div class="col-md-5 ">
-                        <small class="pull-right">{{ $question->created_at->format('d-m-Y \a\t g:i:s a')  }}</small>
+                        <small class="pull-right gray">{{ $question->created_at->format('d-m-Y \a\t g:i:s a')  }}</small>
                     </div>
                 </div>
 
@@ -63,7 +63,7 @@
 
                             @foreach($question->parentAnswers as $answer)
                                 <li class="list-group-item">
-                                    <small>You answered
+                                    <small class="navy">You answered
                                         on {{ $answer->created_at->format('d-m-Y \a\t g:i:s a') }}</small>
                                     <h3>
                                         <a href="{{ action('AnswerController@createReply',['question_id'=>$question->id,'answer_id'=>$answer->id]) }}"
@@ -74,7 +74,10 @@
                                 </li>
                             @endforeach
                         @else
-                            <h2>You Haven't Answered Yet</h2>
+                            <h4 class="navy">You haven't answered yet !
+                                <a href="{{ action('AnswerController@createAnswer',['question_id'=>$question->id]) }}"
+                                   class="np_code">Write an answer</a>
+                            </h4>
                         @endif
                     </ul>
 

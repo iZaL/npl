@@ -17,8 +17,9 @@
         [class^="flaticon-"]:hover {
             color: #009926;
         }
+
         hr {
-            margin:20px 0;
+            margin: 20px 0;
         }
     </style>
 @endsection
@@ -49,26 +50,30 @@
                         <h2>Q: {{ ucfirst($question->body) }}</h2>
                     </div>
                     <div class="col-md-5 ">
-                        <small class="pull-right">{{ $question->created_at->format('d-m-Y \a\t g:i:s a')  }}</small>
+                        <small class="pull-right gray">{{ $question->created_at->format('d-m-Y \a\t g:i:s a')  }}</small>
                     </div>
 
                     <div class="col-md-12">
 
                         <ul class="list-group">
-                            @foreach($question->parentAnswers as $answer)
-                                <li class="list-group-item">
-                                    <small>Answer from</small>
-                                    <b>{{ $answer->user->np_code }}</b>
+                            @if(count($question->parentAnswers))
+                                @foreach($question->parentAnswers as $answer)
+                                    <li class="list-group-item">
+                                        <small class="navy">Answer from</small>
+                                        <b>{{ $answer->user->np_code }}</b>
 
-                                    <small> on {{ $answer->created_at->format('d-m-Y \a\t g:i:s a') }}</small>
-                                    <h3>
-                                        <a href="{{ action('AnswerController@createReply',['question_id'=>$question->id,'answer_id'=>$answer->id]) }}"
-                                           class="np_code">
-                                            {{ $answer->body }} </a>
-                                    </h3>
+                                        <small> on {{ $answer->created_at->format('d-m-Y \a\t g:i:s a') }}</small>
+                                        <h3>
+                                            <a href="{{ action('AnswerController@createReply',['question_id'=>$question->id,'answer_id'=>$answer->id]) }}"
+                                               class="np_code">
+                                                {{ $answer->body }} </a>
+                                        </h3>
 
-                                </li>
-                            @endforeach
+                                    </li>
+                                @endforeach
+                            @else
+                                <h4 class="navy"> No answers yet </h4>
+                            @endif
                         </ul>
 
                     </div>
