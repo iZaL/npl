@@ -67,7 +67,12 @@ class EducatorController extends Controller
         $levelIds = $user->levels->modelKeys();
 
         // questions for the educator
-        $questions = $questionRepository->model->whereIn('subject_id', $subjectIds)->whereIn('level_id',
+        $questions = $questionRepository->model->with([
+            'subject',
+            'parentAnswers' => function ($q) use ($user) {
+                $q->where('user_id', $user->id);
+        }
+        ])->whereIn('subject_id', $subjectIds)->whereIn('level_id',
             $levelIds)->get();
 
         return view('modules.educator.questions', compact('questions'));

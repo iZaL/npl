@@ -55,7 +55,7 @@ class StudentController extends Controller
         $questions->load('subject');
         $questions->load('parentAnswers.user');
 
-        return view('modules.user.question', compact('questions', 'answers'));
+        return view('modules.student.questions', compact('questions', 'answers'));
     }
 
 }

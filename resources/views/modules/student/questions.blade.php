@@ -1,10 +1,15 @@
 @extends('layouts.two_col')
+
+@section('title')
+    <h1>My Questions</h1>
+@endsection
+
 @section('style')
     @parent
     <style>
         [class^="flaticon-"]:before, [class*=" flaticon-"]:before, [class^="flaticon-"]:after, [class*=" flaticon-"]:after {
             font-family: Flaticon;
-            font-size: 80px;
+            font-size: 100px;
             line-height: 140px;
             font-style: normal;
         }
@@ -12,17 +17,10 @@
         [class^="flaticon-"]:hover {
             color: #009926;
         }
-
-        .subject-icon {
-            font-size: 80px;
-        }
         hr {
-            margin:10px 0 10px 0;
+            margin:20px 0;
         }
     </style>
-@endsection
-@section('title')
-    <h1>My Questions</h1>
 @endsection
 
 @section('right')
@@ -33,7 +31,7 @@
     @foreach($questions as $question)
         <div class="row">
 
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <figure>
                     <figcaption class="text-overlay">
                         <div class="info text-center">
@@ -44,27 +42,25 @@
                     <div class="{{ strtolower($question->subject->icon) }} subject-icon text-center"></div>
                 </figure>
             </div>
-            <div class="col-md-10">
+            <div class="col-md-9">
+
                 <div class="row">
                     <div class="col-md-7">
-                        <h2>Q:
-                            <a href="{{ action('AnswerController@createAnswer',$question->id) }}">{{ ucfirst($question->body) }}</a>
-                        </h2>
+                        <h2>Q: {{ ucfirst($question->body) }}</h2>
                     </div>
                     <div class="col-md-5 ">
                         <small class="pull-right">{{ $question->created_at->format('d-m-Y \a\t g:i:s a')  }}</small>
                     </div>
-                </div>
 
-                <div class="col-md-12">
+                    <div class="col-md-12">
 
-                    <ul class="list-group">
-                        @if(count($question->parentAnswers))
-
+                        <ul class="list-group">
                             @foreach($question->parentAnswers as $answer)
                                 <li class="list-group-item">
-                                    <small>You answered
-                                        on {{ $answer->created_at->format('d-m-Y \a\t g:i:s a') }}</small>
+                                    <small>Answer from</small>
+                                    <b>{{ $answer->user->np_code }}</b>
+
+                                    <small> on {{ $answer->created_at->format('d-m-Y \a\t g:i:s a') }}</small>
                                     <h3>
                                         <a href="{{ action('AnswerController@createReply',['question_id'=>$question->id,'answer_id'=>$answer->id]) }}"
                                            class="np_code">
@@ -73,12 +69,12 @@
 
                                 </li>
                             @endforeach
-                        @else
-                            <h2>You Haven't Answered Yet</h2>
-                        @endif
-                    </ul>
+                        </ul>
 
+                    </div>
                 </div>
+
+
             </div>
 
         </div>
@@ -86,4 +82,6 @@
         <hr>
 
     @endforeach
+
+
 @endsection

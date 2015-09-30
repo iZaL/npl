@@ -29,7 +29,7 @@ class AuthControllerTest extends TestCase
 
     public function testRegisterStudent()
     {
-        $this->withoutEvents();
+//        $this->withoutEvents();
 
         $email = uniqid() . '@email.com';
         $firstname = uniqid();
@@ -92,6 +92,9 @@ class AuthControllerTest extends TestCase
             ->storeInput('levels', $levels, true)
             ->storeInput('subjects', $subjects, true)
             ->press('Register');
+
+//        $this->expectsEvents(\App\Listeners\SendAdminSubjectRequestMail::class);
+//        $this->expectsEvents(\App\Listeners\SendEducatorSubjectPendingAdminApprovalMail::class);
 
         $this->seeInDatabase('users',
             [

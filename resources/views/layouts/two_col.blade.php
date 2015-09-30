@@ -16,18 +16,21 @@
         </div>
     </section>
 
-    <section id="blog" >
+    <section id="blog">
         <div class="container inner-top-sm inner-bottom">
 
             <div class="row">
-                <div class="col-sm-12 col-md-6">
+                <div class="col-sm-12 col-md-8">
                     @yield('left')
-                </div><!-- /.col -->
-                <div class="col-sm-12 col-md-6">
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-12 col-md-4">
                     @yield('right')
                 </div>
-            </div><!-- /.row -->
+            </div>
+            <!-- /.row -->
 
-        </div><!-- /.container -->
+        </div>
+        <!-- /.container -->
     </section>
 @endsection
