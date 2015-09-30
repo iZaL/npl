@@ -71,7 +71,7 @@ class EducatorController extends Controller
             'subject',
             'parentAnswers' => function ($q) use ($user) {
                 $q->where('user_id', $user->id);
-        }
+            }
         ])->whereIn('subject_id', $subjectIds)->whereIn('level_id',
             $levelIds)->get();
 
