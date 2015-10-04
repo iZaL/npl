@@ -53,3 +53,13 @@
 .message {
     display: block;
 }
+
+.inner-top-md {
+    padding-top: 50px;
+}
+
+.inner {
+    padding-top:60px;
+    padding-bottom: 60px;
+}
+

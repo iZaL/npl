@@ -14,33 +14,42 @@
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                         <div class="form-group">
-                            <label class="control-label pull-left ">First Name</label>
+                            <label class="control-label pull-left ">First Name </label>
+                            <span class="pull-left">(required)</span>
                             {!! Form::text('firstname_en',null,['class'=>'form-control','placeholder'=>'First Name']) !!}
                         </div>
 
                         <div class="form-group">
                             <label class="control-label pull-left ">Last Name</label>
+                            <span class="pull-left">(required)</span>
                             {!! Form::text('lastname_en',null,['class'=>'form-control','placeholder'=>'Last Name']) !!}
                         </div>
 
                         <div class="form-group">
                             <label class="control-label pull-left ">Email</label>
+                            <span class="pull-left">(required)</span>
                             {!! Form::text('email',null,['class'=>'form-control','placeholder'=>'Email']) !!}
                         </div>
 
                         <div class="form-group">
                             <label class="control-label pull-left ">Password</label>
+                            <span class="pull-left">(required)</span>
                             {!! Form::password('password',null,['class'=>'form-control','placeholder'=>'Password']) !!}
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label pull-left ">Confirm Password</label>
+                            <label class="control-label pull-left ">Confirm Password </label>
+                            <span class="pull-left">(required)</span>
+
                             {!! Form::password('password_confirmation',null,['class'=>'form-control','placeholder'=>'Confirm Password']) !!}
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label pull-left ">Level</label>
+                            <label class="control-label pull-left ">Level </label>
+                            <span class="pull-left">(required)</span>
+
                             {!! Form::select('levels[]', $levels , null , ['class' => 'form-control']) !!}
+                            <small class="pull-left">Choose the academic level you want to learn</small>
                         </div>
 
                         <div class="form-group">

@@ -1,4 +1,4 @@
-<section id="about">
+<section id="about" class="light-bg">
     <div class="container inner">
 
         <div class="row">
@@ -18,7 +18,13 @@
         </div>
         <!-- /.row -->
 
-        <div class="row inner-top-md ">
+    </div>
+    <!-- /.container -->
+</section>
+
+<section id="objective">
+    <div class="container inner">
+        <div class="row">
 
             <div class="col-sm-6 col-sm-push-6 inner-left-xs">
                 <figure><img src="/images/slider/science02.png" alt=""></figure>
@@ -47,7 +53,5 @@
             <!-- /.col -->
 
         </div>
-
     </div>
-    <!-- /.container -->
 </section>

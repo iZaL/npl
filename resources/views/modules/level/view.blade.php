@@ -107,6 +107,18 @@
                                                     </div>
                                                 </div>
                                             @endif
+
+                                        @else
+                                            <div class="row">
+                                                <div class="col-md-7">
+                                                    <h3>Q:
+                                                        {{ ucfirst($question->body) }}
+                                                    </h3>
+                                                </div>
+                                                <div class="col-md-5 ">
+                                                    <small class="pull-right gray">{{ $question->created_at->format('d-m-Y \a\t g:i:s a')  }}</small>
+                                                </div>
+                                            </div>
                                         @endif
                                     </div>
 

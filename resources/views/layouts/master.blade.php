@@ -15,10 +15,6 @@
 @include('partials.header')
 
 <main>
-
-    <div class="col-md-12">
-        @include('partials.notifications')
-    </div>
     @section('content')
 
     @show

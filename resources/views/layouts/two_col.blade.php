@@ -3,7 +3,7 @@
 @section('content')
 
     <section id="page-title">
-        <div class="vertical-center sun ">
+        <div class="vertical-center sun">
             <div class="container">
                 <div class="row">
                     <div class="action">
@@ -18,6 +18,7 @@
 
     <section id="blog">
         <div class="container inner-top-sm inner-bottom">
+            @include('partials.notifications')
 
             <div class="row">
                 <div class="col-sm-12 col-md-8">

@@ -112,20 +112,6 @@ class AuthController extends Controller
             ]);
     }
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name'     => 'required|max:255',
-            'email'    => 'required|email|max:255|unique:users',
-            'password' => 'required|confirmed|min:6',
-        ]);
-    }
 
     public function studentRegistration()
     {
@@ -150,6 +136,8 @@ class AuthController extends Controller
     {
 
         $this->validate($request, [
+            'firstname_en' => 'required',
+            'lastname_en'  => 'required',
             'email'        => 'required|email|unique:users,email',
             'password'     => 'required|confirmed|max:255|min:5',
             'firstname_en' => 'required',
@@ -168,7 +156,7 @@ class AuthController extends Controller
 
         event(new EducatorAddedSubjects($user, (array)$request->subjects));
 
-        $user->educator()->create([]);
+        $user->educator()->create(['qualification'=>$request->qualification, 'experience' => $request->experience]);
 
         return redirect('/auth/login')->with('message', 'registration success');
     }
@@ -185,6 +173,8 @@ class AuthController extends Controller
     {
 
         $this->validate($request, [
+            'firstname_en' => 'required',
+            'lastname_en'  => 'required',
             'email'        => 'required|email|unique:users,email',
             'password'     => 'required|confirmed|max:255|min:5',
             'firstname_en' => 'required',
@@ -212,6 +202,8 @@ class AuthController extends Controller
             'levels',
             'subjects',
             'password_confirmation',
+            'qualification',
+            'experience'
         ]));
 
         if ($request->levels) {

@@ -15,6 +15,8 @@ class CreateEducatorsTable extends Migration
         Schema::create('educators', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
+            $table->text('experience')->nullable();
+            $table->text('qualification')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
