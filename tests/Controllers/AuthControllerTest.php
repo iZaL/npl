@@ -29,7 +29,7 @@ class AuthControllerTest extends TestCase
 
     public function testRegisterStudent()
     {
-//        $this->withoutEvents();
+        $this->withoutEvents();
 
         $email = uniqid() . '@email.com';
         $firstname = uniqid();
@@ -38,6 +38,7 @@ class AuthControllerTest extends TestCase
         $this->visit('/register/student')
             ->type($email, 'email')
             ->type($firstname, 'firstname_en')
+            ->type($firstname, 'lastname_en')
             ->type('password', 'password')
             ->type('password', 'password_confirmation')
             ->storeInput('levels', $levels, true)
@@ -64,7 +65,7 @@ class AuthControllerTest extends TestCase
 
 
         // activate account
-        $this->visit('/account/activate/'.$user->activation_code);
+        $this->visit('/account/activate/' . $user->activation_code);
 
         $this->seeInDatabase('users',
             [
@@ -84,11 +85,15 @@ class AuthControllerTest extends TestCase
         $levels = [1];
         $subjects = [1];
 
+        $qualification = 'asdasd';
+
         $this->visit('/register/educator')
             ->type($email, 'email')
             ->type($firstname, 'firstname_en')
+            ->type($firstname, 'lastname_en')
             ->type('password', 'password')
             ->type('password', 'password_confirmation')
+            ->type($qualification, 'qualification')
             ->storeInput('levels', $levels, true)
             ->storeInput('subjects', $subjects, true)
             ->press('Register');
@@ -100,14 +105,15 @@ class AuthControllerTest extends TestCase
             [
                 'email'        => $email,
                 'firstname_en' => $firstname,
-                'active' => '0'
+                'active'       => '0'
             ]);
 
         $user = \App\Src\User\User::where('email', $email)->first();
 
         $this->seeInDatabase('educators',
             [
-                'user_id' => $user->id
+                'user_id'       => $user->id,
+                'qualification' => $qualification
             ]);
         $this->seeInDatabase('user_levels',
             [
@@ -122,7 +128,7 @@ class AuthControllerTest extends TestCase
                 'active'     => 0
             ]);
 
-        $this->visit('/account/activate/'.$user->activation_code);
+        $this->visit('/account/activate/' . $user->activation_code);
 
         $this->seeInDatabase('users',
             [
