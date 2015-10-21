@@ -20,6 +20,7 @@
     @include('partials.one_page.about')
     @include('partials.one_page.login')
     @include('partials.one_page.register')
+    @include('partials.one_page.objective')
     @include('partials.one_page.subject',['subjects'=>$subjects])
     @include('partials.one_page.contact')
 </main>
