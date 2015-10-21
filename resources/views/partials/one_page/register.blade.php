@@ -33,7 +33,7 @@
                             <div class="row">
 
                                 <div class="col-md-5 col-md-push-5 col-md-offset-1 col-sm-6 col-sm-push-6 inner-left-xs">
-                                    <figure><img src="/images/slider/student1.png" alt=""></figure>
+                                    <figure><img src="/images/slider/10.jpg" alt=""></figure>
                                 </div>
                                 <!-- /.col -->
 
@@ -68,7 +68,7 @@
                             <div class="row">
 
                                 <div class="col-md-5 col-md-offset-1 col-sm-6 inner-right-xs">
-                                    <figure><img src="/images/slider/educator1.png" alt=""></figure>
+                                    <figure><img src="/images/slider/12.jpg" alt=""></figure>
                                 </div>
                                 <!-- /.col -->
 

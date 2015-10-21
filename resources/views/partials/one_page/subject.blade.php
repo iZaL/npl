@@ -1,4 +1,4 @@
-<section id="subjects" class="light-bg">
+<section id="subjects" style="background-color: #e7e7e7">
     <div class="container inner">
 
         <div class="row">
@@ -24,7 +24,9 @@
                                     </div>
                                     <!-- /.info -->
                                 </figcaption>
-                                <div class="{{ strtolower($subject->icon) }} subject-icon"></div>
+                                <div class="subject-icon">
+                                    <img src="/images/lang/{{strtolower($subject->name)}}.jpg"/>
+                                </div>
                             </figure>
                         </a>
                     </div>

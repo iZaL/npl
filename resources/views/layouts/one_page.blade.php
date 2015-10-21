@@ -10,7 +10,7 @@
         @include('partials.one_page.style')
     @show
 </head>
-<body id="top">
+<body id="top" >
 
 @include('partials.one_page.header')
 
@@ -18,9 +18,9 @@
     @include('partials.notifications')
     @include('partials.one_page.banner')
     @include('partials.one_page.about')
-    @include('partials.one_page.subject',['subjects'=>$subjects])
     @include('partials.one_page.login')
     @include('partials.one_page.register')
+    @include('partials.one_page.subject',['subjects'=>$subjects])
     @include('partials.one_page.contact')
 </main>
 

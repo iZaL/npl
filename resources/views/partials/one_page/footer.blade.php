@@ -1,4 +1,4 @@
-<footer id="footer">
+<footer id="footer" style="background-color: #333A40;">
     <div class="container">
         <div class="row">
             <div class="col-md-4 col-sm-6 inner">
@@ -28,11 +28,11 @@
 
         </div>
 
-        <div class="col-sm-12 inner">
-            <div class="copyright-text text-center ">
-                <p>© 2015 <a href="http://no-problem-learning.com">No Problem Learning</a>. All rights
-                    reserved. Developed by <a target="_blank" href="http://www.ideasowners.net">IdeasOwners</a></p>
-            </div>
-        </div>
+        {{--<div class="col-sm-12 inner">--}}
+            {{--<div class="copyright-text text-center ">--}}
+                {{--<p>© 2015 <a href="http://no-problem-learning.com">No Problem Learning</a>. All rights--}}
+                    {{--reserved. Developed by <a target="_blank" href="http://www.ideasowners.net">IdeasOwners</a></p>--}}
+            {{--</div>--}}
+        {{--</div>--}}
     </div>
 </footer>
