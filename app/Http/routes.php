@@ -72,6 +72,8 @@ Route::get('contact', ['as' => 'contact', 'uses' => 'PageController@getContact']
 
 Route::post('contact', 'PageController@postContact');
 
+Route::resource('blog', 'BlogController');
+
 Route::get('home', ['as' => 'home', 'uses' => 'HomeController@home']);
 
 Route::get('/', ['as' => 'index', 'uses' => 'HomeController@index']);
@@ -98,6 +100,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['adm
     Route::resource('student', 'StudentController');
     Route::resource('question', 'QuestionController');
     Route::resource('answer', 'AnswerController');
+    Route::resource('blog', 'BlogController');
 
     Route::get('/', 'HomeController@index');
 

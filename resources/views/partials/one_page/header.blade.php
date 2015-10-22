@@ -24,6 +24,7 @@
                     <ul class="nav navbar-nav pull-right">
 
                         <li><a href="#home" class="scroll-to" data-anchor-offset="0">Home</a></li>
+                        <li><a href="{{ action('BlogController@index') }}" class="scroll-to" data-anchor-offset="0">Editorials</a></li>
                         <li><a href="#about" class="scroll-to" data-anchor-offset="0">About</a></li>
                         <li><a href="#subjects" class="scroll-to" data-anchor-offset="0">Subjects</a></li>
                         <li><a href="#login" class="scroll-to" data-anchor-offset="0">Login</a></li>

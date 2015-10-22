@@ -15,7 +15,7 @@
                 @else
                     <li><a href="{{ route('index') }}">Home</a></li>
                 @endif
-                <li><a href="{{ route('home') }}">About</a></li>
+                <li><a href="{{ action('BlogController@index') }}">{{ trans('word.articles') }}</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle js-activated">Subjects</a>
 
@@ -47,6 +47,8 @@
                     <li><a href="/auth/login">Login</a></li>
                     <li><a href="{{ route('home') }}">Register</a></li>
                 @endif
+                <li><a href="{{ route('home') }}">About</a></li>
+
                 <li><a href="{{ route('contact') }}">Contact</a></li>
             </ul>
             <!-- /.nav -->

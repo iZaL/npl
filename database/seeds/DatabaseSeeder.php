@@ -139,6 +139,8 @@ class DatabaseSeeder extends Seeder
 
 //        $this->call(UserTableSeeder::class);
 
+        factory('App\Src\Blog\Blog',10)->create();
+
         Model::reguard();
     }
 

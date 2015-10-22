@@ -93,3 +93,11 @@ $factory->define(App\Src\Answer\Answer::class, function (Faker\Generator $faker)
     ];
 });
 
+$factory->define(App\Src\Blog\Blog::class, function (Faker\Generator $faker) {
+    return [
+        'user_id'     => 1,
+        'title_en'   => $faker->sentence(100),
+        'description_en'   => $faker->sentence(1000),
+    ];
+});
+
