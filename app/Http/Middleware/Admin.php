@@ -17,6 +17,8 @@ class Admin
     {
         if (auth()->check() && auth()->user()->admin == '1') {
             return $next($request);
+        } elseif(auth()->check()) {
+            return redirect()->to('/');
         }
         return redirect()->to('/auth/login');
     }

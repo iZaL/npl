@@ -46,6 +46,8 @@ class AuthController extends Controller
      */
     private $levelRepository;
 
+    public $redirectPath = '/admin';
+
     /**
      * Create a new authentication controller instance.
      *

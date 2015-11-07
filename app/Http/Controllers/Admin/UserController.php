@@ -48,7 +48,7 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        return redirect()->back()->with('info', 'Method not yet implemented');
+//        return redirect()->back()->with('info', 'Method not yet implemented');
         $currentUser = Auth::user();
 
         $user = $this->userRepository->model->find($id);
