@@ -48,7 +48,7 @@
                 <div class="row">
                     <div class="col-md-7">
                         <h2>Q:
-                            <a href="{{ action('AnswerController@createAnswer',$question->id) }}">{{ ucfirst($question->body) }}</a>
+                            <a href="{{ action('AnswerController@createAnswer',$question->id) }}">{!! ucfirst($question->body) !!}</a>
                         </h2>
                     </div>
                     <div class="col-md-5 ">
@@ -68,9 +68,8 @@
                                     <h3>
                                         <a href="{{ action('AnswerController@createReply',['question_id'=>$question->id,'answer_id'=>$answer->id]) }}"
                                            class="np_code">
-                                            {{ $answer->body }} </a>
+                                            {!!  $answer->body !!} </a>
                                     </h3>
-
                                 </li>
                             @endforeach
                         @else

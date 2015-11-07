@@ -26,7 +26,7 @@
                 <div style="float:right;"><i><font color="#f96464">{{ $question->created_at->format('d-m-Y')  }}</font></i></div>
                 <br/>
 
-                <p align="justify"><b>{{ $question->body }}</b></p>
+                <p align="justify"><b>{!! $question->body  !!} </b></p>
 
             </div>
         @endforeach

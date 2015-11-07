@@ -15,7 +15,7 @@
 
                 <div class="form-group">
                     {!! Form::label('body', 'body', ['class' => 'control-label']) !!} <span class="red">*</span>
-                    {!! Form::textarea('body_en', null, ['class' => 'form-control','placeholder'=>'Your Question']) !!}
+                    {!! Form::textarea('body_en', null, ['class' => 'form-control editor','placeholder'=>'Your Question']) !!}
                 </div>
                 <div class="form-group">
                     {!! Form::submit('Submit',  ['class' => 'form-control btn btn-success']) !!}

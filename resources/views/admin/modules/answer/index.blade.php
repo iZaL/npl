@@ -32,11 +32,11 @@
                     @foreach($answers as $answer)
                         <tr class="gradeU">
                             <td>
-                                <a href="{{ action('Admin\AnswerController@show',$answer->id) }}">{{ $answer->body }}</a>
+                                <a href="{{ action('Admin\AnswerController@show',$answer->id) }}">{!! $answer->body  !!}</a>
                                 <small class="pull-right">
                                     @if($answer->question)
                                         for question
-                                        <a href="{{ action('QuestionController@show',$answer->question->id) }}">{{ $answer->question->body }}</a>
+                                        <a href="{{ action('QuestionController@show',$answer->question->id) }}">{!! $answer->question->body !!}</a>
                                     @else
                                         Unknown Question
                                     @endif

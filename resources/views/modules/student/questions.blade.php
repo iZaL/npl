@@ -47,7 +47,7 @@
 
                 <div class="row">
                     <div class="col-md-7">
-                        <h2>Q: {{ ucfirst($question->body) }}</h2>
+                        <h2>Q: {!! ucfirst($question->body) !!}</h2>
                     </div>
                     <div class="col-md-5 ">
                         <small class="pull-right gray">{{ $question->created_at->format('d-m-Y \a\t g:i:s a')  }}</small>
@@ -66,7 +66,7 @@
                                         <h3>
                                             <a href="{{ action('AnswerController@createReply',['question_id'=>$question->id,'answer_id'=>$answer->id]) }}"
                                                class="np_code">
-                                                {{ $answer->body }} </a>
+                                                {!!  $answer->body !!} </a>
                                         </h3>
 
                                     </li>
