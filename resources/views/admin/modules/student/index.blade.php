@@ -21,12 +21,15 @@
         <!-- /.panel-heading -->
         <div class="panel-body">
             <div class="dataTable_wrapper mTop10">
-                <table class="table table-striped table-bordered table-hover" id="dataTables">
+                <table class="table table-striped table-bordered table-hover" >
                     <thead>
                     <tr>
-                        <th>Student</th>
+                        <th>SINo</th>
                         <th>NP CODE</th>
-                        <th>Level</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th></th>
+                        <th></th>
                         <th>Actions</th>
                     </tr>
                     </thead>
@@ -34,20 +37,22 @@
                     @foreach($students as $student)
                         <tr class="gradeU">
                             @if($student->profile)
-                                <td>
-                                    <a href="{{ action('Admin\StudentController@show',$student->id) }}">{{ ucfirst($student->profile->firstname) }}</a>
-
-                                    <small class="pull-right">
-                                        {{ $student->questionsCount ? 'Total '. $student->questionsCount .' Questions. ': ' 0 Questions.' }}
-                                    </small>
+                                <td> <a href="{{ action('Admin\UserController@show',$student->profile->id) }}" >{{ $student->profile->id }}</a></td>
+                                <td> {{ $student->profile->np_code }} </td>
+                                <td>{{ $student->profile->firstname . $student->profile->lastname }} </td>
+                                <td>{{ $student->profile->email }} </td>
+                                <td class="f18">
+                                    <a href="{{ action('Admin\UserController@show',$student->profile->id)  }}"
+                                       role="button" >
+                                        <i class="fa fa-list-alt"></i>
+                                    </a>
                                 </td>
-                                <td>
-                                    {{ $student->profile->np_code }}
+                                <td class="f18">
+                                    <a href="{{ action('Admin\UserController@edit',$student->profile->id)  }}"
+                                       role="button">
+                                        <i class="fa fa-pencil-square-o "></i>
+                                    </a>
                                 </td>
-                                <td>
-                                    {{ $student->profile->levels ? $student->profile->levels->lists('name_en') : '' }}
-                                </td>
-
                                 <td>
                                     <button class="btn btn-sm btn-danger" data-toggle="modal"
                                             data-target="#deleteModalBox"

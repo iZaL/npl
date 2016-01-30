@@ -42,8 +42,19 @@ class UserController extends Controller
         return view('admin.modules.user.index', compact('users', 'currentUser'));
     }
 
-    public function show()
+    public function show($id)
     {
+        $user = $this->userRepository->model->find($id);
+
+        $isEducator = false;
+        $subjects = '';
+        if (is_a($user->getType(), Educator::class)) {
+            $isEducator = true;
+            $subjects =  implode(',',$user->subjects->lists('name_en')->toArray());
+        }
+
+        $levels =  implode(',',$user->levels->lists('name_en')->toArray());
+        return view('admin.modules.user.view',compact('user','isEducator','subjects','levels'));
     }
 
     public function edit($id)

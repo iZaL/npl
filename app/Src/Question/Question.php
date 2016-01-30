@@ -66,6 +66,14 @@ class Question extends BaseModel
             ->groupBy('question_id');
     }
 
+    public function answeredEducatorsCount()
+    {
+        return $this->hasOne(Answer::class)
+            ->selectRaw('question_id, count(*) as aggregate')
+            ->groupBy('user_id')
+            ->groupBy('question_id');
+    }
+
     public function getAnswersCountAttribute()
     {
         // if relation is not loaded already, let's do it first
@@ -74,6 +82,19 @@ class Question extends BaseModel
         }
 
         $related = $this->getRelation('answersCount');
+
+        // then return the count directly
+        return ($related) ? (int)$related->aggregate : 0;
+    }
+
+    public function getansweredEducatorsCountAttribute()
+    {
+        // if relation is not loaded already, let's do it first
+        if (!$this->relationLoaded('answeredEducatorsCount')) {
+            $this->load('answeredEducatorsCount');
+        }
+
+        $related = $this->getRelation('answeredEducatorsCount');
 
         // then return the count directly
         return ($related) ? (int)$related->aggregate : 0;

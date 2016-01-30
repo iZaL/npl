@@ -21,81 +21,49 @@
             <!-- /.panel-heading -->
             <div class="panel-body">
                 <div class="dataTable_wrapper">
-                    <table class="table table-striped table-bordered table-hover" id="dataTables">
+                    <table class="table table-striped table-bordered table-hover" >
                         <thead>
                         <tr>
                             <th>Title</th>
-                            <th>Description</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
+                            <th>Added Date</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($blogs as $blog)
                             <tr class="gradeU">
-                                <td> {{ $blog->title }}</td>
-                                <td> {!! str_limit($blog->description,100) !!}</td>
-                                <td class="center">
-                                    <p data-placement="top" data-toggle="tooltip" title="Edit">
-                                        <a href={{action('Admin\BlogController@edit',$blog->id)}}>
-                                            <button class="btn btn-primary btn-xs"><span
-                                                        class="glyphicon glyphicon-pencil"></span></button>
-                                        </a>
-                                    </p>
+                                <td> {!! str_limit(strip_tags($blog->title),100) !!} </td>
+                                <td> {{ $blog->created_at->format('d-m-Y') }} </td>
+                                <td class="f18">
+                                    <a href="{{ action('Admin\BlogController@edit',$blog->id)  }}"
+                                       role="button" >
+                                        <i class="fa fa-list-alt"></i>
+                                    </a>
                                 </td>
-                                <td class="center">
-                                    <p data-placement="top" data-toggle="tooltip" title="Delete">
-                                        {!! Form::open(['action' => ['Admin\BlogController@destroy', $blog->id], 'method' => 'DELETE'], ['class'=>'form-horizontal']) !!}
-                                        {!! Form::submit('delete', ['class' => 'btn btn-danger btn-xs']) !!}
-                                        {!! Form::close() !!}
-                                    </p>
+                                <td class="f18">
+                                    <a href="{{ action('Admin\BlogController@edit',$blog->id)  }}"
+                                       role="button">
+                                        <i class="fa fa-pencil-square-o "></i>
+                                    </a>
+                                </td>
+                                <td class="f18">
+                                    <a href="#" class="red" data-toggle="modal" data-target="#deleteModalBox"
+                                       data-link="{{action('Admin\BlogController@destroy',$blog->id)}}">
+                                        <i class="fa fa-close "></i>
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
                 </div>
-                <!-- /.table-responsive -->
 
             </div>
-            <!-- /.panel-body -->
-
-            <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span
-                                        class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                            <h4 class="modal-title custom_align" id="Heading">Delete this entry</h4>
-                        </div>
-                        <div class="modal-body">
-
-                            <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> Are
-                                you sure you want to delete this Record?
-                            </div>
-
-                        </div>
-                        <div class="modal-footer">
-                            {!! Form::open(['action' => ['Admin\BlogController@destroy', 1], 'method' => 'delete'],
-                            ['class'=>'form-horizontal']) !!}
-
-                            <button type="submit" class="btn btn-success"><span
-                                        class="glyphicon glyphicon-ok-sign"></span> Yes
-                            </button>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><span
-                                        class="glyphicon glyphicon-remove"></span> No
-                            </button>
-
-                            {!! Form::close() !!}
-                        </div>
-                    </div>
-                    <!-- /.modal-content -->
-                </div>
-                <!-- /.modal-dialog -->
-            </div>
+            @include('admin.partials.delete-modal',['info' => 'Are you sure ?'])
 
         </div>
-        <!-- /.panel -->
     </div>
 
 @endsection

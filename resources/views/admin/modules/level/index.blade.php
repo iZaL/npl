@@ -23,7 +23,7 @@
             <a class="btn btn-primary btn-md" role="button" href="{{ action('Admin\LevelController@create') }}"> Add Level </a>
             <hr>
             <div class="dataTable_wrapper mTop10">
-                <table class="table table-striped table-bordered table-hover" id="dataTables">
+                <table class="table table-striped table-bordered table-hover" >
                     <thead>
                     <tr>
                         <th>Levels</th>

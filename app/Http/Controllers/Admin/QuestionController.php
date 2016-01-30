@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Http\Controllers\Controller;
+use App\Src\Level\LevelRepository;
 use App\Src\Question\QuestionRepository;
 use App\Src\Subject\SubjectRepository;
 use Illuminate\Http\Request;
@@ -18,30 +19,49 @@ class QuestionController extends Controller
      * @var SubjectRepository
      */
     private $subjectRepository;
+    /**
+     * @var LevelRepository
+     */
+    private $levelRepository;
 
     /**
      * @param QuestionRepository $questionRepository
      * @param SubjectRepository $subjectRepository
+     * @param LevelRepository $levelRepository
      */
-    public function __construct(QuestionRepository $questionRepository, SubjectRepository $subjectRepository)
+    public function __construct(QuestionRepository $questionRepository, SubjectRepository $subjectRepository,LevelRepository $levelRepository)
     {
         $this->questionRepository = $questionRepository;
         $this->subjectRepository = $subjectRepository;
+        $this->levelRepository = $levelRepository;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $questions = $this->questionRepository->model->with(['user', 'answersCount'])->paginate(50);
+        $selectedSubject = $request->subject ? : '';
+        $selectedLevel = $request->level ? : '';
 
-        return view('admin.modules.question.index', compact('questions'));
+        $questions = $this->questionRepository->model->with(['user', 'answeredEducatorsCount']);
+
+        $selectedSubject ? $questions->where('subject_id',$selectedSubject) : '';
+        $selectedLevel ? $questions->where('level_id',$selectedLevel) : '';
+
+        $questions = $questions->paginate(100);
+
+        $subjects = [''=>'all subjects']+$this->subjectRepository->model->lists('name_en', 'id')->toArray();
+        $levels = [''=>'all levels']+$this->levelRepository->model->lists('name_en', 'id')->toArray();
+
+//        dd($questions);
+        return view('admin.modules.question.index', compact('questions','subjects','levels','selectedSubject','selectedLevel'));
     }
 
     public function show($id)
     {
-        return redirect()->back()->with('info', 'Method Not Yet Implemented');
+        $question = $this->questionRepository->model->find($id);
+        return view('admin.modules.question.view', compact('question'));
     }
 
-    public function edit($id)
+    public function edit($id,Request $request)
     {
         $question = $this->questionRepository->model->with(['user', 'answersCount'])->find($id);
         $subjects = $this->subjectRepository->model->lists('name_en', 'id');

@@ -37,3 +37,46 @@
 .mTop10 {
     margin-top: 10px;
 }
+
+.navbar-header {
+    height:110px;
+    background-image: url(../images/top-bg.png);
+    background-repeat: repeat-x;
+    width: 100%;
+    height: 110px;
+    border-bottom: 1px solid #7295B8;
+
+}
+
+@media (min-width: 768px) {
+    .sidebar {
+        top: 110px;
+    }
+}
+
+body {
+    background-color: #A7BDD4;
+}
+
+.f18 {
+    font-size:18px;
+}
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: 5px;
+}
+
+.table th {
+    background-color: #658BB2;
+    height: 24px;
+    font-weight: bold;
+    color: #EBEBEB;
+    padding: 0px 0px 0px 5px;
+}
+
+.info-row {
+    margin-top:10px;
+    margin-bottom:10px;
+}

@@ -1,15 +1,19 @@
 <?php namespace App\Src\Educator;
 
 use App\Core\BaseModel;
+use App\Core\LocaleTrait;
 use App\Src\Answer\Answer;
 use App\Src\User\User;
 
 class Educator extends BaseModel
 {
 
+    use LocaleTrait;
     protected $table = 'educators';
 
     protected $guarded = ['id'];
+
+    public $localeStrings = ['qualification','experience'];
 
     public function profile()
     {

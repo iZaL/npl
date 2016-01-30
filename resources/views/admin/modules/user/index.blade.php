@@ -13,31 +13,46 @@
             <!-- /.panel-heading -->
             <div class="panel-body">
                 <div class="dataTable_wrapper">
-                    <table class="table table-striped table-bordered table-hover" id="dataTables">
+                    <table class="table table-striped table-bordered table-hover" >
                         <thead>
                         <tr>
-                            <th><i class="fa fa-info"></i> Basic Info</th>
-                            <th>Active</th>
+                            <th>SI No</th>
+                            <th>NP Code</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Status</th>
                             <th>Admin</th>
-                            <th>Action</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($users as $user)
                             <tr class="gradeU">
-                                <td>
-                                    <i class="fa fa-user"></i> &nbsp; {{ $user->firstname . ' '.$user->lastname }} <br>
-                                    <i class="fa fa-envelope"></i> &nbsp; {{ $user->email }}
-                                </td>
+                                <td>{{ $user->id }}</td>
+                                <td><a href="{{ action('Admin\UserController@show',$user->id) }}">{{ $user->np_code }}</a></td>
+                                <td>{{ $user->firstname . ' '.$user->lastname }} </td>
+                                <td>{{ $user->email }} </td>
+                                <td> {{ $user->active ? 'active' : 'not active' }}</td>
                                 <td> {{ $user->admin ? 'true' : 'false' }}</td>
-                                <td> {{ $user->active ? 'true' : 'false' }}</td>
-                                <td>
+                                <td class="f18">
+                                    <a href="{{ action('Admin\UserController@show',$user->id)  }}"
+                                       role="button" >
+                                        <i class="fa fa-list-alt"></i>
+                                    </a>
+                                </td>
+                                <td class="f18">
                                     <a href="{{ action('Admin\UserController@edit',$user->id)  }}"
-                                       class="btn btn-sm btn-primary" role="button">Edit</a>
-                                    <button class="btn btn-sm btn-danger" data-toggle="modal"
-                                            data-target="#deleteModalBox"
-                                            data-link="{{action('Admin\UserController@destroy',$user->id)}}">Delete
-                                    </button>
+                                       role="button">
+                                        <i class="fa fa-pencil-square-o "></i>
+                                    </a>
+                                </td>
+                                <td class="f18">
+                                    <a href="#" class="red" data-toggle="modal" data-target="#deleteModalBox"
+                                       data-link="{{action('Admin\UserController@destroy',$user->id)}}">
+                                        <i class="fa fa-close "></i>
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach

@@ -6,7 +6,9 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/" target="_blank">No Problem Learning</a>
+        <a class="navbar-brand" href="/" target="_blank">
+            <img src="/images/logo.png" height="60">
+        </a>
     </div>
     <!-- /.navbar-header -->
 
@@ -32,28 +34,27 @@
     <div class="navbar-default sidebar" role="navigation">
         <div class="sidebar-nav navbar-collapse">
             <ul class="nav" id="side-menu">
-                <li><a href="/admin"><i class="fa fa-home"></i>
-                        Home</a></li>
-
                 <li>
-                    <a href="#"><i class="fa fa-question"></i> Question<span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="{{ action('Admin\QuestionController@index') }}"><i class="fa fa-list"></i> List</a>
-                        </li>
-
-                    </ul>
-                    <!-- /.nav-second-level -->
+                    <a href="/admin"><i class="fa fa-home"></i> Home</a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-check"></i> Answer<span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="{{ action('Admin\AnswerController@index') }}"><i class="fa fa-list"></i> List</a>
-                        </li>
+                    <a href="{{ action('Admin\BlogController@index') }}"><i class="fa fa-pencil"></i> List Editorials</a>
+                </li>
+                <li>
+                    <a href="{{ action('Admin\StudentController@index') }}"><i class="fa fa-graduation-cap"></i> List Students</a>
+                </li>
+                <li>
+                    <a href="{{ action('Admin\EducatorController@index') }}"><i class="fa fa-users"></i> List Educators</a>
+                </li>
+                <li>
+                    <a href="{{ action('Admin\QuestionController@index') }}"><i class="fa fa-question"></i> List Questions</a>
+                </li>
+                <li>
+                    <a href="{{ action('Admin\AnswerController@index') }}"><i class="fa fa-check"></i> List Answers</a>
+                </li>
 
-                    </ul>
-                    <!-- /.nav-second-level -->
+                <li>
+                    <a href="{{ action('Admin\UserController@index') }}"><i class="fa fa-user"></i> List Users</a>
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-cubes"></i> Subject<span class="fa arrow"></span></a>
@@ -64,7 +65,6 @@
                         </li>
 
                     </ul>
-                    <!-- /.nav-second-level -->
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-bolt"></i> Level<span class="fa arrow"></span></a>
@@ -75,38 +75,6 @@
                         </li>
 
                     </ul>
-                    <!-- /.nav-second-level -->
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-graduation-cap"></i> Student<span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="{{ action('Admin\StudentController@index') }}"><i class="fa fa-list"></i> List</a>
-                        </li>
-
-                    </ul>
-                    <!-- /.nav-second-level -->
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-users"></i> Educator<span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="{{ action('Admin\EducatorController@index') }}"><i class="fa fa-list"></i> List</a>
-                        </li>
-
-                    </ul>
-                    <!-- /.nav-second-level -->
-                </li>
-
-                <li>
-                    <a href="#"><i class="fa fa-user"></i> Users<span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="{{ action('Admin\UserController@index') }}"><i class="fa fa-list"></i> List Users</a>
-                        </li>
-
-                    </ul>
-                    <!-- /.nav-second-level -->
                 </li>
             </ul>
         </div>
