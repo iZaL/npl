@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Http\Controllers\Controller;
+use App\Src\Level\LevelRepository;
 use App\Src\Student\StudentRepository;
 use App\Src\User\UserRepository;
+use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
@@ -17,22 +19,38 @@ class StudentController extends Controller
      * @var StudentRepository
      */
     private $studentRepository;
+    /**
+     * @var LevelRepository
+     */
+    private $levelRepository;
 
     /**
      * @param UserRepository $userRepository
      * @param StudentRepository $studentRepository
+     * @param LevelRepository $levelRepository
      */
-    public function __construct(UserRepository $userRepository, StudentRepository $studentRepository)
+    public function __construct(UserRepository $userRepository, StudentRepository $studentRepository,LevelRepository $levelRepository)
     {
         $this->userRepository = $userRepository;
         $this->studentRepository = $studentRepository;
+        $this->levelRepository = $levelRepository;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $students = $this->studentRepository->model->with(['profile', 'questionsCount'])->paginate(100);
+        $selectedLevel = $request->level ? : '';
 
-        return view('admin.modules.student.index', compact('students'));
+        $students = $this->studentRepository->model->with(['profile', 'questionsCount']);
+
+        $selectedLevel ? $students->whereHas('profile.levels',function($q) use ($request) {
+            $q->where('levels.id',$request->level);
+        }) : '';
+
+        $levels = [''=>'all levels']+$this->levelRepository->model->lists('name_en', 'id')->toArray();
+
+        $students = $students->paginate(100);
+
+        return view('admin.modules.student.index', compact('students','selectedLevel','levels'));
     }
 
     public function show($id)

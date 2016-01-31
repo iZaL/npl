@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Src\Educator\EducatorRepository;
+use App\Src\Level\LevelRepository;
 use App\Src\Subject\SubjectRepository;
 use App\Src\User\UserRepository;
 use Illuminate\Http\Request;
@@ -23,29 +24,55 @@ class EducatorController extends Controller
      * @var SubjectRepository
      */
     private $subjectRepository;
+    /**
+     * @var LevelRepository
+     */
+    private $levelRepository;
 
     /**
      * @param UserRepository $userRepository
      * @param EducatorRepository $educatorRepository
      * @param SubjectRepository $subjectRepository
+     * @param LevelRepository $levelRepository
      * @internal param EducatorRepository $studentRepository
      */
     public function __construct(
         UserRepository $userRepository,
         EducatorRepository $educatorRepository,
-        SubjectRepository $subjectRepository
+        SubjectRepository $subjectRepository,
+        LevelRepository $levelRepository
     ) {
         $this->userRepository = $userRepository;
         $this->educatorRepository = $educatorRepository;
         $this->subjectRepository = $subjectRepository;
+        $this->levelRepository = $levelRepository;
     }
 
-    public function aa()
+    public function index(Request $request)
     {
-     dd('aa');
+        $selectedSubject = $request->subject ? : '';
+        $selectedLevel = $request->level ? : '';
+
+        $educators = $this->educatorRepository->model->with(['profile']);
+
+        $selectedSubject ? $educators->whereHas('profile.subjects',function($q) use ($request) {
+            $q->where('subjects.id',$request->subject);
+        }) : '';
+
+        $selectedLevel ? $educators->whereHas('profile.levels',function($q) use ($request) {
+            $q->where('levels.id',$request->level);
+        }) : '';
+
+        $educators = $educators->paginate(100);
+
+        $subjects = [''=>'all subjects']+$this->subjectRepository->model->lists('name_en', 'id')->toArray();
+        $levels = [''=>'all levels']+$this->levelRepository->model->lists('name_en', 'id')->toArray();
+
+        return view('admin.modules.educator.index',compact('educators','selectedSubject','selectedLevel','subjects','levels'));
+
     }
 
-    public function index()
+    public function index_old()
     {
         // Find newly Registered Educators and their Subjects to Approve
         $educators = $this->educatorRepository->model->with([

@@ -20,6 +20,22 @@
 
         <!-- /.panel-heading -->
         <div class="panel-body">
+            <div class="searchPanel row pbottom10">
+                {!! Form::open(['action'=>'Admin\StudentController@index', 'method'=>'get', 'class'=>'form-vertical']) !!}
+                <div class="col-md-5">
+                    <div class="col-md-3" >
+                        <span class="vcenter">Level:</span>
+                    </div>
+                    <div class="col-md-9">
+                        {!! Form::select('level',$levels,$selectedLevel,['class'=>'form-control']) !!}
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    {!! Form::submit('Search',['class'=>'btn btn-primary']) !!}
+                </div>
+
+                {!! Form::close() !!}
+            </div>
             <div class="dataTable_wrapper mTop10">
                 <table class="table table-striped table-bordered table-hover" >
                     <thead>

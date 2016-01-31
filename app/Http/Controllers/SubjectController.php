@@ -45,14 +45,12 @@ class SubjectController extends Controller
                 $userSubjects = $user->subjects->modelKeys();
                 $userLevels = $user->levels->modelKeys();
             }
-
         }
 
         $levels = $levelRepository->model->with([
             'latestQuestions' => function ($q) use ($id) {
                 $q->where('subject_id', $id);
-            }
-            ,
+            },
             'latestQuestions.user'
         ])->get();
 
