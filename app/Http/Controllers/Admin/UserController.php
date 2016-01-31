@@ -47,24 +47,32 @@ class UserController extends Controller
         $user = $this->userRepository->model->find($id);
 
         $isEducator = false;
-        $subjects = '';
+        $subjects = [];
+
         if (is_a($user->getType(), Educator::class)) {
             $isEducator = true;
             $subjects =  implode(',',$user->subjects->lists('name_en')->toArray());
         }
 
         $levels =  implode(',',$user->levels->lists('name_en')->toArray());
+
         return view('admin.modules.user.view',compact('user','isEducator','subjects','levels'));
     }
 
     public function edit($id)
     {
-//        return redirect()->back()->with('info', 'Method not yet implemented');
         $currentUser = Auth::user();
 
         $user = $this->userRepository->model->find($id);
+        $profile = null;
+        $isEducator = false;
 
-        return view('admin.modules.user.edit', compact('user', 'currentUser'));
+        if (is_a($user->getType(), Educator::class)) {
+            $isEducator = true;
+            $profile = $user->getType();
+        }
+
+        return view('admin.modules.user.edit', compact('user', 'currentUser','isEducator','profile'));
     }
 
     public function update(Request $request, $id)
@@ -77,7 +85,15 @@ class UserController extends Controller
             return redirect()->back()->with('warning', 'You Cannot Un Admin Yourself');
         }
 
-        $user->update($request->all());
+        $user->update($request->except(['qualification','experience']));
+
+        $profile = $user->getType();
+
+        if(is_a($profile,Educator::class)) {
+            $profile->qualification = $request->qualification;
+            $profile->experience = $request->experience;
+            $profile->save();
+        }
 
         return redirect()->back()->with('success', 'User Updated');
     }

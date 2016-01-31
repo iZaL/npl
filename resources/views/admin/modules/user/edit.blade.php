@@ -10,7 +10,6 @@
 
 @section('script')
     @parent
-
 @stop
 
 @section('content')
@@ -44,6 +43,17 @@
             <label class="control-label pull-left ">Country</label>
             @include('partials._country-dropdown', ['userCountry'=>$user->country])
         </div>
+
+        @if($isEducator)
+            <div class="form-group">
+                <label class="control-label pull-left ">Experience</label>
+                {!! Form::textarea('experience',$profile->experience,['class'=>'form-control editor','placeholder'=>'Experience']) !!}
+            </div>
+            <div class="form-group">
+                <label class="control-label pull-left ">Qualification</label>
+                {!! Form::textarea('qualification',$profile->qualification,['class'=>'form-control editor','placeholder'=>'Qualification']) !!}
+            </div>
+        @endif
 
         <div class="form-group">
             <label class="control-label pull-left ">Admin</label>

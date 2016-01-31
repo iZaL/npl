@@ -66,7 +66,7 @@
                                 <td>{{ $educator->profile->firstname . $educator->profile->lastname }} </td>
                                 <td>{{ $educator->profile->email }} </td>
                                 <td class="f18">
-                                    <a href="{{ action('Admin\UserController@show',$educator->profile->id)  }}"
+                                    <a href="{{ action('Admin\EducatorController@show',$educator->id)  }}"
                                        role="button" >
                                         <i class="fa fa-list-alt"></i>
                                     </a>

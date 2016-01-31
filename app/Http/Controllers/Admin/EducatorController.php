@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Http\Controllers\Controller;
+use App\Src\Educator\Educator;
 use App\Src\Educator\EducatorRepository;
 use App\Src\Level\LevelRepository;
 use App\Src\Subject\SubjectRepository;
@@ -72,23 +73,24 @@ class EducatorController extends Controller
 
     }
 
-    public function index_old()
+    public function show($id)
     {
         // Find newly Registered Educators and their Subjects to Approve
-        $educators = $this->educatorRepository->model->with([
+        $educator = $this->educatorRepository->model->with([
             'profile.activeSubjects',
             'profile.inActiveSubjects',
             'answersCount'
-        ])->latest()->paginate(100);
+        ])->latest()->find($id);
+
+        $profile = $educator->profile;
+
+        if(!is_a($profile,Educator::class)) {
+            return redirect()->action('Admin\EducatorController@index')->with('info','Operation not allowed');
+        }
 
         $subjects = $this->subjectRepository->model->get(['id', 'name_en']);
 
-        return view('admin.modules.educator.index', compact('educators', 'subjects'));
-    }
-
-    public function show($id)
-    {
-        return redirect()->back()->with('info', 'Method Not Yet Implemented');
+        return view('admin.modules.educator.view', compact('educator', 'subjects'));
     }
 
     public function activateSubjects(Request $request, $id)
