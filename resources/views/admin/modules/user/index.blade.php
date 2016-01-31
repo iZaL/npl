@@ -18,6 +18,7 @@
                         <tr>
                             <th>SI No</th>
                             <th>NP Code</th>
+                            <th>Type</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Status</th>
@@ -32,6 +33,7 @@
                             <tr class="gradeU">
                                 <td>{{ $user->id }}</td>
                                 <td><a href="{{ action('Admin\UserController@show',$user->id) }}">{{ $user->np_code }}</a></td>
+                                <td>{{ (new \ReflectionClass($user->getType()))->getShortName() }}</td>
                                 <td>{{ $user->firstname . ' '.$user->lastname }} </td>
                                 <td>{{ $user->email }} </td>
                                 <td> {{ $user->active ? 'active' : 'not active' }}</td>

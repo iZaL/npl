@@ -82,12 +82,6 @@ class EducatorController extends Controller
             'answersCount'
         ])->latest()->find($id);
 
-        $profile = $educator->profile;
-
-        if(!is_a($profile,Educator::class)) {
-            return redirect()->action('Admin\EducatorController@index')->with('info','Operation not allowed');
-        }
-
         $subjects = $this->subjectRepository->model->get(['id', 'name_en']);
 
         return view('admin.modules.educator.view', compact('educator', 'subjects'));
