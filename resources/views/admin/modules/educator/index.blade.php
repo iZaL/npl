@@ -100,8 +100,8 @@
                 </table>
             </div>
             <!-- /.table-responsive -->
-            @include('admin.partials.delete-modal',['info' => 'This will only remove the User as Student and delete all his questions.
-             You can delete the user from Students Page.','deleteText'=>'Remove as Student'])
+            @include('admin.partials.delete-modal',['info' => 'Remove the User as an Educator and all the conversations ?.
+             You can delete the user in Users Page.','deleteText'=>'Remove as Student'])
         </div>
         <!-- /.panel-body -->
 
