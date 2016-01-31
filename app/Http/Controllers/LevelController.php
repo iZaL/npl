@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Src\Educator\Educator;
 use App\Src\Level\LevelRepository;
 use App\Src\Subject\SubjectRepository;
@@ -46,15 +45,12 @@ class LevelController extends Controller
         $userLevels = [];
 
         if (Auth::check()) {
-
             $user = Auth::user();
-
             if (is_a($user->getType(), Educator::class)) {
                 $isEducator = true;
                 $userSubjects = $user->subjects->modelKeys();
                 $userLevels = $user->levels->modelKeys();
             }
-
         }
 
         $level = $this->levelRepository->model->find($id);

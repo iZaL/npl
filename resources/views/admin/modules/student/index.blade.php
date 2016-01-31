@@ -38,7 +38,7 @@
                         <tr class="gradeU">
                             @if($student->profile)
                                 <td> <a href="{{ action('Admin\UserController@show',$student->profile->id) }}" >{{ $student->profile->id }}</a></td>
-                                <td> {{ $student->profile->np_code }} </td>
+                                <td> <a href="{{ action('Admin\UserController@show',$student->profile->id) }}" >{{ $student->profile->np_code }}</a> </td>
                                 <td>{{ $student->profile->firstname . $student->profile->lastname }} </td>
                                 <td>{{ $student->profile->email }} </td>
                                 <td class="f18">

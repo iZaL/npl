@@ -1,7 +1,7 @@
 @extends('admin.layouts.one_col')
 
 @section('title')
-    <h1>Edit Blog Post {{ $blog->title }}</h1>
+    <h1>Edit Editorial Post {{ $blog->title }}</h1>
 @stop
 
 @section('style')
@@ -20,13 +20,13 @@
 
 
         <div class="form-group">
-            {!! Form::label('title', 'Blog Title', ['class' => 'control-label']) !!} <span class="red">*</span>
-            {!! Form::text('title_ar', null, ['class' => 'form-control','placeholder'=>'Category Name']) !!}
+            {!! Form::label('title', 'Editorial Title', ['class' => 'control-label']) !!} <span class="red">*</span>
+            {!! Form::text('title_en', null, ['class' => 'form-control','placeholder'=>'Editorial title']) !!}
         </div>
 
         <div class="form-group">
             {!! Form::label('description', 'Description', ['class' => 'control-label']) !!}
-            {!! Form::textarea('description_ar', null, ['class' => 'form-control editor','placeholder'=>'Category Description']) !!}
+            {!! Form::textarea('description_en', null, ['class' => 'form-control editor','placeholder'=>'Editorial Description']) !!}
         </div>
 
         <div class="form-group">

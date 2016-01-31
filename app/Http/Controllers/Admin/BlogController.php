@@ -54,16 +54,16 @@ class BlogController extends Controller
     {
 
         $this->validate($request, [
-            'title_ar'       => 'required',
-            'description_ar' => 'required',
+            'title_en'       => 'required',
+            'description_en' => 'required',
             'cover'          => 'image'
         ]);
 
         $blog = $this->blogRepository->model->create([
-            'title_ar'       => $request->title_ar,
-            'description_ar' => $request->description_ar,
+            'title_en'       => $request->title_en,
+            'description_en' => $request->description_en,
             'user_id'        => Auth::user()->id,
-            'slug'           => $request->title_ar
+            'slug'           => $request->title_en
         ]);
 
         if ($request->hasFile('cover')) {
@@ -91,14 +91,14 @@ class BlogController extends Controller
     public function update(Request $request, PhotoRepository $photoRepository, $id)
     {
         $this->validate($request, [
-            'title_ar'       => 'required',
-            'description_ar' => 'required',
+            'title_en'       => 'required',
+            'description_en' => 'required',
             'cover'          => 'image'
         ]);
 
         $blog = $this->blogRepository->model->find($id);
 
-        $blog->update(array_merge(['slug' => $request->title_ar], $request->except('cover')));
+        $blog->update(array_merge(['slug' => $request->title_en], $request->except('cover')));
 
         if ($request->hasFile('cover')) {
             $file = $request->file('cover');

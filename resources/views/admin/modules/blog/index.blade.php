@@ -1,7 +1,7 @@
 @extends('admin.layouts.one_col')
 
 @section('title')
-    <h1>Blog Posts</h1>
+    <h1>Editorial Posts</h1>
 @endsection
 
 @section('style')
@@ -16,11 +16,12 @@
     <div class="col-lg-12 mTop10">
         <div class="panel panel-default">
             <div class="panel-heading">
-                Blog Posts
+                Editorial Posts
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
-                <div class="dataTable_wrapper">
+                <a class="btn btn-primary btn-md" role="button" href="{{ action('Admin\BlogController@create') }}"> Create new Editorial </a>
+                <div class="dataTable_wrapper mTop10">
                     <table class="table table-striped table-bordered table-hover" >
                         <thead>
                         <tr>
@@ -37,7 +38,7 @@
                                 <td> {!! str_limit(strip_tags($blog->title),100) !!} </td>
                                 <td> {{ $blog->created_at->format('d-m-Y') }} </td>
                                 <td class="f18">
-                                    <a href="{{ action('Admin\BlogController@edit',$blog->id)  }}"
+                                    <a href="{{ action('Admin\BlogController@show',$blog->id)  }}"
                                        role="button" >
                                         <i class="fa fa-list-alt"></i>
                                     </a>
