@@ -59,8 +59,8 @@ Route::resource('answer', 'AnswerController');
  * Profile Routes
  ********************************************************************************************************/
 Route::resource('profile', 'ProfileController');
-Route::get('profile/{id}/questions','ProfileController@viewQuestions');
-Route::get('profile/{id}/answers','ProfileController@viewAnswers');
+Route::get('profile/{id}/questions','ProfileController@getQuestions');
+Route::get('profile/{id}/answers','ProfileController@getAnswers');
 /*********************************************************************************************************
  * Misc Routes
  ********************************************************************************************************/

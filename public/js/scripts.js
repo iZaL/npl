@@ -778,9 +778,9 @@ $(document).ready(function () {
 	//
 	//google.maps.event.addDomListener(window, 'load', initialize);
 	//
-	//$('[id*="modal-contact"]').on('shown.bs.modal', function () {
-	//	initialize();
-	//});
+	$('[id*="modal-contact"]').on('shown.bs.modal', function () {
+		initialize();
+	});
 	//
 });
 

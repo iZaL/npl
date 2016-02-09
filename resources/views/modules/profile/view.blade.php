@@ -1,4 +1,4 @@
-@extends('layouts.two_col')
+@extends('layouts.one_col')
 
 
 @section('style')
@@ -43,9 +43,8 @@
     <h1>AD</h1>
 @endsection
 
-@section('left')
+@section('middle')
     @include('admin.partials.delete-modal',['info' => 'Are you sure ?'])
-    @include('partials.modal',['info' => 'Are you sure ?'])
 
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -105,9 +104,9 @@
                     </table>
                     @if($isOwner)
                         @if($isEducator)
-                            <a href="{{ action('ProfileController@viewQuestions',$user->id) }}" class="btn btn-primary btn-navy">View All Answers</a>
+                            <a href="{{ action('ProfileController@getAnswers',$user->id) }}" class="btn btn-primary btn-navy">View All Answers</a>
                         @elseif($isStudent)
-                            <a href="{{ action('ProfileController@viewAnswers',$user->id) }}" class="btn btn-primary btn-navy">View All Questions</a>
+                            <a href="{{ action('ProfileController@getQuestions',$user->id) }}" class="btn btn-primary btn-navy">View All Questions</a>
                         @else
                         @endif
                     @endif

@@ -21,7 +21,6 @@
                 </div>
                 <div style="float:right;"><i><span style="color:#f96464">{{ $question->created_at->format('d-m-Y')  }}</span></i></div>
                 <br/>
-
                 <p align="justify"><b><a href="{{ action('AnswerController@createAnswer',$question->id) }}">{{ $question->body }}</a></b></p>
 
             </div>

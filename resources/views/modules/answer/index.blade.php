@@ -18,12 +18,11 @@
             <div class="questionBorder">
                 <div style="float:left;">
                     <strong>
-                        <font color="#f96464">
                             {{ $question->subject->name }}
                         </font>
                     </strong>
                 </div>
-                <div style="float:right;"><i><font color="#f96464">{{ $question->created_at->format('d-m-Y')  }}</font></i></div>
+                <div style="float:right;"><i><span style="color:#f96464">{{ $question->created_at->format('d-m-Y')  }}</span></i></div>
                 <br/>
 
                 <p align="justify"><b>{!! $question->body  !!} </b></p>

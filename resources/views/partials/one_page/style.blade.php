@@ -1,4 +1,6 @@
-<link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+{{--<link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">--}}
+<link href="/css/bootstrap.min.css" rel="stylesheet" data-skrollr-stylesheet>
+
 <link rel="stylesheet" href="/bower_components/fontawesome/css/font-awesome.min.css">
 
 <!-- Customizable CSS -->

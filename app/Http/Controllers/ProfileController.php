@@ -16,7 +16,6 @@ class ProfileController extends Controller
      */
     private $userRepository;
 
-
     /**
      * @param UserRepository $userRepository
      */
@@ -26,15 +25,45 @@ class ProfileController extends Controller
         $this->userRepository = $userRepository;
     }
 
-    public function viewQuestions($id)
+    public function getQuestions($id)
     {
-        dd($id);
+        if(Auth::check() && (Auth::user()->id != $id)) {
+            return redirect()->home()->with('warning','Operation not allowed');
+        }
 
+        $user = $this->userRepository->model->find($id);
+
+        $student = $user->getType();
+
+        if (!is_a($student, Student::class)) {
+            return redirect()->home()->with('warning', 'Wrong Access');
+        }
+
+        $student->load('questions');
+
+        $questions = $student->questions;
+
+        $questions->load('subject');
+        $questions->load('parentAnswers.user');
+
+        return view('modules.profile.questions', compact('user','questions', 'answers'));
     }
 
-    public function viewAnswers($id)
+    public function getAnswers($id)
     {
-        dd($id);
+        if(Auth::check() && (Auth::user()->id != $id)) {
+            return redirect()->home()->with('warning','Operation not allowed');
+        }
+
+        $user = $this->userRepository->model->find($id);
+        $educator = $user->getType();
+
+        if (!is_a($educator, Educator::class)) {
+            return redirect()->home()->with('warning', 'Wrong Access');
+        }
+
+        $answers = $educator->parentAnswers;
+        return view('modules.profile.answers', compact('user','answers'));
     }
 
     public function show($id)
@@ -45,15 +74,19 @@ class ProfileController extends Controller
         $subjects = [];
         $user= $this->userRepository->model->with(['levels','subjects'])->find($id);
         $userType =  (new \ReflectionClass($user->getType()))->getShortName();
-        $levels =  implode(',',$user->levels->lists('name_en')->toArray());
+        $levels =  implode(', ',(array_map(function($name) {
+            return ucfirst($name);
+        }, $user->levels->lists('name_en')->toArray())));
 
         if(Auth::check() && (Auth::user()->id == $id)) {
             $isOwner =true;
             if(is_a($user->getType(),Educator::class)) {
                 $isEducator = true;
-                $subjects =  implode(',',$user->subjects->lists('name_en')->toArray());
-
-            }elseif(is_a($user->getType(),Student::class)) {
+                // Iterate over subjects and return each subject with Uppercase
+                $subjects =  implode(', ',(array_map(function($name) {
+                    return ucfirst($name);
+                }, $user->subjects->lists('name_en')->toArray())));
+            } elseif(is_a($user->getType(),Student::class)) {
                 $isStudent=true;
             }
         }
@@ -104,10 +137,9 @@ class ProfileController extends Controller
     {
         if(Auth::check() && Auth::user()->id == $id) {
             $user = $this->userRepository->model->find($id);
-            //@todo: delete user account
-            //        $user->delete();
-//            Auth::logout();
-            return redirect()->action('ProfileController@show',$user->id)->with('success','Account Deleted');
+            $user->delete();
+            Auth::logout();
+            return redirect('/')->with('success','Account Deleted');
         }
 
         return redirect()->back()->with('warning','Operation not allowed');
