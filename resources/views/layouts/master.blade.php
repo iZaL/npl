@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <meta name="viewport" content="width=device-width">
     @section('style')
-        @include('partials.one_page.style')
+        @include('partials.style')
     @show
 </head>
 <body id="top">
@@ -20,9 +20,9 @@
     @show
 </main>
 
-@include('partials.one_page.footer')
+@include('partials.footer')
 @section('script')
-    @include('partials.one_page.script')
+    @include('partials.script')
     {{--<script>--}}
         {{--$(document).on('show.bs.modal', function (event) {--}}
             {{--var button = $(event.relatedTarget) // Button that triggered the modal--}}

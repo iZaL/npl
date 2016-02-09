@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <meta name="viewport" content="width=device-width">
     @section('style')
-        @include('partials.one_page.style')
+        @include('partials.style')
     @show
 </head>
 <body id="top" >
@@ -24,10 +24,9 @@
     @include('partials.one_page.subject',['subjects'=>$subjects])
     @include('partials.one_page.contact')
 </main>
-
-    @include('partials.one_page.footer')
+    @include('partials.footer')
 @section('script')
-    @include('partials.one_page.script')
+    @include('partials.script')
 @show
 </body>
 </html>
