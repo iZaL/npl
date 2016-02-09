@@ -6,7 +6,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/" target="_blank">
+        <a class="navbar-brand" href="/home" target="_blank">
             <img src="/images/logo.png" height="60">
         </a>
     </div>

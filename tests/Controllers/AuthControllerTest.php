@@ -29,7 +29,7 @@ class AuthControllerTest extends TestCase
 
     public function testRegisterStudent()
     {
-        $this->withoutEvents();
+//        $this->withoutEvents();
 
         $email = uniqid() . '@email.com';
         $firstname = uniqid();
@@ -52,6 +52,8 @@ class AuthControllerTest extends TestCase
             ]);
 
         $user = \App\Src\User\User::where('email', $email)->first();
+
+        $this->assertEquals('NP10',substr($user->np_code,0,4));
 
         $this->seeInDatabase('students',
             [
@@ -78,7 +80,7 @@ class AuthControllerTest extends TestCase
 
     public function testRegisterEducator()
     {
-        $this->withoutEvents();
+//        $this->withoutEvents();
 
         $email = uniqid() . '@email.com';
         $firstname = uniqid();
@@ -105,10 +107,13 @@ class AuthControllerTest extends TestCase
             [
                 'email'        => $email,
                 'firstname_en' => $firstname,
-                'active'       => '0'
+                'active'       => '0',
+                'admin' => 0
             ]);
 
         $user = \App\Src\User\User::where('email', $email)->first();
+
+        $this->assertEquals('NP99',substr($user->np_code,0,4));
 
         $this->seeInDatabase('educators',
             [
@@ -134,10 +139,12 @@ class AuthControllerTest extends TestCase
             [
                 'email'        => $email,
                 'firstname_en' => $firstname,
-                'active'       => '1'
+                'active'       => '1',
+                'admin' => 0
             ]
         );
     }
+
 
 
 }

@@ -3,6 +3,9 @@
 namespace App\Listeners;
 
 use App\Events\UserRegistered;
+use App\Src\Educator\Educator;
+use App\Src\Student\Student;
+use App\Src\User\User;
 use App\Src\User\UserRepository;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -15,7 +18,8 @@ class CreateUserCode
      * @return void
      */
 
-    const CODEPREFIX = 'NP';
+    const EDUCATORPREFIX = 'NP99';
+    const STUDENTPREFIX = 'NP10';
     /**
      * @var UserRepository
      */
@@ -38,25 +42,39 @@ class CreateUserCode
      */
     public function handle(UserRegistered $event)
     {
-
         $user = $event->user;
-
+        $npCode = $this->generateCode($user);
         if (!$user->np_code) {
-            $code = $this->generateNplCode();
-            $user->np_code = $code;
+            $user->np_code = $npCode;
             $user->save();
         }
-
     }
 
+    public function generateCode($user)
+    {
+        $prefix = $this->generatePrefix($user);
+        $code = $this->generateNplCode();
+        $finalCode = $prefix.$code;
+        return $finalCode;
+    }
+
+    public function generatePrefix($user)
+    {
+        $prefix = '';
+        $userType = $user->getType();
+        if(is_a($userType,Educator::class)){
+            $prefix = self::EDUCATORPREFIX;
+        } elseif(is_a($userType,Student::class)) {
+            $prefix = self::STUDENTPREFIX;
+        }
+        return $prefix;
+    }
     /**
      *
      */
     private function generateNplCode()
     {
-        $randomCode = $this->generateRandomString();
-
-        $code = self::CODEPREFIX . $randomCode;
+        $code = $this->generateRandomInteger();
 
         if ($this->codeExists($code)) {
             $this->generateNplCode();
@@ -65,14 +83,14 @@ class CreateUserCode
         return $code;
     }
 
-    public function generateRandomString($length = 5)
+    public function generateRandomInteger($start = 1000,$end=9999)
     {
-        return strtoupper(substr(str_shuffle(MD5(microtime())), 0, $length));
+        return rand($start,$end);
     }
 
     private function codeExists($code)
     {
-        $code = $this->userRepository->model->whereNpCode($code)->first();
+        $code = $this->userRepository->model->whereNpCode($code)->whereNpCode(self::EDUCATORPREFIX.$code)->whereNpCode(self::STUDENTPREFIX.$code)->first();
 
         if ($code) {
             return true;

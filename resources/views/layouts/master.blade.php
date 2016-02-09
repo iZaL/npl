@@ -23,6 +23,15 @@
 @include('partials.one_page.footer')
 @section('script')
     @include('partials.one_page.script')
+    <script>
+        $(document).on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            if ( $( "#deleteModal" ).length ) {
+                var link = button.data('link') // Extract info from data-* attributes
+                $("#deleteModal").attr("action", link);
+            }
+        });
+    </script>
 @show
 </body>
 </html>

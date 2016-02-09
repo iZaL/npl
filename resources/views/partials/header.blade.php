@@ -2,9 +2,7 @@
     <div class="navbar">
         <div class="navbar-header">
             <div class="container">
-
                 <a class="navbar-brand" href="#"><img src="/images/logo.png" class="logo" alt=""></a>
-
                 <a class="btn responsive-menu pull-right" data-toggle="collapse" data-target=".navbar-collapse"><i
                             class='icon-menu-1'></i></a>
 
@@ -12,7 +10,7 @@
             <!-- /.container -->
         </div>
         @include('partials.nav')
-        <!-- /.yamm -->
+                <!-- /.yamm -->
     </div>
     <!-- /.navbar -->
 </header>

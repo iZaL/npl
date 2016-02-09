@@ -1,6 +1,9 @@
 @extends('layouts.one_col')
 @section('title')
-    <h1 class="text-center"> Sign up for Student Account</h1>
+    <h1 class="text-center"> Sign up for Student Account <br>
+        Or <br>
+        Sign up for an <a href="{{action('Auth\AuthController@educatorRegistration')}}"> Educator Account</a>
+    </h1>
 @endsection
 @section('middle')
     <div class="row">
@@ -49,7 +52,7 @@
                             <span class="pull-left">(required)</span>
 
                             {!! Form::select('levels[]', $levels , null , ['class' => 'form-control']) !!}
-                            <small class="pull-left">Choose the academic level you want to learn</small>
+                            <small class="hint pull-left">Choose your academic level</small>
                         </div>
 
                         <div class="form-group">

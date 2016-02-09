@@ -21,7 +21,7 @@
 
                     <a class="navbar-brand scroll-to" href="#top"><img src="/images/logo.png" class="logo" alt=""></a>
 
-                    <ul class="nav navbar-nav pull-right">
+                    <ul class="nav navbar-nav">
 
                         <li><a href="#home" class="scroll-to" data-anchor-offset="0">Home</a></li>
                         <li><a href="{{ action('BlogController@index') }}" class="scroll-to" data-anchor-offset="0">Editorials</a></li>
@@ -32,11 +32,14 @@
                         <li><a href="#contact" class="scroll-to" data-anchor-offset="0">Contact</a></li>
                     </ul>
                     <!-- /.nav -->
+                    @include('partials.profile-dropdown')
 
                 </div>
                 <!-- /.container -->
+
             </div>
             <!-- /.navbar-collapse -->
+
         </div>
         <!-- /.yamm -->
     </div>

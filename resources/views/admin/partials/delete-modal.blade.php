@@ -7,7 +7,9 @@
                 <h4 class="modal-title">Confirm {{ isset($deleteText) ? $deleteText : 'Delete' }} ? </h4>
             </div>
             <div class="modal-body">
-                {{ $info }}
+                <div class="container inner-xs text-center">
+                    {{ $info }}
+                </div>
             </div>
             <div class="modal-footer">
                 {!! Form::open(['url'=> '/admin', 'method'=>'delete', 'id'=>'deleteModal']) !!}

@@ -3,7 +3,6 @@
 
 <!-- Customizable CSS -->
 <link href="/css/main.css" rel="stylesheet" data-skrollr-stylesheet>
-<link href="/css/green.css" rel="stylesheet" title="Color">
 <link href="/css/owl.carousel.css" rel="stylesheet">
 <link href="/css/owl.transitions.css" rel="stylesheet">
 <link href="/css/animate.min.css" rel="stylesheet">

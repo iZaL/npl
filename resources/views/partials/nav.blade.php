@@ -45,7 +45,7 @@
                     <li><a href="/auth/logout">Logout</a></li>
                 @else
                     <li><a href="/auth/login">Login</a></li>
-                    <li><a href="{{ route('home') }}">Register</a></li>
+                    <li><a href="{{ action('Auth\AuthController@studentRegistration') }}">Register</a></li>
                 @endif
                 <li><a href="{{ route('home') }}">About</a></li>
 
@@ -53,6 +53,7 @@
             </ul>
             <!-- /.nav -->
 
+           @include('partials.profile-dropdown')
         </div>
         <!-- /.container -->
     </div>

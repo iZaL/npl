@@ -30,6 +30,9 @@
                 </div><!-- /.col -->
 
                 <div class="col-md-offset-3 col-md-6 col-sm-6 inner-right-xs inner-bottom-xs">
+
+                    Don't have an account ? <a href="{{ action('Auth\AuthController@studentRegistration') }}">Register</a>
+                    <br>
                     <a href="{{ action('Auth\PasswordController@getEmail') }}">Forgot Password</a>
                 </div>
 

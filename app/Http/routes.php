@@ -58,8 +58,9 @@ Route::resource('answer', 'AnswerController');
 /*********************************************************************************************************
  * Profile Routes
  ********************************************************************************************************/
-Route::get('profile/edit', 'ProfileController@editProfile');
-
+Route::resource('profile', 'ProfileController');
+Route::get('profile/{id}/questions','ProfileController@viewQuestions');
+Route::get('profile/{id}/answers','ProfileController@viewAnswers');
 /*********************************************************************************************************
  * Misc Routes
  ********************************************************************************************************/
@@ -82,6 +83,18 @@ Route::get('test', function () {
 
     $user = Auth::loginUsingId(2);
     dd($user->subjects->toArray());
+});
+
+Route::get('mail',function(){
+    try {
+        Mail::send('emails.welcome', [], function ($m)  {
+            $m->from('zalszalz@gmail.com', 'Your Application');
+            $m->to('z4ls@live.com', 'zal')->subject('Your Reminder!');
+        });
+    }catch(Exception $e) {
+        dd($e->getMessage());
+    }
+
 });
 
 /*********************************************************************************************************

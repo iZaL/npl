@@ -41,12 +41,9 @@ class AdminQuestionControllerTest extends TestCase
             'body_en'     => $answerBody,
         ]);
 
-
         $this->actingAs(Auth::loginUsingId(1))
             ->visit('/admin/question')
-            ->see($question->body_en)
-            ->see('view all <a href="#">10</a> answers');
-
+            ->see($question->body_en);
 
     }
 

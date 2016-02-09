@@ -94,7 +94,7 @@ class AuthController extends Controller
             return $this->sendLockoutResponse($request);
         }
 
-        if (Auth::attempt((['email' => $request->get('email'), 'password' => $request->get('password'), 'active' => 1]),
+        if (Auth::attempt((['email' => strtolower($request->get('email')), 'password' => $request->get('password'), 'active' => 1]),
             $request->has('remember'))
         ) {
             return $this->handleUserWasAuthenticated($request, $throttles);
@@ -155,10 +155,11 @@ class AuthController extends Controller
 
         //Fire Event to Notify Admin
         // Fire Event to Notify Admin
-
-        event(new EducatorAddedSubjects($user, (array)$request->subjects));
-
         $user->educator()->create(['qualification'=>$request->qualification, 'experience' => $request->experience]);
+
+//        event(new EducatorAddedSubjects($user, (array)$request->subjects));
+
+        event(new UserRegistered($user));
 
         return redirect('/auth/login')->with('message', 'registration success');
     }
@@ -187,6 +188,8 @@ class AuthController extends Controller
 
         $user->student()->create([]);
 
+        event(new UserRegistered($user));
+
         return redirect('/auth/login')->with('message', 'registration success');
 
     }
@@ -209,11 +212,8 @@ class AuthController extends Controller
         ]));
 
         if ($request->levels) {
-
             $user->levels()->sync($request->levels);
         }
-
-        event(new UserRegistered($user));
 
         return $user;
     }

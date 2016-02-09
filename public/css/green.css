@@ -29,12 +29,11 @@ ul.circled li:before,
 	color: #1ABB9C;
 }
 
-.tint-bg .btn,
+.tint-bg ,
 .tint-color {
 	color: #1ABB9C !important;
 }
 
-.btn,
 .classic-blog .post .date,
 .navbar .dropdown-menu:not(.yamm-dropdown-menu) > .active > a,
 .navbar .dropdown-menu:not(.yamm-dropdown-menu) > .active > a:focus,
@@ -57,15 +56,10 @@ ul.circled li:before,
 .tabs-top .tab a:hover,
 .tint-bg,
 .tint-bg.img-bg-soft:before,
-.tint-bg.img-bg-softer:before,
-.tooltip-inner {
+.tint-bg.img-bg-softer:before {
 	background-color: #1ABB9C;
 }
 
-.btn:hover,
-.btn:focus,
-.btn:active,
-.btn.active,
 .pagination > .active > a,
 .pagination > .active > span,
 .pagination > .active > a:hover,
@@ -90,23 +84,6 @@ ul.circled li:before,
 .tabs-side .tab a:hover,
 .tabs-top .tab a:hover {
 	border-color: #1ABB9C;
-}
-
-.tooltip.top .tooltip-arrow,
-.tooltip.top-left .tooltip-arrow,
-.tooltip.top-right .tooltip-arrow {
-	border-top-color: #1ABB9C;
-}
-.tooltip.right .tooltip-arrow {
-	border-right-color: #1ABB9C;
-}
-.tooltip.left .tooltip-arrow {
-	border-left-color: #1ABB9C;
-}
-.tooltip.bottom .tooltip-arrow,
-.tooltip.bottom-left .tooltip-arrow,
-.tooltip.bottom-right .tooltip-arrow {
-	border-bottom-color: #1ABB9C;
 }
 
 #owl-main .caption h1 span.tint-bg,
