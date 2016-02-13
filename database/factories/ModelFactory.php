@@ -78,7 +78,6 @@ $factory->define(App\Src\Educator\Educator::class, function (Faker\Generator $fa
 
 $factory->define(App\Src\Student\Student::class, function (Faker\Generator $faker) {
     return [
-
         'user_id' => 3,
     ];
 });

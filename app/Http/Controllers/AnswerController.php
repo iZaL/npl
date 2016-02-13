@@ -9,6 +9,7 @@ use App\Src\Student\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Route;
 
 class AnswerController extends Controller
 {
@@ -133,5 +134,17 @@ class AnswerController extends Controller
 
         return Redirect::action('AnswerController@createReply', [$question->id, $answer->id])->with('success',
             'Answer Posted');
+    }
+
+    public function destroy($id)
+    {
+        $user = Auth::user();
+        $answer = $this->answerRepository->model->find($id);
+        if($user->id != $answer->user_id) {
+            return redirect()->back()->with('warning','you cannot delete this answer');
+        }
+        $request = Request::create('/admin/answer/' . $id, 'DELETE', []);
+        Route::dispatch($request);
+        return redirect()->back()->with('success','Answer deleted');
     }
 }

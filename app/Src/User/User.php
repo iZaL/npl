@@ -110,4 +110,11 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     }
 
+    /**
+     * @return bool
+     */
+    public function isAdmin()
+    {
+        return $this->admin ? ( $this->active ? true: false ) : false;
+    }
 }

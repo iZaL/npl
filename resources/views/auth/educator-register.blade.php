@@ -100,7 +100,7 @@
                         </div>
 
                         <div class="form-group">
-                            <input type="submit" class="btn btn-positive" value="Register"/>
+                            <input type="submit" class="btn btn-green" value="Register"/>
                         </div>
                     </form>
                 </div>

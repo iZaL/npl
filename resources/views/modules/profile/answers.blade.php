@@ -20,11 +20,9 @@
 @endsection
 
 @section('right')
-    <h1>AD</h1>
 @endsection
 
 @section('left')
-
     <div class=" custyle">
         <table class="table table-striped custab">
             <thead>
@@ -32,6 +30,7 @@
                 <th>Subject</th>
                 <th>Answer</th>
                 <th>Date</th>
+                <th>Delete</th>
             </tr>
             </thead>
             @foreach($answers as $answer)
@@ -39,9 +38,11 @@
                     <td>{{ ucfirst($answer->question->subject->name) }}</td>
                     <td><a href="{{ action('AnswerController@createAnswer',$answer->question->id) }}">{{ $answer->body }}</a></td>
                     <td>{{ $answer->question->created_at->format('d-m-Y, h:i a')  }}</td>
+                    <td>
+                        <a href="#" data-link="{{ action('AnswerController@destroy',$answer->id) }}" data-target="#deleteModalBox" data-original-title="Delete Answer" data-toggle="modal" type="button" class="btn btn-sm btn-danger"><i class="fa fa-remove"></i></a>
+                    </td>
                 </tr>
             @endforeach
         </table>
     </div>
-
 @endsection

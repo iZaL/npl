@@ -4,7 +4,7 @@
     <h1>My Questions</h1>
 @endsection
 @section('left')
-    <h1>AD</h1>
+
 @endsection
 
 @section('right')

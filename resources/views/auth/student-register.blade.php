@@ -1,15 +1,13 @@
 @extends('layouts.one_col')
 @section('title')
-    <h1 class="text-center"> Sign up for Student Account <br>
-        Or <br>
-        Sign up for an <a href="{{action('Auth\AuthController@educatorRegistration')}}"> Educator Account</a>
-    </h1>
+    <h1 class="text-center"> Sign up as Student  </h1>
+    <p class="text-center">Sign up for <a href="{{action('Auth\AuthController@educatorRegistration')}}"> Educator Account</a></p>
 @endsection
 @section('middle')
     <div class="row">
         <div class="col-sm-12 text-center">
 
-            <div class="row ">
+            <div class="row">
 
                 <div class="col-md-offset-3 col-md-6 col-sm-6 inner-right-xs inner-bottom-xs">
                     <form class="form-horizontal" role="form" method="POST"
@@ -71,7 +69,7 @@
                         </div>
 
                         <div class="form-group">
-                            <input type="submit" class="btn btn-positive" value="Register"/>
+                            <input type="submit" class="btn btn-green" value="Register"/>
                         </div>
 
                     </form>

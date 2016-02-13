@@ -80,9 +80,6 @@ Route::get('home', ['as' => 'home', 'uses' => 'HomeController@home']);
 Route::get('/', ['as' => 'index', 'uses' => 'HomeController@index']);
 
 Route::get('test', function () {
-
-    $user = Auth::loginUsingId(2);
-    dd($user->subjects->toArray());
 });
 
 Route::get('mail',function(){

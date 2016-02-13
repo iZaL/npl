@@ -13,8 +13,10 @@
 <body id="top">
 
 @include('partials.header')
+@include('admin.partials.delete-modal',['info' => 'Are you sure ?'])
 
 <main>
+
     @section('content')
 
     @show
@@ -23,15 +25,15 @@
 @include('partials.footer')
 @section('script')
     @include('partials.script')
-    {{--<script>--}}
-        {{--$(document).on('show.bs.modal', function (event) {--}}
-            {{--var button = $(event.relatedTarget) // Button that triggered the modal--}}
-            {{--if ( $( "#deleteModal" ).length ) {--}}
-                {{--var link = button.data('link') // Extract info from data-* attributes--}}
-                {{--$("#deleteModal").attr("action", link);--}}
-            {{--}--}}
-        {{--});--}}
-    {{--</script>--}}
+    <script>
+        $(document).on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            if ( $( "#deleteModal" ).length ) {
+                var link = button.data('link') // Extract info from data-* attributes
+                $("#deleteModal").attr("action", link);
+            }
+        });
+    </script>
 @show
 </body>
 </html>

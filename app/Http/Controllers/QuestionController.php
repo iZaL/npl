@@ -9,6 +9,7 @@ use App\Src\Subject\SubjectRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Route;
 
 class QuestionController extends Controller
 {
@@ -72,5 +73,17 @@ class QuestionController extends Controller
 
         return Redirect::action('StudentController@getQuestions')->with('success', 'Question posted');
 
+    }
+
+    public function destroy($id)
+    {
+        $user = Auth::user();
+        $question = $this->questionRepository->model->find($id);
+        if($user->id != $question->user_id) {
+            return redirect()->back()->with('warning','you cannot delete this question');
+        }
+        $request = Request::create('/admin/question/' . $id, 'DELETE', []);
+        Route::dispatch($request);
+        return redirect()->back()->with('success','Answer deleted');
     }
 }

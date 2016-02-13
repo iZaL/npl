@@ -8,6 +8,7 @@ use App\Src\Student\Student;
 use App\Src\User\UserRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Route;
 
 class ProfileController extends Controller
 {
@@ -137,8 +138,19 @@ class ProfileController extends Controller
     {
         if(Auth::check() && Auth::user()->id == $id) {
             $user = $this->userRepository->model->find($id);
+            if (is_a($student = $user->getType(), Student::class)) {
+                $request = Request::create('/admin/student/' . $student->id, 'DELETE', []);
+                Route::dispatch($request);
+
+            } elseif (is_a($educator = $user->getType(), Educator::class)) {
+                $request = Request::create('/admin/educator/' . $educator->id, 'DELETE', []);
+                Route::dispatch($request);
+            }
+
             $user->delete();
+
             Auth::logout();
+
             return redirect('/')->with('success','Account Deleted');
         }
 

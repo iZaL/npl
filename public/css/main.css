@@ -1355,12 +1355,11 @@ aside .thumb figure {
 	margin: 0;
 }
 .navbar-nav > li > a {
-	font-size: 15px;
-	line-height: 20px;
+	font-size: 14px;
+	line-height: 16px;
 	font-weight: 700;
-	text-transform: uppercase;
 	color: #506A85;
-	padding: 15px 20px;
+	padding: 10px 15px;
 	border: 1px solid rgba(255,255,255,0);
 	border-radius: 3px;
 	bottom: -1px;
@@ -1416,10 +1415,9 @@ aside .thumb figure {
 	border: none;
 }
 .navbar .dropdown-menu:not(.yamm-dropdown-menu) li a {
-	line-height: 18px;
-	padding: 13px 20px;
+	line-height: 16px;
+	padding: 10px 15px;
 	color: #73879C;
-	text-transform: uppercase;
 	font-weight: 700;
 	white-space: normal;
 }
@@ -1598,6 +1596,7 @@ aside .thumb figure {
 }
 .btn.btn-green {
 	background: #1ABB9C;
+	color:#ffffff;
 }
 .btn.btn-blue {
 	background: #3F8DBF;
@@ -3479,7 +3478,7 @@ input[type="color"],
 	-moz-box-shadow: none;
 	box-shadow: none;
 	/*background-color: #f5f5f5;*/
-	border: 1px solid #999999;
+	border: 1px solid #7EB5A6;
 	-webkit-border-radius: 0;
 	border-radius: 0;
 	-webkit-transition: all 200ms ease-out;
@@ -3550,6 +3549,10 @@ textarea.form-control {
 	height: 0;
 	clear: both;
 	visibility: hidden;
+}
+
+.control-label {
+	color:#000000;
 }
 .newsletter {
 	position: relative;

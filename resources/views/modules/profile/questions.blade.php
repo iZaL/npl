@@ -20,7 +20,9 @@
 @endsection
 
 @section('right')
-    <h1>AD</h1>
+    <div>
+        <img src="/images/ad1.png" class="">
+    </div>
 @endsection
 
 @section('left')
@@ -32,6 +34,7 @@
                 <th>Subject</th>
                 <th>Question</th>
                 <th>Date</th>
+                <th>Delete</th>
             </tr>
             </thead>
             @foreach($questions as $question)
@@ -39,6 +42,9 @@
                     <td>{{ ucfirst($question->subject->name) }}</td>
                     <td><a href="{{ action('AnswerController@createAnswer',$question->id) }}">{{ $question->body }}</a></td>
                     <td>{{ $question->created_at->format('d-m-Y, h:i a')  }}</td>
+                    <td>
+                        <a href="#" data-link="{{ action('QuestionController@destroy',$question->id) }}" data-target="#deleteModalBox" data-original-title="Delete Answer" data-toggle="modal" type="button" class="btn btn-sm btn-danger"><i class="fa fa-remove"></i></a>
+                    </td>
                 </tr>
             @endforeach
         </table>

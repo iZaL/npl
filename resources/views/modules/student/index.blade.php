@@ -1,7 +1,7 @@
 @extends('layouts.two_col')
 
 @section('left')
-    <h1>AD</h1>
+
 @endsection
 
 @section('right')

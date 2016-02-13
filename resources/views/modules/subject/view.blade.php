@@ -5,7 +5,7 @@
 @endsection
 
 @section('right')
-    <h1>AD</h1>
+
 @endsection
 
 @section('left')
@@ -22,6 +22,7 @@
 
                                     <div class="col-md-12">
 
+                                        <!-- If Educator, and the If educator can answer the question, show the question as hyperlink -->
                                         @if($isEducator)
                                             @if(in_array($question->subject_id,$userSubjects) && in_array($question->level_id,$userLevels))
                                                 <div class="row">
@@ -39,7 +40,6 @@
 
                                                     <ul class="list-group">
                                                         @if(count($question->parentAnswers))
-
                                                             @foreach($question->parentAnswers as $answer)
                                                                 <li class="list-group-item">
                                                                     <small class="navy">You answered

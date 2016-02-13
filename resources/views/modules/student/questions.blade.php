@@ -25,7 +25,7 @@
 @endsection
 
 @section('right')
-    <h1>AD</h1>
+
 @endsection
 
 @section('left')

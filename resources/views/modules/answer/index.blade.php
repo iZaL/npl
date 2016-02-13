@@ -4,8 +4,6 @@
 @endsection
 @section('left')
 
-    <h1>AD</h1>
-
 @endsection
 
 
