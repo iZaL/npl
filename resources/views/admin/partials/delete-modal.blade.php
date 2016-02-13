@@ -7,7 +7,7 @@
                 <h4 class="modal-title">Confirm {{ isset($deleteText) ? $deleteText : 'Delete' }} ? </h4>
             </div>
             <div class="modal-body">
-                <div class="container inner-xs text-center">
+                <div class="inner-xs text-center">
                      {{ isset($info) ? $info : 'Are you sure ?' }} ?
                 </div>
             </div>
