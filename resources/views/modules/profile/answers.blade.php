@@ -36,7 +36,7 @@
             @foreach($answers as $answer)
                 <tr>
                     <td>{{ ucfirst($answer->question->subject->name) }}</td>
-                    <td><a href="{{ action('AnswerController@createAnswer',$answer->question->id) }}">{{ $answer->body }}</a></td>
+                    <td><a href="{{ action('AnswerController@createAnswer',$answer->question->id) }}">{{ strip_tags(str_limit($answer->body,100)) }}</a></td>
                     <td>{{ $answer->question->created_at->format('d-m-Y, h:i a')  }}</td>
                     <td>
                         <a href="#" data-link="{{ action('AnswerController@destroy',$answer->id) }}" data-target="#deleteModalBox" data-original-title="Delete Answer" data-toggle="modal" type="button" class="btn btn-sm btn-danger"><i class="fa fa-remove"></i></a>
