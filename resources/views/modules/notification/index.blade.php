@@ -13,6 +13,7 @@
                                 {{ $notification->notifiable->question->user->np_code }} replied to you
                                 {!! strip_tags($notification->notifiable->body) !!}
                             </a>
+                            <span class="navy"> on {{ $notification->created_at->format('d-m-Y \a\t g:i:s a')  }}</span>
                         </li>
                     @endif
                 @endif
