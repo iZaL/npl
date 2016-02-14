@@ -28,18 +28,17 @@ $factory->define(App\Src\User\User::class, function (Faker\Generator $faker) {
 $factory->define(App\Src\Subject\Subject::class, function (Faker\Generator $faker) {
     return [
 
-        'name_en'        => 'physics',
-        'name_ar'        => 'physics',
-        'description_en' => 'physics',
-        'description_ar' => 'physics'
+        'name_en'        => 'physics'.uniqid(),
+        'name_ar'        => 'physics'.uniqid(),
+        'description_en' => 'physics'.uniqid(),
+        'description_ar' => 'physics'.uniqid()
     ];
 });
 
 $factory->define(App\Src\Level\Level::class, function (Faker\Generator $faker) {
     return [
-
-        'name_en' => 'university',
-        'name_ar' => 'university',
+        'name_en' => 'university'.uniqid(),
+        'name_ar' => 'university'.uniqid(),
         'slug'    => 'university'
     ];
 });
@@ -100,3 +99,11 @@ $factory->define(App\Src\Blog\Blog::class, function (Faker\Generator $faker) {
     ];
 });
 
+$factory->define(App\Src\Notification\Notification::class, function (Faker\Generator $faker) {
+    return [
+        'user_id'     => 3,
+        'notifiable_id'=>1,
+        'notifiable_type'=>'Question',
+        'read'=> 0
+    ];
+});

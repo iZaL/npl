@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Src\Student\Student;
 use App\Src\User\UserRepository;
 use Illuminate\Support\Facades\Auth;
@@ -22,7 +21,6 @@ class StudentController extends Controller
     {
         $this->userRepository = $userRepository;
     }
-
 
     public function index()
     {
@@ -50,7 +48,7 @@ class StudentController extends Controller
 
         $student->load('questions');
 
-        $questions = $student->questions;
+        $questions = $student->questions()->latest()->get();
 
         $questions->load('subject');
         $questions->load('parentAnswers.user');

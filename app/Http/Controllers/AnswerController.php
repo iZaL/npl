@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Src\Answer\AnswerRepository;
 use App\Src\Educator\Educator;
+use App\Src\Notification\NotificationRepository;
 use App\Src\Question\QuestionRepository;
 use App\Src\Student\Student;
 use Illuminate\Http\Request;
@@ -21,18 +22,23 @@ class AnswerController extends Controller
      * @var QuestionRepository
      */
     private $questionRepository;
+    /**
+     * @var NotificationRepository
+     */
+    private $notificationRepository;
 
     /**
      * @param AnswerRepository $answerRepository
      * @param QuestionRepository $questionRepository
+     * @param NotificationRepository $notificationRepository
      */
-    public function __construct(AnswerRepository $answerRepository, QuestionRepository $questionRepository)
+    public function __construct(AnswerRepository $answerRepository, QuestionRepository $questionRepository, NotificationRepository $notificationRepository)
     {
         $this->middleware('auth');
         $this->answerRepository = $answerRepository;
         $this->questionRepository = $questionRepository;
+        $this->notificationRepository = $notificationRepository;
     }
-
 
     /**
      * @param $id
@@ -80,11 +86,14 @@ class AnswerController extends Controller
             return redirect()->back()->with('warning', $e->getMessage());
         }
 
-        $question->answers()->create([
+        $answer = $question->answers()->create([
             'user_id'   => $user->id,
             'body_en'   => $request->body_en,
             'parent_id' => 0
         ]);
+
+        // notify the student about the answer
+        $answer->notifications()->create(['user_id' => $question->user_id]);
 
         return Redirect::action('AnswerController@createAnswer', $question->id)->with('success', 'Answer Posted');
     }
@@ -93,6 +102,7 @@ class AnswerController extends Controller
     {
         // check whether valid subject, valid level, valid chat
         $user = Auth::user();
+
         $question = $this->questionRepository->model->find($questionId);
 
         // Check If the Reply is from Educator
@@ -111,7 +121,19 @@ class AnswerController extends Controller
             return redirect()->back()->with('warning', 'Wrong Access');
         }
 
-        $answer = $this->answerRepository->model->find($answerId);
+        $answer = $this->answerRepository->model->with(['notifications'])->find($answerId);
+
+        // check whether the answer is parent ?
+        if(!$answer->isParent()) {
+            $answer = $this->answerRepository->model->with(['notifications'])->find($answer->parent_id);
+        }
+
+        // find all the unread notifications related to this user
+        $unreadNotifications = $user->unreadNotifications()->where('notifiable_id',$answer->id)->where('notifiable_type','Answer')->get();
+        foreach($unreadNotifications as $notification) {
+            $notification->markAsRead();
+        }
+
         $answer->load('childAnswers');
         $childAnswers = $answer->childAnswers;
 
@@ -125,15 +147,26 @@ class AnswerController extends Controller
         $question = $this->questionRepository->model->find($request->question_id);
         $answer = $this->answerRepository->model->find($request->answer_id);
 
-        $this->answerRepository->model->create([
+        $newAnswer = $this->answerRepository->model->create([
             'parent_id'   => $answer->id,
             'question_id' => $question->id,
             'user_id'     => $user->id,
             'body_en'     => $request->body_en
         ]);
 
-        return Redirect::action('AnswerController@createReply', [$question->id, $answer->id])->with('success',
-            'Answer Posted');
+        // notify user about the reply
+        // if the educator is replying, then reply the student
+        $parentAnswer = $this->answerRepository->model->with(['notifications'])->find($newAnswer->parent_id);
+
+        // if the student is replying, then notify the educator
+        if($user->id == $question->user_id) {
+            // parent answer is always form educator, so get the user_id from parent answer
+            $parentAnswer->notifications()->create(['user_id' => $parentAnswer->user_id]);
+        } else {
+            // notify student about the reply
+            $parentAnswer->notifications()->create(['user_id' => $question->user_id]);
+        }
+        return Redirect::action('AnswerController@createReply', [$question->id, $parentAnswer->id])->with('success','Answer Posted');
     }
 
     public function destroy($id)

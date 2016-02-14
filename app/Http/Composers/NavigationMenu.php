@@ -47,6 +47,7 @@ class NavigationMenu
                 $isStudent = true;
             }
         }
+
         $view->with(['subjects' => $subjects, 'levels' => $levels, 'user' => $user, 'isEducator'=>$isEducator, 'isStudent'=>$isStudent]);
 
     }

@@ -5,7 +5,6 @@
 @section('script')
     @parent
     <script src="/vendor/tinymce/tinymce.jquery.min.js"></script>
-
     <script>
         tinymce.init({
             selector: "textarea.editor",
@@ -27,8 +26,7 @@
 
             <div class="row inner-top-xs">
                 <div class="col-md-offset-3 col-md-6 col-sm-6 inner-right-xs inner-bottom-xs">
-                    {!! Form::open(['action' => 'QuestionController@store', 'method' => 'post','files'=>true, 'class'=>'form-horizontal'])
-                    !!}
+                    {!! Form::open(['action' => 'QuestionController@store', 'method' => 'post','files'=>true, 'class'=>'form-horizontal'])!!}
                     <div class="form-group">
                         {!! Form::label('subject', 'Select a subject', ['class' => 'control-label pull-left']) !!} <span
                                 class="red pull-left">*</span>
@@ -39,7 +37,7 @@
                         {!! Form::textarea('body_en', null, ['class' => 'form-control editor','placeholder'=>'Your Question']) !!}
                     </div>
                     <div class="form-group">
-                        {!! Form::submit('Submit',  ['class' => 'btn btn-primary form-control']) !!}
+                        {!! Form::submit('Submit',  ['class' => 'btn btn-green form-control']) !!}
                     </div>
                     {!! Form::close() !!}
                 </div>

@@ -20,6 +20,13 @@ class Question extends BaseModel
 
     protected $localeStrings = ['body'];
 
+    protected $morphClass = 'Question';
+
+    public function notifications()
+    {
+        return $this->morphMany('App\Src\Notification\Notification', 'notifiable');
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

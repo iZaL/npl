@@ -3,8 +3,10 @@
 namespace App\Src\User;
 
 use App\Core\LocaleTrait;
+use App\Src\Answer\Answer;
 use App\Src\Educator\Educator;
 use App\Src\Level\Level;
+use App\Src\Notification\Notification;
 use App\Src\Question\Question;
 use App\Src\Student\Student;
 use App\Src\Subject\Subject;
@@ -16,6 +18,7 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use Mockery\Matcher\Not;
 
 class User extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
 {
@@ -117,4 +120,42 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     {
         return $this->admin ? ( $this->active ? true: false ) : false;
     }
+
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class);
+    }
+
+    public function unreadNotifications()
+    {
+        return $this->notifications()->where('read',0);
+    }
+
+    public function unreadNotificationsCount()
+    {
+        return $this->hasOne(Notification::class,'user_id')
+            ->selectRaw('user_id, count(*) as aggregate')
+            ->where('read',0)
+            ->groupBy('user_id')
+            ;
+    }
+
+    public function getUnreadNotificationsCountAttribute()
+    {
+        // if relation is not loaded already, let's do it first
+        if (!$this->relationLoaded('unreadNotificationsCount')) {
+            $this->load('unreadNotificationsCount');
+        }
+
+        $related = $this->getRelation('unreadNotificationsCount');
+
+        // then return the count directly
+        return ($related) ? (int)$related->aggregate : 0;
+    }
+
+    public function answers()
+    {
+        return $this->hasMany(Answer::class);
+    }
+
 }

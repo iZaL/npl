@@ -32,12 +32,23 @@ class AnswerControllerTest extends TestCase
             ->type($question->id, 'question_id')
             ->type($answerBody, 'body_en')
             ->press('Submit');
+
+
         $this->seeInDatabase('answers',
             [
                 'body_en'     => $answerBody,
                 'user_id'     => $educator->id,
                 'question_id' => $question->id,
                 'parent_id'   => 0,
+            ]);
+
+        $answer = \App\Src\Answer\Answer::where('body_en',$answerBody)->where('question_id',$question->id)->first();
+
+        $this->seeInDatabase('notifications',
+            [
+                'user_id'     => $question->user_id,
+                'notifiable_id' => $answer->id,
+                'notifiable_type' => 'Answer'
             ]);
 
         $answer = App\Src\Answer\Answer::where('body_en',$answerBody)->first();
@@ -99,8 +110,7 @@ class AnswerControllerTest extends TestCase
         $question = factory('App\Src\Question\Question',
             1)->create(['user_id' => $student->id, 'subject_id' => 1, 'body_en' => $questionBody, 'level_id' => 2]);
 
-        $parentAnswer = factory('App\Src\Answer\Answer',
-            1)->create([
+        $parentAnswer = factory('App\Src\Answer\Answer',1)->create([
             'user_id'     => $educator->id,
             'question_id' => $question->id,
             'body_en'     => $answerBody,
@@ -123,7 +133,6 @@ class AnswerControllerTest extends TestCase
             ]);
 
         $this->onPage('question/' . $question->id . '/reply/' . $parentAnswer->id);
-
     }
 
     public function testReplySuccessAsStudent()

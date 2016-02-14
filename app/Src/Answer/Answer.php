@@ -16,6 +16,18 @@ class Answer extends BaseModel
 
     protected $localeStrings = ['body'];
 
+    protected $morphClass = 'Answer';
+
+    public function notifications()
+    {
+        return $this->morphMany('App\Src\Notification\Notification', 'notifiable');
+    }
+
+    public function unreadNotifications()
+    {
+        return $this->notifications()->where('read',0);
+    }
+
     public function question()
     {
         return $this->belongsTo(Question::class);
@@ -28,12 +40,17 @@ class Answer extends BaseModel
 
     public function parentAnswers()
     {
-        return $this->hasMany(Answer::class, 'id')->where('parent_id', 0);
+        return $this->hasMany(Answer::class, 'id')->where('parent_id', 0)->latest();
     }
 
     public function childAnswers()
     {
         return $this->hasMany(Answer::class, 'parent_id');
+    }
+
+    public function recentReply()
+    {
+        return $this->hasOne(Answer::class,'parent_id')->latest()->first();
     }
 
     public function childAnswersCount()
@@ -54,6 +71,11 @@ class Answer extends BaseModel
 
         // then return the count directly
         return ($related) ? (int)$related->aggregate : 0;
+    }
+
+    public function isParent()
+    {
+        return $this->parent_id == 0 ? true :false;
     }
 
 }

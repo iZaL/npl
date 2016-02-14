@@ -25,22 +25,16 @@
 @section('middle')
     <div class="row">
         <div class="col-sm-12">
-
             <div class="row inner-top-xs">
-
                 <div class="col-md-offset-3 col-md-6 col-sm-6 inner-right-xs inner-bottom-xs">
-                    {!! Form::open(['action' => 'AnswerController@store', 'method' => 'post','files'=>true, 'class'=>'form-horizontal'])
-                   !!}
-
+                    {!! Form::open(['action' => 'AnswerController@store', 'method' => 'post','files'=>true, 'class'=>'form-horizontal'])!!}
                     {!! Form::hidden('question_id',$question->id) !!}
-
                     {!! Form::label('body', 'Answer', ['class' => 'control-label']) !!} <span class="red">*</span>
                     {!! Form::textarea('body_en', null, ['class' => 'form-control editor','placeholder'=>'Your Answer']) !!}
-                    {!! Form::submit('Submit',  ['class' => 'form-control  btn btn-positive']) !!}
+                    {!! Form::submit('Submit',  ['class' => 'form-control  btn btn-green']) !!}
                     {!! Form::close() !!}
                 </div>
             </div>
         </div>
     </div>
-
 @endsection

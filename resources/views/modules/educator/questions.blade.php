@@ -64,11 +64,11 @@
                             @foreach($question->parentAnswers as $answer)
                                 <li class="list-group-item">
                                     <small class="navy">You answered
-                                        on {{ $answer->created_at->format('d-m-Y \a\t g:i:s a') }}</small>
+                                        on {{ $answer->recentReply()->created_at->format('d-m-Y \a\t g:i:s a') }}</small>
                                     <h3>
-                                        <a href="{{ action('AnswerController@createReply',['question_id'=>$question->id,'answer_id'=>$answer->id]) }}"
+                                        <a href="{{ action('AnswerController@createReply',['question_id'=>$question->id,'answer_id'=>$answer->recentReply()->id]) }}"
                                            class="np_code">
-                                            {!!  $answer->body !!} </a>
+                                            {!!  $answer->recentReply()->body !!} </a>
                                     </h3>
                                 </li>
                             @endforeach

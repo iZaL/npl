@@ -6,7 +6,6 @@ use App\Src\User\User;
 
 class Student extends BaseModel
 {
-
     protected $table = 'students';
 
     protected $guarded = ['id'];

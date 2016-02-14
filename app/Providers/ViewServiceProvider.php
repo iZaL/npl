@@ -17,6 +17,9 @@ class ViewServiceProvider extends ServiceProvider
         view()->composer(
             'partials.nav', 'App\Http\Composers\NavigationMenu'
         );
+        view()->composer(
+            'partials.profile-dropdown', 'App\Http\Composers\NotificationCount'
+        );
     }
 
     /**

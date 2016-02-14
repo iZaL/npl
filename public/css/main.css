@@ -5960,4 +5960,6 @@ input:focus:-ms-input-placeholder {
 	-skrollr-animation-name: shrink-logo;
 }
 
-
+.bg-gray {
+	background-color: #EAF2F3;
+}

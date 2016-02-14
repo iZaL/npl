@@ -62,11 +62,11 @@
                                         <small class="navy">Answer from</small>
                                         <b>{{ $answer->user->np_code }}</b>
 
-                                        <small> on {{ $answer->created_at->format('d-m-Y \a\t g:i:s a') }}</small>
+                                        <small> on {{ $answer->recentReply()->created_at->format('d-m-Y \a\t g:i:s a') }}</small>
                                         <h3>
-                                            <a href="{{ action('AnswerController@createReply',['question_id'=>$question->id,'answer_id'=>$answer->id]) }}"
+                                            <a href="{{ action('AnswerController@createReply',['question_id'=>$question->id,'answer_id'=>$answer->recentReply()->id]) }}"
                                                class="np_code">
-                                                {!!  $answer->body !!} </a>
+                                                {!!  $answer->recentReply()->body !!} </a>
                                         </h3>
 
                                     </li>

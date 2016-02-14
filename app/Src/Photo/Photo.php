@@ -15,7 +15,6 @@ class Photo extends BaseModel
     protected $table = 'photos';
 
     protected $types = [
-        'album'    => 'App\Src\Album\Album',
         'category' => 'App\Src\Category\Category',
         'blog'     => 'App\Src\Blog\Blog',
     ];

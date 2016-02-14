@@ -69,6 +69,8 @@ Route::resource('subject', 'SubjectController');
 
 Route::resource('level', 'LevelController');
 
+Route::resource('notification','NotificationController');
+
 Route::get('contact', ['as' => 'contact', 'uses' => 'PageController@getContact']);
 
 Route::post('contact', 'PageController@postContact');
@@ -80,6 +82,12 @@ Route::get('home', ['as' => 'home', 'uses' => 'HomeController@home']);
 Route::get('/', ['as' => 'index', 'uses' => 'HomeController@index']);
 
 Route::get('test', function () {
+
+    $notifications = \App\Src\Notification\Notification::all();
+    foreach($notifications as $notification) {
+        $notification->read= 0;
+        $notification->save();
+    }
 });
 
 Route::get('mail',function(){
