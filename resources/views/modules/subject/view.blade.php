@@ -47,7 +47,7 @@
                                                                     <h3>
                                                                         <a href="{{ action('AnswerController@createReply',['question_id'=>$question->id,'answer_id'=>$answer->id]) }}"
                                                                            class="np_code">
-                                                                            {!! $answer->body !!} </a>
+                                                                            {{ str_limit(strip_tags($answer->body,100)) }} </a>
                                                                     </h3>
 
                                                                 </li>
@@ -64,9 +64,7 @@
                                             @else
                                                 <div class="row">
                                                     <div class="col-md-7">
-                                                        <h3>Q:
-                                                            {{ ucfirst($question->body) }}
-                                                        </h3>
+                                                        <h3>Q:  {{ ucfirst($question->body) }}  </h3>
                                                     </div>
                                                     <div class="col-md-5 ">
                                                         <small class="pull-right gray">{{ $question->created_at->format('d-m-Y \a\t g:i:s a')  }}</small>
@@ -78,9 +76,7 @@
                                         @else
                                             <div class="row">
                                                 <div class="col-md-7">
-                                                    <h3>Q:
-                                                        {{ ucfirst($question->body) }}
-                                                    </h3>
+                                                    <h3>Q: {{ ucfirst($question->body) }} </h3>
                                                 </div>
                                                 <div class="col-md-5 ">
                                                     <small class="pull-right gray">{{ $question->created_at->format('d-m-Y \a\t g:i:s a')  }}</small>

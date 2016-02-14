@@ -50,7 +50,7 @@ class Answer extends BaseModel
 
     public function recentReply()
     {
-        return $this->hasOne(Answer::class,'parent_id')->latest()->first();
+        return $this->childAnswers()->latest()->first();
     }
 
     public function childAnswersCount()

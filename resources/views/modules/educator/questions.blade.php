@@ -62,15 +62,27 @@
                         @if(count($question->parentAnswers))
 
                             @foreach($question->parentAnswers as $answer)
-                                <li class="list-group-item">
-                                    <small class="navy">You answered
-                                        on {{ $answer->recentReply()->created_at->format('d-m-Y \a\t g:i:s a') }}</small>
-                                    <h3>
-                                        <a href="{{ action('AnswerController@createReply',['question_id'=>$question->id,'answer_id'=>$answer->recentReply()->id]) }}"
-                                           class="np_code">
-                                            {!!  $answer->recentReply()->body !!} </a>
-                                    </h3>
-                                </li>
+
+                                @if($answer->recentReply())
+                                    <li class="list-group-item">
+                                        <small class="navy">You answered on {{ $answer->recentReply()->created_at->format('d-m-Y \a\t g:i:s a') }}</small>
+                                        <h3>
+                                            <a href="{{ action('AnswerController@createReply',['question_id'=>$question->id,'answer_id'=>$answer->recentReply()->id]) }}"
+                                               class="np_code">
+                                                {!!  str_limit($answer->recentReply()->body,100) !!} </a>
+                                        </h3>
+                                    </li>
+                                @else
+                                    <li class="list-group-item">
+                                        <small class="navy">You answered on {{ $answer->created_at->format('d-m-Y \a\t g:i:s a') }}</small>
+                                        <h3>
+                                            <a href="{{ action('AnswerController@createReply',['question_id'=>$question->id,'answer_id'=>$answer->id]) }}"
+                                               class="np_code">
+                                                {!!  str_limit($answer->body,100) !!} </a>
+                                        </h3>
+                                    </li>
+                                @endif
+
                             @endforeach
                         @else
                             <h4 class="navy">You haven't answered yet !

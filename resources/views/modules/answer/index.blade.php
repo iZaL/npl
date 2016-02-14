@@ -6,7 +6,6 @@
 
 @endsection
 
-
 @section('right')
 
     <h2 class="blockhead"></h2>
