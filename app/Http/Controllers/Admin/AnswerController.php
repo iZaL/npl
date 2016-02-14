@@ -73,6 +73,22 @@ class AnswerController extends Controller
     /**
      * @param $id
      */
+//    public function destroy($id)
+//    {
+//        // IF Parent Answer delete All Child Answers
+//        $answer = $this->answerRepository->model->find($id);
+//
+//        if(!$answer) {
+//            return redirect()->back()->with('error','incorrect access');
+//        }
+//        $answer->childAnswers()->delete();
+//
+////        $answer->question()->delete();
+//
+//        $answer->delete();
+//
+//    }
+
     public function destroy($id)
     {
         // IF Parent Answer delete All Child Answers
@@ -81,9 +97,15 @@ class AnswerController extends Controller
         if(!$answer) {
             return redirect()->back()->with('error','incorrect access');
         }
-        $answer->childAnswers()->delete();
 
-        $answer->question()->delete();
+        if($answer->isParent()) {
+
+            foreach($answer->childAnswers as $child) {
+                $child->notifications()->delete();
+            }
+            $answer->childAnswers()->delete();
+        }
+        $answer->notifications()->delete();
 
         $answer->delete();
 

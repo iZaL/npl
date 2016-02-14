@@ -117,13 +117,14 @@ class AnswerControllerTest extends TestCase
             'parent_id'   => 0
         ]);
 
-        $reply1 = 'But Sometimes Physics is useful';
+        $reply1 = 'But Sometimes Physics is useful'.uniqid();
         $this->actingAs($educator)
             ->visit('/question/' . $question->id . '/reply/' . $parentAnswer->id)
             ->type($question->id, 'question_id')
             ->type($parentAnswer->id, 'answer_id')
             ->type($reply1, 'body_en')
-            ->press('Reply');;
+            ->press('Reply');
+
         $this->seeInDatabase('answers',
             [
                 'body_en'     => $reply1,
@@ -132,7 +133,9 @@ class AnswerControllerTest extends TestCase
                 'parent_id'   => $parentAnswer->id,
             ]);
 
-        $this->onPage('question/' . $question->id . '/reply/' . $parentAnswer->id);
+        $currentAnswer= \App\Src\Answer\Answer::where('body_en',$reply1)->first();
+
+        $this->onPage('question/' . $question->id . '/reply/' . $currentAnswer->id);
     }
 
     public function testReplySuccessAsStudent()
@@ -153,7 +156,7 @@ class AnswerControllerTest extends TestCase
             'parent_id'   => 0
         ]);
 
-        $reply1 = 'are u out of ur mind sir ? ';
+        $reply1 = 'are u out of ur mind sir ? '.uniqid();
         $this->actingAs($student)
             ->visit('/question/' . $question->id . '/reply/' . $parentAnswer->id)
             ->type($question->id, 'question_id')
@@ -168,7 +171,9 @@ class AnswerControllerTest extends TestCase
                 'parent_id'   => $parentAnswer->id,
             ]);
 
-        $this->onPage('question/' . $question->id . '/reply/' . $parentAnswer->id);
+        $currentAnswer= \App\Src\Answer\Answer::where('body_en',$reply1)->first();
+
+        $this->onPage('question/' . $question->id . '/reply/' . $currentAnswer->id);
 
     }
 

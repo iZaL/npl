@@ -33,7 +33,7 @@ class StudentController extends Controller
             }
         }
 
-        return view('modules.student.index', compact('student'));
+        return view('modules.student.index', compact('student','user'));
     }
 
     public function getQuestions()

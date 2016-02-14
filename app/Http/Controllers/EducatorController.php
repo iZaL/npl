@@ -34,7 +34,7 @@ class EducatorController extends Controller
             }
         }
 
-        return view('modules.educator.index', compact('educator'));
+        return view('modules.educator.index', compact('educator','user'));
     }
 
 

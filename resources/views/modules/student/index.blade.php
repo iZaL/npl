@@ -1,10 +1,6 @@
 @extends('layouts.two_col')
 
 @section('left')
-
-@endsection
-
-@section('right')
     <div class="blockpara">
         <p>The main objectives of this website are to help students understand their courses, answer urgent
             questions, prepare for examinations, correct homework etc. This is done by establishing direct
@@ -24,7 +20,7 @@
     </div>
 
     @if($student)
-        <a href="{{ action('ProfileController@editProfile') }}" class="btn btn-primary">My Profile</a>&nbsp;&nbsp;&nbsp;
+        <a href="{{ action('ProfileController@show',$user->id) }}" class="btn btn-primary">My Profile</a>&nbsp;&nbsp;&nbsp;
         <a href="{{ action('QuestionController@create') }}" class="btn btn-success">Ask</a>&nbsp;&nbsp;&nbsp;
         <a href="{{ action('StudentController@getQuestions') }}" class="btn btn-primary">My Questions</a><br><br>
     @endif

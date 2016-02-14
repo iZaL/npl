@@ -71,10 +71,17 @@ class AdminQuestionControllerTest extends TestCase
             'body_en'     => $answerBody,
         ]);
 
+        $notification = factory('App\Src\Notification\Notification',1)->create([
+            'notifiable_type' => 'Answer',
+            'user_id'     => $student->id,
+            'notifiable_id'     => $answer->first()->id
+        ]);
+
         $this->actingAs(Auth::loginUsingId(1));
         $this->call('DELETE', '/admin/question/' . $question->id);
         $this->notSeeInDatabase('questions', ['id' => $question->id]);
         $this->notSeeInDatabase('answers', ['id' => $answer->first()->id]);
         $this->notSeeInDatabase('answers', ['id' => $answer->last()->id]);
+        $this->notSeeInDatabase('notifications', ['id' => $answer->first()->id]);
     }
 }

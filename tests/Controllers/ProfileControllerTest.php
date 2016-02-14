@@ -8,7 +8,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 
-class AuthControllerTest extends TestCase
+class ProfileControllerTest extends TestCase
 {
 
     use DatabaseTransactions;

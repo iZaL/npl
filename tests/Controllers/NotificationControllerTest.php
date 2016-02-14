@@ -51,7 +51,8 @@ class NotificationControllerTest extends TestCase
                 'answer_id' =>$answer->id
             ]
         );
-        $this->seeInDatabase('notifications',['user_id'=>$educator->id,'read'=>0,'notifiable_id'=>$answer->id,'notifiable_type'=>'Answer']);
+        $currentReply = App\Src\Answer\Answer::where('body_en',$reply1)->first();
+        $this->seeInDatabase('notifications',['user_id'=>$educator->id,'read'=>0,'notifiable_id'=>$currentReply->id,'notifiable_type'=>'Answer']);
 
         $reply2 = uniqid();
 
@@ -63,7 +64,8 @@ class NotificationControllerTest extends TestCase
                 'answer_id' =>$answer->id
             ]
         );
-        $this->seeInDatabase('notifications',['user_id'=>$student->id,'read'=>0,'notifiable_id'=>$answer->id,'notifiable_type'=>'Answer']);
+        $currentReply = App\Src\Answer\Answer::where('body_en',$reply2)->first();
+        $this->seeInDatabase('notifications',['user_id'=>$student->id,'read'=>0,'notifiable_id'=>$currentReply->id,'notifiable_type'=>'Answer']);
 
     }
 

@@ -18,9 +18,7 @@ class EducatorControllerTest extends TestCase
 
     public function testEducatorPageHasProfileLinks()
     {
-
         $educator = Auth::loginUsingId(2);
-
         $this->actingAs($educator)
             ->visit('/educator')
             ->see('My Profile');

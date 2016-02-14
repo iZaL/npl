@@ -97,6 +97,16 @@ class QuestionController extends Controller
         // delete all the answers for the question
         $question = $this->questionRepository->model->find($id);
 
+        foreach($question->answers as $answer) {
+            if($answer->isParent()) {
+                foreach($answer->childAnswers as $child) {
+                    $child->notifications()->delete();
+                }
+                $answer->childAnswers()->delete();
+            }
+            $answer->notifications()->delete();
+        }
+
         $question->answers()->delete();
 
         $question->delete();
