@@ -45,15 +45,12 @@ class StudentController extends Controller
         if (!is_a($student, Student::class)) {
             return redirect()->back()->with('warning', 'Wrong Access');
         }
-
         $student->load('questions');
-
         $questions = $student->questions()->latest()->get();
-
         $questions->load('subject');
         $questions->load('parentAnswers.user');
 
-        return view('modules.student.questions', compact('questions', 'answers'));
+        return view('modules.student.questions', compact('questions', 'answers','user'));
     }
 
 }

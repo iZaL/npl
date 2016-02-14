@@ -46,42 +46,46 @@
             <div class="col-md-9">
 
                 <div class="row">
-                    <div class="col-md-7">
-                        <h2>Q: {!! ucfirst($question->body) !!}</h2>
+                    <div class="col-md-9">
+                        <h2>{{ ucfirst(strip_tags($question->body)) }}</h2>
                     </div>
-                    <div class="col-md-5 ">
+                    <div class="col-md-3 ">
                         <small class="pull-right gray">{{ $question->created_at->format('d-m-Y \a\t g:i:s a')  }}</small>
                     </div>
 
                     <div class="col-md-12">
-
                         <ul class="list-group">
                             @if(count($question->parentAnswers))
                                 @foreach($question->parentAnswers as $answer)
-                                    @if($answer->recentReply())
-
+                                    @if($answer = $answer->recentReply())
                                         <li class="list-group-item">
-                                            <small class="navy">Answer from</small>
-                                            <b>{{ $answer->user->np_code }}</b>
-
-                                            <small> on {{ $answer->recentReply()->created_at->format('d-m-Y \a\t g:i:s a') }}</small>
+                                            @if($answer->user_id == $user->id)
+                                                <small class="navy">You answered</small>
+                                            @else
+                                                <small class="navy">Answer from</small>
+                                                <b>{{ $answer->user->np_code }}</b>
+                                            @endif
+                                            <small> on {{ $answer->created_at->format('d-m-Y \a\t g:i:s a') }}</small>
                                             <h3>
-                                                <a href="{{ action('AnswerController@createReply',['question_id'=>$question->id,'answer_id'=>$answer->recentReply()->id]) }}"
+                                                <a href="{{ action('AnswerController@createReply',['question_id'=>$question->id,'answer_id'=>$answer->id]) }}"
                                                    class="np_code">
-                                                    {!!  $answer->recentReply()->body !!} </a>
+                                                    {!! str_limit($answer->body,100) !!} </a>
                                             </h3>
 
                                         </li>
                                     @else
                                         <li class="list-group-item">
-                                            <small class="navy">Answer from</small>
-                                            <b>{{ $answer->user->np_code }}</b>
-
+                                            @if($answer->user_id == $user->id)
+                                                <small class="navy">You answered</small>
+                                            @else
+                                                <small class="navy">Answer from</small>
+                                                <b>{{ $answer->user->np_code }}</b>
+                                            @endif
                                             <small> on {{ $answer->created_at->format('d-m-Y \a\t g:i:s a') }}</small>
                                             <h3>
                                                 <a href="{{ action('AnswerController@createReply',['question_id'=>$question->id,'answer_id'=>$answer->id]) }}"
                                                    class="np_code">
-                                                    {!!  $answer->body !!} </a>
+                                                    {!! str_limit($answer->body,100) !!} </a>
                                             </h3>
 
                                         </li>
