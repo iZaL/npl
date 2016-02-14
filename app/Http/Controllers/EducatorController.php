@@ -75,6 +75,7 @@ class EducatorController extends Controller
         ])->whereIn('subject_id', $subjectIds)->whereIn('level_id',
             $levelIds)->latest()->get();
 
+
         return view('modules.educator.questions', compact('questions','user'));
     }
 

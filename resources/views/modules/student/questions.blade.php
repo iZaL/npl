@@ -57,19 +57,19 @@
                         <ul class="list-group">
                             @if(count($question->parentAnswers))
                                 @foreach($question->parentAnswers as $answer)
-                                    @if($answer = $answer->recentReply())
+                                    @if($recentAnswer = $answer->recentReply())
                                         <li class="list-group-item">
-                                            @if($answer->user_id == $user->id)
+                                            @if($recentAnswer->user_id == $user->id)
                                                 <small class="navy">You answered</small>
                                             @else
                                                 <small class="navy">Answer from</small>
-                                                <b>{{ $answer->user->np_code }}</b>
+                                                <b>{{ $recentAnswer->user->np_code }}</b>
                                             @endif
-                                            <small> on {{ $answer->created_at->format('d-m-Y \a\t g:i:s a') }}</small>
+                                            <small> on {{ $recentAnswer->created_at->format('d-m-Y \a\t g:i:s a') }}</small>
                                             <h3>
-                                                <a href="{{ action('AnswerController@createReply',['question_id'=>$question->id,'answer_id'=>$answer->id]) }}"
+                                                <a href="{{ action('AnswerController@createReply',['question_id'=>$question->id,'answer_id'=>$recentAnswer->id]) }}"
                                                    class="np_code">
-                                                    {!! str_limit($answer->body,100) !!} </a>
+                                                    {!! str_limit($recentAnswer->body,100) !!} </a>
                                             </h3>
 
                                         </li>
