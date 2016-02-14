@@ -125,11 +125,18 @@ class AnswerController extends Controller
 
         // check whether the answer is parent ?
         if(!$answer->isParent()) {
+            // if its not parent
+            // find parent
+            // find child answer IDs
             $answer = $this->answerRepository->model->with(['user','notifications'])->find($answer->parent_id);
+            $childAnswerIDs = $question->childAnswers->modelKeys();
+            $unreadNotifications = $user->unreadNotifications()->whereIn('notifiable_id',$childAnswerIDs)->where('notifiable_type','Answer')->get();
+        } else {
+            // If Parent
+            $unreadNotifications = $user->unreadNotifications()->where('notifiable_id',$answer->id)->where('notifiable_type','Answer')->get();
         }
 
         // find all the unread notifications related to this user
-        $unreadNotifications = $user->unreadNotifications()->where('notifiable_id',$answer->id)->where('notifiable_type','Answer')->get();
         foreach($unreadNotifications as $notification) {
             $notification->markAsRead();
         }
@@ -161,12 +168,12 @@ class AnswerController extends Controller
         // if the student is replying, then notify the educator
         if($user->id == $question->user_id) {
             // parent answer is always form educator, so get the user_id from parent answer
-            $parentAnswer->notifications()->create(['user_id' => $parentAnswer->user_id]);
+            $newAnswer->notifications()->create(['user_id' => $parentAnswer->user_id]);
         } else {
             // notify student about the reply
-            $parentAnswer->notifications()->create(['user_id' => $question->user_id]);
+            $newAnswer->notifications()->create(['user_id' => $question->user_id]);
         }
-        return Redirect::action('AnswerController@createReply', [$question->id, $parentAnswer->id])->with('success','Answer Posted');
+        return Redirect::action('AnswerController@createReply', [$question->id, $newAnswer->id])->with('success','Answer Posted');
     }
 
     public function destroy($id)

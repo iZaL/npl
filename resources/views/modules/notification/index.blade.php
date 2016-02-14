@@ -6,7 +6,7 @@
     <div class="blockpara">
         <ul class="list-group">
             @foreach($notifications as $notification)
-                @if(is_a($notification->notifiable,\App\Src\Answer\Answer::class))
+                @if($notification->notifiable instanceOf \App\Src\Answer\Answer)
                     @if($notification->notifiable->question)
                         @if($notification->notifiable->question->user)
                             <li class="list-group-item">
@@ -15,7 +15,7 @@
                                 @elseif($isStudent)
                                     {{ $notification->notifiable->user->np_code }}
                                 @endif
-                                <a href="{{ action('AnswerController@createAnswer',$notification->notifiable->question->id) }}">
+                                <a href="{{ action('AnswerController@createReply',['question_id'=>$notification->notifiable->question->id,'answer_id'=>$notification->notifiable->id]) }}">
                                     {!! strip_tags($notification->notifiable->body) !!}
                                 </a>
                                 <span class="navy"> &nbsp; on {{ $notification->created_at->format('d-m-Y \a\t g:i:s a')  }}</span>
