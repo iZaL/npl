@@ -2,6 +2,7 @@
 namespace App\Src\Notification;
 
 use App\Core\BaseModel;
+use App\Src\User\User;
 
 class Notification extends BaseModel
 {
@@ -14,10 +15,16 @@ class Notification extends BaseModel
 
     protected $table = 'notifications';
 
+//    protected $with = ['user'];
     protected $types = [
         'answer'    => 'App\Src\Answer\Answer',
         'question' => 'App\Src\Question\Question'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function notifiable()
     {

@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Src\Answer\Answer;
+use App\Src\Educator\Educator;
 use App\Src\Notification\NotificationRepository;
+use App\Src\Student\Student;
 use Auth;
 
 class NotificationController extends Controller
@@ -23,14 +26,19 @@ class NotificationController extends Controller
 
     public function index()
     {
+        $isEducator = false;
+        $isStudent = false;
         $user = Auth::user();
+        if(is_a($user->getType(),Educator::class)) {
+            $isEducator = true;
+        } elseif(is_a($user->getType(),Student::class)) {
+            $isStudent = true;
+        }
         $user->load('unreadNotifications');
         $notifications = $user->unreadNotifications;
+        $notifications->load('notifiable.question.user');
 
-//        foreach($notifications as $notification) {
-//            dd($notification->notifiable->user);
-//        }
-        return view('modules.notification.index',compact('user','notifications'));
+        return view('modules.notification.index',compact('user','notifications','isEducator','isStudent'));
     }
 
 }

@@ -121,11 +121,11 @@ class AnswerController extends Controller
             return redirect()->back()->with('warning', 'Wrong Access');
         }
 
-        $answer = $this->answerRepository->model->with(['notifications'])->find($answerId);
+        $answer = $this->answerRepository->model->with(['user','notifications'])->find($answerId);
 
         // check whether the answer is parent ?
         if(!$answer->isParent()) {
-            $answer = $this->answerRepository->model->with(['notifications'])->find($answer->parent_id);
+            $answer = $this->answerRepository->model->with(['user','notifications'])->find($answer->parent_id);
         }
 
         // find all the unread notifications related to this user
@@ -134,7 +134,7 @@ class AnswerController extends Controller
             $notification->markAsRead();
         }
 
-        $answer->load('childAnswers');
+        $answer->load('childAnswers.user');
         $childAnswers = $answer->childAnswers;
 
         return view('modules.answer.reply', compact('user', 'question', 'answer', 'childAnswers'));
