@@ -74,10 +74,10 @@ class NotificationControllerTest extends TestCase
         $user = factory(User::class,1)->create(['email'=>uniqid(),'np_code'=>uniqid()]);
 
         $unReadNotifications = factory('App\Src\Notification\Notification',
-            3)->create(['user_id' => $user->id, 'notifiable_id'=>1, 'notifiable_type'=>'Question', 'read'=> 0]);
+            3)->create(['user_id' => $user->id, 'notifiable_id'=>1, 'notifiable_type'=>'Answer', 'read'=> 0]);
 
         $readNotifications = factory('App\Src\Notification\Notification',
-            1)->create(['user_id' => $user->id, 'notifiable_id'=>1, 'notifiable_type'=>'Question', 'read'=> 1]);
+            1)->create(['user_id' => $user->id, 'notifiable_id'=>1, 'notifiable_type'=>'Answer', 'read'=> 1]);
 
         $this->actingAs($user)
             ->visit('/student/questions')
