@@ -45,7 +45,7 @@ class Answer extends BaseModel
 
     public function childAnswers()
     {
-        return $this->hasMany(self::class, 'parent_id')->latest();
+        return $this->hasMany(self::class, 'parent_id');
     }
 
     public function recentReply()
