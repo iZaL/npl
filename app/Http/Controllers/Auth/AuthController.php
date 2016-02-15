@@ -94,7 +94,7 @@ class AuthController extends Controller
             return $this->sendLockoutResponse($request);
         }
 
-        if (Auth::attempt((['email' => strtolower($request->get('email')), 'password' => $request->get('password'), 'active' => 1]),
+        if (Auth::attempt((['email' => strtolower($request->get('email')), 'password' => $request->get('password'), 'active' => 0]),
             $request->has('remember'))
         ) {
             return $this->handleUserWasAuthenticated($request, $throttles);
@@ -210,8 +210,6 @@ class AuthController extends Controller
             'qualification',
             'experience'
         ]));
-        $user->active=1;
-        $user->save();
 
         if ($request->levels) {
             $user->levels()->sync($request->levels);
