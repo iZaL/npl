@@ -94,7 +94,7 @@ class AuthController extends Controller
             return $this->sendLockoutResponse($request);
         }
 
-        if (Auth::attempt((['email' => strtolower($request->get('email')), 'password' => $request->get('password'), 'active' => 0]),
+        if (Auth::attempt((['email' => strtolower($request->get('email')), 'password' => $request->get('password')]),
             $request->has('remember'))
         ) {
             return $this->handleUserWasAuthenticated($request, $throttles);
