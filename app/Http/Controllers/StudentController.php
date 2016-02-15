@@ -32,7 +32,6 @@ class StudentController extends Controller
                 $student = true;
             }
         }
-
         return view('modules.student.index', compact('student','user'));
     }
 
@@ -46,8 +45,8 @@ class StudentController extends Controller
         }
 
         $questions = $student->questions()->with([
-            'subject','parentAnswers.recentReply.user','parentAnswers.user'])
-            ->latest()->get();
+            'subject','parentAnswers.recentReply.user','parentAnswers.user'
+        ])->latest()->get();
         return view('modules.student.questions', compact('questions', 'answers','user'));
     }
 
