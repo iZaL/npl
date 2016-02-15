@@ -1,13 +1,18 @@
 @if(Auth::check())
     <div class="btn-group pull-right profile-nav">
         @if(isset($unreadNotificationsCount) && ($unreadNotificationsCount > 0))
-            <a href="{{ action('NotificationController@index') }}">
-                <span class="badge" style="background-color:#95C950;font-size: 15px">
-                    <span style="padding: 2px 0">
-                        {{ $unreadNotificationsCount }} <i class="fa fa-bell"></i>
+            <span class="badge notification-count" >
+                <a href="{{ action('NotificationController@index') }}">
+                    <span class="count">
+                        {{ $unreadNotificationsCount }}
                     </span>
-                </span>
-            </a>
+                </a>
+            </span>
+            <span class="badge notification-icon">
+                <a href="{{ action('NotificationController@index') }}">
+                    Notification <i class="fa fa-bell" style="font-size: 16px"></i>
+                </a>
+            </span>
         @endif
         <a class="dropdown-toggle" href="#" data-toggle="dropdown">
             Welcome, {{Auth::user()->firstname_en}} ({{Auth::user()->np_code}}) <span class="caret"></span>

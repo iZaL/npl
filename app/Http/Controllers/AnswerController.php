@@ -121,19 +121,20 @@ class AnswerController extends Controller
             return redirect()->back()->with('warning', 'Wrong Access');
         }
 
-        $answer = $this->answerRepository->model->with(['user','notifications'])->find($answerId);
+        $answer = $this->answerRepository->model->find($answerId);
 
         // check whether the answer is parent ?
         if(!$answer->isParent()) {
             // if its not parent
-            // find parent
-            // find child answer IDs
-            $answer = $this->answerRepository->model->with(['user','notifications'])->find($answer->parent_id);
-            $childAnswerIDs = $question->childAnswers->modelKeys();
+            // find parent answer and get all the child answers for it
+            // then fetch the notifications for all the child answers
+            $answer = $this->answerRepository->model->find($answer->parent_id);
+            $childAnswerIDs = $answer->childAnswers->modelKeys();
+//            $unreadNotifications = $user->unreadNotifications()->where('notifiable_id',$answer->id)->whereIn('notifiable_id',$childAnswerIDs)->where('notifiable_type','Answer')->get();
             $unreadNotifications = $user->unreadNotifications()->whereIn('notifiable_id',$childAnswerIDs)->where('notifiable_type','Answer')->get();
         } else {
-            // If Parent
-            $unreadNotifications = $user->unreadNotifications()->where('notifiable_id',$answer->id)->where('notifiable_type','Answer')->get();
+            // If its a parent answer
+             $unreadNotifications = $user->unreadNotifications()->where('notifiable_id',$answer->id)->where('notifiable_type','Answer')->get();
         }
 
         // find all the unread notifications related to this user
@@ -173,6 +174,7 @@ class AnswerController extends Controller
             // notify student about the reply
             $newAnswer->notifications()->create(['user_id' => $question->user_id]);
         }
+
         return Redirect::action('AnswerController@createReply', [$question->id, $newAnswer->id])->with('success','Answer Posted');
     }
 

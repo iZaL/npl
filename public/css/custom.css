@@ -96,18 +96,43 @@
     margin-top: -10px;
 }
 
-.profile-nav{
-    line-height: 55px;
-}
 
-.navbar .profile-nav li a {
-    line-height: 10px;
-    padding: 5px;
-    color: #73879C;
-    white-space: normal;
-}
 
 .modal-content {
     height:350px;
 }
+
+.profile-nav {
+    line-height: 55px;
+    position: relative;
+}
+
+.notification-count {
+    background-color:#D41010;
+    position: absolute;
+    top:4px;
+    left:-8px;
+}
+.notification-count a {
+    color:#ffffff;
+}
+.notification-count .count {
+    padding: 2px 2px;
+    font-size: 13px;
+}
+.notification-icon {
+    background-color:#AEE8F7;
+    font-size: 14px
+}
+.notification-icon a {
+    color:#ffffff;
+}
+.profile-nav .notification-icon:hover {
+    background-color: #F2D4D5;
+    background-color: #94BD23;
+}
+.profile-nav .notification-count:hover {
+    background-color: #F91414;
+}
+
 

@@ -36,7 +36,7 @@ class NotificationController extends Controller
         }
         $user->load('unreadNotifications');
         $notifications = $user->unreadNotifications()->latest()->get();
-        $notifications->load('notifiable.question.user');
+//        $notifications->load('notifiable.question.user');
 
         return view('modules.notification.index',compact('user','notifications','isEducator','isStudent'));
     }

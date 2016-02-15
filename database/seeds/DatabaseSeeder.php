@@ -80,11 +80,49 @@ class DatabaseSeeder extends Seeder
         factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 4, 'subject_id' => 6, 'active' => 1]);
 
 
-//        factory('App\Src\Question\Question', 1)->create(['user_id'    => 5,
-//            'subject_id' => 1,
-//            'level_id'   => 2,
-//            'body_en'    => 'what is physics ?'
-//        ]);
+        $question1 = factory('App\Src\Question\Question', 1)->create(['user_id'    => 5,
+            'subject_id' => 1,
+            'level_id'   => 2,
+            'body_en'    => 'Radiocarbon is produced in the atmosphere as a result of ?'
+        ]);
+
+        $answer1 = factory('App\Src\Answer\Answer', 1)->create([
+            'user_id'    => 4,
+            'question_id' => $question1->id,
+            'parent_id'   => 0,
+            'body_en'    => 'collision between fast neutrons and nitrogen nuclei present in the atmosphere'
+        ]);
+
+        $question2 = factory('App\Src\Question\Question', 1)->create(
+            [
+                'user_id'    => 5,
+                'subject_id' => 1,
+                'level_id'   => 2,
+                'body_en'    => 'It is easier to roll a stone up a sloping road than to lift it vertical upwards because ?'
+            ]);
+
+        $answer2 = factory('App\Src\Answer\Answer', 1)->create([
+            'user_id'    => 4,
+            'question_id' => $question2->id,
+            'parent_id'   => 0,
+            'body_en'    => 'work done in rolling is more than in lifting'
+        ]);
+
+        $answer2A = factory('App\Src\Answer\Answer', 1)->create([
+            'user_id'    => 2,
+            'question_id' => $question2->id,
+            'parent_id'   => 0,
+            'body_en'    => 'work done in lifting the stone is equal to rolling it'
+        ]);
+
+        $studentReplyQ1 = factory('App\Src\Answer\Answer', 1)->create([
+            'user_id'    => 5,
+            'question_id' => $question1->id,
+            'parent_id'   => $answer1->id,
+            'body_en'    => 'thank you for the answer'
+        ]);
+
+
 //        factory('App\Src\Question\Question', 1)->create(['user_id'    => 5,
 //            'subject_id' => 1,
 //            'level_id'   => 3,
