@@ -74,20 +74,20 @@ class ProfileController extends Controller
         $isStudent = false;
         $subjects = [];
         $user= $this->userRepository->model->with(['levels','subjects'])->find($id);
-        $userType =  (new \ReflectionClass($user->getType()))->getShortName();
+        $userType =  session()->get('userType');
         $levels =  implode(', ',(array_map(function($name) {
             return ucfirst($name);
         }, $user->levels->lists('name_en')->toArray())));
 
-        if(Auth::check() && (Auth::user()->id == $id)) {
+        if(Auth::user()->id == $id) {
             $isOwner =true;
-            if(is_a($user->getType(),Educator::class)) {
+            if($user->isEducator()) {
                 $isEducator = true;
                 // Iterate over subjects and return each subject with Uppercase
                 $subjects =  implode(', ',(array_map(function($name) {
                     return ucfirst($name);
                 }, $user->subjects->lists('name_en')->toArray())));
-            } elseif(is_a($user->getType(),Student::class)) {
+            } elseif($user->isStudent()) {
                 $isStudent=true;
             }
         }
@@ -97,7 +97,7 @@ class ProfileController extends Controller
 
     public function edit($id)
     {
-        if(Auth::check() && (Auth::user()->id != $id)) {
+        if(Auth::user()->id != $id) {
             return redirect()->back()->with('warning','Operation not allowed');
         }
 
@@ -105,7 +105,7 @@ class ProfileController extends Controller
         $profile = null;
         $isEducator = false;
 
-        if (is_a($user->getType(), Educator::class)) {
+        if ($user->isEducator()) {
             $isEducator = true;
             $profile = $user->getType();
         }
@@ -115,7 +115,7 @@ class ProfileController extends Controller
 
     public function update(Request $request,$id)
     {
-        if(Auth::check() && (Auth::user()->id != $id)) {
+        if(Auth::user()->id != $id) {
             return redirect()->back()->with('warning','Operation not allowed');
         }
 
@@ -136,7 +136,7 @@ class ProfileController extends Controller
 
     public function destroy($id)
     {
-        if(Auth::check() && Auth::user()->id == $id) {
+        if(Auth::user()->id == $id) {
             $user = $this->userRepository->model->find($id);
             if (is_a($student = $user->getType(), Student::class)) {
                 $request = Request::create('/admin/student/' . $student->id, 'DELETE', []);

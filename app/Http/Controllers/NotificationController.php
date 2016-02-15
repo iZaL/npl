@@ -28,13 +28,17 @@ class NotificationController extends Controller
     {
         $isEducator = false;
         $isStudent = false;
+
         $user = Auth::user();
+
         if($user->isEducator()) {
             $isEducator = true;
         } elseif($user->isStudent()) {
             $isStudent = true;
         }
+
         $user->load('unreadNotifications');
+
         $notifications = $user->unreadNotifications()->latest()->get();
 
         return view('modules.notification.index',compact('user','notifications','isEducator','isStudent'));
