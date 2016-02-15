@@ -37,11 +37,11 @@ class DatabaseSeeder extends Seeder
         // 2,4= Educator
         // 3,5= Student
 
-        factory('App\Src\User\User', 1)->create();
-        factory('App\Src\User\User', 1)->create(['email' => 'educator@test.com', 'np_code' => 'NP2122']);
-        factory('App\Src\User\User', 1)->create(['email' => 'student@test.com', 'np_code' => 'NP2123']);
-        factory('App\Src\User\User', 1)->create(['email' => 'educator1@test.com', 'np_code' => 'NP2125']);
-        factory('App\Src\User\User', 1)->create(['email' => 'student1@test.com', 'np_code' => 'NP2126']);
+        factory('App\Src\User\User', 1)->create(['admin'=>1]);
+        factory('App\Src\User\User', 1)->create(['email' => 'educator@test.com', 'np_code' => 'NP99001']);
+        factory('App\Src\User\User', 1)->create(['email' => 'student@test.com', 'np_code' => 'NP1001']);
+        factory('App\Src\User\User', 1)->create(['email' => 'educator1@test.com', 'np_code' => 'NP99002']);
+        factory('App\Src\User\User', 1)->create(['email' => 'student1@test.com', 'np_code' => 'NP1002']);
 
         factory('App\Src\Educator\Educator', 1)->create(['user_id' => 2]);
         factory('App\Src\Educator\Educator', 1)->create(['user_id' => 4]);
