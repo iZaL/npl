@@ -46,7 +46,7 @@ class LevelController extends Controller
 
         if (Auth::check()) {
             $user = Auth::user();
-            if (is_a($user->getType(), Educator::class)) {
+            if ($user->isEducator()) {
                 $isEducator = true;
                 $userSubjects = $user->subjects->modelKeys();
                 $userLevels = $user->levels->modelKeys();
@@ -54,7 +54,6 @@ class LevelController extends Controller
         }
 
         $level = $this->levelRepository->model->find($id);
-
         $subjects = $this->subjectRepository->model->with([
             'latestQuestions' => function ($q) use ($id) {
                 $q->where('level_id', $id);
@@ -62,8 +61,7 @@ class LevelController extends Controller
             'latestQuestions.user'
         ])->get();
 
-        return view('modules.level.view',
-            compact('subjects', 'level', 'userLevels', 'userSubjects', 'isEducator', 'user'));
+        return view('modules.level.view', compact('subjects', 'level', 'userLevels', 'userSubjects', 'isEducator', 'user'));
     }
 
 }

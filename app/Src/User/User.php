@@ -121,6 +121,17 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         return $this->admin ? ( $this->active ? true: false ) : false;
     }
 
+    public function isEducator()
+    {
+        return session()->has('userType') ? (session()->get('userType') ==  'Educator' ? true: false ) :false;
+    }
+
+    public function isStudent()
+    {
+        return session()->has('userType') ? (session()->get('userType') ==  'Student' ? true: false ) :false;
+    }
+
+
     public function notifications()
     {
         return $this->hasMany(Notification::class);
