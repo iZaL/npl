@@ -1,11 +1,8 @@
 <div id="navigation" class="yamm">
     <div class="navbar-collapse collapse">
         <div class="container">
-
-            <a class="navbar-brand scroll-to" href="#top"><img src="/images/logo.png" class="logo" alt=""></a>
-
+            <a class="navbar-brand" href="{{ Auth::check() ? action('HomeController@home') : '#' }}"><img src="/images/logo.png" class="logo" alt=""></a>
             <ul class="nav navbar-nav">
-
                 @if($isEducator)
                     <li><a href="{{ action('EducatorController@getQuestions') }}">Home</a></li>
                 @elseif($isStudent)
@@ -18,7 +15,6 @@
                 <li><a href="{{ action('BlogController@index') }}">{{ trans('word.articles') }}</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle js-activated">Subjects</a>
-
                     <ul class="dropdown-menu">
                         @foreach($subjects as $subject)
                             <li>
@@ -52,7 +48,6 @@
                 <li><a href="{{ route('contact') }}">Contact</a></li>
             </ul>
             <!-- /.nav -->
-
            @include('partials.profile-dropdown')
         </div>
         <!-- /.container -->

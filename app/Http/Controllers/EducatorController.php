@@ -69,12 +69,12 @@ class EducatorController extends Controller
         // questions for the educator
         $questions = $questionRepository->model->with([
             'subject',
-            'parentAnswers' => function ($q) use ($user) {
+            'parentAnswers.recentReply' => function ($q) use ($user) {
                 $q->where('user_id', $user->id)->latest();
-            }
+            },
+            'parentAnswers.user',
         ])->whereIn('subject_id', $subjectIds)->whereIn('level_id',
-            $levelIds)->latest()->get();
-
+            $levelIds)->get();
 
         return view('modules.educator.questions', compact('questions','user'));
     }

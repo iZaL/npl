@@ -39,16 +39,30 @@ class StudentController extends Controller
     public function getQuestions()
     {
         $user = Auth::user();
-
         $student = $user->getType();
 
         if (!is_a($student, Student::class)) {
             return redirect()->back()->with('warning', 'Wrong Access');
         }
-        $student->load('questions');
-        $questions = $student->questions()->latest()->get();
-        $questions->load('subject');
-        $questions->load('parentAnswers.user');
+
+        $questions = $student->questions()->with(['subject','parentAnswers.recentReply.user','parentAnswers.user'])->latest()->get();
+//        $user = Auth::user();
+//
+//        if (!is_a($user->getType(), Educator::class)) {
+//            return redirect()->back()->with('warning', 'Invalid Access');
+//        }
+//
+//        $subjectIds = $user->activeSubjects->modelKeys();
+//        $levelIds = $user->levels->modelKeys();
+//
+//        // questions for the educator
+//        $questions = $questionRepository->model->with([
+//            'subject',
+//            'parentAnswers.recentReply' => function ($q) use ($user) {
+//                $q->where('user_id', $user->id)->latest();
+//            }
+//        ])->whereIn('subject_id', $subjectIds)->whereIn('level_id',
+//            $levelIds)->get();
 
         return view('modules.student.questions', compact('questions', 'answers','user'));
     }

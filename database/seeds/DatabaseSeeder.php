@@ -19,7 +19,8 @@ class DatabaseSeeder extends Seeder
         'students',
         'educators',
         'questions',
-        'answers'
+        'answers',
+        'notifications'
     ];
 
     /**
@@ -37,7 +38,7 @@ class DatabaseSeeder extends Seeder
         // 3,5= Student
 
         factory('App\Src\User\User', 1)->create();
-        factory('App\Src\User\User', 1)->create(['email' => 'educator@test.com', 'np_code' => 'NP2122','active'=>1]);
+        factory('App\Src\User\User', 1)->create(['email' => 'educator@test.com', 'np_code' => 'NP2122']);
         factory('App\Src\User\User', 1)->create(['email' => 'student@test.com', 'np_code' => 'NP2123']);
         factory('App\Src\User\User', 1)->create(['email' => 'educator1@test.com', 'np_code' => 'NP2125']);
         factory('App\Src\User\User', 1)->create(['email' => 'student1@test.com', 'np_code' => 'NP2126']);
@@ -122,6 +123,17 @@ class DatabaseSeeder extends Seeder
             'body_en'    => 'thank you for the answer'
         ]);
 
+        $question3 = factory('App\Src\Question\Question',
+            1)->create(['user_id' => 5, 'subject_id' => 1, 'body_en' => 'is physics easy ? ', 'level_id' => 2]);
+
+        $answer31 = factory('App\Src\Answer\Answer',
+            1)->create(['user_id' => 4, 'question_id' => $question3->id, 'body_en' => 'yes, if you work hard', 'parent_id' => 0]);
+
+        $answer32 = factory('App\Src\Answer\Answer',
+            1)->create(['user_id' => 4, 'question_id' => $question3->id, 'body_en' => 'try your best', 'parent_id' => $answer31->id]);
+
+        $studentReply = factory('App\Src\Answer\Answer',
+            1)->create(['user_id' => 5, 'question_id' => $question3->id, 'body_en' => 'yes, I will Ed', 'parent_id' => $answer31->id]);
 
 //        factory('App\Src\Question\Question', 1)->create(['user_id'    => 5,
 //            'subject_id' => 1,

@@ -40,22 +40,22 @@ class Answer extends BaseModel
 
     public function parentAnswers()
     {
-        return $this->hasMany(Answer::class, 'id')->where('parent_id', 0)->latest();
+        return $this->hasMany(self::class, 'id')->where('parent_id', 0)->latest();
     }
 
     public function childAnswers()
     {
-        return $this->hasMany(Answer::class, 'parent_id');
+        return $this->hasMany(self::class, 'parent_id')->latest();
     }
 
     public function recentReply()
     {
-        return $this->childAnswers()->latest()->first();
+        return $this->hasOne(self::class, 'parent_id')->latest();
     }
 
     public function childAnswersCount()
     {
-        return $this->hasOne(Answer::class,'parent_id')
+        return $this->hasOne(self::class,'parent_id')
             ->selectRaw('parent_id, count(*) as aggregate')
             ->groupBy('parent_id');
     }

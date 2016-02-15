@@ -59,7 +59,7 @@
                     <ul class="list-group">
                         @if(count($question->parentAnswers))
                             @foreach($question->parentAnswers as $answer)
-                                @if($recentAnswer = $answer->recentReply())
+                                @if($recentAnswer = $answer->recentReply)
                                     <li class="list-group-item">
                                         @if($recentAnswer->user_id == $user->id)
                                             <small class="navy">You answered</small>

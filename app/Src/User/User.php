@@ -158,4 +158,10 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         return $this->hasMany(Answer::class);
     }
 
+    public function parentAnswers()
+    {
+        return $this->hasMany(Answer::class)->where('parent_id', 0);
+    }
+
+
 }

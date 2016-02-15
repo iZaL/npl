@@ -60,11 +60,25 @@ class Question extends BaseModel
     /*********************************************************************************************************
      * Answers
      ********************************************************************************************************/
-
     public function answers()
     {
         return $this->hasMany(Answer::class);
     }
+
+    public function parentAnswers()
+    {
+        return $this->hasMany(Answer::class)->where('parent_id', 0);
+    }
+
+    public function childAnswers()
+    {
+        return $this->answers()->where('parent_id', '!=', 0);
+    }
+
+//    public function recentAnswer()
+//    {
+//        return $this->hasOne(Answer::class)->latest();
+//    }
 
     public function answersCount()
     {
@@ -106,19 +120,5 @@ class Question extends BaseModel
         // then return the count directly
         return ($related) ? (int)$related->aggregate : 0;
     }
-
-    public function childAnswers()
-    {
-        return $this->answers()->where('parent_id', '!=', 0);
-    }
-
-    public function parentAnswers()
-    {
-        return $this->answers()->where('parent_id', 0);
-    }
-
-    /*********************************************************************************************************
-     *
-     ********************************************************************************************************/
 
 }
