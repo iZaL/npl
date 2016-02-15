@@ -83,23 +83,9 @@ Route::get('/', ['as' => 'index', 'uses' => 'HomeController@index']);
 
 Route::get('test', function () {
 
-    $notifications = \App\Src\Notification\Notification::all();
-    foreach($notifications as $notification) {
-        $notification->read= 0;
-        $notification->save();
-    }
 });
 
 Route::get('mail',function(){
-    try {
-        Mail::send('emails.welcome', [], function ($m)  {
-            $m->from('zalszalz@gmail.com', 'Your Application');
-            $m->to('z4ls@live.com', 'zal')->subject('Your Reminder!');
-        });
-    }catch(Exception $e) {
-        dd($e->getMessage());
-    }
-
 });
 
 /*********************************************************************************************************
