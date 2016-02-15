@@ -19,21 +19,14 @@ class EducatorController extends Controller
      */
     public function __construct(EducatorRepository $educatorRepository)
     {
-        $this->middleware('auth', ['except' => 'index']);
+        $this->middleware('educator');
         $this->educatorRepository = $educatorRepository;
     }
 
     public function index()
     {
-        $educator = false;
-
-        if (Auth::check()) {
-            $user = Auth::user();
-            if (is_a($user->getType(), Educator::class)) {
-                $educator = true;
-            }
-        }
-
+        $educator = true;
+        $user = Auth::user();
         return view('modules.educator.index', compact('educator','user'));
     }
 
@@ -43,7 +36,6 @@ class EducatorController extends Controller
         $user = Auth::user();
         $educator = $user->getType();
         $answers = $educator->parentAnswers;
-
         return view('modules.educator.answers', compact('answers'));
     }
 
@@ -58,10 +50,6 @@ class EducatorController extends Controller
         // Get the recent 10 Questions For the Educator filtering by his subjects and levels
 
         $user = Auth::user();
-
-        if (!is_a($user->getType(), Educator::class)) {
-            return redirect()->back()->with('warning', 'Invalid Access');
-        }
 
         $subjectIds = $user->activeSubjects->modelKeys();
         $levelIds = $user->levels->modelKeys();

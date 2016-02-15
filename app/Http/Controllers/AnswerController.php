@@ -106,13 +106,13 @@ class AnswerController extends Controller
         $question = $this->questionRepository->model->find($questionId);
 
         // Check If the Reply is from Educator
-        if (is_a($user->getType(), Educator::class)) {
+        if (session()->get('userType') == 'Educator') {
             try {
                 $user->canAnswer($question);
             } catch (\Exception $e) {
                 return redirect()->back()->with('warning', $e->getMessage());
             }
-        } elseif (is_a($user->getType(), Student::class)) {
+        } elseif (session()->get('userType') == 'Student') {
             // Check If the Student Who asked this Question is Replying
             if (!($question->user_id === $user->id)) {
                 return redirect()->back()->with('warning', 'You Cannot Reply This Question');

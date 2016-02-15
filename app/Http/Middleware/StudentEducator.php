@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class Educator
+class StudentEducator
 {
     /**
      * Handle an incoming request.
@@ -15,7 +15,7 @@ class Educator
      */
     public function handle($request, Closure $next)
     {
-        if (auth()->check() && session()->has('userType') ? session()->get('userType') == 'Educator' : false) {
+        if (auth()->check() && session()->has('userType') ? ( session()->get('userType') == 'Student' || session()->get('userType') == 'Educator' ) : false) {
             return $next($request);
         } elseif(auth()->check()) {
             return redirect()->to('/home');
