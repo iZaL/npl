@@ -23,7 +23,6 @@ class QuestionController extends Controller
      */
     public function __construct(QuestionRepository $questionRepository)
     {
-        $this->middleware('auth');
         $this->questionRepository = $questionRepository;
     }
 
@@ -57,10 +56,6 @@ class QuestionController extends Controller
         ]);
 
         $user = Auth::user();
-
-        if (!is_a($user->getType(), Student::class)) {
-            return Redirect::back()->with('warning', 'Sorry You Cannot ask a Question');
-        }
 
         $level = $user->levels->last();
 

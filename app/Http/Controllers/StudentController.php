@@ -24,14 +24,8 @@ class StudentController extends Controller
 
     public function index()
     {
-        $student = false;
-
-        if (Auth::check()) {
-            $user = Auth::user();
-            if (is_a($user->getType(), Student::class)) {
-                $student = true;
-            }
-        }
+        $user = Auth::user();
+        $student = true;
         return view('modules.student.index', compact('student','user'));
     }
 
@@ -39,11 +33,6 @@ class StudentController extends Controller
     {
         $user = Auth::user();
         $student = $user->getType();
-
-        if (!is_a($student, Student::class)) {
-            return redirect()->back()->with('warning', 'Wrong Access');
-        }
-
         $questions = $student->questions()->with([
             'subject','parentAnswers.recentReply.user','parentAnswers.user'
         ])->latest()->get();

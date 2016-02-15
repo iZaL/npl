@@ -37,10 +37,8 @@ class SubjectController extends Controller
         $userLevels = [];
 
         if (Auth::check()) {
-
             $user = Auth::user();
-
-            if (is_a($user->getType(), Educator::class)) {
+            if ($user->isEducator()) {
                 $isEducator = true;
                 $userSubjects = $user->subjects->modelKeys();
                 $userLevels = $user->levels->modelKeys();

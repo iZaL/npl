@@ -28,41 +28,37 @@ class ProfileController extends Controller
 
     public function getQuestions($id)
     {
-        if(Auth::check() && (Auth::user()->id != $id)) {
+        if(Auth::user()->id != $id) {
             return redirect()->home()->with('warning','Operation not allowed');
         }
 
         $user = $this->userRepository->model->find($id);
 
-        $student = $user->getType();
-
-        if (!is_a($student, Student::class)) {
+        if (!$user->isStudent()) {
             return redirect()->home()->with('warning', 'Wrong Access');
         }
 
-        $student->load('questions');
-
+        $student = $user->getType();
+        $student->load('questions.parentAnswers');
+        $student->load('questions.subject');
         $questions = $student->questions;
-
-        $questions->load('subject');
-        $questions->load('parentAnswers.user');
 
         return view('modules.profile.questions', compact('user','questions', 'answers'));
     }
 
     public function getAnswers($id)
     {
-        if(Auth::check() && (Auth::user()->id != $id)) {
+        if(Auth::user()->id != $id) {
             return redirect()->home()->with('warning','Operation not allowed');
         }
 
         $user = $this->userRepository->model->find($id);
-        $educator = $user->getType();
 
-        if (!is_a($educator, Educator::class)) {
+        if (!$user->isEducator()) {
             return redirect()->home()->with('warning', 'Wrong Access');
         }
-
+        $educator = $user->getType();
+        $educator->load('parentAnswers.question.subject');
         $answers = $educator->parentAnswers;
         return view('modules.profile.answers', compact('user','answers'));
     }
