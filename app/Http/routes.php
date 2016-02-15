@@ -81,10 +81,9 @@ Route::get('home', ['as' => 'home', 'uses' => 'HomeController@home']);
 
 Route::get('/', ['as' => 'index', 'uses' => 'HomeController@index']);
 
-Route::get('test', function () {
-
-});
-
+Route::get('test', ['middleware' => 'educator', function () {
+    return 'a';
+}]);
 Route::get('mail',function(){
 });
 

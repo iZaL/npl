@@ -241,4 +241,17 @@ class AuthController extends Controller
 
     }
 
+    /**
+     * @param Request $request
+     * @return mixed This Function run automatically after successful login
+     * This Function run automatically after successful login
+     */
+    public function authenticated(Request $request)
+    {
+        $user = Auth::user();
+        $userType =  (new \ReflectionClass($user->getType()))->getShortName();
+        $request->session()->put('userType',$userType);
+        return redirect()->intended($this->redirectPath );
+    }
+
 }
