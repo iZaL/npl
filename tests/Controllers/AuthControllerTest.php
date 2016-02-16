@@ -145,6 +145,48 @@ class AuthControllerTest extends TestCase
         );
     }
 
+    public function testUserCanLogin()
+    {
+        $email = uniqid().'@abc.com';
+        $name = uniqid();
+        $password = 'password';
+        $active = 1;
+        $user = factory(\App\Src\User\User::class,1)->create([
+            'firstname_en'=>$name, 'email'=>$email,'np_code'=>uniqid(),'password'=>bcrypt($password),'active'=>$active
+        ]);
+        $response = $this->call('POST','/auth/login',['email'=>$email,'password'=>$password,'_token' => csrf_token()]);
+        $this->assertSessionHas('userType','User');
+        $this->visit('/home')->see($name);
+    }
 
+    public function testEducatorCanLogin()
+    {
+        $email = uniqid().'@abc.com';
+        $name = uniqid();
+        $password = 'password';
+        $active = 1;
+        $user = factory(\App\Src\User\User::class,1)->create([
+            'firstname_en'=>$name, 'email'=>$email,'np_code'=>uniqid(),'password'=>bcrypt($password),'active'=>$active
+        ]);
+        $user->educator()->create([]);
+        $response = $this->call('POST','/auth/login',['email'=>$email,'password'=>$password,'_token' => csrf_token()]);
+        $this->assertSessionHas('userType','Educator');
+        $this->visit('/home')->see($name);
+    }
+
+    public function testStudentCanLogin()
+    {
+        $email = uniqid().'@abc.com';
+        $name = uniqid();
+        $password = 'password';
+        $active = 1;
+        $user = factory(\App\Src\User\User::class,1)->create([
+            'firstname_en'=>$name, 'email'=>$email,'np_code'=>uniqid(),'password'=>bcrypt($password),'active'=>$active
+        ]);
+        $user->student()->create([]);
+        $response = $this->call('POST','/auth/login',['email'=>$email,'password'=>$password,'_token' => csrf_token()]);
+        $this->assertSessionHas('userType','Student');
+        $this->visit('/home')->see($name);
+    }
 
 }

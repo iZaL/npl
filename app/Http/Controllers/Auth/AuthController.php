@@ -250,7 +250,8 @@ class AuthController extends Controller
     {
         $user = Auth::user();
         $userType =  (new \ReflectionClass($user->getType()))->getShortName();
-        $request->session()->put('userType',$userType);
+        session()->has('userType') ? session()->forget('userType') : null;
+        session()->put('userType',$userType);
         return redirect()->intended($this->redirectPath );
     }
 
