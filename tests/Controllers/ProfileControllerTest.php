@@ -11,41 +11,31 @@ use Illuminate\Support\Facades\Auth;
 class ProfileControllerTest extends TestCase
 {
 
-    use DatabaseTransactions;
-    use WithoutMiddleware;
+//    use DatabaseTransactions;
+//    use WithoutMiddleware;
 
     public function setUp()
     {
         parent::setUp();
     }
 
-    public function testDeleteUser()
+    public function testDeleteStudent()
     {
-        session()->put('userType','User');
+        session()->put('userType','Student');
 
-        $email= uniqid().'@abc.com';
         $question = uniqid().'this is question';
         $subjectID = 1;
         $levelID = 1;
-        $np_code = uniqid();
         //create a user
-        $user= factory('App\Src\User\User',
-            1)->create(['email'=>$email,'np_code'=>$np_code]);
+        $user= $this->createStudent();
 
-        //assign role as student
-        $student = factory('App\Src\Student\Student',1)->create(['user_id'=>$user->id]);
+        $user->levels()->sync([$levelID]);
 
         // create a question
-        $question= factory('App\Src\Question\Question',1)->create(['user_id'=>$user->id,'subject_id'=>$subjectID,'body_en'=>$question]);
-
-        // assign a level
-        $level = factory(UserLevel::class)->create([
-            'user_id'    => $user->id,
-            'level_id' => $levelID
-        ]);
+        factory('App\Src\Question\Question',1)->create(['user_id'=>$user->id,'subject_id'=>$subjectID,'body_en'=>$question]);
 
         // perform deletion
-        $this->actingAs($user)->call('delete','/profile/'.$user->id);
+        $this->actingAs($user)->call('DELETE','/profile/'.$user->id);
 
         $this->notSeeInDatabase('user_levels',
             ['user_id' => $user->id]);
@@ -60,7 +50,54 @@ class ProfileControllerTest extends TestCase
             ['id' => $user->id]);
 
         // check database
-        return true;
+    }
+
+    public function testDeleteEducator()
+    {
+        session()->put('userType','Educator');
+
+        $answer1 = uniqid();
+        $answer2 = uniqid();
+        $subjectID = 1;
+        $levelID = 1;
+        //create a user
+        $user= $this->createEducator();
+        $user->levels()->sync([$levelID]);
+        $user->subjects()->sync([$subjectID]);
+
+        // create a question
+        $parentAnswer = factory('App\Src\Answer\Answer',1)->create([
+            'user_id'=>$user->id,
+            'question_id'=>1,
+            'body_en'=>$answer1,
+            'parent_id'=>0
+        ]);
+        $answers = factory('App\Src\Answer\Answer',3)->create([
+            'user_id'=>$user->id,
+            'question_id'=>1,
+            'body_en'=>$answer2,
+            'parent_id'=>$parentAnswer->id
+        ]);
+
+        // perform deletion
+        $this->actingAs($user)->call('DELETE','/profile/'.$user->id);
+
+        $this->notSeeInDatabase('user_levels',
+            ['user_id' => $user->id]);
+
+        $this->notSeeInDatabase('user_subjects',
+            ['user_id' => $user->id]);
+
+        $this->notSeeInDatabase('answers',
+            ['user_id' => $user->id]);
+
+        $this->notSeeInDatabase('educators',
+            ['user_id' => $user->id]);
+
+        $this->notSeeInDatabase('users',
+            ['id' => $user->id]);
+
+        // check database
     }
 
 }

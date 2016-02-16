@@ -10,7 +10,7 @@ class LevelControllerTest extends TestCase
 {
 
     use DatabaseTransactions;
-    use WithoutMiddleware;
+//    use WithoutMiddleware;
 
     public function setUp()
     {
@@ -41,7 +41,6 @@ class LevelControllerTest extends TestCase
             ->seeLink($q1->body)
             ->dontSeeLink($q2->body)
         ;
-
 
     }
 

@@ -9,19 +9,12 @@ class EducatorControllerTest extends TestCase
 {
 
     use DatabaseTransactions;
-    use WithoutMiddleware;
+//    use WithoutMiddleware;
 
     public function setUp()
     {
         parent::setUp();
-    }
-
-    public function testEducatorPageHasProfileLinks()
-    {
-        $educator = Auth::loginUsingId(2);
-        $this->actingAs($educator)
-            ->visit('/educator')
-            ->see('My Profile');
+        session()->put('userType','Educator');
     }
 
     public function testEducatorCanSeeQuestionsThatHeCanAnswer()

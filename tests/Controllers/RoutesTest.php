@@ -11,7 +11,7 @@ class RoutesTest extends TestCase
 {
 
     use DatabaseTransactions;
-    use WithoutMiddleware;
+//    use WithoutMiddleware;
 
     protected $user;
     protected $subjects;
@@ -27,17 +27,23 @@ class RoutesTest extends TestCase
         parent::setUp();
     }
 
-    public function testEducatorMiddlewareRoutes()
+    public function testEducatorMiddlewareRoutesRedirects()
     {
-        $response = $this->call('GET','/educator/questions');
-        $this->assertEquals($response->getStatusCode(),500);
-//        $this->assertRedirectedTo('/auth/login');
+        $this->visit('/educator/questions')->seePageIs('/auth/login');
     }
-    public function testEducatorMiddlewareRouteRedirects()
+
+    public function testEducatorMiddlewareRoutesDoesNotRedirectForEducators()
     {
-        $this->call('GET','/educator/questions');
-        $this->assertRedirectedTo('/auth/login');
+        session()->put('userType','Educator');
+        $user = $this->createEducator();
+        $this->actingAs($user)->visit('/educator/questions')->seePageIs('/educator/questions');
     }
+
+    public function testStudentMiddlewareRoutesRedirects()
+    {
+        $this->visit('/educator/questions')->seePageIs('/auth/login');
+    }
+
 //    public function testStudentMiddlewareRoutes()
 //    {
 //        $response = $this->call('GET','/student/questions');

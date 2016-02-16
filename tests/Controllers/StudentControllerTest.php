@@ -7,7 +7,7 @@ class StudentControllerTest extends TestCase
 {
 
     use DatabaseTransactions;
-    use WithoutMiddleware;
+//    use WithoutMiddleware;
 
     public function setUp()
     {
@@ -16,6 +16,8 @@ class StudentControllerTest extends TestCase
 
     public function testStudentCanSeeHisAskedQuestions()
     {
+        session()->put('userType','Student');
+
         $student = Auth::loginUsingId(3);
 
         $questionBody1 = uniqid();

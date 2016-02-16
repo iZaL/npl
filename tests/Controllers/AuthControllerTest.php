@@ -11,7 +11,7 @@ class AuthControllerTest extends TestCase
 {
 
     use DatabaseTransactions;
-    use WithoutMiddleware;
+//    use WithoutMiddleware;
 
     protected $user;
     protected $subjects;

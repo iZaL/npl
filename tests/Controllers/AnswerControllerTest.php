@@ -9,7 +9,7 @@ class AnswerControllerTest extends TestCase
 {
 
     use DatabaseTransactions;
-    use WithoutMiddleware;
+//    use WithoutMiddleware;
 
     public function setUp()
     {

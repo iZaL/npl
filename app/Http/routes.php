@@ -65,7 +65,7 @@ Route::group([ 'middleware' => ['student']], function () {
 /*********************************************************************************************************
  * Student Or Educator Routes
  ********************************************************************************************************/
-Route::group([ 'middleware' => ['studentOrEducator']], function () {
+Route::group([ 'middleware' => ['auth','studentOrEducator']], function () {
     Route::get('question/{question_id}/reply/{answer_id}', 'AnswerController@createReply');
     Route::get('question/{id}/answer', 'AnswerController@createAnswer');
     Route::post('question/reply', 'AnswerController@storeReply');

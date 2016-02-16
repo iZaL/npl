@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 
 use App\Src\Educator\Educator;
+use App\Src\Educator\EducatorRepository;
 use App\Src\Student\Student;
+use App\Src\Student\StudentRepository;
 use App\Src\User\UserRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -16,28 +18,29 @@ class ProfileController extends Controller
      * @var UserRepository
      */
     private $userRepository;
+    /**
+     * @var EducatorRepository
+     */
+    private $educatorRepository;
 
     /**
      * @param UserRepository $userRepository
+     * @param EducatorRepository $educatorRepository
+     * @param StudentRepository $studentRepository
      */
-    public function __construct(UserRepository $userRepository)
+    public function __construct(UserRepository $userRepository,EducatorRepository $educatorRepository, StudentRepository $studentRepository)
     {
-        Auth::user();
         $this->userRepository = $userRepository;
+        $this->educatorRepository = $educatorRepository;
     }
 
     public function getQuestions($id)
     {
-        if(Auth::user()->id != $id) {
-            return redirect()->home()->with('warning','Operation not allowed');
+        $user = Auth::user();
+
+        if($user->id != $id || !$user->isStudent()) {
+            return redirect()->home()->with('warning','Wrong access');
         }
-
-        $user = $this->userRepository->model->find($id);
-
-        if (!$user->isStudent()) {
-            return redirect()->home()->with('warning', 'Wrong Access');
-        }
-
         $student = $user->getType();
         $student->load('questions.parentAnswers');
         $student->load('questions.subject');
@@ -48,15 +51,11 @@ class ProfileController extends Controller
 
     public function getAnswers($id)
     {
-        if(Auth::user()->id != $id) {
-            return redirect()->home()->with('warning','Operation not allowed');
+        $user = Auth::user();
+        if($user->id != $id || !$user->isEducator()) {
+            return redirect()->home()->with('warning','Wrong access');
         }
 
-        $user = $this->userRepository->model->find($id);
-
-        if (!$user->isEducator()) {
-            return redirect()->home()->with('warning', 'Wrong Access');
-        }
         $educator = $user->getType();
         $educator->load('parentAnswers.question.subject');
         $answers = $educator->parentAnswers;
@@ -93,13 +92,13 @@ class ProfileController extends Controller
 
     public function edit($id)
     {
-        if(Auth::user()->id != $id) {
-            return redirect()->back()->with('warning','Operation not allowed');
-        }
-
-        $user = $this->userRepository->model->find($id);
+        $user = Auth::user();
         $profile = null;
         $isEducator = false;
+
+        if($user->id != $id) {
+            return redirect()->back()->with('warning','Operation not allowed');
+        }
 
         if ($user->isEducator()) {
             $isEducator = true;
@@ -111,11 +110,11 @@ class ProfileController extends Controller
 
     public function update(Request $request,$id)
     {
-        if(Auth::user()->id != $id) {
+        $user = Auth::user();
+
+        if($user->id != $id) {
             return redirect()->back()->with('warning','Operation not allowed');
         }
-
-        $user = $this->userRepository->model->find($id);
 
         $user->update($request->except(['qualification','experience']));
 
@@ -132,25 +131,54 @@ class ProfileController extends Controller
 
     public function destroy($id)
     {
-        if(Auth::user()->id == $id) {
-            $user = $this->userRepository->model->find($id);
-            if (is_a($student = $user->getType(), Student::class)) {
-                $request = Request::create('/admin/student/' . $student->id, 'DELETE', []);
-                Route::dispatch($request);
+        $user = Auth::user();
+        $profile = $user->getType();
 
-            } elseif (is_a($educator = $user->getType(), Educator::class)) {
-                $request = Request::create('/admin/educator/' . $educator->id, 'DELETE', []);
-                Route::dispatch($request);
+        // allow only to delete their own profile
+        if($user->id == $id) {
+            if (is_a($profile, Student::class)) {
+                $this->deleteStudent($profile);
+            } elseif (is_a($profile, Educator::class)) {
+                $this->deleteEducator($profile);
             }
-
-            $user->delete();
-
             Auth::logout();
-
+            $user->delete();
             return redirect('/')->with('success','Account Deleted');
         }
 
-        return redirect()->back()->with('warning','Operation not allowed');
+        return redirect()->back()->with('warning','Wrong access');
+    }
+
+    private function deleteEducator(Educator $educator)
+    {
+        $educator = $educator->load([
+            'profile',
+            'profile.levels',
+            'profile.subjects',
+            'answers'
+        ]);
+        // delete answers
+        $educator->answers ? $educator->answers()->delete() : '';
+        $educator->profile->subjects()->detach();
+        // delete levels
+        $educator->profile->levels()->detach();
+        // delete as student
+        $educator->delete();
+    }
+
+    private function deleteStudent(Student $student)
+    {
+        $student = $student->load(['profile.levels','questions.answers']);
+        // delete questions
+        foreach ($student->questions as $question) {
+            $question->answers()->delete();
+            $question->delete();
+        }
+        // delete levels
+        $student->profile->levels()->detach();
+        // delete as student
+        $student->delete();
+
     }
 
 }

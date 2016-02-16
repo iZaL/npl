@@ -3,9 +3,7 @@
         @if(isset($unreadNotificationsCount) && ($unreadNotificationsCount > 0))
             <span class="badge notification-count" >
                 <a href="{{ action('NotificationController@index') }}">
-                    <span class="count">
-                        {{ $unreadNotificationsCount }}
-                    </span>
+                    <span class="count">{{ $unreadNotificationsCount }}</span>
                 </a>
             </span>
             <span class="badge notification-icon">

@@ -35,6 +35,8 @@ class SubjectControllerTest extends TestCase
         $q2 = factory('App\Src\Question\Question',
             1)->create(['user_id' => $student->id, 'subject_id' => $subjectID, 'body_en' => $body2, 'level_id' => 1]);
 
+        session()->put('userType','Educator');
+
         $this->actingAs($educator)
             ->visit('/subject/'.$subjectID)
             ->see(ucfirst($q1->body))
