@@ -37,6 +37,10 @@ class RoutesTest extends TestCase
         session()->put('userType','Educator');
         $user = $this->createEducator();
         $this->actingAs($user)->visit('/educator/questions')->seePageIs('/educator/questions');
+
+        session()->put('userType','Student');
+        $user = $this->createStudent();
+        $this->actingAs($user)->visit('/educator/questions')->seePageIs('/student/questions');
     }
 
     public function testStudentMiddlewareRoutesRedirects()
@@ -44,9 +48,28 @@ class RoutesTest extends TestCase
         $this->visit('/educator/questions')->seePageIs('/auth/login');
     }
 
-//    public function testStudentMiddlewareRoutes()
-//    {
-//        $response = $this->call('GET','/student/questions');
-//        $this->assertEquals($response->getStatusCode(),500);
-//    }
+    public function testStudentMiddlewareRoutesDoesNotRedirectForStudents()
+    {
+        session()->put('userType','Student');
+        $user = $this->createStudent();
+        $this->actingAs($user)->visit('/student/questions')->seePageIs('/student/questions');
+
+        session()->put('userType','Educator');
+        $user = $this->createEducator();
+        $this->actingAs($user)->visit('/student/questions')->seePageIs('/educator/questions');
+    }
+
+    public function testContactPage()
+    {
+        $this->visit('contact')->assertResponseOk();
+    }
+    public function testEducatorPage()
+    {
+        $this->visit('educator')->assertResponseOk();
+    }
+    public function testStudentPage()
+    {
+        $this->visit('student')->assertResponseOk();
+    }
+
 }

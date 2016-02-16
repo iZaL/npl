@@ -27,6 +27,20 @@ class AuthControllerTest extends TestCase
         parent::setUp();
     }
 
+    public function testLoginPage()
+    {
+        $this->visit('/auth/login')->assertResponseOk();
+    }
+
+    public function testEducatorRegisterationPage()
+    {
+        $this->visit('/register/educator')->assertResponseOk();
+    }
+    public function testStudentRegisterationPage()
+    {
+        $this->visit('/register/student')->assertResponseOk();
+    }
+
     public function testRegisterStudent()
     {
 //        $this->withoutEvents();

@@ -8,7 +8,6 @@
 @section('middle')
 <section id="contact-form">
     <div class="container ">
-
         <div class="row">
             <div class="col-sm-12">
                 <div class="row">
