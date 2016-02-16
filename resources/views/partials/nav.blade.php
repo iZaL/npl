@@ -43,8 +43,6 @@
                     <li><a href="/auth/login">Login</a></li>
                     <li><a href="{{ action('Auth\AuthController@studentRegistration') }}">Register</a></li>
                 @endif
-                <li><a href="{{ route('home') }}">About</a></li>
-
                 <li><a href="{{ route('contact') }}">Contact</a></li>
             </ul>
             <!-- /.nav -->
