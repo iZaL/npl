@@ -14,24 +14,6 @@ class StudentControllerTest extends TestCase
         parent::setUp();
     }
 
-    public function testStudentPageHasProfileLinks()
-    {
-        $student = Auth::loginUsingId(3);
-
-        $this->actingAs($student)
-            ->visit('/student')
-            ->see('My Profile');
-    }
-
-    public function testStudentPageDoesnotHaveProfileLinks()
-    {
-        $student = Auth::loginUsingId(2);
-
-        $this->actingAs($student)
-            ->visit('/student')
-            ->dontSee('My Profile');
-    }
-
     public function testStudentCanSeeHisAskedQuestions()
     {
         $student = Auth::loginUsingId(3);

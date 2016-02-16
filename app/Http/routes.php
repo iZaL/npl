@@ -30,6 +30,8 @@ Route::get('contact', ['as' => 'contact', 'uses' => 'PageController@getContact']
 Route::post('contact', 'PageController@postContact');
 Route::resource('blog', 'BlogController');
 Route::get('home', ['as' => 'home', 'uses' => 'HomeController@home']);
+Route::get('student', 'PageController@getStudentPage');
+Route::get('educator','PageController@getEducatorPage');
 Route::get('/', ['as' => 'index', 'uses' => 'HomeController@index']);
 Route::get('test', ['middleware' => 'studentOrEducator', function () {}]);
 Route::get('mail',function(){
@@ -48,7 +50,6 @@ Route::group([ 'middleware' => ['auth']], function () {
  * Educator Routes
  ********************************************************************************************************/
 Route::group([ 'middleware' => ['educator']], function () {
-    Route::get('educator','EducatorController@index');
     Route::get('educator/questions', 'EducatorController@getQuestions');
     Route::get('educator/answers', 'EducatorController@getAnswers');
 });
@@ -58,7 +59,6 @@ Route::group([ 'middleware' => ['educator']], function () {
  ********************************************************************************************************/
 Route::group([ 'middleware' => ['student']], function () {
     Route::resource('question', 'QuestionController');
-    Route::get('student', 'StudentController@index');
     Route::get('student/questions', 'StudentController@getQuestions');
 });
 

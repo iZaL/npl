@@ -20,7 +20,6 @@ class Educator
         } elseif(auth()->check()) {
             return redirect()->to('/home');
         }
-
         return redirect()->to('/auth/login');
     }
 }

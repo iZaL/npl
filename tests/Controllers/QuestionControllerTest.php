@@ -19,6 +19,8 @@ class QuestionControllerTest extends TestCase
 
     public function testStore()
     {
+        session()->put('userType','Student');
+
         $body = uniqid();
         $subjectID = 2;
 

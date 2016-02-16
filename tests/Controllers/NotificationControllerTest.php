@@ -17,6 +17,8 @@ class NotificationControllerTest extends TestCase
 
     public function testNotifiesStudentorEducatorOnNewReply()
     {
+        session()->put('userType','Educator');
+
         // create a question
         // create an answer
         // create a reply from student and test whether educator is being notified
@@ -71,6 +73,8 @@ class NotificationControllerTest extends TestCase
 
     public function testNotifiesStudentOnNewAnswer()
     {
+        session()->put('userType','Student');
+
         $user = factory(User::class,1)->create(['email'=>uniqid(),'np_code'=>uniqid()]);
 
         $unReadNotifications = factory('App\Src\Notification\Notification',

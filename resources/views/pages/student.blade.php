@@ -18,10 +18,4 @@
             4. Subscription is FREE for one month. After that a fee of $5/year is requested.
         </p>
     </div>
-
-    @if($student)
-        <a href="{{ action('ProfileController@show',$user->id) }}" class="btn btn-primary">My Profile</a>&nbsp;&nbsp;&nbsp;
-        <a href="{{ action('QuestionController@create') }}" class="btn btn-success">Ask</a>&nbsp;&nbsp;&nbsp;
-        <a href="{{ action('StudentController@getQuestions') }}" class="btn btn-primary">My Questions</a><br><br>
-    @endif
 @endsection

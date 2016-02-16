@@ -27,4 +27,20 @@ class RoutesTest extends TestCase
         parent::setUp();
     }
 
+    public function testEducatorMiddlewareRoutes()
+    {
+        $response = $this->call('GET','/educator/questions');
+        $this->assertEquals($response->getStatusCode(),500);
+//        $this->assertRedirectedTo('/auth/login');
+    }
+    public function testEducatorMiddlewareRouteRedirects()
+    {
+        $this->call('GET','/educator/questions');
+        $this->assertRedirectedTo('/auth/login');
+    }
+//    public function testStudentMiddlewareRoutes()
+//    {
+//        $response = $this->call('GET','/student/questions');
+//        $this->assertEquals($response->getStatusCode(),500);
+//    }
 }

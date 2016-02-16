@@ -19,6 +19,8 @@ class SubjectControllerTest extends TestCase
 
     public function testEducatorCanAnswerQuestions()
     {
+        session()->put('userType','Educator');
+
         $body1 = uniqid();
         $body2 = uniqid();
         $subjectID = 1; // physics
@@ -40,7 +42,6 @@ class SubjectControllerTest extends TestCase
             ->seeLink($q1->body)
             ->dontSeeLink($q2->body)
         ;
-
 
     }
 

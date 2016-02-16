@@ -21,6 +21,8 @@ class ProfileControllerTest extends TestCase
 
     public function testDeleteUser()
     {
+        session()->put('userType','User');
+
         $email= uniqid().'@abc.com';
         $question = uniqid().'this is question';
         $subjectID = 1;

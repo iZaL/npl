@@ -33,4 +33,31 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
             return parent::storeInput($element, $text);
         }
     }
+
+    public function createUser()
+    {
+        $email = uniqid().'@abc.com';
+        $name = uniqid();
+        $password = 'password';
+        $active = 1;
+        $user = factory(\App\Src\User\User::class,1)->create([
+            'firstname_en'=>$name, 'email'=>$email,'np_code'=>uniqid(),'password'=>bcrypt($password),'active'=>$active
+        ]);
+        return $user;
+    }
+
+    public function createEducator()
+    {
+        $user = $this->createUser();
+        $user->educator()->create([]);
+        return $user;
+    }
+
+    public function createStudent()
+    {
+        $user = $this->createUser();
+        $user->student()->create([]);
+        return $user;
+    }
+
 }

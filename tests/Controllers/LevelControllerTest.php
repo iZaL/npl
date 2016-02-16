@@ -19,6 +19,8 @@ class LevelControllerTest extends TestCase
 
     public function testEducatorCanAnswerQuestions()
     {
+        session()->put('userType','Educator');
+
         $body1 = uniqid();
         $body2 = uniqid();
         $subjectID = 1; // physics

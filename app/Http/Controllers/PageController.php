@@ -44,4 +44,14 @@ class PageController extends Controller
         return redirect('home')->with('success', trans('word.mail_sent'));
     }
 
+    public function getStudentPage()
+    {
+        return view('pages.student');
+    }
+
+    public function getEducatorPage()
+    {
+        return view('pages.educator');
+    }
+
 }

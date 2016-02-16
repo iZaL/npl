@@ -23,14 +23,6 @@ class EducatorController extends Controller
         $this->educatorRepository = $educatorRepository;
     }
 
-    public function index()
-    {
-        $educator = true;
-        $user = Auth::user();
-        return view('modules.educator.index', compact('educator','user'));
-    }
-
-
     public function getAnswers()
     {
         $user = Auth::user();
@@ -50,10 +42,8 @@ class EducatorController extends Controller
         // Get the recent 10 Questions For the Educator filtering by his subjects and levels
 
         $user = Auth::user();
-
         $subjectIds = $user->activeSubjects->modelKeys();
         $levelIds = $user->levels->modelKeys();
-
         // questions for the educator
         $questions = $questionRepository->model->with([
             'subject',

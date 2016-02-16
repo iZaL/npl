@@ -22,13 +22,6 @@ class StudentController extends Controller
         $this->userRepository = $userRepository;
     }
 
-    public function index()
-    {
-        $user = Auth::user();
-        $student = true;
-        return view('modules.student.index', compact('student','user'));
-    }
-
     public function getQuestions()
     {
         $user = Auth::user();
