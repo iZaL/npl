@@ -76,6 +76,11 @@ class AnswerController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'question_id' => 'integer|required',
+            'body_en'    => 'required'
+        ]);
+
         $user = Auth::user();
 
         $question = $this->questionRepository->model->find($request->question_id);
@@ -100,6 +105,7 @@ class AnswerController extends Controller
 
     public function createReply($questionId, $answerId)
     {
+
         // check whether valid subject, valid level, valid chat
         $user = Auth::user();
 
@@ -151,6 +157,12 @@ class AnswerController extends Controller
 
     public function storeReply(Request $request)
     {
+        $this->validate($request, [
+            'question_id' => 'integer|required',
+            'answer_id' => 'integer|required',
+            'body_en'    => 'required'
+        ]);
+
         $user = Auth::user();
         $question = $this->questionRepository->model->find($request->question_id);
         $answer = $this->answerRepository->model->find($request->answer_id);
