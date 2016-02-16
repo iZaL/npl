@@ -7,7 +7,8 @@
     <meta name="author" content="">
     <meta name="viewport" content="width=device-width">
     @section('style')
-        @include('partials.style')
+        <link rel="stylesheet" href="{{ elixir('css/all.css') }}">
+        {{--@include('partials.style')--}}
     @show
 </head>
 <body id="top">
@@ -16,7 +17,6 @@
 @include('admin.partials.delete-modal',['info' => 'Are you sure ?'])
 
 <main>
-
     @section('content')
 
     @show
@@ -24,7 +24,8 @@
 
 @include('partials.footer')
 @section('script')
-    @include('partials.script')
+    <script src="{{ elixir('js/app.js') }}"></script>
+    {{--@include('partials.script')--}}
     <script>
         $(document).on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget) // Button that triggered the modal
