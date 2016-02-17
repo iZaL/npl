@@ -14,7 +14,7 @@
             </div>
         </div>
     </section>
-    <section class=" main">
+    <section class="main">
         <div class="container inner-top-md">
             @include('partials.notifications')
 

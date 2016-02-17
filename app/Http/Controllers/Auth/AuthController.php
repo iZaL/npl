@@ -233,7 +233,7 @@ class AuthController extends Controller
             event(new UserActivated($user));
         } catch (\Exception $e) {
 
-            return redirect('home')->with('error', 'Could\'nt activate your account. please contact admin');
+            return redirect('/')->with('error','Could\'nt activate your account. please contact admin');
         }
 
         // redirect to home with active message

@@ -28,11 +28,8 @@ class AuthManager
         if (!$user) {
             throw new \Exception('Invalid Token');
         }
-
         $this->activate($user);
-
         return $user;
-
     }
 
     /**
@@ -41,13 +38,9 @@ class AuthManager
     private function activate(User $user)
     {
         $user->active = 1;
-
         // set confirmation code to null
         $user->activation_code = '';
-
         $user->save();
-
     }
-
 
 }

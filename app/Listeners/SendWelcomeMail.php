@@ -3,12 +3,13 @@
 namespace App\Listeners;
 
 use App\Core\BaseMailer;
+use App\Events\UserActivated;
 use App\Events\UserRegistered;
 use App\Src\User\UserRepository;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class SendWelcomeMail extends BaseMailer
+class SendWelcomeMail
 {
 
     /**
@@ -24,7 +25,6 @@ class SendWelcomeMail extends BaseMailer
      */
     public function __construct(UserRepository $userRepository, BaseMailer $mailer)
     {
-        //
         $this->userRepository = $userRepository;
         $this->mailer = $mailer;
     }
@@ -32,14 +32,14 @@ class SendWelcomeMail extends BaseMailer
     /**
      * Handle the event.
      *
-     * @param  UserRegistered $event
+     * @param  UserActivated $event
      * @return void
      */
-    public function handle(UserRegistered $event)
+    public function handle(UserActivated $event)
     {
         $user = $event->user;
         $this->mailer->view = 'emails.auth.welcome';
-        $this->mailer->subject = 'Your NPL Account has got Activated';
+        $this->mailer->subject = 'Your No Problem Learning Account has got activated';
 
         $this->mailer->toEmail = $user->email;
         $this->mailer->toName = $user->firstname;

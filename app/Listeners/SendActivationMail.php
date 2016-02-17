@@ -39,7 +39,7 @@ class SendActivationMail
     {
         $user = $event->user;
         $this->mailer->view = 'emails.auth.activation';
-        $this->mailer->subject = 'Activate your No-problem-learning  Account';
+        $this->mailer->subject = 'Activate your No Problem Learning  account';
 
         $this->mailer->toEmail = $user->email;
         $this->mailer->toName = $user->firstname;
