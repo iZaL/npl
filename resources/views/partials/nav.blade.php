@@ -37,8 +37,7 @@
                     <!-- /.dropdown-menu -->
                 </li>
                 @if(Auth::check())
-                    <li><a href="{{ action('QuestionController@create') }}"> Ask </a></li>
-                    <li><a href="/auth/logout">Logout</a></li>
+                    <li><a href="{{ action('QuestionController@create') }}"> Ask Question </a></li>
                 @else
                     <li><a href="/auth/login">Login</a></li>
                     <li><a href="{{ action('Auth\AuthController@studentRegistration') }}">Register</a></li>
