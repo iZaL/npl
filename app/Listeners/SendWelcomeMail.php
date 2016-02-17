@@ -49,7 +49,7 @@ class SendWelcomeMail extends BaseMailer
             'link'    => action('Auth\AuthController@getLogin'),
             'name'    => $user->firstname,
             'email'   => $user->email,
-            'np_code' => $user->np_code
+            'npCode' => $user->np_code
         ];
 
         $this->mailer->fire($mailArray);
