@@ -34,28 +34,28 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
         }
     }
 
-    public function createUser()
+    public function createUser($args=[])
     {
         $email = uniqid().'@abc.com';
         $name = uniqid();
         $password = 'password';
-        $active = 1;
-        $user = factory(\App\Src\User\User::class,1)->create([
-            'firstname_en'=>$name, 'email'=>$email,'np_code'=>uniqid(),'password'=>bcrypt($password),'active'=>$active
-        ]);
+//        $active = 1;
+        $user = factory(\App\Src\User\User::class,1)->create(array_merge($args,[
+            'firstname_en'=>$name, 'email'=>$email,'np_code'=>uniqid(),'password'=>bcrypt($password)
+        ]));
         return $user;
     }
 
-    public function createEducator()
+    public function createEducator($args=[])
     {
-        $user = $this->createUser();
+        $user = $this->createUser($args);
         $user->educator()->create([]);
         return $user;
     }
 
-    public function createStudent()
+    public function createStudent($args=[])
     {
-        $user = $this->createUser();
+        $user = $this->createUser($args);
         $user->student()->create([]);
         return $user;
     }

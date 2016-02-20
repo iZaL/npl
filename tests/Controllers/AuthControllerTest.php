@@ -203,4 +203,20 @@ class AuthControllerTest extends TestCase
         $this->visit('/home')->see($name);
     }
 
+    public function testAuth()
+    {
+        $student = $this->createStudent(['active'=>0]);
+        $educator =$this->createEducator(['active'=>0]);
+
+        $this->seeInDatabase('users',['email'=>$student->email,'active'=>0]);
+
+        $this->visit('/account/activate/' . $student->activation_code);
+        $this->seeInDatabase('users',['email'=>$student->email,'active'=>1]);
+        $this->seeInDatabase('users',['email'=>$educator->email,'active'=>0]);
+
+        $this->visit('/account/activate/' . $educator->activation_code);
+        $this->seeInDatabase('users',['email'=>$educator->email,'active'=>1]);
+
+    }
+
 }

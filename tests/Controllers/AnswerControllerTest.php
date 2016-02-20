@@ -53,7 +53,7 @@ class AnswerControllerTest extends TestCase
             ]);
 
         $answer = App\Src\Answer\Answer::where('body_en',$answerBody)->first();
-        $this->onPage('question/' . $question->id . '/reply/'.$answer->id);
+        $this->seePageIs('question/' . $question->id . '/reply/'.$answer->id);
 
     }
 
