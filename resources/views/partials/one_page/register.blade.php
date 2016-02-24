@@ -39,23 +39,15 @@
 
                                 <div class="col-md-5 col-md-pull-5 col-sm-6 col-sm-pull-6 inner-top-xs inner-right-xs">
                                     <h2>Student Signup Process</h2>
-
                                     <li>Go to <a href="{{ action('Auth\AuthController@studentRegistration') }}">Registration Page</a></li>
-                                    <li>Fill the Requested Details</li>
-                                    <li>The website will provide you with an ID number and Password. <br>
-                                        Your personal information will not be visible to others.<br>
-                                        When you ask a Question, Educator(s) will see the question and your ID
-                                        number. <br>
-                                        This way they enter in contact with you to define a way of collabration
-                                        either by
-                                        hourly fees or other ways.<br>
-                                        Your question will appear(advertised) for
-                                        one week. However, if you get an answer earlier, you can delete the
-                                        question.
-                                    </li>
-                                    <li> Subscription is FREE for one month. After that a fee of $5/semester (6
-                                        months) is requested.
-                                    </li>
+                                    <li>Fill out the Requested Details</li>
+                                    <li>Select one level: First year University, high school, medium or elementary school</li>
+                                    <li>You can get assistance in different subjects. You have to specify the subject when you file a question</li>
+                                    <li>Once you have filled out the requested details, press Register. You will receive a message on your Email. Activate the registration. The website will provide you with an ID number</li>
+                                    <li>Your personal information will not be visible to others. When you ask a question, Educators will only see the question and your ID number. Educators will enter in contact with you to define a way of collaboration that suits you, either by hourly fees or by other ways</li>
+                                    <li>Your question will appear for a week. However, if you get an answer earlier, you can delete your question</li>
+                                    <li>Once you have finished, log out</li>
+                                    <li>The subscription is FREE for one month. After that a fee of 5 dollars per semester will be requested for each subject</li>
                                 </div>
                                 <!-- /.col -->
 
@@ -68,39 +60,25 @@
                             <div class="row">
 
                                 <div class="col-md-5 col-md-offset-1 col-sm-6 inner-right-xs">
+                                    <p>
+                                        The objective is to help Students understand their subject by answering urgent questions, by explaining them how to solve problems, by guiding them in exam preparations, etc... Both parties (Educator/Student) can establish the collaboration method which suits them best, either by hourly or by whole semester payments. It is hoped that fees will be very reasonable. Educators fees could be arranged by Visa, Paypal, Safepay or whatever means. The website management could help in this matter. Registration on the No Problem website is FREE for one month. After that a fee of 10 dollars by semester for each subject is requested.
+                                    </p>
                                     <figure><img src="/images/slider/12.jpg" alt=""></figure>
                                 </div>
                                 <!-- /.col -->
 
                                 <div class="col-md-5 col-sm-6 inner-top-xs inner-left-xs">
-                                    <h2>Educator Signup Process</h2>
+                                    <h2 style="margin-top: 0px;padding-top: 0px">Educator Signup Process</h2>
                                     <li>Go to <a href="{{ action('Auth\AuthController@educatorRegistration') }}">Registration Page</a></li>
-                                    <li>Fill the Requested Details</li>
-                                    <li>
-                                        1. Help students in understanding their subject, answering urgent questions,
-                                        solving problems, exam preparation etc...<br>
-
-                                        2. Educators will check the (asked) questions which apear in the appropriate
-                                        level of the subject<br>
-
-                                        3. If the Educator is interested in answering the question he/she click the
-                                        student NP Code(unique code for the student). This enables the educator to
-                                        initiate a contact between with the student.<br>
-
-                                        4. Both parties (Educator/Student) can establish the collaboration method,
-                                        either by hourly or whole semester fee.<br>
-
-                                        5. It is hoped that fees will be very reasonable.<br>
-
-                                        6. Educators establish the way of recieving the fee by Paypal, Safepay or
-                                        whatever means.<br>
-
-                                        7. No home or private lessons are permitted.<br>
-
-                                        8. Registration on the No Problem website is FREE for one month. After that
-                                        a fee of $10/year is requested.<br>
-                                    </li>
+                                    <li>Fill out the Requested Details</li>
+                                    <li>Select one level such as : first year University, high school, medium or elementary school</li>
+                                    <li>Select one or two subjects of your competence</li><br>
+                                    <h2>The Educator can help students in two ways:</h2>
+                                    <li>by answering questions raised by students for FREE</li>
+                                    <li>by establishing direct contact with the student for further assistance in terms of private, preferably on line paid assistance. The student NP code will appear next to the raised question.</li>
+                                    <hr>
                                 </div>
+
                                 <!-- /.col -->
 
                             </div>
