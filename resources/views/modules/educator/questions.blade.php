@@ -1,4 +1,9 @@
 @extends('layouts.two_col')
+
+@section('title')
+    <h1>My Questions</h1>
+@endsection
+
 @section('style')
     @parent
     <style>
@@ -8,43 +13,38 @@
             line-height: 140px;
             font-style: normal;
         }
-
         [class^="flaticon-"]:hover {
             color: #009926;
         }
-
         .subject-icon {
             font-size: 80px;
         }
         hr {
             margin:10px 0 10px 0;
         }
+        .reply {
+            color:#1ABB9C;
+            font-size: 15px;
+            text-decoration: underline;
+        }
     </style>
-@endsection
-@section('title')
-    <h1>My Questions</h1>
 @endsection
 
 @section('right')
-
 @endsection
 
 @section('left')
     @foreach($questions as $question)
         <div class="row">
-
-            <div class="col-md-2">
-                <figure>
-                    <figcaption class="text-overlay">
-                        <div class="info text-center">
-                            <h4>{{ ucfirst($question->subject->name) }}</h4>
-                        </div>
-                        <!-- /.info -->
-                    </figcaption>
-                    <div class="{{ strtolower($question->subject->icon) }} subject-icon text-center"></div>
-                </figure>
+            <div class="col-md-3">
+                <div class="text-overlay">
+                    <div class="info text-center">
+                        <h4>{{ ucfirst($question->subject->name) }}</h4>
+                    </div>
+                </div>
+                <div class="{{ strtolower($question->subject->icon) }} subject-icon text-center"></div>
             </div>
-            <div class="col-md-10">
+            <div class="col-md-9">
                 <div class="row">
                     <div class="col-md-9">
                         <h2><a href="{{ action('AnswerController@createAnswer',$question->id) }}">{!! ucfirst($question->body) !!}</a></h2>
@@ -71,7 +71,12 @@
                                         <h3>
                                             <a href="{{ action('AnswerController@createReply',['question_id'=>$question->id,'answer_id'=>$recentAnswer->id]) }}"
                                                class="np_code">
-                                                {!! str_limit($recentAnswer->body,100) !!} </a>
+                                                {!! str_limit($recentAnswer->body,100) !!}
+                                            </a>
+                                            <a href="{{ action('AnswerController@createReply',['question_id'=>$question->id,'answer_id'=>$recentAnswer->id]) }}"
+                                               class="reply pull-right">
+                                                reply
+                                            </a>
                                         </h3>
                                     </li>
                                 @else
@@ -87,6 +92,10 @@
                                             <a href="{{ action('AnswerController@createReply',['question_id'=>$question->id,'answer_id'=>$answer->id]) }}"
                                                class="np_code">
                                                 {!! str_limit($answer->body,100) !!} </a>
+                                            <a href="{{ action('AnswerController@createReply',['question_id'=>$question->id,'answer_id'=>$answer->id]) }}"
+                                               class="reply pull-right">
+                                                reply
+                                            </a>
                                         </h3>
                                     </li>
                                 @endif

@@ -1,5 +1,5 @@
 <section id="about" style="background:url(/images/top-bg.jpg) left top repeat-x;">
-    <div class="container inner">   
+    <div class="container inner">
         <div class="row">
             <div class="col-sm-6 inner-right-xs text-right">
                 <figure><img src="/images/slider/7.jpg" style="height: 450px;opacity: 0.7" alt=""></figure>
