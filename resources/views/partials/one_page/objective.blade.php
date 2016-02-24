@@ -11,18 +11,15 @@
 
                 <h2 style="color:#ffffff"><br>
                     <ul>
-                        <li>
-                            <i class="icon-heart"></i> Help Students to understand their courses.
-                        </li>
-                        <li>
-                            <i class="icon-heart"></i> Prepare Students for their exams.
-                        </li>
-                        <li>
-                            <i class="icon-heart"></i> Assist Students in their homeworks etc.
-                        </li>
+                        <li><i class="icon-heart"></i> Help Students to understand their courses</li>
+                        <li><i class="icon-heart"></i> Assist them in their homework</li>
+                        <li><i class="icon-heart"></i> Prepare them for their exams</li>
                     </ul>
                     <br>
-                    We do this by establishing direct conversation between Students and highly Qualified Trainers.
+                    <span>
+                        We do that by establishing direct contact between students and highly qualified teachers under the supervision of University professors having experience in teaching and research.
+                    </span>
+
                 </h2>
             </div>
             <!-- /.col -->
