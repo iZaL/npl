@@ -31,9 +31,22 @@
 
                 <div class="col-md-offset-3 col-md-6 col-sm-6 inner-right-xs inner-bottom-xs">
 
-                    Don't have an account ? <a href="{{ action('Auth\AuthController@studentRegistration') }}">Register</a>
-                    <br>
-                    <a href="{{ action('Auth\PasswordController@getEmail') }}">Forgot Password</a>
+                    Don't have an account ?  <br>
+                    <a href="{{ action('Auth\AuthController@studentRegistration') }}">
+                        <div class="btn btn-danger">
+                            Student Registration
+                        </div>
+                    </a>
+
+                    <a href="{{ action('Auth\AuthController@educatorRegistration') }}">
+                        <div class="btn btn-danger">
+                            Educator Registration
+                        </div>
+                    </a>
+
+                    <div class="" style="padding-top:20px">
+                        <a href="{{ action('Auth\PasswordController@getEmail') }}">Forgot Password</a>
+                    </div>
                 </div>
 
             </div><!-- /.row -->

@@ -1,29 +1,35 @@
 <section id="objective" style="background: url(/images/bg1.jpg) left top repeat; ">
     <div class="container inner">
         <div class="row" >
-            <div class="col-sm-6 col-sm-push-6 inner-left-xs">
-                <figure><img src="/images/slider/11.jpg" style="height: 450px;opacity: 0.8" ></figure>
+            <div class="col-md-12">
+                <h1 style=" font-size: 57.17px; text-align: center;color: #333a40;font-weight: 700;padding: 5px 0;">
+                    Do You Have a Question?
+                </h1>
             </div>
             <!-- /.col -->
-
-            <div class="col-sm-6 col-sm-pull-6 inner-top-xs inner-right-xs">
-                <h1 style="margin-top:-20px;color:#ffffff">Our main objective is to </h1>
-
-                <h2 style="color:#ffffff"><br>
-                    <ul>
-                        <li><i class="icon-heart"></i> Help Students to understand their courses</li>
-                        <li><i class="icon-heart"></i> Assist them in their homework</li>
-                        <li><i class="icon-heart"></i> Prepare them for their exams</li>
-                    </ul>
-                    <br>
-                    <span>
-                        We do that by establishing direct contact between students and highly qualified teachers under the supervision of University professors having experience in teaching and research.
-                    </span>
-
-                </h2>
+            <div class="col-md-12 text-center">
+                <h1 style="color: #9d1c1c;font-weight: bold">
+                    Qualified Educators will Answer and Help You
+                </h1>
             </div>
             <!-- /.col -->
-
+            <div class="row inner-top-sm">
+                @foreach($subjects as $subject)
+                    <div class="item col-md-4" style="margin-bottom: 20px" >
+                        <a href="{{ action('SubjectController@show',$subject->id) }}">
+                            <div class="subject-icon-info"  >
+                                {{ ucfirst($subject->name) }}
+                            </div>
+                            <!-- /.info -->
+                            <div class="" >
+                                <img src="/images/lang/{{strtolower($subject->name)}}.jpg"/>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- /.item -->
+                    @endforeach
+                            <!-- /.owl-carousel -->
+            </div>
         </div>
     </div>
 </section>

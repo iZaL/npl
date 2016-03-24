@@ -17,12 +17,7 @@
 <main>
     @include('partials.notifications')
     @include('partials.one_page.banner')
-    @include('partials.one_page.about')
-    @include('partials.one_page.login')
-    @include('partials.one_page.register')
-    @include('partials.one_page.objective')
-    @include('partials.one_page.subject',['subjects'=>$subjects])
-    @include('partials.one_page.contact')
+    @include('partials.one_page.objective',['subjects'=>$subjects])
 </main>
 @include('partials.footer')
 @section('script')

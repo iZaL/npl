@@ -12,28 +12,21 @@
         <!-- /.row -->
 
         <div class="row inner-top-sm">
-            <div id="owl-latest-works" class="owl-carousel owl-item-gap">
-
-                @foreach($subjects as $subject)
-                    <div class="item">
-                        <a href="{{ action('SubjectController@show',$subject->id) }}">
-                            <figure>
-                                <figcaption class="text-overlay">
-                                    <div class="info">
-                                        <h4>{{ ucfirst($subject->name) }}</h4>
-                                    </div>
-                                    <!-- /.info -->
-                                </figcaption>
-                                <div class="subject-icon">
-                                    <img src="/images/lang/{{strtolower($subject->name)}}.jpg"/>
-                                </div>
-                            </figure>
-                        </a>
-                    </div>
-                    <!-- /.item -->
-                @endforeach
-            </div>
-            <!-- /.owl-carousel -->
+            @foreach($subjects as $subject)
+                <div class="item col-md-4" style="margin-bottom: 20px" >
+                    <a href="{{ action('SubjectController@show',$subject->id) }}">
+                        <div class="subject-icon-info"  >
+                            {{ ucfirst($subject->name) }}
+                        </div>
+                        <!-- /.info -->
+                        <div class="" >
+                            <img src="/images/lang/{{strtolower($subject->name)}}.jpg"/>
+                        </div>
+                    </a>
+                </div>
+                <!-- /.item -->
+            @endforeach
+        <!-- /.owl-carousel -->
         </div>
         <!-- /.row -->
 

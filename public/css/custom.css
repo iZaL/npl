@@ -131,5 +131,12 @@
 .profile-nav .notification-count:hover {
     background-color: #F91414;
 }
-
-
+.subject-icon-info {
+    color:#333a40;
+    font-weight: bold;
+    font-size: 16px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    margin-left:-50px;
+}
