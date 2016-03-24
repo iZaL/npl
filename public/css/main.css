@@ -57,6 +57,7 @@ p a {
 }
 p a:hover {
 	border-color: transparent;
+	font-size: 19px;
 }
 a {
 	color: inherit;

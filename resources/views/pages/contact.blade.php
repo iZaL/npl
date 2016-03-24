@@ -45,8 +45,6 @@
 
                         <div class="col-sm-6 inner-left-sm border-left">
 
-                            <h2>Contacts</h2>
-                            <p> We love to hear from you :) </p>
                             <h2>No Problem Learning</h2>
                             <h3>Managed by Ideas Owners Co</h3>
                             <ul class="contacts">

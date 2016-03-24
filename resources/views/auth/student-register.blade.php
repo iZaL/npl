@@ -1,7 +1,12 @@
 @extends('layouts.one_col')
 @section('title')
     <h1 class="text-center"> Sign up as Student  </h1>
-
+    <a href="{{ action('Auth\AuthController@educatorRegistration') }}" >
+        <h2 class="text-center">OR</h2>
+        <div class="btn btn-danger col-md-8 col-md-offset-2" >
+            <h2 style="color:white">Sign up as an Educator</h2>
+        </div>
+    </a>
 @endsection
 @section('middle')
     <div class="row">
@@ -80,11 +85,6 @@
                 </div>
 
             </form>
-            <a href="{{ action('Auth\AuthController@educatorRegistration') }}" >
-                <div class="btn btn-danger " style="margin-bottom: 20px">
-                    Educator Registration
-                </div>
-            </a>
         </div>
 
     </div>
