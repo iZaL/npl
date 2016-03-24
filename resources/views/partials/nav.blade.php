@@ -61,7 +61,7 @@
                             @endif
                             <li><a href="{{ route('contact') }}">Contact</a></li>
                         </ul>
-                        <ul class="nav navbar-nav navbar-right">
+                        <ul class="nav navbar-nav navbar-right" style=" margin-top: -30px;">
                             @include('partials.profile-dropdown')
                         </ul>
                     </div><!-- /.navbar-collapse -->
