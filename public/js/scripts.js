@@ -39,7 +39,7 @@ $(document).ready(function() {
 /*===================================================================================*/
 
 $(document).ready(function() {
-	$('.navbar .navbar-collapse').waypoint('sticky');
+	//$('.navbar .navbar-collapse').waypoint('sticky');
 });
 
 

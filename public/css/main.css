@@ -1305,11 +1305,11 @@ aside .thumb figure {
 	float: none;
 	display: table-cell;
 	vertical-align: middle;
-	padding: 0;
+	padding: 20px 0 0 0;
 	max-width: 300px;
 }
 .navbar-brand img {
-	max-height: 55px;
+	/*max-height: 55px;*/
 }
 .navbar-header .navbar-brand {
 	display: none;
@@ -1317,7 +1317,7 @@ aside .thumb figure {
 .navbar-header {
 	float: none !important;
 	position: relative;
-	background: #F5F7FA;
+	/*background: #F5F7FA;*/
 	border-bottom: 1px solid #E6E9ED;
 	z-index: 0;
 }
@@ -1329,10 +1329,8 @@ aside .thumb figure {
 }
 .navbar-collapse {
 	position: relative;
-	background-color: #FFF;
+	/*background-color: #FFF;*/
 	width: 100%;
-	padding-top: 30px;
-	padding-bottom: 30px;
 	border-bottom: 1px solid #E6E9ED;
 }
 .navbar-collapse.collapse.stuck {
@@ -1351,8 +1349,7 @@ aside .thumb figure {
 	float: none;
 	display: table-cell;
 	vertical-align: middle;
-	padding-left: 30px;
-	margin: 0;
+	margin: -30px 0 0 0;
 }
 .navbar-nav > li > a {
 	font-size: 14px;
@@ -4658,10 +4655,9 @@ input:focus:-ms-input-placeholder {
 	}
 }
 
-@media (min-width: 1025px) {
-	.navbar-collapse.collapse {
-		padding-bottom: 30px;
-	}
+.navbar-collapse.collapse {
+	padding-bottom: 10px;
+	padding-top: 10px;
 }
 
 @media (min-width: 1025px) and (max-width: 1199px) {
@@ -5053,7 +5049,7 @@ input:focus:-ms-input-placeholder {
 	}
 
 	.navbar-header {
-		background: #FFF;
+		/*background: #FFF;*/
 		padding: 25px 0;
 	}
 	.btn.responsive-menu {
@@ -5065,7 +5061,7 @@ input:focus:-ms-input-placeholder {
 	}
 	.navbar-collapse {
 		position: static !important;
-		background: #F5F7FA;
+		/*background: #F5F7FA;*/
 		max-height: inherit;
 		padding-top: 0;
 		padding-bottom: 0;
@@ -5109,7 +5105,7 @@ input:focus:-ms-input-placeholder {
 		border-top: 1px solid #E6E9ED;
 	}
 	.navbar-nav > li > a {
-		padding-left: 0;
+		padding-left: 20px;
 		padding-right: 0;
 		border: none;
 		border-radius: 0;
@@ -5776,8 +5772,6 @@ input:focus:-ms-input-placeholder {
 	}
 	.navbar .container,
 	.container {
-		padding-right: 20px;
-		padding-left: 20px;
 	}
 	.navbar-collapse {
 		padding-left: 0;

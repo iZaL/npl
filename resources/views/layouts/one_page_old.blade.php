@@ -24,7 +24,7 @@
     @include('partials.one_page.subject',['subjects'=>$subjects])
     @include('partials.one_page.contact')
 </main>
-@include('partials.footer')
+    @include('partials.footer')
 @section('script')
     @include('partials.script')
 @show
