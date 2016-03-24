@@ -2,6 +2,9 @@
     <div class="navbar" style="background:url(/images/top-bg.jpg) left top repeat-x; padding-bottom: 20px; ">
         <div class="container">
             <a class="navbar-brand" href="{{ Auth::check() ? action('HomeController@home') : '#' }}"><img src="/images/logo.png" class="logo" alt=""></a>
+            <span class="pull-right" style="padding-top: 90px;font-weight: 700;color: #032b62;font-size: 19.19px;">
+                Do you have a Question? No problem
+            </span>
         </div>
         <!-- /.container -->
         <div class="container">
