@@ -2,7 +2,6 @@
 
 @section('title')
     <h1>Get in touch</h1>
-    <p>Do you want to know more? We’d love to hear from you!</p>
 @endsection
 
 @section('middle')
