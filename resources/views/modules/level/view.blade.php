@@ -60,9 +60,9 @@
                                             @if(in_array($question->subject_id,$userSubjects) && in_array($question->level_id,$userLevels))
                                                 <div class="row">
                                                     <div class="col-md-7">
-                                                        <h3>Q:
+                                                        <h2>Q:
                                                             <a href="{{ action('AnswerController@createAnswer',$question->id) }}">{!! ucfirst($question->body) !!}</a>
-                                                        </h3>
+                                                        </h2>
                                                     </div>
                                                     <div class="col-md-5 ">
                                                         <small class="pull-right gray">{{ $question->created_at->format('d-m-Y \a\t g:i:s a')  }}</small>
