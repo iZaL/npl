@@ -61,7 +61,7 @@
                                                 <div class="row">
                                                     <div class="col-md-7">
                                                         <h2>Q:
-                                                            <a href="{{ action('AnswerController@createAnswer',$question->id) }}">{{ strip_tags(ucfirst($question->body)) }}</a>
+                                                            <a href="{{ action('AnswerController@createAnswer',$question->id) }}">{!! strip_tags(ucfirst($question->body)) !!}</a>
                                                         </h2>
                                                     </div>
                                                     <div class="col-md-5 ">
