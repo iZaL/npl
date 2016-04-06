@@ -29,8 +29,8 @@ class EventServiceProvider extends ServiceProvider
             SendWelcomeMail::class
         ],
         EducatorAddedSubjects::class => [
-            SendAdminSubjectRequestMail::class,
-            SendEducatorSubjectPendingAdminApprovalMail::class
+//            SendAdminSubjectRequestMail::class,
+//            SendEducatorSubjectPendingAdminApprovalMail::class
         ]
     ];
 

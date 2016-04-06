@@ -57,7 +57,12 @@
                                 <!-- /.dropdown-menu -->
                             </li>
                             @if(Auth::check())
-                                <li><a href="{{ action('QuestionController@create') }}"> Ask Question </a></li>
+
+                                    @if(Auth::user()->isStudent())
+                                        <li><a href="{{ action('QuestionController@create') }}"> Ask Question </a></li>
+                                    @elseif(Auth::user()->isEducator())
+                                        <li><a href="{{ action('HomeController@home') }}">My Questions</a></li>
+                                    @endif
                             @else
                                 <li><a href="/auth/login">Login</a></li>
                                 <li><a href="{{ action('Auth\AuthController@studentRegistration') }}">Register</a></li>

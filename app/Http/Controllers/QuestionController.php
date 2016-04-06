@@ -38,7 +38,8 @@ class QuestionController extends Controller
 
     public function create(SubjectRepository $subjectRepository)
     {
-        $subjects = $subjectRepository->model->lists('name_en', 'id');
+        $user = Auth::user();
+        $subjects = $user->subjects->lists('name_en', 'id');
 
         return view('modules.question.create', compact('subjects'));
     }

@@ -118,8 +118,9 @@ class AuthController extends Controller
     public function studentRegistration()
     {
         $levels = $this->levelRepository->model->lists('name_en', 'id');
+        $subjects = $this->subjectRepository->model->lists('name_en', 'id');
 
-        return view('auth.student-register', compact('levels'));
+        return view('auth.student-register', compact('levels','subjects'));
     }
 
     public function educatorRegistration()
@@ -136,7 +137,6 @@ class AuthController extends Controller
      */
     public function postEducatorRegistration(Request $request)
     {
-
         $this->validate($request, [
             'firstname_en' => 'required',
             'lastname_en'  => 'required',
@@ -161,7 +161,9 @@ class AuthController extends Controller
 
         event(new UserRegistered($user));
 
-        return redirect('/auth/login')->with('message', 'registration success');
+        auth()->logout();
+
+        return redirect('/auth/login')->with('info', 'registration success, please active your account through clicking the link we have sent you in the email');
     }
 
 
@@ -188,6 +190,18 @@ class AuthController extends Controller
 
         $user->student()->create([]);
 
+        if ($request->subjects) {
+            $subjectArray = [];
+            foreach($request->subjects as $subject) {
+                $subjectArray[$subject] = ['active'=>true];
+            }
+            $user->subjects()->sync($subjectArray);
+        }
+
+        if ($request->levels) {
+            $user->levels()->sync($request->levels);
+        }
+
         event(new UserRegistered($user));
 
         return redirect('/auth/login')->with('message', 'registration success');
@@ -211,9 +225,7 @@ class AuthController extends Controller
             'experience'
         ]));
 
-        if ($request->levels) {
-            $user->levels()->sync($request->levels);
-        }
+
 
         return $user;
     }
@@ -237,7 +249,7 @@ class AuthController extends Controller
         }
 
         // redirect to home with active message
-        return redirect('auth/login')->with('success', trans('auth.alerts.account_activated'));
+        return redirect('auth/login')->with('success', 'Your Account is activated');
 
     }
 

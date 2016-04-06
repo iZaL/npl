@@ -7,6 +7,22 @@
         </div>
     </a>
 @endsection
+
+@section('style')
+    @parent
+    <link href="/bower_components/select2/dist/css/select2.min.css" rel="stylesheet" type="text/css">
+@endsection
+
+@section('script')
+    @parent
+    <script src="/bower_components/select2/dist/js/select2.full.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".select2").select2();
+        });
+    </script>
+
+@endsection
 @section('middle')
     <div class="row">
         <div class="col-md-4 col-sm-12 signup-info" >
@@ -59,9 +75,15 @@
                 <div class="form-group">
                     <label class="control-label pull-left ">Level </label>
                     <span class="pull-left">(required)</span>
-
                     {!! Form::select('levels[]', $levels , null , ['class' => 'form-control']) !!}
                     <small class="hint pull-left">Choose your academic level</small>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label pull-left ">Subjects </label>
+                    <span class="pull-left">(required)</span>
+                    {!! Form::select('subjects[]', $subjects , null , ['class' => 'form-control select2 multiselect multiselect-inverse', 'multiple'=>'multiple']) !!}
+                    <small class="pull-left">Choose subjects you want to learn</small>
                 </div>
 
                 <div class="form-group">

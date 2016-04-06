@@ -79,15 +79,15 @@
                 <div class="form-group">
                     <label class="control-label pull-left ">Level </label>
                     <span class="pull-left">(required)</span>
-                    {!! Form::select('levels[]', $levels , null , ['class' => 'form-control']) !!}
-                    <small class="pull-left">Choose level you want to teach</small>
+                    {!! Form::select('levels[]', $levels , null , ['class' => 'form-control select2 multiselect multiselect-inverse', 'multiple'=>'multiple']) !!}
+                    <small class="pull-left">Choose levels you want to teach.</small>
                 </div>
 
                 <div class="form-group">
                     <label class="control-label pull-left ">Subjects </label>
                     <span class="pull-left">(required)</span>
-                    {!! Form::select('subjects[]', $subjects , null , ['class' => 'form-control select2 multiselect multiselect-inverse', 'multiple'=>'multiple']) !!}
-                    <small class="pull-left">Choose subjects you want to teach. Subject will be added to your profile after admin approval.</small>
+                    {!! Form::select('subjects[]', $subjects , null , ['class' => 'form-control']) !!}
+                    <small class="pull-left">Choose a subject you want to teach. You can start answering the questions related to your subject once admin approves</small>
                 </div>
 
                 <div class="form-group">
