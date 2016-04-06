@@ -21,6 +21,8 @@
                             <th>Type</th>
                             <th>Name</th>
                             <th>Email</th>
+                            <th>Registered on</th>
+                            <th>Expires on</th>
                             <th>Status</th>
                             <th>Admin</th>
                             <th></th>
@@ -36,6 +38,8 @@
                                 <td>{{ (new \ReflectionClass($user->getType()))->getShortName() }}</td>
                                 <td>{{ $user->firstname . ' '.$user->lastname }} </td>
                                 <td>{{ $user->email }} </td>
+                                <td>{{ $user->created_at->format('d-m-Y') }} </td>
+                                <td>{{ $user->expired->format('d-m-Y') }} </td>
                                 <td> {{ $user->active ? 'active' : 'not active' }}</td>
                                 <td> {{ $user->admin ? 'true' : 'false' }}</td>
                                 <td class="f18">

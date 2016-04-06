@@ -27,9 +27,9 @@
                         <tr>
                             <th>Title</th>
                             <th>Added Date</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
+                            <th>View</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
                         </tr>
                         </thead>
                         <tbody>

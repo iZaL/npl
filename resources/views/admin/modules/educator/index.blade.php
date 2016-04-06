@@ -52,8 +52,9 @@
                         <th>NP CODE</th>
                         <th>Name</th>
                         <th>Email</th>
-                        <th></th>
-                        <th></th>
+                        <th>Registered on</th>
+                        <th>View</th>
+                        <th>Edit</th>
                         <th>Actions</th>
                     </tr>
                     </thead>
@@ -65,6 +66,7 @@
                                 <td> <a href="{{ action('Admin\UserController@show',$educator->profile->id) }}" >{{ $educator->profile->np_code }}</a> </td>
                                 <td>{{ $educator->profile->firstname . $educator->profile->lastname }} </td>
                                 <td>{{ $educator->profile->email }} </td>
+                                <td>{{ $educator->profile->created_at->format('d-m-Y') }} </td>
                                 <td class="f18">
                                     <a href="{{ action('Admin\EducatorController@show',$educator->id)  }}"
                                        role="button" >

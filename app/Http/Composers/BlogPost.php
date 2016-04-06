@@ -25,7 +25,7 @@ class BlogPost
 
     public function compose(View $view)
     {
-        $blogPost = $this->blogRepository->model->first();
+        $blogPost = $this->blogRepository->model->latest()->first();
         if($blogPost) {
             return $view->with(['blogPost'=>$blogPost]);
         }
