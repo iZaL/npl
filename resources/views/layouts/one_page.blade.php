@@ -11,9 +11,7 @@
     @show
 </head>
 <body id="top" >
-
 @include('partials.one_page.header')
-
 <main>
     @include('partials.notifications')
     @include('partials.one_page.banner')

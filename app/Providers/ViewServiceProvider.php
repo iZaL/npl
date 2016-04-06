@@ -20,6 +20,9 @@ class ViewServiceProvider extends ServiceProvider
         view()->composer(
             'partials.profile-dropdown', 'App\Http\Composers\NotificationCount'
         );
+        view()->composer(
+            'partials.one_page.banner', 'App\Http\Composers\BlogPost'
+        );
     }
 
     /**
