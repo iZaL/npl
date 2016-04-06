@@ -6080,7 +6080,7 @@ input:focus:-ms-input-placeholder {
 .notification-count {
     background-color:#D41010;
     position: absolute;
-    top:4px;
+    top:-14px;
     left:-8px;
 }
 .notification-count a {
@@ -6122,4 +6122,18 @@ input:focus:-ms-input-placeholder {
 
 .action {
     padding-top: 20px;
+}
+
+.date {
+    font-size:15px;
+}
+
+.replied {
+    font-size:15px;
+    color:gray
+}
+
+.author-name{
+    font-size:18px;
+    font-weight: bold;
 }

@@ -10,15 +10,17 @@
                     @if($notification->notifiable->question)
                         @if($notification->notifiable->question->user)
                             <li class="list-group-item">
+                                <h2>{!! ucfirst($notification->notifiable->question->body) !!}</h2>
                                 @if($isEducator)
-                                    <span><b><a href="{{action('ProfileController@show',$notification->notifiable->question->user->id)}}" style="color:#000000">{{ $notification->notifiable->question->user->np_code }} </a></b>replied to you</span>
+                                    <span class="author-name"><a href="{{action('ProfileController@show',$notification->notifiable->question->user->id)}}">{{ $notification->notifiable->question->user->np_code }} </a></span>
                                 @elseif($isStudent)
-                                    {{ $notification->notifiable->user->np_code }}
+                                    <span class="author-name">{{ $notification->notifiable->user->np_code }}</span>
                                 @endif
+                                <span class="replied">replied</span>
                                 <a href="{{ action('AnswerController@createReply',['question_id'=>$notification->notifiable->question->id,'answer_id'=>$notification->notifiable->id]) }}">
                                     {!! strip_tags($notification->notifiable->body) !!}
                                 </a>
-                                <span class="navy"> &nbsp; on {{ $notification->created_at->format('d-m-Y \a\t g:i:s a')  }}</span>
+                                <span class="date pull-right gray"> {{ $notification->created_at->format('d-m-Y \a\t g:i:s a')  }}</span>
                             </li>
                         @endif
                     @endif
