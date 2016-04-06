@@ -103,7 +103,7 @@
             </div>
             <!-- /.table-responsive -->
             @include('admin.partials.delete-modal',['info' => 'Remove the User as an Educator and all the conversations ?.
-             You can delete the user in Users Page.','deleteText'=>'Remove as Student'])
+             You can delete the user in Users Page.','deleteText'=>'Remove as Educator'])
         </div>
         <!-- /.panel-body -->
 

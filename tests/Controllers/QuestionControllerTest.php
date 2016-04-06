@@ -22,7 +22,7 @@ class QuestionControllerTest extends TestCase
         session()->put('userType','Student');
 
         $body = uniqid();
-        $subjectID = 2;
+        $subjectID = '2';
 
         $user = Auth::loginUsingId(3); // student
 
@@ -38,7 +38,7 @@ class QuestionControllerTest extends TestCase
             [
                 'body_en'    => $body,
                 'user_id'    => $user->id,
-                'subject_id' => 2,
+                'subject_id' => $subjectID,
                 'level_id'   => $level->id
             ]);
 

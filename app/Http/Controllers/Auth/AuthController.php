@@ -153,6 +153,10 @@ class AuthController extends Controller
             $user->subjects()->sync($request->subjects);
         }
 
+        if ($request->levels) {
+            $user->levels()->sync($request->levels);
+        }
+
         //Fire Event to Notify Admin
         // Fire Event to Notify Admin
         $user->educator()->create(['qualification'=>$request->qualification, 'experience' => $request->experience]);
