@@ -22,8 +22,8 @@
                             @endif
                         </a>
                     </div>
-                    <div class="col-md-9">
-                        {!! str_limit($post->description,100) !!}
+                    <div class="col-md-9 blog-post">
+                        {!! str_limit($post->description,300) !!}
                     </div>
                 </div>
                 <div class="row">

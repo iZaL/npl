@@ -2,7 +2,6 @@
 @section('title')
     <h1 class="text-center"> Sign up as Student  </h1>
     <a href="{{ action('Auth\AuthController@educatorRegistration') }}" >
-        <h2 class="text-center">OR</h2>
         <div class="btn btn-danger col-md-8 col-md-offset-2" >
             <h2 style="color:white">Sign up as an Educator</h2>
         </div>
@@ -10,7 +9,7 @@
 @endsection
 @section('middle')
     <div class="row">
-        <div class="col-md-4 col-sm-12" style="color:gray">
+        <div class="col-md-4 col-sm-12 signup-info" >
             <h2>Student Signup Process</h2>
             <li>Fill out the Requested Details</li>
             <li>Select one level: First year University, high school, medium or elementary school</li>

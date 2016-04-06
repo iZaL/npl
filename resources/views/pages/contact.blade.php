@@ -45,7 +45,7 @@
                         <div class="col-sm-6 inner-left-sm border-left">
 
                             <h2>No Problem Learning</h2>
-                            <h3>Managed by Ideas Owners Co</h3>
+                            <h3>Marketing is Managed by Ideas Owners Co</h3>
                             <ul class="contacts">
                                 <li>
                                     <p>

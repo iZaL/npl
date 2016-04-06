@@ -4,16 +4,14 @@
 <link rel="stylesheet" href="/bower_components/fontawesome/css/font-awesome.min.css">
 
 <!-- Customizable CSS -->
-<link href="/css/main.css" rel="stylesheet" data-skrollr-stylesheet>
 <link href="/css/owl.carousel.css" rel="stylesheet">
 <link href="/css/owl.transitions.css" rel="stylesheet">
 <link href="/css/animate.min.css" rel="stylesheet">
-<link href="/css/triangle.css" rel="stylesheet">
-<link href="/css/custom.css" rel="stylesheet">
 <!-- Fonts -->
 <link href="/css/flaticon.css" rel="stylesheet">
 <!-- Icons/Glyphs -->
 <link href="/fonts/fontello.css" rel="stylesheet">
+<link href="/css/main.css" rel="stylesheet" data-skrollr-stylesheet>
 
 <style>
     [class^="flaticon-"]:before, [class*=" flaticon-"]:before, [class^="flaticon-"]:after, [class*=" flaticon-"]:after {

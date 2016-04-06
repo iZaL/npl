@@ -17,9 +17,8 @@
         </div>
 
         <div class="col-sm-12 inner">
-            <div class="copyright-text text-center ">
-                <p>© 2015 <a href="http://no-problem-learning.com">No Problem Learning</a>.&nbsp; All rights
-                    reserved. Developed and managed by <a target="_blank" href="http://www.ideasowners.net">IdeasOwners</a> Kuwait</p>
+            <div class="text-center ">
+                <p>© 2015 <a href="http://no-problem-learning.com">No Problem Learning</a>.&nbsp; Marketing is managed by <a target="_blank" href="http://www.ideasowners.net">IdeasOwners</a> Kuwait</p>
             </div>
         </div>
     </div>

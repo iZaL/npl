@@ -29,7 +29,7 @@
 @endsection
 @section('middle')
     <div class="row">
-        <div class="col-md-4 col-sm-12 " style="color:gray">
+        <div class="col-md-4 col-sm-12 signup-info" >
             <h2>Educator Signup Process</h2>
             <li>Fill out the Requested Details</li>
             <li>Select one level such as : first year University, high school, medium or elementary school</li>

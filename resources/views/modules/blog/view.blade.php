@@ -9,7 +9,7 @@
     <div class="panel">
         <div class="panel-body">
             <div class="col-md-12">
-                <div class="row">
+                <div class="row blog-post">
                     {!! $post->description !!}
                 </div>
             </div>
