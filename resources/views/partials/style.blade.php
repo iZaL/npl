@@ -5,6 +5,7 @@
 
 <!-- Customizable CSS -->
 <link href="/css/owl.carousel.css" rel="stylesheet">
+<link href="/css/owl.transitions.css" rel="stylesheet">
 <link href="/css/animate.min.css" rel="stylesheet">
 <!-- Fonts -->
 <link href="/css/flaticon.css" rel="stylesheet">

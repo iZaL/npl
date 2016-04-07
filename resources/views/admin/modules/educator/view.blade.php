@@ -30,7 +30,7 @@
                     <tr>
                         <th>Educators</th>
                         <th>In Active Subjects</th>
-                        <th>Active Subjects</th>
+                        {{--<th>Active Subjects</th>--}}
                         <th>Actions</th>
                     </tr>
                     </thead>
@@ -53,7 +53,7 @@
 
                                 <input hidden="user_id" value="{{ $educator->id }}">
                                 <select name="subjects[]" class="col-lg-12 select2 multiselect multiselect-inverse" multiple>
-                                    @foreach($subjects as $subject)
+                                    @foreach($inActiveSubjects as $subject)
                                         <option value="{{ $subject->id }}"
                                                 @if(in_array($subject->id, $inActiveSubjects->modelKeys()))
                                                 selected="selected"
@@ -67,28 +67,28 @@
                                 {!! Form::close() !!}
                             @endif
                         </td>
-                        <td>
-                            @if($activeSubjects = $educator->profile->activeSubjects)
-                                {!! Form::open(['action'=>['Admin\EducatorController@deActivateSubjects',$educator->id], 'method'=>'post']) !!}
+                        {{--<td>--}}
+                            {{--@if($activeSubjects = $educator->profile->activeSubjects)--}}
+                                {{--{!! Form::open(['action'=>['Admin\EducatorController@deActivateSubjects',$educator->id], 'method'=>'post']) !!}--}}
 
-                                <input hidden="user_id" value="{{ $educator->id }}">
-                                <select name="subjects[]" class="col-lg-12 select2 multiselect multiselect-inverse" multiple>
-                                    @foreach($activeSubjects as $subject)
-                                        <option value="{{ $subject->id }}"
-                                                @if(in_array($subject->id, $activeSubjects->modelKeys()))
-                                                selected="selected"
-                                                @endif
-                                        >{{ $subject->name }}</option>
+                                {{--<input hidden="user_id" value="{{ $educator->id }}">--}}
+                                {{--<select name="subjects[]" class="col-lg-12 select2 multiselect multiselect-inverse" multiple>--}}
+                                    {{--@foreach($activeSubjects as $subject)--}}
+                                        {{--<option value="{{ $subject->id }}"--}}
+                                                {{--@if(in_array($subject->id, $activeSubjects->modelKeys()))--}}
+                                                {{--selected="selected"--}}
+                                                {{--@endif--}}
+                                        {{-->{{ $subject->name }}</option>--}}
 
-                                    @endforeach
-                                </select>
+                                    {{--@endforeach--}}
+                                {{--</select>--}}
 
-                                <input type="submit" class="btn btn-info btn-sm btn-warning" role="button" value="Deactivate">
-                                <br>
-                                <small>Remove the subjects from the list <br> that you want to deactivate for Educator</small>
-                                {!! Form::close() !!}
-                            @endif
-                        </td>
+                                {{--<input type="submit" class="btn btn-info btn-sm btn-warning" role="button" value="Deactivate">--}}
+                                {{--<br>--}}
+                                {{--<small>Remove the subjects from the list <br> that you want to deactivate for Educator</small>--}}
+                                {{--{!! Form::close() !!}--}}
+                            {{--@endif--}}
+                        {{--</td>--}}
 
                         <td>
                             <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteModalBox"

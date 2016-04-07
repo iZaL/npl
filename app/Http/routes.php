@@ -69,7 +69,6 @@ Route::group([ 'middleware' => ['student']], function () {
     Route::resource('question', 'QuestionController');
     Route::get('student/questions', 'StudentController@getQuestions');
 });
-
 /*********************************************************************************************************
  * Student Or Educator Routes
  ********************************************************************************************************/
@@ -95,5 +94,5 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['adm
     Route::resource('question', 'QuestionController');
     Route::resource('answer', 'AnswerController');
     Route::resource('blog', 'BlogController');
-    Route::get('/', 'HomeController@index');
+    Route::get('/', 'BlogController@index');
 });

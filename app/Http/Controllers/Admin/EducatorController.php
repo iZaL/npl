@@ -82,8 +82,9 @@ class EducatorController extends Controller
             'answersCount'
         ])->latest()->find($id);
 
-        $subjects = $this->subjectRepository->model->get(['id', 'name_en']);
-
+//        $subjects = $this->subjectRepository->model->get(['id', 'name_en']);
+//        $subjects = $educator->profile->inActiveSubjects()->get(['id', 'name_en']);
+//        dd($subjects);
         return view('admin.modules.educator.view', compact('educator', 'subjects'));
     }
 
