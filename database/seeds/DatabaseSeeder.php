@@ -38,16 +38,16 @@ class DatabaseSeeder extends Seeder
         // 3,5= Student
 
         factory('App\Src\User\User', 1)->create(['admin'=>1]);
-//        factory('App\Src\User\User', 1)->create(['email' => 'educator@test.com', 'np_code' => 'NP99001']);
-//        factory('App\Src\User\User', 1)->create(['email' => 'student@test.com', 'np_code' => 'NP1001']);
-//        factory('App\Src\User\User', 1)->create(['email' => 'educator1@test.com', 'np_code' => 'NP99002']);
-//        factory('App\Src\User\User', 1)->create(['email' => 'student1@test.com', 'np_code' => 'NP1002']);
+        factory('App\Src\User\User', 1)->create(['email' => 'educator@test.com', 'np_code' => 'NP99001']);
+        factory('App\Src\User\User', 1)->create(['email' => 'student@test.com', 'np_code' => 'NP1001']);
+        factory('App\Src\User\User', 1)->create(['email' => 'educator1@test.com', 'np_code' => 'NP99002']);
+        factory('App\Src\User\User', 1)->create(['email' => 'student1@test.com', 'np_code' => 'NP1002']);
 
-//        factory('App\Src\Educator\Educator', 1)->create(['user_id' => 2]);
-//        factory('App\Src\Educator\Educator', 1)->create(['user_id' => 4]);
+        factory('App\Src\Educator\Educator', 1)->create(['user_id' => 2]);
+        factory('App\Src\Educator\Educator', 1)->create(['user_id' => 4]);
 //
-//        factory('App\Src\Student\Student', 1)->create(['user_id' => 3]);
-//        factory('App\Src\Student\Student', 1)->create(['user_id' => 5]);
+        factory('App\Src\Student\Student', 1)->create(['user_id' => 3]);
+        factory('App\Src\Student\Student', 1)->create(['user_id' => 5]);
 
         factory('App\Src\Subject\Subject', 1)->create(['name_ar' => 'physics', 'name_en' => 'physics', 'icon'=>'flaticon-science65']);
         factory('App\Src\Subject\Subject', 1)->create(['name_ar' => 'chemistry', 'name_en' => 'chemistry','icon'=>'flaticon-science62']);
@@ -62,26 +62,29 @@ class DatabaseSeeder extends Seeder
         factory('App\Src\Level\Level', 1)->create(['name_ar' => 'high school', 'name_en' => 'high school']);
 
 //        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 1, 'level_id' => 1]);
-//        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 2, 'level_id' => 2]);
-//        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 3, 'level_id' => 2]);
-//        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 4, 'level_id' => 1]);
+        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 2, 'level_id' => 2]);
+        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 2, 'level_id' => 1]);
+        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 2, 'level_id' => 3]);
+        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 4, 'level_id' => 1]);
+        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 3, 'level_id' => 2]);
 //        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 4, 'level_id' => 2]);
 //        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 4, 'level_id' => 3]);
 //        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 4, 'level_id' => 4]);
-//        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 5, 'level_id' => 2]);
+        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 5, 'level_id' => 2]);
 //
-//        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 2, 'subject_id' => 1, 'active' => 1]);
+        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 2, 'subject_id' => 1, 'active' => 1]);
 //        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 2, 'subject_id' => 2, 'active' => 0]);
 //        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 2, 'subject_id' => 3, 'active' => 0]);
 //        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 4, 'subject_id' => 1, 'active' => 1]);
-//        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 4, 'subject_id' => 2, 'active' => 1]);
+        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 4, 'subject_id' => 2, 'active' => 1]);
 //        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 4, 'subject_id' => 3, 'active' => 1]);
 //        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 4, 'subject_id' => 4, 'active' => 1]);
 //        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 4, 'subject_id' => 5, 'active' => 1]);
 //        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 4, 'subject_id' => 6, 'active' => 1]);
-//        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 3, 'subject_id' => 6, 'active' => 1]);
-//        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 5, 'subject_id' => 1, 'active' => 1]);
-//        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 5, 'subject_id' => 2, 'active' => 1]);
+        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 3, 'subject_id' => 5, 'active' => 1]);
+        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 3, 'subject_id' => 6, 'active' => 1]);
+        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 5, 'subject_id' => 1, 'active' => 1]);
+        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 5, 'subject_id' => 2, 'active' => 1]);
 //        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 5, 'subject_id' => 3, 'active' => 1]);
 //        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 5, 'subject_id' => 4, 'active' => 1]);
 //        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 5, 'subject_id' => 6, 'active' => 1]);
