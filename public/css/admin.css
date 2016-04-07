@@ -82,7 +82,8 @@ body {
 }
 
 .text-rtl {
-    direction: rtl;
+    text-direction: rtl;
+    text-align: right;
 }
 .bg-gray {
     background-color: #EAF2F3;
