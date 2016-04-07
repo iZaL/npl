@@ -80,3 +80,10 @@ body {
     margin-top:10px;
     margin-bottom:10px;
 }
+
+.text-rtl {
+    direction: rtl;
+}
+.bg-gray {
+    background-color: #EAF2F3;
+}
