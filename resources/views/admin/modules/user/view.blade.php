@@ -41,11 +41,12 @@
                         <div class="col-md-3">Level</div>
                         <div class="col-md-9">: {{ $levels }}</div>
                     </div>
+                    <div class="row info-row">
+                        <div class="col-md-3">Subject</div>
+                        <div class="col-md-9">: {{ $subjects}}</div>
+                    </div>
                     @if($isEducator)
-                        <div class="row info-row">
-                            <div class="col-md-3">Subject</div>
-                            <div class="col-md-9">: {{ $subjects}}</div>
-                        </div>
+
                         <div class="row info-row">
                             <div class="col-md-3">Qualification</div>
                             <div class="col-md-9">: {{ $user->educator->qualification }}</div>

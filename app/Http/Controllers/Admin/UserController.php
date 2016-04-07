@@ -51,8 +51,8 @@ class UserController extends Controller
 
         if (is_a($user->getType(), Educator::class)) {
             $isEducator = true;
-            $subjects =  implode(',',$user->subjects->lists('name_en')->toArray());
         }
+        $subjects =  implode(',',$user->subjects->lists('name_en')->toArray());
 
         $levels =  implode(',',$user->levels->lists('name_en')->toArray());
 
