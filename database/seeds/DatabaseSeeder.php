@@ -38,16 +38,16 @@ class DatabaseSeeder extends Seeder
         // 3,5= Student
 
         factory('App\Src\User\User', 1)->create(['admin'=>1]);
-        factory('App\Src\User\User', 1)->create(['email' => 'educator@test.com', 'np_code' => 'NP99001']);
-        factory('App\Src\User\User', 1)->create(['email' => 'student@test.com', 'np_code' => 'NP1001']);
-        factory('App\Src\User\User', 1)->create(['email' => 'educator1@test.com', 'np_code' => 'NP99002']);
-        factory('App\Src\User\User', 1)->create(['email' => 'student1@test.com', 'np_code' => 'NP1002']);
+//        factory('App\Src\User\User', 1)->create(['email' => 'educator@test.com', 'np_code' => 'NP99001']);
+//        factory('App\Src\User\User', 1)->create(['email' => 'student@test.com', 'np_code' => 'NP1001']);
+//        factory('App\Src\User\User', 1)->create(['email' => 'educator1@test.com', 'np_code' => 'NP99002']);
+//        factory('App\Src\User\User', 1)->create(['email' => 'student1@test.com', 'np_code' => 'NP1002']);
 
-        factory('App\Src\Educator\Educator', 1)->create(['user_id' => 2]);
-        factory('App\Src\Educator\Educator', 1)->create(['user_id' => 4]);
-
-        factory('App\Src\Student\Student', 1)->create(['user_id' => 3]);
-        factory('App\Src\Student\Student', 1)->create(['user_id' => 5]);
+//        factory('App\Src\Educator\Educator', 1)->create(['user_id' => 2]);
+//        factory('App\Src\Educator\Educator', 1)->create(['user_id' => 4]);
+//
+//        factory('App\Src\Student\Student', 1)->create(['user_id' => 3]);
+//        factory('App\Src\Student\Student', 1)->create(['user_id' => 5]);
 
         factory('App\Src\Subject\Subject', 1)->create(['name_ar' => 'physics', 'name_en' => 'physics', 'icon'=>'flaticon-science65']);
         factory('App\Src\Subject\Subject', 1)->create(['name_ar' => 'chemistry', 'name_en' => 'chemistry','icon'=>'flaticon-science62']);
@@ -61,85 +61,85 @@ class DatabaseSeeder extends Seeder
         factory('App\Src\Level\Level', 1)->create(['name_ar' => 'elementary', 'name_en' => 'elementary']);
         factory('App\Src\Level\Level', 1)->create(['name_ar' => 'high school', 'name_en' => 'high school']);
 
-        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 1, 'level_id' => 1]);
-        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 2, 'level_id' => 2]);
-        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 3, 'level_id' => 2]);
-        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 4, 'level_id' => 1]);
-        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 4, 'level_id' => 2]);
-        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 4, 'level_id' => 3]);
-        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 4, 'level_id' => 4]);
-        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 5, 'level_id' => 2]);
+//        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 1, 'level_id' => 1]);
+//        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 2, 'level_id' => 2]);
+//        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 3, 'level_id' => 2]);
+//        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 4, 'level_id' => 1]);
+//        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 4, 'level_id' => 2]);
+//        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 4, 'level_id' => 3]);
+//        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 4, 'level_id' => 4]);
+//        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 5, 'level_id' => 2]);
+//
+//        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 2, 'subject_id' => 1, 'active' => 1]);
+//        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 2, 'subject_id' => 2, 'active' => 0]);
+//        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 2, 'subject_id' => 3, 'active' => 0]);
+//        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 4, 'subject_id' => 1, 'active' => 1]);
+//        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 4, 'subject_id' => 2, 'active' => 1]);
+//        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 4, 'subject_id' => 3, 'active' => 1]);
+//        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 4, 'subject_id' => 4, 'active' => 1]);
+//        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 4, 'subject_id' => 5, 'active' => 1]);
+//        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 4, 'subject_id' => 6, 'active' => 1]);
+//        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 3, 'subject_id' => 6, 'active' => 1]);
+//        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 5, 'subject_id' => 1, 'active' => 1]);
+//        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 5, 'subject_id' => 2, 'active' => 1]);
+//        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 5, 'subject_id' => 3, 'active' => 1]);
+//        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 5, 'subject_id' => 4, 'active' => 1]);
+//        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 5, 'subject_id' => 6, 'active' => 1]);
 
-        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 2, 'subject_id' => 1, 'active' => 1]);
-        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 2, 'subject_id' => 2, 'active' => 0]);
-        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 2, 'subject_id' => 3, 'active' => 0]);
-        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 4, 'subject_id' => 1, 'active' => 1]);
-        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 4, 'subject_id' => 2, 'active' => 1]);
-        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 4, 'subject_id' => 3, 'active' => 1]);
-        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 4, 'subject_id' => 4, 'active' => 1]);
-        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 4, 'subject_id' => 5, 'active' => 1]);
-        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 4, 'subject_id' => 6, 'active' => 1]);
-        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 3, 'subject_id' => 6, 'active' => 1]);
-        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 5, 'subject_id' => 1, 'active' => 1]);
-        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 5, 'subject_id' => 2, 'active' => 1]);
-        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 5, 'subject_id' => 3, 'active' => 1]);
-        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 5, 'subject_id' => 4, 'active' => 1]);
-        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 5, 'subject_id' => 6, 'active' => 1]);
-
-
-        $question1 = factory('App\Src\Question\Question', 1)->create(['user_id'    => 5,
-            'subject_id' => 1,
-            'level_id'   => 2,
-            'body_en'    => 'Radiocarbon is produced in the atmosphere as a result of ?'
-        ]);
-
-        $answer1 = factory('App\Src\Answer\Answer', 1)->create([
-            'user_id'    => 4,
-            'question_id' => $question1->id,
-            'parent_id'   => 0,
-            'body_en'    => 'collision between fast neutrons and nitrogen nuclei present in the atmosphere'
-        ]);
-
-        $question2 = factory('App\Src\Question\Question', 1)->create(
-            [
-                'user_id'    => 5,
-                'subject_id' => 1,
-                'level_id'   => 2,
-                'body_en'    => 'It is easier to roll a stone up a sloping road than to lift it vertical upwards because ?'
-            ]);
-
-        $answer2 = factory('App\Src\Answer\Answer', 1)->create([
-            'user_id'    => 4,
-            'question_id' => $question2->id,
-            'parent_id'   => 0,
-            'body_en'    => 'work done in rolling is more than in lifting'
-        ]);
-
-        $answer2A = factory('App\Src\Answer\Answer', 1)->create([
-            'user_id'    => 2,
-            'question_id' => $question2->id,
-            'parent_id'   => 0,
-            'body_en'    => 'work done in lifting the stone is equal to rolling it'
-        ]);
-
-        $studentReplyQ1 = factory('App\Src\Answer\Answer', 1)->create([
-            'user_id'    => 5,
-            'question_id' => $question1->id,
-            'parent_id'   => $answer1->id,
-            'body_en'    => 'thank you for the answer'
-        ]);
-
-        $question3 = factory('App\Src\Question\Question',
-            1)->create(['user_id' => 5, 'subject_id' => 1, 'body_en' => 'is physics easy ? ', 'level_id' => 2]);
-
-        $answer31 = factory('App\Src\Answer\Answer',
-            1)->create(['user_id' => 4, 'question_id' => $question3->id, 'body_en' => 'yes, if you work hard', 'parent_id' => 0]);
-
-        $answer32 = factory('App\Src\Answer\Answer',
-            1)->create(['user_id' => 4, 'question_id' => $question3->id, 'body_en' => 'try your best', 'parent_id' => $answer31->id]);
-
-        $studentReply = factory('App\Src\Answer\Answer',
-            1)->create(['user_id' => 5, 'question_id' => $question3->id, 'body_en' => 'yes, I will Ed', 'parent_id' => $answer31->id]);
+//
+//        $question1 = factory('App\Src\Question\Question', 1)->create(['user_id'    => 5,
+//            'subject_id' => 1,
+//            'level_id'   => 2,
+//            'body_en'    => 'Radiocarbon is produced in the atmosphere as a result of ?'
+//        ]);
+//
+//        $answer1 = factory('App\Src\Answer\Answer', 1)->create([
+//            'user_id'    => 4,
+//            'question_id' => $question1->id,
+//            'parent_id'   => 0,
+//            'body_en'    => 'collision between fast neutrons and nitrogen nuclei present in the atmosphere'
+//        ]);
+//
+//        $question2 = factory('App\Src\Question\Question', 1)->create(
+//            [
+//                'user_id'    => 5,
+//                'subject_id' => 1,
+//                'level_id'   => 2,
+//                'body_en'    => 'It is easier to roll a stone up a sloping road than to lift it vertical upwards because ?'
+//            ]);
+//
+//        $answer2 = factory('App\Src\Answer\Answer', 1)->create([
+//            'user_id'    => 4,
+//            'question_id' => $question2->id,
+//            'parent_id'   => 0,
+//            'body_en'    => 'work done in rolling is more than in lifting'
+//        ]);
+//
+//        $answer2A = factory('App\Src\Answer\Answer', 1)->create([
+//            'user_id'    => 2,
+//            'question_id' => $question2->id,
+//            'parent_id'   => 0,
+//            'body_en'    => 'work done in lifting the stone is equal to rolling it'
+//        ]);
+//
+//        $studentReplyQ1 = factory('App\Src\Answer\Answer', 1)->create([
+//            'user_id'    => 5,
+//            'question_id' => $question1->id,
+//            'parent_id'   => $answer1->id,
+//            'body_en'    => 'thank you for the answer'
+//        ]);
+//
+//        $question3 = factory('App\Src\Question\Question',
+//            1)->create(['user_id' => 5, 'subject_id' => 1, 'body_en' => 'is physics easy ? ', 'level_id' => 2]);
+//
+//        $answer31 = factory('App\Src\Answer\Answer',
+//            1)->create(['user_id' => 4, 'question_id' => $question3->id, 'body_en' => 'yes, if you work hard', 'parent_id' => 0]);
+//
+//        $answer32 = factory('App\Src\Answer\Answer',
+//            1)->create(['user_id' => 4, 'question_id' => $question3->id, 'body_en' => 'try your best', 'parent_id' => $answer31->id]);
+//
+//        $studentReply = factory('App\Src\Answer\Answer',
+//            1)->create(['user_id' => 5, 'question_id' => $question3->id, 'body_en' => 'yes, I will Ed', 'parent_id' => $answer31->id]);
 
 //        factory('App\Src\Question\Question', 1)->create(['user_id'    => 5,
 //            'subject_id' => 1,
