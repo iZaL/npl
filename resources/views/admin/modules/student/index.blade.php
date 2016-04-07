@@ -24,6 +24,14 @@
                 {!! Form::open(['action'=>'Admin\StudentController@index', 'method'=>'get', 'class'=>'form-vertical']) !!}
                 <div class="col-md-5">
                     <div class="col-md-3" >
+                        <span class="vcenter">Subject:</span>
+                    </div>
+                    <div class="col-md-9 ">
+                        {!! Form::select('subject',$subjects,$selectedSubject,['class'=>'form-control']) !!}
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="col-md-3" >
                         <span class="vcenter">Level:</span>
                     </div>
                     <div class="col-md-9">
