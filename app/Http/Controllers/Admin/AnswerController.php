@@ -30,19 +30,21 @@ class AnswerController extends Controller
 
     public function index()
     {
-        $answers = $this->answerRepository->model->has('parentAnswers')->paginate(50);
-
-        $answers->load('question');
-        $answers->load('childAnswersCount');
-
+        $answers = $this->answerRepository->model->with(['question'])->has('childAnswers')->paginate(100);
         return view('admin.modules.answer.index', compact('answers'));
-
     }
 
-    public function show($id)
+    public function show($answerId)
     {
-        return redirect()->back()->with('info', 'Method Not Yet Implemented');
+        // check whether valid subject, valid level, valid chat
+        $answer = $this->answerRepository->model->with(['question','childAnswers.user'])->find($answerId);
+
+        return view('admin.modules.answer.view', compact( 'answer'));
+
     }
+
+
+
 
     public function edit($id)
     {

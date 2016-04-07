@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Http\Controllers\Controller;
+use App\Src\Answer\AnswerRepository;
 use App\Src\Level\LevelRepository;
 use App\Src\Question\QuestionRepository;
 use App\Src\Subject\SubjectRepository;
@@ -23,17 +24,23 @@ class QuestionController extends Controller
      * @var LevelRepository
      */
     private $levelRepository;
+    /**
+     * @var AnswerRepository
+     */
+    private $answerRepository;
 
     /**
      * @param QuestionRepository $questionRepository
      * @param SubjectRepository $subjectRepository
      * @param LevelRepository $levelRepository
+     * @param AnswerRepository $answerRepository
      */
-    public function __construct(QuestionRepository $questionRepository, SubjectRepository $subjectRepository,LevelRepository $levelRepository)
+    public function __construct(QuestionRepository $questionRepository, SubjectRepository $subjectRepository,LevelRepository $levelRepository,AnswerRepository $answerRepository)
     {
         $this->questionRepository = $questionRepository;
         $this->subjectRepository = $subjectRepository;
         $this->levelRepository = $levelRepository;
+        $this->answerRepository = $answerRepository;
     }
 
     public function index(Request $request)
@@ -57,7 +64,7 @@ class QuestionController extends Controller
 
     public function show($id)
     {
-        $question = $this->questionRepository->model->find($id);
+        $question = $this->questionRepository->model->with('parentAnswers')->find($id);
         return view('admin.modules.question.view', compact('question'));
     }
 
@@ -87,6 +94,15 @@ class QuestionController extends Controller
         return redirect()->back()->with('success', 'Question Updated');
 
     }
+
+//    public function getAnswers($questionID,$parentAnswerID)
+//    {
+//        $question = $this->questionRepository->model->find($questionID);
+//        $parentAnswer = $this->answerRepository->model->find($parentAnswerID);
+//        dd($parentAnswer->childAnswers);
+////        $parentAnswer = $this->
+//
+//    }
 
     /**
      * @param $id
