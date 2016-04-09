@@ -77,12 +77,10 @@
                                 <td>Level</td>
                                 <td>{{ $levels }}</td>
                             </tr>
-                            @if($isEducator)
-                                <tr>
-                                    <td>Subjects</td>
-                                    <td>{{ $subjects }}</td>
-                                </tr>
-                            @endif
+                            <tr>
+                                <td>Subjects</td>
+                                <td>{{ $subjects }}</td>
+                            </tr>
                             <tr>
                                 <td>City</td>
                                 <td>{{ $user->city }}</td>
