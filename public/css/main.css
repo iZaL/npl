@@ -308,108 +308,11 @@ main header + * {
     margin-top: 35px !important;
 }
 .inner {
-    padding-top: 120px;
-    padding-bottom: 120px;
-}
-.inner-md {
-    padding-top: 100px;
-    padding-bottom: 100px;
-}
-.inner-sm {
-    padding-top: 80px;
-    padding-bottom: 80px;
-}
-.inner-xs {
-    padding-top: 40px;
-    padding-bottom: 40px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 .inner-top {
-    padding-top: 120px;
-}
-.inner-top-md {
-    padding-top: 100px;
-}
-.inner-top-sm {
-    padding-top: 80px;
-}
-.inner-top-xs {
-    padding-top: 40px;
-}
-.inner-bottom {
-    padding-bottom: 120px;
-}
-.inner-bottom-md {
-    padding-bottom: 100px;
-}
-.inner-bottom-sm {
-    padding-bottom: 80px;
-}
-.inner-bottom-xs {
-    padding-bottom: 40px;
-}
-.inner-left {
-    padding-left: 75px;
-}
-.inner-left-md {
-    padding-left: 60px;
-}
-.inner-left-sm {
-    padding-left: 45px;
-}
-.inner-left-xs {
-    padding-left: 30px;
-}
-.inner-right {
-    padding-right: 75px;
-}
-.inner-right-md {
-    padding-right: 60px;
-}
-.inner-right-sm {
-    padding-right: 45px;
-}
-.inner-right-xs {
-    padding-right: 30px;
-}
-.outer {
-    margin-top: 120px;
-    margin-bottom: 120px;
-}
-.outer-md {
-    margin-top: 100px;
-    margin-bottom: 100px;
-}
-.outer-sm {
-    margin-top: 80px;
-    margin-bottom: 80px;
-}
-.outer-xs {
-    margin-top: 40px;
-    margin-bottom: 40px;
-}
-.outer-top {
-    margin-top: 120px;
-}
-.outer-top-md {
-    margin-top: 100px;
-}
-.outer-top-sm {
-    margin-top: 80px;
-}
-.outer-top-xs {
-    margin-top: 40px;
-}
-.outer-bottom {
-    margin-bottom: 120px;
-}
-.outer-bottom-md {
-    margin-bottom: 100px;
-}
-.outer-bottom-sm {
-    margin-bottom: 80px;
-}
-.outer-bottom-xs {
-    margin-bottom: 40px;
+    padding-top: 20px;
 }
 .center-block {
     float: none;
@@ -522,26 +425,6 @@ p + .owl-carousel,
 h2 + .panel-group,
 p + .panel-group {
     padding-top: 20px;
-}
-figure figcaption {
-    font-size: 14px;
-    line-height: 150%;
-}
-figure figcaption h4 {
-    margin-bottom: 10px;
-}
-figure * + figcaption {
-    padding-top: 20px;
-}
-figure + *,
-.thumb + figure {
-    padding-top: 25px;
-}
-.classic-blog figure + * {
-    padding-top: 35px;
-}
-figure.post-media + * {
-    padding-top: 0;
 }
 .member .icon-overlay {
     display: inline-block;
@@ -2370,7 +2253,7 @@ blockquote:before {
     border-top-color: #E6E9ED;
 }
 .panel-body {
-    padding: 25px;
+    /*padding: 25px;*/
 }
 .panel-title {
     font-family: 'Source Sans Pro', sans-serif;

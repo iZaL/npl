@@ -15,7 +15,7 @@
         </div>
     </section>
     <section class="main">
-        <div class="container inner-top-md">
+        <div class="container inner">
             @include('partials.notifications')
 
             @yield('middle')

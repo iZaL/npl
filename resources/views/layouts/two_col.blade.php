@@ -17,7 +17,7 @@
     </section>
 
     <section id="blog">
-        <div class="container inner-top-sm inner-bottom">
+        <div class="container inner">
             @include('partials.notifications')
 
             <div class="row">
