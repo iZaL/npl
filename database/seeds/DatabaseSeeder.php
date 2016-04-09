@@ -42,18 +42,19 @@ class DatabaseSeeder extends Seeder
 //        factory('App\Src\User\User', 1)->create(['email' => 'student@test.com', 'np_code' => 'NP1001']);
 //        factory('App\Src\User\User', 1)->create(['email' => 'educator1@test.com', 'np_code' => 'NP99002']);
 //        factory('App\Src\User\User', 1)->create(['email' => 'student1@test.com', 'np_code' => 'NP1002']);
-        factory('App\Src\User\User', 1)->create(['email' => 'educator2@test.com', 'np_code' => 'NP99003']);
-        factory('App\Src\User\User', 1)->create(['email' => 'educator3@test.com', 'np_code' => 'NP99004']);
-        factory('App\Src\User\User', 1)->create(['email' => 'student2@test.com', 'np_code' => 'NP1003']);
+//        factory('App\Src\User\User', 1)->create(['email' => 'educator2@test.com', 'np_code' => 'NP99003']);
+//        factory('App\Src\User\User', 1)->create(['email' => 'educator3@test.com', 'np_code' => 'NP99004']);
+//        factory('App\Src\User\User', 1)->create(['email' => 'student2@test.com', 'np_code' => 'NP1003']);
 
 //        factory('App\Src\Educator\Educator', 1)->create(['user_id' => 2]);
 //        factory('App\Src\Educator\Educator', 1)->create(['user_id' => 4]);
 //        factory('App\Src\Educator\Educator', 1)->create(['user_id' => 4]);
-        factory('App\Src\Educator\Educator', 1)->create(['user_id' => 7]);
+//        factory('App\Src\Educator\Educator', 1)->create(['user_id' => 7]);
+//        factory('App\Src\Educator\Educator', 1)->create(['user_id' => 6]);
 //
 //        factory('App\Src\Student\Student', 1)->create(['user_id' => 3]);
 //        factory('App\Src\Student\Student', 1)->create(['user_id' => 5]);
-        factory('App\Src\Student\Student', 1)->create(['user_id' => 8]);
+//        factory('App\Src\Student\Student', 1)->create(['user_id' => 8]);
 
 //        factory('App\Src\Subject\Subject', 1)->create(['name_ar' => 'physics', 'name_en' => 'physics', 'icon'=>'flaticon-science65']);
 //        factory('App\Src\Subject\Subject', 1)->create(['name_ar' => 'chemistry', 'name_en' => 'chemistry','icon'=>'flaticon-science62']);
@@ -77,13 +78,13 @@ class DatabaseSeeder extends Seeder
 //        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 4, 'level_id' => 3]);
 //        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 4, 'level_id' => 4]);
 //        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 5, 'level_id' => 2]);
-        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 6, 'level_id' => 1]); // uni
-        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 6, 'level_id' => 2]); // med
-        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 6, 'level_id' => 4]); // high
-        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 7, 'level_id' => 1]); // high
-        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 7, 'level_id' => 2]); // high
-        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 7, 'level_id' => 4]); // high
-        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 8, 'level_id' => 1]); // uni
+//        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 6, 'level_id' => 1]); // uni
+//        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 6, 'level_id' => 2]); // med
+//        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 6, 'level_id' => 4]); // high
+//        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 7, 'level_id' => 1]); // high
+//        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 7, 'level_id' => 2]); // high
+//        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 7, 'level_id' => 4]); // high
+//        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => 8, 'level_id' => 1]); // uni
 //
 //        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 2, 'subject_id' => 1, 'active' => 1]);
 //        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 2, 'subject_id' => 2, 'active' => 0]);
@@ -101,9 +102,9 @@ class DatabaseSeeder extends Seeder
 //        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 5, 'subject_id' => 3, 'active' => 1]);
 //        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 5, 'subject_id' => 4, 'active' => 1]);
 //        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 5, 'subject_id' => 6, 'active' => 1]);
-        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 6, 'subject_id' => 1, 'active' => 1]);
-        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 7, 'subject_id' => 1, 'active' => 1]);
-        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 8, 'subject_id' => 1, 'active' => 1]);
+//        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 6, 'subject_id' => 1, 'active' => 1]);
+//        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 7, 'subject_id' => 1, 'active' => 1]);
+//        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => 8, 'subject_id' => 1, 'active' => 1]);
 //
 //        $question1 = factory('App\Src\Question\Question', 1)->create(['user_id'    => 5,
 //            'subject_id' => 1,

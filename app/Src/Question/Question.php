@@ -75,23 +75,10 @@ class Question extends BaseModel
         return $this->answers()->where('parent_id', '!=', 0);
     }
 
-//    public function recentAnswer()
-//    {
-//        return $this->hasOne(Answer::class)->latest();
-//    }
-
     public function answersCount()
     {
         return $this->hasOne(Answer::class)
             ->selectRaw('question_id, count(*) as aggregate')
-            ->groupBy('question_id');
-    }
-
-    public function answeredEducatorsCount()
-    {
-        return $this->hasOne(Answer::class)
-            ->selectRaw('question_id, count(*) as aggregate')
-            ->groupBy('user_id')
             ->groupBy('question_id');
     }
 
@@ -106,6 +93,14 @@ class Question extends BaseModel
 
         // then return the count directly
         return ($related) ? (int)$related->aggregate : 0;
+    }
+
+    public function answeredEducatorsCount()
+    {
+        return $this->hasOne(Answer::class)
+            ->selectRaw('question_id, count(DISTINCT(user_id)) as aggregate')
+//            ->groupBy('user_id')
+            ->groupBy('question_id');
     }
 
     public function getansweredEducatorsCountAttribute()
