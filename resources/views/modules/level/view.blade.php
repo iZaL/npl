@@ -99,7 +99,7 @@
                                                 <div class="row">
                                                     <div class="col-md-7">
                                                         <h3>Q:
-                                                            {{ ucfirst($question->body) }}
+                                                            {{ ucfirst(strip_tags($question->body)) }}
                                                         </h3>
                                                     </div>
                                                     <div class="col-md-5 ">
@@ -112,7 +112,7 @@
                                             <div class="row">
                                                 <div class="col-md-7">
                                                     <h3>Q:
-                                                        {{ ucfirst($question->body) }}
+                                                        {{ ucfirst(strip_tags($question->body)) }}
                                                     </h3>
                                                 </div>
                                                 <div class="col-md-5 ">
