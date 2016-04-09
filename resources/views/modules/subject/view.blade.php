@@ -19,64 +19,44 @@
                         @if(count($level->latestQuestions))
                             @foreach($level->latestQuestions as $question)
                                 <div class="row">
-
                                     <div class="col-md-12">
-
-                                        <!-- If Educator, and the If educator can answer the question, show the question as hyperlink -->
-                                        @if($isEducator)
-                                            @if(in_array($question->subject_id,$userSubjects) && in_array($question->level_id,$userLevels))
-                                                <div class="row">
-                                                    <div class="col-md-7">
-                                                        <h2>Q:
-                                                            <a href="{{ action('AnswerController@createAnswer',$question->id) }}">{!! ucfirst($question->body) !!}</a>
-                                                        </h2>
-                                                    </div>
-                                                    <div class="col-md-5 ">
-                                                        <small class="pull-right gray">{{ $question->created_at->format('d-m-Y \a\t g:i:s a')  }}</small>
-                                                    </div>
+                                        @if(in_array($question->subject_id,$userSubjects) && in_array($question->level_id,$userLevels))
+                                            <div class="row">
+                                                <div class="col-md-7">
+                                                    <h2>
+                                                        <a href="{{ action('AnswerController@createAnswer',$question->id) }}">{!! ucfirst($question->body) !!}</a>
+                                                    </h2>
                                                 </div>
+                                                <div class="col-md-5 ">
+                                                    <small class="pull-right gray">{{ $question->created_at->format('d-m-Y \a\t g:i:s a')  }}</small>
+                                                </div>
+                                            </div>
 
-                                                <div class="col-md-12">
-
-                                                    <ul class="list-group">
-                                                        @if(count($question->parentAnswers))
-                                                            @foreach($question->parentAnswers as $answer)
-                                                                <li class="list-group-item">
-                                                                    <small class="navy">You answered
-                                                                        on {{ $answer->created_at->format('d-m-Y \a\t g:i:s a') }}</small>
-                                                                    <h3>
-                                                                        <a href="{{ action('AnswerController@createReply',['question_id'=>$question->id,'answer_id'=>$answer->id]) }}"
-                                                                           class="np_code">
-                                                                            {{ str_limit(strip_tags($answer->body,100)) }} </a>
-                                                                    </h3>
-
-                                                                </li>
-                                                            @endforeach
-                                                        @else
-                                                            <h3 class="navy">You haven't answered yet !
-                                                                <a href="{{ action('AnswerController@createAnswer',['question_id'=>$question->id]) }}"
-                                                                   class="np_code">Write an answer</a>
-                                                            </h3>
+                                            <div class="col-md-12">
+                                                <ul class="list-group">
+                                                    @foreach($question->parentAnswers as $answer)
+                                                        @if($user->id == $answer->user_id)
+                                                            <li class="list-group-item">
+                                                                <small class="navy">You answered
+                                                                    on {{ $answer->created_at->format('d-m-Y \a\t g:i:s a') }}</small>
+                                                                <h3>
+                                                                    <a href="{{ action('AnswerController@createReply',['question_id'=>$question->id,'answer_id'=>$answer->id]) }}"
+                                                                       class="np_code">
+                                                                        {!!  $answer->body !!}  </a>
+                                                                </h3>
+                                                            </li>
                                                         @endif
-                                                    </ul>
-
-                                                </div>
-                                            @else
-                                                <div class="row">
-                                                    <div class="col-md-7">
-                                                        <h3>Q:  {{ ucfirst(strip_tags($question->body)) }}  </h3>
-                                                    </div>
-                                                    <div class="col-md-5 ">
-                                                        <small class="pull-right gray">{{ $question->created_at->format('d-m-Y \a\t g:i:s a')  }}</small>
-                                                    </div>
-                                                </div>
-
-                                            @endif
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                            <hr>
 
                                         @else
                                             <div class="row">
                                                 <div class="col-md-7">
-                                                    <h3>Q: {{ ucfirst(strip_tags($question->body)) }} </h3>
+                                                    <h3>Q:
+                                                        {{ ucfirst(strip_tags($question->body)) }}
+                                                    </h3>
                                                 </div>
                                                 <div class="col-md-5 ">
                                                     <small class="pull-right gray">{{ $question->created_at->format('d-m-Y \a\t g:i:s a')  }}</small>
@@ -84,7 +64,6 @@
                                             </div>
                                         @endif
                                     </div>
-
                                 </div>
 
                             @endforeach
