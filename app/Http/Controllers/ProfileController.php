@@ -79,12 +79,13 @@ class ProfileController extends Controller
             if($user->isEducator()) {
                 $isEducator = true;
                 // Iterate over subjects and return each subject with Uppercase
-                $subjects =  implode(', ',(array_map(function($name) {
-                    return ucfirst($name);
-                }, $user->subjects->lists('name_en')->toArray())));
+
             } elseif($user->isStudent()) {
                 $isStudent=true;
             }
+            $subjects =  implode(', ',(array_map(function($name) {
+                return ucfirst($name);
+            }, $user->subjects->lists('name_en')->toArray())));
         }
 
         return view('modules.profile.view', compact('user','isOwner','userType','isEducator','isStudent','subjects','levels'));
