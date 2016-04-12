@@ -41,7 +41,7 @@
                 @if($question->subject)
                     <tr>
                         <td>{{ ucfirst($question->subject->name) }}</td>
-                        <td><a href="{{ action('AnswerController@createAnswer',$question->id) }}">{{ strip_tags(str_limit($question->body)) }}</a></td>
+                        <td><a href="{{ action('QuestionController@show',$question->id) }}">{{ strip_tags(str_limit($question->body)) }}</a></td>
                         <td>{{ $question->created_at->format('d-m-Y, h:i a')  }}</td>
                         <td>
                             <a href="#" data-link="{{ action('QuestionController@destroy',$question->id) }}" data-target="#deleteModalBox" data-original-title="Delete Answer" data-toggle="modal" type="button" class="btn btn-sm btn-danger"><i class="fa fa-remove"></i></a>

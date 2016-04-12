@@ -31,9 +31,16 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        $questions = $this->questionRepository->model->all();
+        $questions = $this->questionRepository->model->with(['subject','parentAnswers'])->get();
 
         return view('modules.question.index', compact('questions'));
+    }
+
+    public function show($id)
+    {
+        $question = $this->questionRepository->model->with(['subject','parentAnswers'])->find($id);
+
+        return view('modules.question.view', compact('question'));
     }
 
     public function create(SubjectRepository $subjectRepository)
