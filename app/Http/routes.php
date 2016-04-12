@@ -34,16 +34,6 @@ Route::get('student', 'PageController@getStudentPage');
 Route::get('educator','PageController@getEducatorPage');
 Route::get('/', ['as' => 'index', 'uses' => 'HomeController@index']);
 Route::get('test', ['middleware' => 'studentOrEducator', function () {}]);
-Route::get('mail',function(){
-    try {
-        Mail::send('emails.welcome', [], function ($m)  {
-            $m->from(env('MAIL_FROM'), env('MAIL_FROM_NAME'));
-            $m->to('z4ls@live.com', 'zal')->subject('Your Reminder!');
-        });
-    }catch(Exception $e) {
-        dd($e->getMessage());
-    }
-});
 
 /*********************************************************************************************************
  * Auth Routes

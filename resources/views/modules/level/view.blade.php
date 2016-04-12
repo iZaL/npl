@@ -41,7 +41,8 @@
                     <h4>{{ ucfirst($subject->name) }}</h4>
                 </div>
                 <!-- /.info -->
-                <div class="{{ strtolower($subject->icon) }} subject-icon text-center"></div>
+                {{--<div class="{{ strtolower($subject->icon) }} subject-icon text-center"></div>--}}
+                <img src="/images/lang/{{strtolower($subject->name)}}.jpg" class="img img-responisve subject-icon text-center"/>
             </div>
             <div class="col-md-10">
                 <ul class="list-group">

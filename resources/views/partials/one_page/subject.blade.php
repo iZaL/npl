@@ -20,7 +20,7 @@
                         </div>
                         <!-- /.info -->
                         <div class="" >
-                            <img src="/images/lang/{{strtolower($subject->name)}}.jpg"/>
+                            <img src="/images/lang/{{strtolower($subject->name)}}.jpg" class="img img-responisve"/>
                         </div>
                     </a>
                 </div>
