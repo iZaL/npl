@@ -42,7 +42,7 @@
                 </div>
                 <!-- /.info -->
                 {{--<div class="{{ strtolower($subject->icon) }} subject-icon text-center"></div>--}}
-                <img src="/images/lang/{{strtolower($subject->name)}}.jpg" class="img img-responisve subject-icon text-center"/>
+                <img src="/images/lang/{{strtolower($subject->name)}}.jpg" class="img img-responisve subject-icon text-center" style="width: 100%"/>
             </div>
             <div class="col-md-10">
                 <ul class="list-group">
