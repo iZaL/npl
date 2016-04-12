@@ -17,7 +17,7 @@
         </a>
         <ul class="dropdown-menu" role="menu">
             @if(Auth::user()->isAdmin())
-                <li><a href="admin">Admin Panel</a></li>
+                <li><a href="/admin">Admin Panel</a></li>
             @endif
             <li><a href="{{action('ProfileController@show',Auth::user()->id)}}">Profile</a></li>
             <li><a href="/auth/logout">Logout</a></li>
