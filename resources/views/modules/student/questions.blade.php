@@ -42,7 +42,7 @@
                         <h4>{{ ucfirst($question->subject->name) }}</h4>
                     </div>
                 </div>
-                <img src="/images/lang/{{strtolower($subject->name)}}.jpg" class="img img-responisve subject-icon text-center" style="width: 100%"/>
+                <img src="/images/lang/{{strtolower($question->subject->name)}}.jpg" class="img img-responisve subject-icon text-center" style="width: 100%"/>
             </div>
             <div class="col-md-9">
                 <div class="row">
