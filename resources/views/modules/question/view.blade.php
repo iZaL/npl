@@ -20,7 +20,7 @@
         <div class="col-md-9">
             <div class="row">
                 <div class="col-md-9">
-                    <h2><a href="{{ action('AnswerController@createAnswer',$question->id) }}">{!! ucfirst($question->body) !!}</a></h2>
+                    <h2><{!! ucfirst($question->body) !!}</h2>
                 </div>
                 <div class="col-md-3 ">
                     <small class="pull-right gray">{{ $question->created_at->format('d-m-Y \a\t g:i:s a')  }}</small>
