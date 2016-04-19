@@ -51,6 +51,7 @@ class QuestionController extends Controller
 
         $questions = $this->questionRepository->model->with(['user', 'answeredEducatorsCount'])
             ->where('created_at','>',Carbon::now()->subWeek()->toDateTimeString())
+            ->latest()
         ;
 
         $selectedSubject ? $questions->where('subject_id',$selectedSubject) : '';
@@ -72,7 +73,8 @@ class QuestionController extends Controller
         $questions = $this->questionRepository->model
             ->with(['user', 'answeredEducatorsCount'])
             ->where('created_at','<',Carbon::now()->subWeek()->toDateTimeString())
-            ;
+            ->latest()
+        ;
 
         $selectedSubject ? $questions->where('subject_id',$selectedSubject) : '';
         $selectedLevel ? $questions->where('level_id',$selectedLevel) : '';
