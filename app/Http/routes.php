@@ -86,6 +86,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['adm
     Route::resource('level', 'LevelController');
     Route::resource('educator', 'EducatorController');
     Route::resource('student', 'StudentController');
+    Route::get('question/archived', 'QuestionController@getArchived');
     Route::resource('question', 'QuestionController');
     Route::resource('answer', 'AnswerController');
     Route::resource('blog', 'BlogController');

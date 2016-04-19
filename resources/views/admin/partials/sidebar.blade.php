@@ -47,6 +47,9 @@
                     <a href="{{ action('Admin\QuestionController@index') }}"><i class="fa fa-question"></i> List Questions</a>
                 </li>
                 <li>
+                    <a href="{{ action('Admin\QuestionController@getArchived') }}"><i class="fa fa-question"></i> Archived Questions</a>
+                </li>
+                <li>
                     <a href="{{ action('Admin\AnswerController@index') }}"><i class="fa fa-check"></i> List Answers</a>
                 </li>
 

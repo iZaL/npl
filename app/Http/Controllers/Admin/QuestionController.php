@@ -8,6 +8,7 @@ use App\Src\Answer\AnswerRepository;
 use App\Src\Level\LevelRepository;
 use App\Src\Question\QuestionRepository;
 use App\Src\Subject\SubjectRepository;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class QuestionController extends Controller
@@ -48,7 +49,30 @@ class QuestionController extends Controller
         $selectedSubject = $request->subject ? : '';
         $selectedLevel = $request->level ? : '';
 
-        $questions = $this->questionRepository->model->with(['user', 'answeredEducatorsCount']);
+        $questions = $this->questionRepository->model->with(['user', 'answeredEducatorsCount'])
+            ->where('created_at','>',Carbon::now()->subWeek()->toDateTimeString())
+        ;
+
+        $selectedSubject ? $questions->where('subject_id',$selectedSubject) : '';
+        $selectedLevel ? $questions->where('level_id',$selectedLevel) : '';
+        $questions = $questions->paginate(100);
+
+        $subjects = [''=>'all subjects']+$this->subjectRepository->model->lists('name_en', 'id')->toArray();
+        $levels = [''=>'all levels']+$this->levelRepository->model->lists('name_en', 'id')->toArray();
+
+//        dd($questions);
+        return view('admin.modules.question.index', compact('questions','subjects','levels','selectedSubject','selectedLevel'));
+    }
+
+    public function getArchived(Request $request)
+    {
+        $selectedSubject = $request->subject ? : '';
+        $selectedLevel = $request->level ? : '';
+
+        $questions = $this->questionRepository->model
+            ->with(['user', 'answeredEducatorsCount'])
+            ->where('created_at','<',Carbon::now()->subWeek()->toDateTimeString())
+            ;
 
         $selectedSubject ? $questions->where('subject_id',$selectedSubject) : '';
         $selectedLevel ? $questions->where('level_id',$selectedLevel) : '';
@@ -61,6 +85,8 @@ class QuestionController extends Controller
 //        dd($questions);
         return view('admin.modules.question.index', compact('questions','subjects','levels','selectedSubject','selectedLevel'));
     }
+
+
 
     public function show($id)
     {
