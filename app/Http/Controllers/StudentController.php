@@ -27,6 +27,9 @@ class StudentController extends Controller
         $user = Auth::user();
         $student = $user->getType();
         $questions = $student->questions()->with([
+            'parentAnswer'=>function($q){
+                $q->latest();
+            },
             'subject','parentAnswers.recentReply.user','parentAnswers.user'
         ])->latest()->get();
         return view('modules.student.questions', compact('questions', 'answers','user'));
