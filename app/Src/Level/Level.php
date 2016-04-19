@@ -4,6 +4,7 @@ use App\Core\BaseModel;
 use App\Core\LocaleTrait;
 use App\Src\Question\Question;
 use App\Src\User\User;
+use Carbon\Carbon;
 
 class Level extends BaseModel
 {
@@ -50,7 +51,8 @@ class Level extends BaseModel
      ********************************************************************************************************/
     public function questions()
     {
-        return $this->hasMany(Question::class);
+        return $this->hasMany(Question::class)
+            ->where('created_at','>', Carbon::now()->subWeek()->toDateTimeString());
     }
 
     public function latestQuestions()
@@ -61,6 +63,7 @@ class Level extends BaseModel
     public function questionsCount()
     {
         return $this->hasOne(Question::class)
+            ->where('created_at','>', Carbon::now()->subWeek()->toDateTimeString())
             ->selectRaw('level_id, count(*) as aggregate')
             ->groupBy('level_id');
     }

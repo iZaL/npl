@@ -27,6 +27,8 @@ class AnswerController extends Controller
      */
     private $notificationRepository;
 
+    const MAXIMUM_ANSWERS_COUNT = 5;
+
     /**
      * @param AnswerRepository $answerRepository
      * @param QuestionRepository $questionRepository
@@ -59,6 +61,11 @@ class AnswerController extends Controller
 
         // Get The Parent answers for the question
         $answers = $question->parentAnswers;
+
+        // the business need is to allow only 5 answers per question
+        if($answers && $answers->count() >= self::MAXIMUM_ANSWERS_COUNT) {
+            return redirect()->back()->with('warning', 'This Question has reached maximum answers count');
+        }
 
         // If the User has already answered once, then just redirect to Conversation Page
         if ($answers->contains('user_id', $user->id)) {

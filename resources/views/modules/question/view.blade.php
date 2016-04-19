@@ -12,7 +12,7 @@
         <div class="col-md-3">
             <div class="text-overlay">
                 <div class="info text-center">
-                    <h4>{{ ucfirst(strip_tags($question->subject->name)) }}</h4>
+                    <h4>{{ ucfirst($question->subject->name) }}</h4>
                 </div>
             </div>
             <img src="/images/lang/{{strtolower($question->subject->name)}}.jpg" class="img img-responisve subject-icon text-center" style="width: 100%"/>
@@ -20,7 +20,7 @@
         <div class="col-md-9">
             <div class="row">
                 <div class="col-md-9">
-                    <h2>{!! ucfirst($question->body) !!}</h2>
+                    <h2><{!! ucfirst(strip_tags($question->body)) !!}</h2>
                 </div>
                 <div class="col-md-3 ">
                     <small class="pull-right gray">{{ $question->created_at->format('d-m-Y \a\t g:i:s a')  }}</small>

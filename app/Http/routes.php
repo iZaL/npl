@@ -3,6 +3,12 @@
 /*********************************************************************************************************
  * Auth Routes
  ********************************************************************************************************/
+
+use Carbon\Carbon;
+
+Route::get('test',function(){
+   dd(Carbon::now()->subWeek()->toDateTimeString());
+});
 Route::controllers([
     'auth'     => 'Auth\AuthController',
     'password' => 'Auth\PasswordController'
@@ -33,7 +39,6 @@ Route::get('home', ['as' => 'home', 'uses' => 'HomeController@home']);
 Route::get('student', 'PageController@getStudentPage');
 Route::get('educator','PageController@getEducatorPage');
 Route::get('/', ['as' => 'index', 'uses' => 'HomeController@index']);
-Route::get('test', ['middleware' => 'studentOrEducator', function () {}]);
 
 /*********************************************************************************************************
  * Auth Routes

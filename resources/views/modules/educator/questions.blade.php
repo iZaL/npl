@@ -4,32 +4,6 @@
     <h1>My Questions</h1>
 @endsection
 
-@section('style')
-    @parent
-    <style>
-        [class^="flaticon-"]:before, [class*=" flaticon-"]:before, [class^="flaticon-"]:after, [class*=" flaticon-"]:after {
-            font-family: Flaticon;
-            font-size: 80px;
-            line-height: 140px;
-            font-style: normal;
-        }
-        [class^="flaticon-"]:hover {
-            color: #009926;
-        }
-        .subject-icon {
-            font-size: 80px;
-        }
-        hr {
-            margin:10px 0 10px 0;
-        }
-        .reply {
-            color:#1ABB9C;
-            font-size: 15px;
-            text-decoration: underline;
-        }
-    </style>
-@endsection
-
 @section('right')
 @endsection
 
@@ -39,7 +13,7 @@
             <div class="col-md-3">
                 <div class="text-overlay">
                     <div class="info text-center">
-                        <h4>{{ ucfirst(strip_tags($question->subject->name)) }}</h4>
+                        <h4>{{ ucfirst($question->subject->name) }}</h4>
                     </div>
                 </div>
                 <img src="/images/lang/{{strtolower($question->subject->name)}}.jpg" class="img img-responisve subject-icon text-center" style="width: 100%"/>

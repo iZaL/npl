@@ -20,8 +20,8 @@ class AnswerControllerTest extends TestCase
     {
         session()->put('userType','Educator');
 
-        $educator = User::find(2); // Educator
-        $student = User::find(3); // student
+        $educator = $this->createEducator([],[1],[2]); // Educator
+        $student = $this->createStudent([],[1],[2]); // student
 
         $questionBody = 'How much is 1+1 ? ';
         $answerBody = uniqid();
@@ -61,8 +61,8 @@ class AnswerControllerTest extends TestCase
     {
         session()->put('userType','Educator');
 
-        $educator = User::find(2); // Educator
-        $student = User::find(3); // student
+        $educator = $this->createEducator([],[1],[2]); // Educator
+        $student = $this->createStudent([],[1],[2]); // student
 
         $questionBody = 'How much is 1+1 ? ';
         $question = factory('App\Src\Question\Question',
@@ -76,8 +76,8 @@ class AnswerControllerTest extends TestCase
     {
         session()->put('userType','Educator');
 
-        $educator = User::find(2); // Educator
-        $student = User::find(3); // student
+        $educator = $this->createEducator([],[1],[2]); // Educator
+        $student = $this->createStudent([],[1],[2]); // student
 
         $questionBody = 'How much is 1+1 ? ';
         $answerBody = 'answer is 2 ';
@@ -92,8 +92,8 @@ class AnswerControllerTest extends TestCase
     {
         session()->put('userType','Educator');
 
-        $educator = User::find(5); // Student
-        $student = User::find(3); // student
+        $educator = $this->createStudent([],[1],[2]); // Educator
+        $student = $this->createStudent([],[1],[2]); // student
 
         $questionBody = 'How much is 1+1 ? ';
         $question = factory('App\Src\Question\Question',
@@ -111,8 +111,8 @@ class AnswerControllerTest extends TestCase
     {
         session()->put('userType','Educator');
 
-        $educator = User::find(2); // Educator
-        $student = User::find(3); // student
+        $educator = $this->createEducator([],[1],[2]); // Educator
+        $student = $this->createStudent([],[1],[2]); // student
 
         $questionBody = 'What is Physics ? ';
         $answerBody = 'Physics is  BS';
@@ -144,15 +144,15 @@ class AnswerControllerTest extends TestCase
 
         $currentAnswer= \App\Src\Answer\Answer::where('body_en',$reply1)->first();
 
-        $this->onPage('question/' . $question->id . '/reply/' . $currentAnswer->id);
+        $this->seePageIs('question/' . $question->id . '/reply/' . $currentAnswer->id);
     }
 
     public function testReplySuccessAsStudent()
     {
         session()->put('userType','Student');
 
-        $educator = User::find(2); // Educator
-        $student = User::find(3); // student
+        $educator = $this->createStudent([],[1],[2]); // Educator
+        $student = $this->createStudent([],[1],[2]); // student
 
         $questionBody = 'What is Physics ? ';
         $answerBody = 'Physics is  BS';
@@ -184,7 +184,7 @@ class AnswerControllerTest extends TestCase
 
         $currentAnswer= \App\Src\Answer\Answer::where('body_en',$reply1)->first();
 
-        $this->onPage('question/' . $question->id . '/reply/' . $currentAnswer->id);
+        $this->seePageIs('question/' . $question->id . '/reply/' . $currentAnswer->id);
 
     }
 
@@ -192,13 +192,13 @@ class AnswerControllerTest extends TestCase
     {
         session()->put('userType','Educator');
 
-        $educator = User::find(2); // Educator
-        $student = User::find(3); // student
+        $educator = $this->createEducator([],[1],[3]);
+        $student = $this->createStudent([]);
 
         $questionBody = 'What is Physics ? ';
         $answerBody = 'Physics is  BS';
         $question = factory('App\Src\Question\Question',
-            1)->create(['user_id' => $student->id, 'subject_id' => 1, 'body_en' => $questionBody, 'level_id' => 3]);
+            1)->create(['user_id' => $student->id, 'subject_id' => 1, 'body_en' => $questionBody, 'level_id' => 1]);
 
         $parentAnswer = factory('App\Src\Answer\Answer',
             1)->create([
@@ -214,31 +214,55 @@ class AnswerControllerTest extends TestCase
 
     }
 
-//    public function testReplyFailsAsInvalidStudent()
-//    {
-//        session()->put('userType','Student');
-//
-//        $educator = User::find(2); // Educator
-//        $student = User::find(3); // student
-//
-//        $questionBody = 'What is Physics ? ';
-//        $answerBody = 'Physics is  BS';
-//        $question = factory('App\Src\Question\Question',
-//            1)->create(['user_id' => '1', 'subject_id' => 1, 'body_en' => $questionBody, 'level_id' => 3]);
-//
-//        $parentAnswer = factory('App\Src\Answer\Answer',
-//            1)->create([
-//            'user_id'     => $educator->id,
-//            'question_id' => $question->id,
-//            'body_en'     => $answerBody,
-//            'parent_id'   => 0
-//        ]);
-//
-//        $this->actingAs($student)
-//            ->visit('/question/' . $question->id . '/reply/' . $parentAnswer->id)
-//            ->see('You Cannot Reply This Question');
-//
-//    }
+    public function testRejectAnswersIftheMaxCountReached()
+    {
+        session()->put('userType','Educator');
+
+        $educator = $this->createEducator([],[1],[1]); // Educator
+
+        $questionBody = uniqid();
+        $answerBody = uniqid();
+        $question = factory('App\Src\Question\Question',
+            1)->create(['user_id' => rand(1,10), 'subject_id' => 1, 'body_en' => $questionBody, 'level_id' => 1]);
+
+        $parentAnswer = factory('App\Src\Answer\Answer',
+            5)->create([
+            'user_id'     => $educator->id,
+            'question_id' => $question->id,
+            'body_en'     => $answerBody,
+            'parent_id'   => 0
+        ]);
+
+        $this->actingAs($educator)->visit('/question/' . $question->id . '/answer')->see('This Question has reached maximum answers count');
+
+    }
+
+
+    public function testReplyFailsAsInvalidStudent()
+    {
+        session()->put('userType','Student');
+
+        $educator = $this->createEducator([],[1],[2]); // Educator
+        $student = $this->createEducator([],[1],[2]); // student
+
+        $questionBody = 'What is Physics ? ';
+        $answerBody = 'Physics is  BS';
+        $question = factory('App\Src\Question\Question',
+            1)->create(['user_id' => '1', 'subject_id' => 1, 'body_en' => $questionBody, 'level_id' => 3]);
+
+        $parentAnswer = factory('App\Src\Answer\Answer',
+            1)->create([
+            'user_id'     => $educator->id,
+            'question_id' => $question->id,
+            'body_en'     => $answerBody,
+            'parent_id'   => 0
+        ]);
+
+        $this->actingAs($student)
+            ->visit('/question/' . $question->id . '/reply/' . $parentAnswer->id)
+            ->see('You Cannot Reply This Question');
+
+    }
 
 
 }

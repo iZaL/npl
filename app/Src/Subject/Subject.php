@@ -6,6 +6,7 @@ use App\Src\Educator\Educator;
 use App\Src\Question\Question;
 use App\Src\User\User;
 use Auth;
+use Carbon\Carbon;
 
 class Subject extends BaseModel
 {
@@ -71,12 +72,16 @@ class Subject extends BaseModel
 
     public function questions()
     {
-        return $this->hasMany(Question::class);
+        return $this->hasMany(Question::class)
+            ->where('created_at','>', Carbon::now()->subWeek()->toDateTimeString())
+
+            ;
     }
 
     public function questionsCount()
     {
         return $this->hasOne(Question::class)
+            ->where('created_at','>', Carbon::now()->subWeek()->toDateTimeString())
             ->selectRaw('subject_id, count(*) as aggregate')
             ->groupBy('subject_id');
     }
