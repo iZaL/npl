@@ -27,7 +27,7 @@ class StudentController extends Controller
         $user = Auth::user();
         $student = $user->getType();
         $questions = $student->questions()->with([
-            'parentAnswer'=>function($q){
+            'parentAnswers'=>function($q){
                 $q->latest();
             },
             'subject','parentAnswers.recentReply.user','parentAnswers.user'
