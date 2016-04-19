@@ -53,7 +53,9 @@ class EducatorController extends Controller
             'parentAnswers.user',
             'parentAnswers.recentReply.user'
         ])->whereIn('subject_id', $subjectIds)->whereIn('level_id',
-            $levelIds)->get();
+            $levelIds)
+            ->latest()
+            ->get();
 
         return view('modules.educator.questions', compact('questions','user'));
     }
