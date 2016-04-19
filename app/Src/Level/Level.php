@@ -52,7 +52,7 @@ class Level extends BaseModel
     public function questions()
     {
         return $this->hasMany(Question::class)
-            ->where('created_at','>', Carbon::now()->subWeek()->toDateTimeString());
+            ->where('created_ats','>', Carbon::now()->subWeek()->toDateTimeString());
     }
 
     public function latestQuestions()
