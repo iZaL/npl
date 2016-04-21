@@ -62,6 +62,8 @@ class AnswerController extends Controller
         // Get The Parent answers for the question
         $answers = $question->parentAnswers;
 
+
+
         // the business need is to allow only 5 answers per question
         if($answers && $answers->count() >= self::MAXIMUM_ANSWERS_COUNT) {
             return redirect()->back()->with('warning', 'This Question has reached maximum answers count');
@@ -72,6 +74,13 @@ class AnswerController extends Controller
             $parentAnswer = $answers->where('user_id', $user->id)->first();
 
             return Redirect::action('AnswerController@createReply', [$id, $parentAnswer->id]);
+        }
+
+        $unreadNotifications = $user->notifications()->where('notifiable_id',$question->id)->where('notifiable_type','MorphQuestion')->get();
+
+        // find all the unread notifications related to this user
+        foreach($unreadNotifications as $notification) {
+            $notification->markAsRead();
         }
 
         return view('modules.answer.create', compact('user', 'question'));
@@ -143,11 +152,10 @@ class AnswerController extends Controller
             // then fetch the notifications for all the child answers
             $answer = $this->answerRepository->model->find($answer->parent_id);
             $childAnswerIDs = $answer->childAnswers->modelKeys();
-//            $unreadNotifications = $user->unreadNotifications()->where('notifiable_id',$answer->id)->whereIn('notifiable_id',$childAnswerIDs)->where('notifiable_type','Answer')->get();
-            $unreadNotifications = $user->unreadNotifications()->whereIn('notifiable_id',$childAnswerIDs)->where('notifiable_type','Answer')->get();
+            $unreadNotifications = $user->notifications()->whereIn('notifiable_id',$childAnswerIDs)->where('notifiable_type','MorphAnswer')->get();
         } else {
             // If its a parent answer
-             $unreadNotifications = $user->unreadNotifications()->where('notifiable_id',$answer->id)->where('notifiable_type','Answer')->get();
+             $unreadNotifications = $user->notifications()->where('notifiable_id',$answer->id)->where('notifiable_type','MorphAnswer')->get();
         }
 
         // find all the unread notifications related to this user

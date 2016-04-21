@@ -6,8 +6,12 @@
 
 use Carbon\Carbon;
 
-Route::get('test',function(){
-   dd(Carbon::now()->subWeek()->toDateTimeString());
+Route::get('test',function() {
+    $notifications = App\Src\Notification\Notification::all();
+    foreach($notifications as $n) {
+        $n->read = 0;
+        $n->save();
+    }
 });
 Route::controllers([
     'auth'     => 'Auth\AuthController',

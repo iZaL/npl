@@ -20,7 +20,9 @@ class Question extends BaseModel
 
     protected $localeStrings = ['body'];
 
-    protected $morphClass = 'Question';
+    protected $with = ['user'];
+
+    protected $morphClass = 'MorphQuestion';
 
     public function notifications()
     {
@@ -99,7 +101,6 @@ class Question extends BaseModel
     {
         return $this->hasOne(Answer::class)
             ->selectRaw('question_id, count(DISTINCT(user_id)) as aggregate')
-//            ->groupBy('user_id')
             ->where('parent_id',0)
             ->groupBy('question_id');
     }

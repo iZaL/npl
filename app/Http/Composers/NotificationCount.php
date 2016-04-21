@@ -29,12 +29,14 @@ class NotificationCount
 
     public function compose(View $view)
     {
-        $unreadNotificationsCount = 0 ;
+
+        $notificationsCount = 0 ;
         if(Auth::check()) {
             $user = Auth::user();
-            $unreadNotificationsCount = $user->unreadNotificationsCount;
+            $user->with('notificationsCount');
+            $notificationsCount = $user->notificationsCount;
         }
-        $view->with(['unreadNotificationsCount'=>$unreadNotificationsCount]);
+        $view->with(['notificationsCount'=>$notificationsCount]);
     }
 
 }

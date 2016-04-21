@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 
+use App\Src\Educator\Educator;
 use App\Src\Question\QuestionRepository;
 use App\Src\Student\Student;
 use App\Src\Subject\SubjectRepository;
+use App\Src\User\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -73,6 +75,15 @@ class QuestionController extends Controller
                 'level_id' => $level->id
             ], $request->all())
         );
+        // get all the users whose level is $level->id
+        $educators = Educator::lists('user_id')->toArray();
+        $users = User::with(['levels','subjects'])->whereIn('id',$educators)->get();
+
+        foreach($users as $user) {
+            if($user->subjects->contains($question->subject_id) && $user->levels->contains($question->level_id)) {
+                $question->notifications()->create(['user_id' => $user->id]);
+            }
+        }
 
         return Redirect::action('StudentController@getQuestions')->with('success', 'Question posted');
 

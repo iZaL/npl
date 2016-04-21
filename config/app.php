@@ -206,7 +206,10 @@ return [
         'Form'      => Collective\Html\FormFacade::class,
         'Html'      => Collective\Html\HtmlFacade::class,
         'Str'       => Illuminate\Support\Str::class,
-        'Image'     => Intervention\Image\Facades\Image::class
+        'Image'     => Intervention\Image\Facades\Image::class,
+
+        'MorphAnswer' => \App\Src\Answer\Answer::class,
+        'MorphQuestion' => App\Src\Question\Question::class,
     ],
 
 ];

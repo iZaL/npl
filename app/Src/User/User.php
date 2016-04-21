@@ -112,18 +112,12 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         return session()->has('userType') ? (session()->get('userType') ==  'Student' ? true: false ) :false;
     }
 
-
     public function notifications()
     {
-        return $this->hasMany(Notification::class);
+        return $this->hasMany(Notification::class)->where('read',0);
     }
 
-    public function unreadNotifications()
-    {
-        return $this->notifications()->where('read',0);
-    }
-
-    public function unreadNotificationsCount()
+    public function notificationsCount()
     {
         return $this->hasOne(Notification::class,'user_id')
             ->selectRaw('user_id, count(*) as aggregate')
@@ -132,14 +126,14 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
             ;
     }
 
-    public function getUnreadNotificationsCountAttribute()
+    public function getNotificationsCountAttribute()
     {
         // if relation is not loaded already, let's do it first
-        if (!$this->relationLoaded('unreadNotificationsCount')) {
-            $this->load('unreadNotificationsCount');
+        if (!$this->relationLoaded('notificationsCount')) {
+            $this->load('notificationsCount');
         }
 
-        $related = $this->getRelation('unreadNotificationsCount');
+        $related = $this->getRelation('notificationsCount');
 
         // then return the count directly
         return ($related) ? (int)$related->aggregate : 0;

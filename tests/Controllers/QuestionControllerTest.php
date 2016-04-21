@@ -17,32 +17,63 @@ class QuestionControllerTest extends TestCase
         parent::setUp();
     }
 
+    public function testStoreNotifiesEducators()
+    {
+        session()->put('userType','Student');
+
+        $body = uniqid();
+        $subjectID = 1;
+
+        $educator1 = $this->createEducator([],[1,2,3],[1,2,3]);
+        $educator2 = $this->createEducator([],[1],[2]);
+        $educator3 = $this->createEducator([],[1],[1]);
+
+        $student = $this->createStudent([],[1],[1]); // student
+
+        $this->actingAs($student)
+            ->call('post','question',['subject_id'=>$subjectID,'body_en'=>$body]);
+
+        $question = \App\Src\Question\Question::where('body_en',$body)->first();
+
+        $this->seeInDatabase('notifications',[
+            'user_id' => $educator1->id,
+            'notifiable_id'=>$question->id,
+            'notifiable_type' => 'MorphQuestion'
+        ]);
+
+        $this->seeInDatabase('notifications',[
+            'user_id' => $educator3->id,
+            'notifiable_id'=>$question->id,
+            'notifiable_type' => 'MorphQuestion'
+        ]);
+
+        $this->dontSeeInDatabase('notifications',[
+            'user_id' => $educator2->id,
+            'notifiable_id'=>$question->id,
+            'notifiable_type' => 'MorphQuestion'
+        ]);
+
+
+    }
+
     public function testStore()
     {
         session()->put('userType','Student');
 
         $body = uniqid();
-        $subjectID = '2';
+        $subjectID = 1;
+        $student = $this->createStudent([],[1],[1]); // student
+        $level = $student->levels->last();
 
-        $user = Auth::loginUsingId(3); // student
-
-        $this->actingAs($user)
-            ->visit('/question/create')
-            ->select($subjectID, 'subject_id')
-            ->type($body, 'body_en')
-            ->press('Submit');
-
-        $level = $user->levels->last();
-
+        $this->actingAs($student)
+            ->call('post','question',['subject_id'=>$subjectID,'body_en'=>$body]);
         $this->seeInDatabase('questions',
             [
                 'body_en'    => $body,
-                'user_id'    => $user->id,
+                'user_id'    => $student->id,
                 'subject_id' => $subjectID,
                 'level_id'   => $level->id
             ]);
-
-        $this->onPage('student/questions');
 
     }
 

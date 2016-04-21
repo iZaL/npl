@@ -37,11 +37,12 @@ class NotificationController extends Controller
             $isStudent = true;
         }
 
-        $user->load('unreadNotifications');
+        $user
+            ->load('notifications.notifiable')
+            ->has('notifications.notifiable')
+            ->latest()->get();
 
-        $notifications = $user->unreadNotifications()->latest()->get();
-
-        return view('modules.notification.index',compact('user','notifications','isEducator','isStudent'));
+        return view('modules.notification.index',compact('user','isEducator','isStudent'));
     }
 
 }

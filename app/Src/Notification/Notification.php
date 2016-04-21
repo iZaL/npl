@@ -2,6 +2,8 @@
 namespace App\Src\Notification;
 
 use App\Core\BaseModel;
+use App\Src\Answer\Answer;
+use App\Src\Question\Question;
 use App\Src\User\User;
 
 class Notification extends BaseModel
@@ -15,11 +17,7 @@ class Notification extends BaseModel
 
     protected $table = 'notifications';
 
-//    protected $with = ['user'];
-    protected $types = [
-        'answer'    => 'App\Src\Answer\Answer',
-        'question' => 'App\Src\Question\Question'
-    ];
+    protected $with = ['user','notifiable'];
 
     public function user()
     {
@@ -29,12 +27,6 @@ class Notification extends BaseModel
     public function notifiable()
     {
         return $this->morphTo();
-    }
-
-    public function getNotifiableTypeAttribute($type)
-    {
-        $type = strtolower($type);
-        return array_get($this->types, $type, $type);
     }
 
     public function markAsRead()

@@ -50,12 +50,17 @@ class EducatorController extends Controller
             'parentAnswers' => function ($q) use ($user) {
                 $q->where('user_id', $user->id)->latest();
             },
+            'notifications' => function($q) use ($user) {
+                $q->where('user_id', $user->id);
+            },
             'parentAnswers.user',
             'parentAnswers.recentReply.user'
         ])->whereIn('subject_id', $subjectIds)->whereIn('level_id',
             $levelIds)
             ->latest()
             ->get();
+
+//        dd($questions->toArray());
 
         return view('modules.educator.questions', compact('questions','user'));
     }

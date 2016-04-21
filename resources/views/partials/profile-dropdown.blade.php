@@ -1,9 +1,9 @@
 @if(Auth::check())
     <div class="btn-group pull-right profile-nav">
-        @if(isset($unreadNotificationsCount) && ($unreadNotificationsCount > 0))
+        @if(isset($notificationsCount) && ($notificationsCount > 0))
             <span class="badge notification-count blink" >
                 <a href="{{ action('NotificationController@index') }}">
-                    <span class="count">{{ $unreadNotificationsCount }}</span>
+                    <span class="count">{{ $notificationsCount }}</span>
                 </a>
             </span>
             <span class="badge notification-icon ">

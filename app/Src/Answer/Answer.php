@@ -16,7 +16,9 @@ class Answer extends BaseModel
 
     protected $localeStrings = ['body'];
 
-    protected $morphClass = 'Answer';
+    protected $morphClass = 'MorphAnswer';
+
+    protected $with = ['user'];
 
     public function notifications()
     {
