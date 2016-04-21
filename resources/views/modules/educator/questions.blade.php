@@ -22,11 +22,11 @@
                 <div class="row">
                     <div class="col-md-9">
                         <h2>
-                             <span class="badge notification-count blink" >
-                                 @if($question->notifications->count() > 0)
+                            @if($question->notifications->count() > 0)
+                                <span class="badge notification-count blink" >
                                      <span> {{ $question->notifications->count() }} </span>
-                                 @endif
-                            </span>
+                                </span>
+                            @endif
                             <a href="{{ action('AnswerController@createAnswer',$question->id) }}">{!! ucfirst($question->body) !!}</a>
                         </h2>
                     </div>
