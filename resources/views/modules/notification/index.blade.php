@@ -3,9 +3,10 @@
     <h1>Notifications</h1>
 @endsection
 @section('left')
-    <div class="blockpara">
-        <ul class="list-group">
-            @foreach($user->notifications as $notification)
+
+    @foreach($user->notifications as $notification)
+        <div class="blockpara">
+            <ul class="list-group">
                 @if($notification->notifiable instanceof App\Src\Answer\Answer)
                     <li class="list-group-item">
                         <h2>{!! ucfirst($notification->notifiable->question->body) !!}</h2>
@@ -30,9 +31,10 @@
                         <span class="date pull-right gray"> {{ $notification->created_at->format('d-m-Y \a\t g:i:s a')  }}</span>
                     </li>
                 @endif
-            @endforeach
-        </ul>
-    </div>
+            </ul>
+        </div>
+    @endforeach
+
 @endsection
 
 @section('right')

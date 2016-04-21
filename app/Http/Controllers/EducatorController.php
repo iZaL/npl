@@ -47,7 +47,7 @@ class EducatorController extends Controller
         // questions for the educator
         $questions = $questionRepository->model->with([
             'subject',
-            'parentAnswers' => function ($q) use ($user) {
+            'parentAnswers.notifications' => function ($q) use ($user) {
                 $q->where('user_id', $user->id)->latest();
             },
             'notifications' => function($q) use ($user) {
@@ -58,8 +58,6 @@ class EducatorController extends Controller
             $levelIds)
             ->latest()
             ->get();
-
-
 //        if(!$answer->isParent()) {
 //            // if its not parent
 //            // find parent answer and get all the child answers for it

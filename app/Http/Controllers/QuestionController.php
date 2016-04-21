@@ -40,9 +40,10 @@ class QuestionController extends Controller
 
     public function show($id)
     {
+        $user = Auth::user();
         $question = $this->questionRepository->model->with(['subject','parentAnswers'])->find($id);
 
-        return view('modules.question.view', compact('question'));
+        return view('modules.question.view', compact('question','user'));
     }
 
     public function create(SubjectRepository $subjectRepository)

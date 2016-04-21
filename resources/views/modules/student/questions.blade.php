@@ -47,7 +47,18 @@
             <div class="col-md-9">
                 <div class="row">
                     <div class="col-md-9">
-                        <h2>{{ ucfirst(strip_tags($question->body)) }}</h2>
+                        <h2>
+                            @if(count($question->parentAnswers))
+                                @foreach($question->parentAnswers as $answer)
+                                    @if($answer->notifications->count() > 0)
+                                        <span class="badge notification-count blink" >
+                                            <span><i class="fa fa-star"></i></span>
+                                        </span>
+                                    @endif
+                                @endforeach
+                            @endif
+                            <a href="{{ action('QuestionController@show',$question->id) }}">{!! ucfirst($question->body) !!}</a>
+                        </h2>
                     </div>
                     <div class="col-md-3 ">
                         <small class="pull-right gray">{{ $question->created_at->format('d-m-Y \a\t g:i:s a')  }}</small>
