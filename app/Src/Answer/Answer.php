@@ -22,13 +22,13 @@ class Answer extends BaseModel
 
     public function notifications()
     {
-        return $this->morphMany('App\Src\Notification\Notification', 'notifiable');
+        return $this->morphMany('App\Src\Notification\Notification', 'notifiable')->where('read',0);
     }
 
-    public function unreadNotifications()
-    {
-        return $this->notifications()->where('read',0);
-    }
+//    public function unreadNotifications()
+//    {
+//        return $this->notifications()->where('read',0);
+//    }
 
     public function question()
     {
@@ -74,6 +74,8 @@ class Answer extends BaseModel
         // then return the count directly
         return ($related) ? (int)$related->aggregate : 0;
     }
+
+
 
     public function isParent()
     {

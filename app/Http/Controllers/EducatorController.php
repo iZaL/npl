@@ -53,12 +53,25 @@ class EducatorController extends Controller
             'notifications' => function($q) use ($user) {
                 $q->where('user_id', $user->id);
             },
-            'parentAnswers.user',
-            'parentAnswers.recentReply.user'
+            'parentAnswers.user'
         ])->whereIn('subject_id', $subjectIds)->whereIn('level_id',
             $levelIds)
             ->latest()
             ->get();
+
+
+//        if(!$answer->isParent()) {
+//            // if its not parent
+//            // find parent answer and get all the child answers for it
+//            // then fetch the notifications for all the child answers
+//            $answer = $this->answerRepository->model->find($answer->parent_id);
+//            $childAnswerIDs = $answer->childAnswers->modelKeys();
+//            $unreadNotifications = $user->notifications()->whereIn('notifiable_id',$childAnswerIDs)->where('notifiable_type','MorphAnswer')->get();
+//        } else {
+//            // If its a parent answer
+//            $unreadNotifications = $user->notifications()->where('notifiable_id',$answer->id)->where('notifiable_type','MorphAnswer')->get();
+//        }
+
 
 //        dd($questions->toArray());
 

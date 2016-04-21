@@ -23,7 +23,13 @@
                     <div class="col-md-9">
                         <h2>
                              <span class="badge notification-count blink" >
-                                <i class="fa fa-star " style="color:white"></i>
+                                 @if($question->parentAnswers[0]->notifications->count())
+                                     <i class="fa fa-star " style="color:white"></i>
+                                 @elseif($question->notifications->count())
+                                     <span>
+                                        {{ $question->notifications->count() }}
+                                    </span>
+                                 @endif
                             </span>
                             <a href="{{ action('AnswerController@createAnswer',$question->id) }}">{!! ucfirst($question->body) !!}</a>
                         </h2>

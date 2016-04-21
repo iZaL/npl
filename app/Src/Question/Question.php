@@ -26,7 +26,7 @@ class Question extends BaseModel
 
     public function notifications()
     {
-        return $this->morphMany('App\Src\Notification\Notification', 'notifiable');
+        return $this->morphMany('App\Src\Notification\Notification', 'notifiable')->where('read',0);
     }
 
     public function user()
