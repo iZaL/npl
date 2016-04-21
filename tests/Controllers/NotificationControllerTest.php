@@ -54,7 +54,7 @@ class NotificationControllerTest extends TestCase
             ]
         );
         $currentReply = App\Src\Answer\Answer::where('body_en',$reply1)->first();
-        $this->seeInDatabase('notifications',['user_id'=>$educator->id,'read'=>0,'notifiable_id'=>$currentReply->id,'notifiable_type'=>'Answer']);
+        $this->seeInDatabase('notifications',['user_id'=>$educator->id,'read'=>0,'notifiable_id'=>$currentReply->id,'notifiable_type'=>'MorphAnswer']);
 
         $reply2 = uniqid();
 
@@ -67,7 +67,7 @@ class NotificationControllerTest extends TestCase
             ]
         );
         $currentReply = App\Src\Answer\Answer::where('body_en',$reply2)->first();
-        $this->seeInDatabase('notifications',['user_id'=>$student->id,'read'=>0,'notifiable_id'=>$currentReply->id,'notifiable_type'=>'Answer']);
+        $this->seeInDatabase('notifications',['user_id'=>$student->id,'read'=>0,'notifiable_id'=>$currentReply->id,'notifiable_type'=>'MorphAnswer']);
 
     }
 
@@ -78,10 +78,10 @@ class NotificationControllerTest extends TestCase
         $user = $this->createStudent();
 
         $unReadNotifications = factory('App\Src\Notification\Notification',
-            3)->create(['user_id' => $user->id, 'notifiable_id'=>1, 'notifiable_type'=>'Answer', 'read'=> 0]);
+            3)->create(['user_id' => $user->id, 'notifiable_id'=>1, 'notifiable_type'=>'MorphAnswer', 'read'=> 0]);
 
         $readNotifications = factory('App\Src\Notification\Notification',
-            1)->create(['user_id' => $user->id, 'notifiable_id'=>1, 'notifiable_type'=>'Answer', 'read'=> 1]);
+            1)->create(['user_id' => $user->id, 'notifiable_id'=>1, 'notifiable_type'=>'MorphAnswer', 'read'=> 1]);
 
         $this->actingAs($user)
             ->visit('/student/questions')

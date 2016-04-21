@@ -49,7 +49,7 @@ class AnswerControllerTest extends TestCase
             [
                 'user_id'     => $question->user_id,
                 'notifiable_id' => $answer->id,
-                'notifiable_type' => 'Answer'
+                'notifiable_type' => 'MorphAnswer'
             ]);
 
         $answer = App\Src\Answer\Answer::where('body_en',$answerBody)->first();

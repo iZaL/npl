@@ -18,18 +18,18 @@ class StudentControllerTest extends TestCase
     {
         session()->put('userType','Student');
 
-        $student = Auth::loginUsingId(3);
+        $student = $this->createStudent([],[1],[1]);
 
         $questionBody1 = uniqid();
         $questionBody2 = uniqid();
         $questionBody3 = uniqid();
 
         factory('App\Src\Question\Question',
-            1)->create(['user_id' => $student->id, 'subject_id' => 1, 'body_en' => $questionBody1, 'level_id' => 2]);
+            1)->create(['user_id' => $student->id, 'subject_id' => 1, 'body_en' => $questionBody1, 'level_id' => 1]);
         factory('App\Src\Question\Question',
-            1)->create(['user_id' => $student->id, 'subject_id' => 1, 'body_en' => $questionBody2, 'level_id' => 2]);
+            1)->create(['user_id' => $student->id, 'subject_id' => 1, 'body_en' => $questionBody2, 'level_id' => 1]);
         factory('App\Src\Question\Question',
-            1)->create(['user_id' => 100, 'subject_id' => 1, 'body_en' => $questionBody3, 'level_id' => 100]);
+            1)->create(['user_id' => 100, 'subject_id' => 1, 'body_en' => $questionBody3, 'level_id' => 1]);
 
         $this->actingAs($student)
             ->visit('/student/questions')

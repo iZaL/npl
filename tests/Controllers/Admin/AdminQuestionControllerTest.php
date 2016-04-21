@@ -21,12 +21,12 @@ class AdminQuestionControllerTest extends TestCase
     {
         $questionBody = uniqid();
         $answerBody = uniqid();
-        $subjectID = 2;
+        $subjectID = 1;
 
-        $student = Auth::loginUsingId(3); // student
+        $student = $this->createStudent([],[1],[1]); // student
         $studentLevel = $student->levels->last();
 
-        $educator = Auth::loginUsingId(2);
+        $educator = $this->createEducator([],[1],[1]);
 
         $question = factory('App\Src\Question\Question')->create([
             'body_en'    => $questionBody,
@@ -41,7 +41,8 @@ class AdminQuestionControllerTest extends TestCase
             'body_en'     => $answerBody,
         ]);
 
-        $this->actingAs(Auth::loginUsingId(1))
+        $admin = $this->createUser(['admin'=>1],[],[]);
+        $this->actingAs($admin)
             ->visit('/admin/question')
             ->see($question->body_en);
 
@@ -51,12 +52,12 @@ class AdminQuestionControllerTest extends TestCase
     {
         $questionBody = uniqid();
         $answerBody = uniqid();
-        $subjectID = 2;
+        $subjectID = 1;
 
-        $student = Auth::loginUsingId(3); // student
+        $student = $this->createStudent([],[1],[1]); // student
         $studentLevel = $student->levels->last();
 
-        $educator = Auth::loginUsingId(2);
+        $educator = $this->createEducator([],[1],[1]);
 
         $question = factory('App\Src\Question\Question')->create([
             'body_en'    => $questionBody,
@@ -72,16 +73,17 @@ class AdminQuestionControllerTest extends TestCase
         ]);
 
         $notification = factory('App\Src\Notification\Notification',1)->create([
-            'notifiable_type' => 'Answer',
+            'notifiable_type' => 'MorphAnswer',
             'user_id'     => $student->id,
             'notifiable_id'     => $answer->first()->id
         ]);
 
-        $this->actingAs(Auth::loginUsingId(1));
+        $admin = $this->createUser(['admin'=>1],[],[]);
+        $this->actingAs($admin);
         $this->call('DELETE', '/admin/question/' . $question->id);
         $this->notSeeInDatabase('questions', ['id' => $question->id]);
         $this->notSeeInDatabase('answers', ['id' => $answer->first()->id]);
         $this->notSeeInDatabase('answers', ['id' => $answer->last()->id]);
-        $this->notSeeInDatabase('notifications', ['id' => $answer->first()->id]);
+        $this->notSeeInDatabase('notifications', ['id' => $notification->id]);
     }
 }

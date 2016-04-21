@@ -40,7 +40,6 @@
                     <ul class="list-group">
                         @if(count($question->parentAnswers))
                             @foreach($question->parentAnswers as $answer)
-                                <!-- If there is a child answer for the parent answer, then show it -->
                                 @if($recentAnswer = $answer->recentReply)
                                     <li class="list-group-item">
                                         @if($recentAnswer->user_id == $user->id)

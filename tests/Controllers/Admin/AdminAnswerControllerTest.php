@@ -21,12 +21,12 @@ class AdminAnswerControllerTest extends TestCase
     {
         $questionBody = uniqid();
         $answerBody = uniqid();
-        $subjectID = 2;
+        $subjectID = 1;
 
-        $student = Auth::loginUsingId(3); // student
+        $student = $this->createStudent([],[1],[1]); // student
         $studentLevel = $student->levels->last();
 
-        $educator = Auth::loginUsingId(2);
+        $educator = $this->createEducator([],[1],[1]);
 
         $question = factory('App\Src\Question\Question')->create([
             'body_en'    => $questionBody,
@@ -49,11 +49,11 @@ class AdminAnswerControllerTest extends TestCase
             'parent_id'   => $answer->id
         ]);
 
-        $this->actingAs(Auth::loginUsingId(1))
+        $admin = $this->createUser(['admin'=>1],[],[]);
+        $this->actingAs($admin)
             ->visit('/admin/answer')
             ->see($answerBody)
-//            ->see('view all <a href="#">5</a> answers');
-;
+        ;
 
     }
 
@@ -61,12 +61,11 @@ class AdminAnswerControllerTest extends TestCase
     {
         $questionBody = uniqid();
         $answerBody = uniqid();
-        $subjectID = 2;
+        $subjectID = 1;
+        $student = $this->createStudent([],[1],[1]); // student
+        $educator = $this->createEducator([],[1],[1]);
 
-        $student = Auth::loginUsingId(3); // student
         $studentLevel = $student->levels->last();
-
-        $educator = Auth::loginUsingId(2);
 
         $question = factory('App\Src\Question\Question')->create([
             'body_en'    => $questionBody,
@@ -90,12 +89,13 @@ class AdminAnswerControllerTest extends TestCase
         ]);
 
         $notification = factory('App\Src\Notification\Notification',1)->create([
-            'notifiable_type' => 'Answer',
+            'notifiable_type' => 'MorphAnswer',
             'user_id'     => $educator->id,
             'notifiable_id'     => $answer->id
         ]);
 
-        $this->actingAs(Auth::loginUsingId(1));
+        $admin = $this->createUser(['admin'=>1],[],[]);
+        $this->actingAs($admin);
         $this->call('DELETE', '/admin/answer/' . $answer->id);
         $this->notSeeInDatabase('answers', ['id' => $answers->first()->id]);
         $this->notSeeInDatabase('answers', ['id' => $answers->last()->id]);

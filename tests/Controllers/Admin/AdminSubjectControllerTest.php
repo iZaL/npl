@@ -27,7 +27,9 @@ class AdminSubjectControllerTest extends TestCase
         $subjectName2 = uniqid();
         factory('App\Src\Subject\Subject')->create(['name_en' => $subjectName1]);
         factory('App\Src\Subject\Subject')->create(['name_en' => $subjectName2]);
-        $this->actingAs(Auth::loginUsingId(1))
+
+        $admin = $this->createUser(['admin'=>1],[],[]);
+        $this->actingAs($admin)
             ->visit('/admin/subject')
             ->see($subjectName1)
             ->see($subjectName2);
@@ -37,8 +39,8 @@ class AdminSubjectControllerTest extends TestCase
     public function testStore()
     {
         $subjectName1 = uniqid();
-
-        $this->actingAs(Auth::loginUsingId(1))
+        $admin = $this->createUser(['admin'=>1],[],[]);
+        $this->actingAs($admin)
             ->visit('admin/subject/create')
             ->type($subjectName1, 'name_en')
             ->press('Save')
@@ -49,66 +51,60 @@ class AdminSubjectControllerTest extends TestCase
     public function testDelete()
     {
         $subjectName1 = uniqid();
+        $subjectName2 = uniqid();
         $questionBody = uniqid();
         $answerBody = uniqid();
-        $educator1 = uniqid();
 
-        $subject = factory('App\Src\Subject\Subject')->create(['name_en' => $subjectName1]);
+        $subject1 = factory('App\Src\Subject\Subject')->create(['name_en' => $subjectName1]);
+        $subject2 = factory('App\Src\Subject\Subject')->create(['name_en' => $subjectName2]);
 
-        $user = App::make(User::class);
-
-        factory(User::class)->make()->create(['email' => uniqid()]);
-        $educator = factory(Educator::class)->create(['user_id' => $user->all()->last()->id]);
-
-
-        factory(User::class)->make()->create(['email' => uniqid()]);
-        $educator2 = factory(Educator::class)->create(['user_id' => $user->all()->last()->id]);
+        $educator1 =$this->createEducator([],[$subject1->id],[1]);
+        $educator2 =$this->createEducator([],[$subject2->id],[2]);
+        $student1 =$this->createStudent([],[$subject1->id],[2]);
 
         factory(UserSubject::class)->create([
-            'user_id'    => $educator->profile->id,
-            'subject_id' => $subject->id
+            'user_id'    => $educator1->id,
+            'subject_id' => $subject1->id
         ]);
+
         factory(UserSubject::class)->create([
-            'user_id'    => $educator1,
-            'subject_id' => $subject->id
-        ]);
-        $userSubjectEducator2 = factory(UserSubject::class)->create([
-            'user_id'    => $educator1,
-            'subject_id' => uniqid()
+            'user_id'    => $educator2->id,
+            'subject_id' => $subject2->id
         ]);
 
         $question = factory('App\Src\Question\Question')->create([
             'body_en'    => $questionBody,
-            'user_id'    => uniqid(),
-            'subject_id' => $subject->id,
+            'user_id'    => $student1->id,
+            'subject_id' => $subject1->id,
         ]);
 
         $answer = factory('App\Src\Answer\Answer')->create([
             'question_id' => $question->id,
-            'user_id'     => rand(100, 200),
+            'user_id'     => $educator1->id,
             'body_en'     => $answerBody,
             'parent_id'   => 0
         ]);
 
         $answers = factory('App\Src\Answer\Answer', 5)->create([
             'question_id' => $question->id,
-            'user_id'     => rand(100, 200),
+            'user_id'     => $educator1->id,
             'body_en'     => $answerBody,
             'parent_id'   => $answer->id
         ]);
 
-        $this->actingAs(Auth::loginUsingId(1));
-        $this->call('DELETE', '/admin/subject/' . $subject->id);
+
+        $admin = $this->createUser(['admin'=>1],[],[]);
+        $this->actingAs($admin);
+        $this->call('DELETE', '/admin/subject/' . $subject1->id);
 
         $this->notSeeInDatabase('questions', ['id' => $question->id]);
         $this->notSeeInDatabase('answers', ['id' => $answers->first()->id]);
         $this->notSeeInDatabase('answers', ['id' => $answers->last()->id]);
-        $this->notSeeInDatabase('subjects', ['id' => $subject->id]);
-        $this->notSeeInDatabase('user_subjects', ['user_id' => $educator->profile->id, 'subject_id' => $subject->id]);
-        $this->notSeeInDatabase('user_subjects', ['user_id' => $educator2->profile->id, 'subject_id' => $subject->id]);
+        $this->notSeeInDatabase('subjects', ['id' => $subject1->id]);
+        $this->notSeeInDatabase('user_subjects', ['user_id' => $educator1->id, 'subject_id' => $subject1->id]);
 
         $this->seeInDatabase('user_subjects',
-            ['user_id' => $userSubjectEducator2->user_id, 'subject_id' => $userSubjectEducator2->subject_id]);
+            ['user_id' => $educator2->id, 'subject_id' => $subject2->id]);
     }
 
 }
