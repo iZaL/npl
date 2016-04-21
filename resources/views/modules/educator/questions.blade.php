@@ -25,7 +25,6 @@
                             @if($question->notifications->count() > 0)
                                 <span class="badge notification-count blink" >
                                     <span><i class="fa fa-star"></i></span>
-                                     <span> {{ $question->notifications->count() }} </span>
                                 </span>
                             @endif
                             <a href="{{ action('AnswerController@createAnswer',$question->id) }}">{!! ucfirst($question->body) !!}</a>
