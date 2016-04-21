@@ -32,13 +32,15 @@
         <div class="col-md-4 col-sm-12 signup-info" >
             <h2>Educator Signup Process</h2>
             <li>Fill out the Requested Details</li>
-            <li>Select one level such as : first year University, high school, medium or elementary school</li>
-            <li>Select one or two subjects of your competence</li><br>
+            <li>Select one subject of your competence such as mathematics, physics.,,,,</li><br>
+            <li>Select one or several levels such as: first year university, high school, medium or elementary</li>
             <h2>The Educator can help students in two ways:</h2>
-            <li>by answering questions raised by students for FREE</li>
+            <li>by answering questions raised by students for <b>FREE</b></li>
             <li>by establishing direct contact with the student for further assistance in terms of private, preferably on line paid assistance. The student NP code will appear next to the raised question.</li>
             <br>
-            <span class="pTop10">The objective is to help Students understand their subject by answering urgent questions, by explaining them how to solve problems, by guiding them in exam preparations, etc... Both parties (Educator/Student) can establish the collaboration method which suits them best, either by hourly or by whole semester payments. It is hoped that fees will be very reasonable. Educators fees could be arranged by Visa, Paypal, Safepay or whatever means. The website management could help in this matter. Registration on the No Problem website is FREE for one month. After that a fee of 10 dollars by semester for each subject is requested.</span>
+            <span class="pTop10">
+                The objective is to help students understand their subject, answering urgent questions, solving problems, exam preparation etc... Both parties (Educator/Student) can establish the collaboration method, either by hourly or whole semester fee. It is hoped that fees will be very reasonable. Educators fee could be arranged by visa,K-net, Paypal, Safepay or whatever means. The web site management could help in this matter Registration on the No Problem website is FREE for one month. After that a fee of $10/semester for each level is requested.
+            </span>
         </div>
         <div class="col-md-7 col-sm-12  text-center pull-right">
             <form class="form-horizontal" role="form" method="POST"

@@ -29,12 +29,12 @@
             <h2>Student Signup Process</h2>
             <li>Fill out the Requested Details</li>
             <li>Select one level: First year University, high school, medium or elementary school</li>
-            <li>You can get assistance in different subjects. You have to specify the subject when you file a question</li>
+            <li>You can get assistance in different subjects. Select the subject(s) of which you need assistance: Chemistry, Physics, Mathematics, languages. You have to specify the subject(s) when you file a question</li>
             <li>Once you have filled out the requested details, press Register. You will receive a message on your Email. Activate the registration. The website will provide you with an ID number</li>
             <li>Your personal information will not be visible to others. When you ask a question, Educators will only see the question and your ID number. Educators will enter in contact with you to define a way of collaboration that suits you, either by hourly fees or by other ways</li>
             <li>Your question will appear for a week. However, if you get an answer earlier, you can delete your question</li>
             <li>Once you have finished, log out</li>
-            <li>The subscription is FREE for one month. After that a fee of 5 dollars per semester will be requested for each subject</li>
+            <li>Subscription is FREE for one month. After that a fee of $10/semester for each subject</li>
         </div>
         <div class="col-md-7 col-sm-12  text-center pull-right">
             <form class="form-horizontal" role="form" method="POST"
