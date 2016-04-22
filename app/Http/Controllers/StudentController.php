@@ -30,7 +30,10 @@ class StudentController extends Controller
             'parentAnswers'=>function($q){
                 $q->latest();
             },
-            'subject','parentAnswers.recentReply.user','parentAnswers.user'
+            'parentAnswers.notifications',
+            'subject',
+            'parentAnswers.recentReply.user',
+            'parentAnswers.user'
         ])->latest()->get();
         return view('modules.student.questions', compact('questions', 'answers','user'));
     }
