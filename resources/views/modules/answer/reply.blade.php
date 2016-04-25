@@ -31,12 +31,12 @@
     <input type="hidden" name="answer_id" id="question_id" value="{{ $answer->id }}">
 
     <ul class="list-group">
-        <li class="list-group-item col-md-8 {{ $answer->user_id == Auth::user()->id ? 'pull-left' : 'pull-right text-rtl' }}" style="margin-bottom: 10px;">
+        <li class="list-group-item col-md-8 {{ $answer->user_id == Auth::user()->id ? 'pull-left' : 'pull-right' }}" style="margin-bottom: 10px;">
             <i class="pull-left fa fa-user" style="color: grey;padding-top: 4px"></i> {{ $answer->user_id == Auth::user()->id ? 'Me  ' : $answer->user->np_code .' ' }}  <small class="gray"><i> on {{ $answer->created_at->format('d-m-Y \a\t g:i:s a')  }}</i></small>
             <h3>{!! $answer->body !!}</h3>
         </li>
         @foreach($childAnswers as $answer)
-            <li class="list-group-item col-md-8 {{ $answer->user_id == Auth::user()->id ? 'pull-left' : 'pull-right text-rtl bg-gray' }}" style="margin-bottom: 10px;">
+            <li class="list-group-item col-md-8 {{ $answer->user_id == Auth::user()->id ? 'pull-left' : 'pull-right bg-gray' }}" style="margin-bottom: 10px;">
                 <i class="pull-left fa fa-user" style="color: grey;padding-top: 4px"></i> {{ $answer->user_id == Auth::user()->id ? 'Me  ' : $answer->user->np_code .' ' }}  <small class="gray"><i> on {{ $answer->created_at->format('d-m-Y \a\t g:i:s a') }}</i></small>
                 <h3>{!! $answer->body !!}</h3>
             </li>
@@ -46,6 +46,6 @@
     <div class="clear" style="clear:both;"></div>
     {!! Form::label('body', 'Message', ['class' => 'control-label']) !!} <span class="red">*</span>
     {!! Form::textarea('body_en', null, ['class' => 'form-control editor','placeholder'=>'Your Question']) !!}
-    {!! Form::submit('Reply',  ['class' => 'form-control btn btn-green','placeholder'=>'Your Question']) !!}
+    {!! Form::submit('Submit',  ['class' => 'form-control btn btn-green','placeholder'=>'Your Question']) !!}
     {!! Form::close() !!}
 @endsection

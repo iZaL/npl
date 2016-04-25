@@ -31,7 +31,7 @@
                     {!! Form::hidden('question_id',$question->id) !!}
                     {!! Form::label('body', 'Answer', ['class' => 'control-label']) !!} <span class="red">*</span>
                     {!! Form::textarea('body_en', null, ['class' => 'form-control editor','placeholder'=>'Your Answer']) !!}
-                    {!! Form::submit('Submit',  ['class' => 'form-control  btn btn-green']) !!}
+                    {!! Form::submit('Reply',  ['class' => 'form-control  btn btn-green']) !!}
                     {!! Form::close() !!}
                 </div>
             </div>
