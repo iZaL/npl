@@ -144,11 +144,11 @@ class QuestionController extends Controller
         foreach($question->answers as $answer) {
             if($answer->isParent()) {
                 foreach($answer->childAnswers as $child) {
-                    $child->notifications()->delete();
+                    $child->allNotifications()->delete();
                 }
                 $answer->childAnswers()->delete();
             }
-            $answer->notifications()->delete();
+            $answer->allNotifications()->delete();
         }
 
         $question->answers()->delete();

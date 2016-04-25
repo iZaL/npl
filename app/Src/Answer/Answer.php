@@ -25,6 +25,12 @@ class Answer extends BaseModel
         return $this->morphMany('App\Src\Notification\Notification', 'notifiable')->where('read',0);
     }
 
+    public function allNotifications()
+    {
+        return $this->morphMany('App\Src\Notification\Notification', 'notifiable');
+    }
+
+
 //    public function unreadNotifications()
 //    {
 //        return $this->notifications()->where('read',0);

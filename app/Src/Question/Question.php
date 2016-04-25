@@ -29,6 +29,11 @@ class Question extends BaseModel
         return $this->morphMany('App\Src\Notification\Notification', 'notifiable')->where('read',0);
     }
 
+    public function allNotifications()
+    {
+        return $this->morphMany('App\Src\Notification\Notification', 'notifiable');
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class)->select(['id','np_code']);

@@ -84,11 +84,11 @@ class AnswerController extends Controller
         if($answer->isParent()) {
 
             foreach($answer->childAnswers as $child) {
-                $child->notifications()->delete();
+                $child->allNotifications()->delete();
             }
             $answer->childAnswers()->delete();
         }
-        $answer->notifications()->delete();
+        $answer->allNotifications()->delete();
 
         $answer->delete();
 
