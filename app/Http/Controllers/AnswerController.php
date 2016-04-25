@@ -62,8 +62,6 @@ class AnswerController extends Controller
         // Get The Parent answers for the question
         $answers = $question->parentAnswers;
 
-
-
         // the business need is to allow only 5 answers per question
         if($answers && $answers->count() >= self::MAXIMUM_ANSWERS_COUNT) {
             return redirect()->back()->with('warning', 'This Question has reached maximum answers count');
@@ -160,7 +158,8 @@ class AnswerController extends Controller
 
         // find all the unread notifications related to this user
         foreach($unreadNotifications as $notification) {
-            $notification->markAsRead();
+//            $notification->markAsRead();
+            $notification->delete();
         }
 
         $answer->load('childAnswers.user');

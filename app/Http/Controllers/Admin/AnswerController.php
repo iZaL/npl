@@ -43,9 +43,6 @@ class AnswerController extends Controller
 
     }
 
-
-
-
     public function edit($id)
     {
         $answer = $this->answerRepository->model->with(['user','question'])->find($id);
