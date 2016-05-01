@@ -9,12 +9,12 @@
         tinymce.init({
             selector: "textarea.editor",
             plugins: [
-                "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
+                "advlist autolink autoresize link image lists charmap print preview hr anchor pagebreak spellchecker",
                 "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
-                "save table contextmenu directionality emoticons template paste textcolor jbimages directionality paste",
+                "save table emoticons template paste textcolor jbimages directionality powerpaste",
             ],
             toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image jbimages | print preview media fullpage | forecolor backcolor emoticons | ltr rtl ",
-            relative_urls: false
+            relative_urls: false,
         });
     </script>
 @endsection
@@ -25,7 +25,7 @@
         <div class="col-sm-12 text-center">
 
             <div class="row inner-top-xs">
-                <div class="col-md-offset-3 col-md-6 col-sm-6 inner-right-xs inner-bottom-xs">
+                <div class="col-md-12 col-sm-12 inner-right-xs inner-bottom-xs">
                     {!! Form::open(['action' => 'QuestionController@store', 'method' => 'post','files'=>true, 'class'=>'form-horizontal'])!!}
                     <div class="form-group">
                         {!! Form::label('subject', 'Select a subject', ['class' => 'control-label pull-left']) !!} <span
