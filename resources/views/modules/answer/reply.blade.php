@@ -2,18 +2,19 @@
 
 @section('script')
     @parent
-    <script src="/vendor/tinymce/tinymce.jquery.min.js"></script>
-
+    <script src="/vendor/tinymce/tinymce.min.js"></script>
     <script>
         tinymce.init({
             selector: "textarea.editor",
             plugins: [
-                "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
+                "advlist autolink autoresize link image lists charmap print preview hr anchor pagebreak spellchecker",
                 "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
-                "save table contextmenu directionality emoticons template paste textcolor jbimages directionality"
+                "save table emoticons template textcolor jbimages directionality powerpaste",
             ],
             toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image jbimages | print preview media fullpage | forecolor backcolor emoticons | ltr rtl ",
-            relative_urls: false
+            relative_urls: false,
+            powerpaste_word_import: 'clean',
+            powerpaste_html_import: 'merge',
         });
     </script>
 @endsection
