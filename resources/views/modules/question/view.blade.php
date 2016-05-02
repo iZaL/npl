@@ -6,7 +6,22 @@
 
 @section('right')
 @endsection
-
+@section('style')
+    @parent
+    <style>
+        .subject-icon {
+            font-size: 80px;
+        }
+        hr {
+            margin: 20px 0;
+        }
+        .reply {
+            color:#1ABB9C;
+            font-size: 15px;
+            text-decoration: underline;
+        }
+    </style>
+@endsection
 @section('left')
     <div class="row">
         <div class="col-md-3">
@@ -45,7 +60,7 @@
                                        class="np_code">
                                         {!! str_limit($answer->body,100) !!} </a>
                                     <a href="{{ action('AnswerController@createReply',['question_id'=>$question->id,'answer_id'=>$answer->id]) }}"
-                                       class="reply pull-right">
+                                       class="reply ">
                                         reply
                                     </a>
                                 </h3>
