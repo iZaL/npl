@@ -1,7 +1,7 @@
 @extends('layouts.two_col')
 
 @section('title')
-    <h1>{{ strip_tags($question->body) }}</h1>
+    <h1>{!! $question->body !!}</h1>
 @endsection
 
 @section('right')
@@ -20,7 +20,7 @@
         <div class="col-md-9">
             <div class="row">
                 <div class="col-md-9">
-                    <h2><{!! ucfirst(strip_tags($question->body)) !!}</h2>
+                    <h2><{!! ucfirst($question->body) !!}</h2>
                 </div>
                 <div class="col-md-3 ">
                     <small class="pull-right gray">{{ $question->created_at->format('d-m-Y \a\t g:i:s a')  }}</small>
