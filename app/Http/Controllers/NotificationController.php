@@ -41,7 +41,6 @@ class NotificationController extends Controller
             ->load('notifications.notifiable')
             ->has('notifications.notifiable')
             ->latest()->get();
-
         return view('modules.notification.index',compact('user','isEducator','isStudent'));
     }
 

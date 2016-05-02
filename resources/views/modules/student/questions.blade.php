@@ -7,15 +7,6 @@
 @section('style')
     @parent
     <style>
-        [class^="flaticon-"]:before, [class*=" flaticon-"]:before, [class^="flaticon-"]:after, [class*=" flaticon-"]:after {
-            font-family: Flaticon;
-            font-size: 100px;
-            line-height: 140px;
-            font-style: normal;
-        }
-        [class^="flaticon-"]:hover {
-            color: #009926;
-        }
         .subject-icon {
             font-size: 80px;
         }
@@ -48,15 +39,6 @@
                 <div class="row">
                     <div class="col-md-9">
                         <h2>
-                            @if(count($question->parentAnswers))
-                                @foreach($question->parentAnswers as $answer)
-                                    @if($answer->notifications->count() > 0)
-                                        <span class="badge notification-count blink" >
-                                            <span><i class="fa fa-star"></i></span>
-                                        </span>
-                                    @endif
-                                @endforeach
-                            @endif
                             <a href="{{ action('QuestionController@show',$question->id) }}">{!! ucfirst($question->body) !!}</a>
                         </h2>
                     </div>
@@ -68,49 +50,33 @@
                 <div class="col-md-12">
 
                     <ul class="list-group">
-                        @if(count($question->parentAnswers))
+                        @if($question->parentAnswers)
                             @foreach($question->parentAnswers as $answer)
-                                {{--@if($recentAnswer = $answer->recentReply)--}}
-                                    {{--<li class="list-group-item">--}}
-                                        {{--@if($recentAnswer->user_id == $user->id)--}}
-                                            {{--<small class="navy">You answered</small>--}}
-                                        {{--@else--}}
-                                            {{--<small class="navy">Answer from</small>--}}
-                                            {{--<b>{{ $recentAnswer->user->np_code }}</b>--}}
-                                        {{--@endif--}}
-                                        {{--<small class="navy"> on {{ $recentAnswer->created_at->format('d-m-Y \a\t g:i:s a') }}</small>--}}
-                                        {{--<h3>--}}
-                                            {{--<a href="{{ action('AnswerController@createReply',['question_id'=>$question->id,'answer_id'=>$recentAnswer->id]) }}"--}}
-                                               {{--class="np_code">--}}
-                                                {{--{!! str_limit($recentAnswer->body,100) !!}--}}
-                                            {{--</a>--}}
-                                            {{--<a href="{{ action('AnswerController@createReply',['question_id'=>$question->id,'answer_id'=>$recentAnswer->id]) }}"--}}
-                                               {{--class="reply pull-right">--}}
-                                                {{--reply--}}
-                                            {{--</a>--}}
-                                        {{--</h3>--}}
-
-                                    {{--</li>--}}
-                                {{--@else--}}
-                                    <li class="list-group-item">
-                                        @if($answer->user_id == $user->id)
-                                            <small class="navy">You answered</small>
-                                        @else
-                                            <small class="navy">Answer from</small>
-                                            <b>{{ $answer->user->np_code }}</b>
-                                        @endif
-                                        <small class="navy"> on {{ $answer->created_at->format('d-m-Y \a\t g:i:s a') }}</small>
-                                        <h3>
-                                            <a href="{{ action('AnswerController@createReply',['question_id'=>$question->id,'answer_id'=>$answer->id]) }}"
+                                <li class="list-group-item">
+                                    @if($answer->user_id == $user->id)
+                                        <small class="navy">You answered</small>
+                                    @else
+                                        <small class="navy">Answer from</small>
+                                        <b>{{ $answer->user->np_code }}</b>
+                                    @endif
+                                    <small class="navy"> on {{ $answer->created_at->format('d-m-Y \a\t g:i:s a') }}</small>
+                                    <h3>
+                                        @if($recentAnswer = $answer->recentReply ? $answer->recentReply : $answer)
+                                            @if($recentAnswer->notifications->count())
+                                                <span class="badge blink" style="background-color:#C03035">
+                                                <span><i class="fa fa-star"></i></span>
+                                            </span>
+                                            @endif
+                                            <a href="{{ action('AnswerController@createReply',['question_id'=>$question->id,'answer_id'=>$recentAnswer->id]) }}"
                                                class="np_code">
                                                 {!! str_limit($answer->body,100) !!} </a>
-                                            <a href="{{ action('AnswerController@createReply',['question_id'=>$question->id,'answer_id'=>$answer->id]) }}"
-                                               class="reply pull-right">
+                                            <a href="{{ action('AnswerController@createReply',['question_id'=>$question->id,'answer_id'=>$recentAnswer->id]) }}"
+                                               class="reply">
                                                 reply
                                             </a>
-                                        </h3>
-                                    </li>
-                                {{--@endif--}}
+                                        @endif
+                                    </h3>
+                                </li>
                             @endforeach
                         @else
                             <h4 class="navy"> No answers yet </h4>
