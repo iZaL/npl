@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <meta name="viewport" content="width=device-width">
     @section('style')
-{{--        <link rel="stylesheet" href="{{ elixir('css/all.css') }}">--}}
+        {{--        <link rel="stylesheet" href="{{ elixir('css/all.css') }}">--}}
         @include('partials.style')
     @show
 </head>
@@ -16,11 +16,11 @@
 @include('partials.header')
 @include('admin.partials.delete-modal',['info' => 'Are you sure ?'])
 
-<main>
+<div class="container-fluid">
     @section('content')
 
     @show
-</main>
+</div>
 
 @include('partials.footer')
 @section('script')
