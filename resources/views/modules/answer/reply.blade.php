@@ -20,7 +20,7 @@
 @endsection
 
 @section('title')
-    <h1>{{ $question->body }}</h1>
+    <h1>{!! $question->body !!}</h1>
 @endsection
 
 @section('middle')
