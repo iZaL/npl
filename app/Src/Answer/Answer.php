@@ -22,14 +22,14 @@ class Answer extends BaseModel
 
     public function notifications()
     {
-//        $userID = auth()->check() ? auth()->user()->id : 0;
-        return $this->morphMany('App\Src\Notification\Notification', 'notifiable')->where('read',0)->where('user_id',auth()->user()->id);
+        return $this->morphMany('App\Src\Notification\Notification', 'notifiable')->where('read',0);
     }
 
     public function allNotifications()
     {
         return $this->morphMany('App\Src\Notification\Notification', 'notifiable');
     }
+
 
 //    public function unreadNotifications()
 //    {

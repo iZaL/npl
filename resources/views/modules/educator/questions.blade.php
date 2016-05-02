@@ -60,7 +60,7 @@
                                     <small class="navy"> on {{ $answer->created_at->format('d-m-Y \a\t g:i:s a') }}</small>
                                     <h3>
                                         @if($recentAnswer = $answer->recentReply ? $answer->recentReply : $answer)
-                                            @if($recentAnswer->notifications->count())
+                                            @if(in_array($recentAnswer->id,$userNotificationsArray))
                                                 <span class="badge blink" style="background-color:#C03035">
                                                 <span><i class="fa fa-star"></i></span>
                                             </span>

@@ -27,6 +27,8 @@ class StudentController extends Controller
         $user = Auth::user();
         $student = $user->getType();
 
+        $userNotificationsArray = $user->notifications->where('notifiable_type','MorphAnswer')->lists('notifiable_id')->toArray();
+
         $questions = $student->questions()->with([
             'parentAnswers'=>function($q) {
                 $q->latest();
@@ -36,7 +38,7 @@ class StudentController extends Controller
             'parentAnswers.recentReply.user',
             'parentAnswers.user'
         ])->latest()->get();
-        return view('modules.student.questions', compact('questions', 'answers','user'));
+        return view('modules.student.questions', compact('questions', 'answers','user','userNotificationsArray'));
     }
 
 }

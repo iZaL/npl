@@ -44,6 +44,9 @@ class EducatorController extends Controller
         $user = Auth::user();
         $subjectIds = $user->activeSubjects->modelKeys();
         $levelIds = $user->levels->modelKeys();
+
+        $userNotificationsArray = $user->notifications->where('notifiable_type','MorphAnswer')->lists('notifiable_id')->toArray();
+
         // questions for the educator
         $questions = $questionRepository->model->with([
             'subject',
@@ -62,7 +65,7 @@ class EducatorController extends Controller
             ->latest()
             ->get();
 
-        return view('modules.educator.questions', compact('questions','user'));
+        return view('modules.educator.questions', compact('questions','user','userNotificationsArray'));
     }
 
 }
