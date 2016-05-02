@@ -20,7 +20,7 @@
 @endsection
 
 @section('title')
-    <h1>{{ strip_tags($question->body) }}</h1>
+    <h1>{{ $question->body }}</h1>
 @endsection
 
 @section('middle')
