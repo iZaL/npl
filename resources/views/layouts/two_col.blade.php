@@ -28,8 +28,8 @@
                 <div class="col-sm-12 col-md-4">
                     @yield('right')
                     <div>
-                        <a href="http://ideasowners.net" target="_blank">
-                            <img src="{{ asset('/images/io.png') }}" class="img-responsive img-thumbnail" style="width:100%; height:auto;display: block;visibility: visible">
+                        <a href="#" >
+                            <img src="{{ asset('/images/geometry.png') }}" class="img-responsive img-thumbnail" style="width:100%; height:auto;display: block;visibility: visible">
                         </a>
                     </div>
                 </div>

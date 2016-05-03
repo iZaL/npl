@@ -34,11 +34,9 @@
                     </div>
                 </div>
 
-                <div class="item img-responsive" style="background-image: url(/images/slider/img1_3.jpg);">
+                <div class="item img-responsive" style="background-image: url(/images/slider/img1_8.png);">
                     <div class="container">
-                        <div class="caption vertical-top  text-center">
-                            <h1 class="fadeInRight-1 dark-bg light-color">
-                            </h1>
+                        <div class="caption vertical-top text-center">
                         </div>
                     </div>
                 </div>
@@ -67,10 +65,11 @@
                     </div>
                 </div>
 
-                <div class="item img-responsive" style="background-image: url(/images/slider/img1_7.jpg);">
+                <div class="item img-responsive" style="background-image: url(/images/slider/img1_9.png);">
+
                     <div class="container">
                         <div class="caption vertical-top text-center">
-                            <h1 class="fadeIn-1 dark-bg light-color"></h1>
+                            <h1 class="fadeInRight-1 dark-bg light-color"><span>Multiplication</span></h1>
                         </div>
                     </div>
                 </div>

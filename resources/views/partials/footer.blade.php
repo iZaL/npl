@@ -7,8 +7,9 @@
                     <li>
                         <p>
                             <i class="fa fa-map-marker"></i>&nbsp;
-                            Sharq, Ahmad AL-Jaber St. <br>
-                            AL-Tejari Bank Building – 6th floor - Opposite to Dar AL-Awadhi Tower
+                            Khaled ibn Al-waleed Street
+                            Sawaber6 Tower, Floor 3, Office 6
+                            Sharq, Kuwait
                         </p>
                     </li>
                     <li><i class="fa fa-phone"></i>&nbsp;+965</li>
