@@ -27,7 +27,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $blogs = $this->blogRepository->model->paginate(20);
+        $blogs = $this->blogRepository->model->latest()->paginate(20);
 
         return view('modules.blog.index', compact('blogs'));
     }
