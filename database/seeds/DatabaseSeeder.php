@@ -7,20 +7,20 @@ class DatabaseSeeder extends Seeder
 {
 
     private $tables = [
-        'users',
-        'password_resets',
-        'categories',
-        'blogs',
-        'photos',
-        'subjects',
-        'levels',
-        'user_levels',
-        'user_subjects',
-        'students',
-        'educators',
-        'questions',
-        'answers',
-        'notifications'
+//        'users',
+//        'password_resets',
+//        'categories',
+//        'blogs',
+//        'photos',
+//        'subjects',
+//        'levels',
+//        'user_levels',
+//        'user_subjects',
+//        'students',
+//        'educators',
+//        'questions',
+//        'answers',
+//        'notifications'
     ];
 
     /**
@@ -42,6 +42,70 @@ class DatabaseSeeder extends Seeder
 //        factory('App\Src\User\User', 1)->create(['email' => 'student@test.com', 'np_code' => 'NP1001']);
 //        factory('App\Src\User\User', 1)->create(['email' => 'educator1@test.com', 'np_code' => 'NP99002']);
 //        factory('App\Src\User\User', 1)->create(['email' => 'student1@test.com', 'np_code' => 'NP1002']);
+//        factory('App\Src\User\User', 1)->create(['email' => 'educator2@test.com', 'np_code' => 'NP99003']);
+//        factory('App\Src\User\User', 1)->create(['email' => 'educator3@test.com', 'np_code' => 'NP99004']);
+//        factory('App\Src\User\User', 1)->create(['email' => 'student2@test.com', 'np_code' => 'NP1003']);
+
+
+        $educator4 = factory('App\Src\User\User', 1)->create(['email' => 'educator4@test.com', 'np_code' => 'NP990094']);
+        $educator5 = factory('App\Src\User\User', 1)->create(['email' => 'educator5@test.com', 'np_code' => 'NP990095']);
+        $educator6 = factory('App\Src\User\User', 1)->create(['email' => 'educator6@test.com', 'np_code' => 'NP990096']);
+        $educator7 = factory('App\Src\User\User', 1)->create(['email' => 'educator7@test.com', 'np_code' => 'NP990097']);
+        $educator8 = factory('App\Src\User\User', 1)->create(['email' => 'educator8@test.com', 'np_code' => 'NP990098']);
+        $student3 = factory('App\Src\User\User', 1)->create(['email' => 'student3@test.com', 'np_code' => 'NP10093']);
+
+        $ed4 = factory('App\Src\Educator\Educator', 1)->create(['user_id' => $educator4]);
+        $ed5 = factory('App\Src\Educator\Educator', 1)->create(['user_id' => $educator5]);
+        $ed6 = factory('App\Src\Educator\Educator', 1)->create(['user_id' => $educator6]);
+        $ed7 = factory('App\Src\Educator\Educator', 1)->create(['user_id' => $educator7]);
+        $ed8 = factory('App\Src\Educator\Educator', 1)->create(['user_id' => $educator8]);
+
+        $st3 = factory('App\Src\Student\Student', 1)->create(['user_id' => $student3]);
+
+
+        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => $educator4, 'level_id' => 1]);
+        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => $educator4, 'level_id' => 2]);
+        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => $educator4, 'level_id' => 3]);
+        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => $educator4, 'subject_id' => 2]);
+
+        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => $educator5, 'level_id' => 1]);
+        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => $educator5, 'level_id' => 2]);
+        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => $educator5, 'level_id' => 3]);
+        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => $educator5, 'subject_id' => 3]);
+
+        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => $educator6, 'level_id' => 1]);
+        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => $educator6, 'level_id' => 2]);
+        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => $educator6, 'level_id' => 3]);
+        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => $educator6, 'level_id' => 4]);
+        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => $educator6, 'subject_id' => 4]);
+
+        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => $educator7, 'level_id' => 1]);
+        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => $educator7, 'level_id' => 2]);
+        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => $educator7, 'level_id' => 3]);
+        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => $educator7, 'level_id' => 4]);
+        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => $educator7, 'subject_id' => 5]);
+
+
+        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => $educator8, 'level_id' => 1]);
+        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => $educator8, 'level_id' => 2]);
+        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => $educator8, 'level_id' => 3]);
+        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => $educator8, 'level_id' => 4]);
+        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => $educator8, 'subject_id' => 6]);
+
+        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => $student3, 'subject_id' => 1]);
+        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => $student3, 'subject_id' => 2]);
+        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => $student3, 'subject_id' => 3]);
+        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => $student3, 'subject_id' => 4]);
+        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => $student3, 'subject_id' => 5]);
+        factory('App\Src\Subject\UserSubject', 1)->create(['user_id' => $student3, 'subject_id' => 6]);
+        factory('App\Src\Level\UserLevel', 1)->create(['user_id' => $student3, 'level_id' => 1]);
+
+
+
+//        factory('App\Src\User\User', 1)->create(['email' => 'student2@test.com', 'np_code' => 'NP1003']);
+
+
+        //        factory('App\Src\User\User', 1)->create(['email' => 'student1@test.com', 'np_code' => 'NP1002']);
 //        factory('App\Src\User\User', 1)->create(['email' => 'educator2@test.com', 'np_code' => 'NP99003']);
 //        factory('App\Src\User\User', 1)->create(['email' => 'educator3@test.com', 'np_code' => 'NP99004']);
 //        factory('App\Src\User\User', 1)->create(['email' => 'student2@test.com', 'np_code' => 'NP1003']);
