@@ -140,7 +140,6 @@ class QuestionController extends Controller
     {
         // delete all the answers for the question
         $question = $this->questionRepository->model->find($id);
-
         foreach($question->answers as $answer) {
             if($answer->isParent()) {
                 foreach($answer->childAnswers as $child) {
@@ -150,11 +149,8 @@ class QuestionController extends Controller
             }
             $answer->allNotifications()->delete();
         }
-
         $question->answers()->delete();
-
         $question->delete();
-
         return redirect()->back()->with('success', 'Question Deleted');
     }
 }

@@ -7,12 +7,13 @@
                     <li>
                         <p>
                             <i class="fa fa-map-marker"></i>&nbsp;
-                            Khaled ibn Al-waleed Street
-                            Sawaber6 Tower, Floor 3, Office 6
-                            Sharq, Kuwait
+                            IdeasOwners Co.
+                            Kuwait - Sharq - Khaled ibn Al-waleed Street
+                            Sawaber6 Tower - Floor 3 - Office 6
                         </p>
                     </li>
-                    <li><i class="fa fa-phone"></i>&nbsp;+965</li>
+                    <li><i class="fa fa-phone"></i>&nbsp;+965 97123253</li>
+                    <li><i class="fa fa-envelope"></i><a href="info@ideasowners.com"> info@ideasowners.com</a></li>
                 </ul><!-- /.contacts -->
             </div><!-- /.col -->
         </div>
