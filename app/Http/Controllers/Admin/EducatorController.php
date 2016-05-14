@@ -136,6 +136,7 @@ class EducatorController extends Controller
                 $q->whereIn('questions.subject_id', $deletedSubjects);
             }
         ])->find($id);
+        
 
         $educatorAnswersForDeletedSubjects->answers()->delete();
 
