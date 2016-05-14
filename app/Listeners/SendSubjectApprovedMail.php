@@ -39,7 +39,7 @@ class SendSubjectApprovedMail
     public function handle(SubjectRequestApproved $event)
     {
         $user = $event->user;
-        $subjects = array_map('strtolower', $event->subjects);
+        $subjects = array_map('ucfirst', $event->subjects);
 
         $this->mailer->view = 'emails.subject-approved';
         $this->mailer->subject = 'The Subject you requested have been Approved';
