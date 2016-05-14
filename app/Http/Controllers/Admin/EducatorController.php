@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 
+use App\Events\SubjectRequestApproved;
 use App\Http\Controllers\Controller;
 use App\Src\Educator\Educator;
 use App\Src\Educator\EducatorRepository;
@@ -104,8 +105,13 @@ class EducatorController extends Controller
 
                     // create a new record with active set to 1
                     $educator->profile->subjects()->attach($subject, ['active' => '1']);
+
+                    // fire a new email
+
                 }
             }
+
+            event(new SubjectRequestApproved($educator->profile, (array)$request->subjects));
 
         }
 

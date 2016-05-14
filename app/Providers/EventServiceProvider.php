@@ -3,12 +3,14 @@
 namespace App\Providers;
 
 use App\Events\EducatorAddedSubjects;
+use App\Events\SubjectRequestApproved;
 use App\Events\UserActivated;
 use App\Events\UserRegistered;
 use App\Listeners\CreateUserCode;
 use App\Listeners\SendActivationMail;
 use App\Listeners\SendAdminSubjectRequestMail;
 use App\Listeners\SendEducatorSubjectPendingAdminApprovalMail;
+use App\Listeners\SendSubjectApprovedMail;
 use App\Listeners\SendWelcomeMail;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -31,6 +33,9 @@ class EventServiceProvider extends ServiceProvider
         EducatorAddedSubjects::class => [
 //            SendAdminSubjectRequestMail::class,
 //            SendEducatorSubjectPendingAdminApprovalMail::class
+        ],
+        SubjectRequestApproved::class => [
+            SendSubjectApprovedMail::class
         ]
     ];
 
