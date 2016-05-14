@@ -94,6 +94,7 @@ class EducatorController extends Controller
         $educator = $this->educatorRepository->model->find($id);
 
         if ($request->subjects) {
+            $subjectNames = $this->subjectRepository->model->whereIn('id',$request->subjects)->lists('name_en')->toArray();
 
             foreach ($request->subjects as $subject) {
 
@@ -107,11 +108,10 @@ class EducatorController extends Controller
                     $educator->profile->subjects()->attach($subject, ['active' => '1']);
 
                     // fire a new email
-
                 }
             }
 
-            event(new SubjectRequestApproved($educator->profile, (array)$request->subjects));
+            event(new SubjectRequestApproved($educator->profile, (array)$subjectNames));
 
         }
 
