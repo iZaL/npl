@@ -2,3 +2,6 @@
 <div>
     Click the link <a href="{{$link}}" target="_blank">{{ $link }}</a> to activate your No Problem Learning account.
 </div>
+
+
+
