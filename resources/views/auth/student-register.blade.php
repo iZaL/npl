@@ -10,12 +10,12 @@
 
 @section('style')
     @parent
-    <link href="/bower_components/select2/dist/css/select2.min.css" rel="stylesheet" type="text/css">
+    <link href="/node_modules/select2/dist/css/select2.min.css" rel="stylesheet" type="text/css">
 @endsection
 
 @section('script')
     @parent
-    <script src="/bower_components/select2/dist/js/select2.full.min.js"></script>
+    <script src="/node_modules/select2/dist/js/select2.full.min.js"></script>
     <script>
         $(document).ready(function () {
             $(".select2").select2();

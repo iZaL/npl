@@ -8,7 +8,7 @@
     ga('create', 'UA-87313372-1', 'auto');
     ga('send', 'pageview');
 </script>
-<script src="/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="/node_modules/jquery/dist/jquery.min.js"></script>
 
 <!-- JavaScripts placed at the end of the document so the pages load faster -->
 <script src="/js/jquery.easing.1.3.min.js"></script>

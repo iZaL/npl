@@ -32,6 +32,18 @@
                             @else
                                 <li><a href="{{ route('index') }}">Home</a></li>
                             @endif
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle js-activated">{{ trans('word.information') }}</a>
+                                <ul class="dropdown-menu">
+                                    @foreach($categories as $category)
+                                        <li>
+                                            <a href="{{ action('BlogController@getSubjectPosts',$category->id) }}">{{ ucfirst($category->name) }}</a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                                <!-- /.dropdown-menu -->
+                            </li>
+
                             <li><a href="{{ action('BlogController@index') }}">{{ trans('word.articles') }}</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle js-activated">Subjects</a>
@@ -58,11 +70,11 @@
                             </li>
                             @if(Auth::check())
 
-                                    @if(Auth::user()->isStudent())
-                                        <li><a href="{{ action('QuestionController@create') }}"> Ask Question </a></li>
-                                    @elseif(Auth::user()->isEducator())
-                                        <li><a href="{{ action('HomeController@home') }}">My Questions</a></li>
-                                    @endif
+                                @if(Auth::user()->isStudent())
+                                    <li><a href="{{ action('QuestionController@create') }}"> Ask Question </a></li>
+                                @elseif(Auth::user()->isEducator())
+                                    <li><a href="{{ action('HomeController@home') }}">My Questions</a></li>
+                                @endif
                             @else
                                 <li><a href="/auth/login">Login</a></li>
                                 <li><a href="{{ action('Auth\AuthController@studentRegistration') }}">Register</a></li>

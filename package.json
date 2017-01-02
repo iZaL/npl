@@ -4,7 +4,16 @@
     "gulp": "^3.8.8"
   },
   "dependencies": {
-    "laravel-elixir": "^3.0.0",
-    "bootstrap-sass": "^3.0.0"
-  }
+    "bootstrap-sass": "^3.0.0",
+    "laravel-elixir": "^3.0.0"
+  },
+  "name": "book",
+  "version": "0.0.0",
+  "main": "index.js",
+  "repository": {
+    "url": "https://github.com/iZaL/npl",
+    "type": "git"
+  },
+  "author": "ZaL <z4ls@live.com>",
+  "license": "MIT"
 }

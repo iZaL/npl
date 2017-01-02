@@ -30,4 +30,12 @@ class Blog extends BaseModel
     {
         return $this->attributes['slug'] = slug($value);
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

@@ -16,16 +16,17 @@
     <div class="col-lg-12 mTop10">
         <div class="panel panel-default">
             <div class="panel-heading">
-                Editorial Posts
+                Blog Posts
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
-                <a class="btn btn-primary btn-md" role="button" href="{{ action('Admin\BlogController@create') }}"> Create new Editorial </a>
+                <a class="btn btn-primary btn-md" role="button" href="{{ action('Admin\BlogController@create') }}"> Create new Blog Post </a>
                 <div class="dataTable_wrapper mTop10">
                     <table class="table table-striped table-bordered table-hover" >
                         <thead>
                         <tr>
                             <th>Title</th>
+                            <th>Category</th>
                             <th>Added Date</th>
                             <th>View</th>
                             <th>Edit</th>
@@ -36,6 +37,7 @@
                         @foreach($blogs as $blog)
                             <tr class="gradeU">
                                 <td> {!! str_limit(strip_tags($blog->title),100) !!} </td>
+                                <td> {{ $blog->category ? $blog->category->name : 'Editorial' }} </td>
                                 <td> {{ $blog->created_at->format('d-m-Y') }} </td>
                                 <td class="f18">
                                     <a href="{{ action('Admin\BlogController@show',$blog->id)  }}"

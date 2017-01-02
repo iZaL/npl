@@ -1,13 +1,12 @@
 @extends('layouts.two_col')
 
 @section('title')
-    <h1>{{ trans('word.blog') }}</h1>
+    <h1>{{ $title }}</h1>
 @endsection
 
 @section('left')
     <div class="panel" id="midCol">
         <div class="panel-body">
-
             @foreach($blogs as $post)
                 <h2><a href="{{ action('BlogController@show',$post->id) }}">{{ $post->title }}</a></h2>
 

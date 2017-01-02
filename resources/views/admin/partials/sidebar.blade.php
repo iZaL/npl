@@ -35,7 +35,7 @@
         <div class="sidebar-nav navbar-collapse">
             <ul class="nav" id="side-menu">
                 <li>
-                    <a href="{{ action('Admin\BlogController@index') }}"><i class="fa fa-pencil"></i> List Editorials</a>
+                    <a href="{{ action('Admin\BlogController@index') }}"><i class="fa fa-pencil"></i> List Blog Posts</a>
                 </li>
                 <li>
                     <a href="{{ action('Admin\StudentController@index') }}"><i class="fa fa-graduation-cap"></i> List Students</a>

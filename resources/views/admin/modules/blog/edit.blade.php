@@ -18,6 +18,11 @@
     <div class="mTop10">
         {!! Form::model($blog,['action' => ['Admin\BlogController@update',$blog->id], 'method' => 'patch'], ['class'=>'form-horizontal']) !!}
 
+        <div class="form-group">
+            {!! Form::label('category', 'Select a category', ['class' => 'control-label']) !!} <span class="red">*</span>
+            {!! Form::select('category_id', $categories, null, ['class' => 'form-control','placeholder'=>'Category']) !!}
+        </div>
+
 
         <div class="form-group">
             {!! Form::label('title', 'Editorial Title', ['class' => 'control-label']) !!} <span class="red">*</span>

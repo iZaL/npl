@@ -1,0 +1,81 @@
+Arguments: 
+  /usr/local/Cellar/node/6.8.0/bin/node /usr/local/bin/yarn add bootstrap
+
+PATH: 
+  /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/.composer/vendor/bin
+
+Yarn version: 
+  0.16.1
+
+Node version: 
+  6.8.0
+
+Platform: 
+  darwin x64
+
+npm manifest: 
+  {
+    "private": true,
+    "devDependencies": {
+      "gulp": "^3.8.8"
+    },
+    "dependencies": {
+      "bootstrap-sass": "^3.0.0",
+      "laravel-elixir": "^3.0.0"
+    },
+    "name": "book",
+    "version": "0.0.0",
+    "main": "index.js",
+    "repository": {
+      "url": "https://github.com/iZaL/npl",
+      "type": "git"
+    },
+    "author": "ZaL <z4ls@live.com>",
+    "license": "MIT"
+  }
+
+yarn manifest: 
+  No manifest
+
+bower manifest: 
+  {
+    "name": "book",
+    "version": "0.0.0",
+    "authors": [
+      "ZaL <z4ls@live.com>"
+    ],
+    "license": "MIT",
+    "ignore": [
+      "**/.*",
+      "node_modules",
+      "bower_components",
+      "test",
+      "tests"
+    ],
+    "dependencies": {
+      "bootstrap": null,
+      "bootstrap-datepicker": "~1.4.0",
+      "bootstrap-rtl": null,
+      "datatables": "~1.10.4",
+      "datatables-plugins": "~1.0.1",
+      "datatables-responsive": "~1.0.3",
+      "fontawesome": null,
+      "jquery": null,
+      "metisMenu": "~2.1.0",
+      "select2": null
+    },
+    "main": "index.js",
+    "repository": {
+      "url": "https://github.com/iZaL/npl",
+      "type": "git"
+    },
+    "author": "ZaL <z4ls@live.com>"
+  }
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  Error: read ETIMEDOUT
+      at exports._errnoException (util.js:1026:11)
+      at TLSWrap.onread (net.js:569:26)

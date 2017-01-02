@@ -13,15 +13,21 @@
     "tests"
   ],
   "dependencies": {
-    "jquery": null,
     "bootstrap": null,
-    "select2": null,
-    "fontawesome": null,
+    "bootstrap-datepicker": "~1.4.0",
     "bootstrap-rtl": null,
     "datatables": "~1.10.4",
     "datatables-plugins": "~1.0.1",
     "datatables-responsive": "~1.0.3",
-    "bootstrap-datepicker": "~1.4.0",
-    "metisMenu": "~2.1.0"
-  }
+    "fontawesome": null,
+    "jquery": null,
+    "metisMenu": "~2.1.0",
+    "select2": null
+  },
+  "main": "index.js",
+  "repository": {
+    "url": "https://github.com/iZaL/npl",
+    "type": "git"
+  },
+  "author": "ZaL <z4ls@live.com>"
 }

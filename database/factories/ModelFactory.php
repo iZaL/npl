@@ -91,6 +91,14 @@ $factory->define(App\Src\Answer\Answer::class, function (Faker\Generator $faker)
     ];
 });
 
+
+$factory->define(App\Src\Blog\Category::class, function (Faker\Generator $faker) {
+    return [
+        'name_en'        => 'physics'.uniqid(),
+        'name_ar'        => 'physics'.uniqid(),
+    ];
+});
+
 $factory->define(App\Src\Blog\Blog::class, function (Faker\Generator $faker) {
     return [
         'user_id'     => 1,
@@ -107,3 +115,4 @@ $factory->define(App\Src\Notification\Notification::class, function (Faker\Gener
         'read'=> 0
     ];
 });
+

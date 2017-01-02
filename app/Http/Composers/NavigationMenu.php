@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Composers;
 
+use App\Src\Blog\Category;
 use App\Src\Category\CategoryRepository;
 use App\Src\Educator\Educator;
 use App\Src\Level\LevelRepository;
@@ -19,20 +20,27 @@ class NavigationMenu
      * @var LevelRepository
      */
     private $levelRepository;
+    /**
+     * @var Category
+     */
+    private $category;
 
 
     /**
      * @param SubjectRepository $subjectRepository
      * @param LevelRepository $levelRepository
+     * @param Category $category
      */
-    public function __construct(SubjectRepository $subjectRepository, LevelRepository $levelRepository)
+    public function __construct(SubjectRepository $subjectRepository, LevelRepository $levelRepository,Category $category)
     {
         $this->subjectRepository = $subjectRepository;
         $this->levelRepository = $levelRepository;
+        $this->category = $category;
     }
 
     public function compose(View $view)
     {
+        $categories = $this->category->where('name_en','!=','Editorials')->get(['id', 'name_en']);
         $subjects = $this->subjectRepository->model->get(['id', 'name_en']);
         $levels = $this->levelRepository->model->get(['id', 'name_en']);
         $isEducator = false;
@@ -48,7 +56,9 @@ class NavigationMenu
             }
         }
 
-        $view->with(['subjects' => $subjects, 'levels' => $levels, 'user' => $user, 'isEducator'=>$isEducator, 'isStudent'=>$isStudent]);
+        $view->with(['subjects' => $subjects, 'levels' => $levels, 'user' => $user, 'isEducator'=>$isEducator, 'isStudent'=>$isStudent,
+            'categories' => $categories
+        ]);
 
     }
 
