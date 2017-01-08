@@ -57,7 +57,7 @@
 
         {!! Form::close() !!}
 
-        @include('admin.modules.photo._delete',['record' => $blog])
+{{--        @include('admin.modules.photo._delete',['record' => $blog])--}}
 
     </div>
 

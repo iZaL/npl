@@ -36,6 +36,7 @@
                 </div>
 
             </div>
+            @include('admin.partials.delete-modal',['info' => 'Are you sure ?'])
 
         </div>
     </div>
