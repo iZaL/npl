@@ -48,6 +48,7 @@ Route::group([ 'middleware' => ['auth']], function () {
     Route::resource('profile','ProfileController');
     Route::get('profile/{id}/questions', 'ProfileController@getQuestions');
     Route::get('profile/{id}/answers', 'ProfileController@getAnswers');
+    Route::get('profile/{id}/articles', 'ProfileController@getArticles');
 });
 
 /*********************************************************************************************************

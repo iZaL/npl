@@ -62,7 +62,6 @@ class BlogController extends Controller
 
     public function store(Request $request, PhotoRepository $photoRepository)
     {
-
         $this->validate($request, [
             'title_en'       => 'required',
             'description_en' => 'required',
@@ -75,7 +74,8 @@ class BlogController extends Controller
             'description_en' => $request->description_en,
             'user_id'        => Auth::user()->id,
             'slug'           => $request->title_en,
-            'category_id' => $request->category_id
+            'category_id' => $request->category_id,
+            'active' => 1
         ]);
 
         if ($request->hasFile('cover')) {

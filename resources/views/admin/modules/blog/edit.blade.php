@@ -16,7 +16,7 @@
 @section('content')
 
     <div class="mTop10">
-        {!! Form::model($blog,['action' => ['Admin\BlogController@update',$blog->id], 'method' => 'patch'], ['class'=>'form-horizontal']) !!}
+        {!! Form::model($blog,['action' => ['Admin\BlogController@update',$blog->id], 'method' => 'patch','files'=>true], ['class'=>'form-horizontal']) !!}
 
         <div class="form-group">
             {!! Form::label('category', 'Select a category', ['class' => 'control-label']) !!} <span class="red">*</span>
@@ -41,6 +41,14 @@
                 <!-- The file input field used as target for the file upload widget -->
                 <input id="cover" type="file" name="cover" class="cover form-control">
             </span>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label pull-left" for="confirm">Article Published ?</label>
+            <select name ="active" class="form-control">
+                <option value="1" {{ ($blog->active ? ' selected="selected"' : '') }}>yes</option>
+                <option value="0" {{ ( ! $blog->active ? ' selected="selected"' : '') }}>no</option>
+            </select>
         </div>
 
         <div class="form-group">

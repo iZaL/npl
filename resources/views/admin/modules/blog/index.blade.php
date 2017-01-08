@@ -27,6 +27,7 @@
                         <tr>
                             <th>Title</th>
                             <th>Category</th>
+                            <th>Published</th>
                             <th>Added Date</th>
                             <th>View</th>
                             <th>Edit</th>
@@ -38,6 +39,7 @@
                             <tr class="gradeU">
                                 <td> {!! str_limit(strip_tags($blog->title),100) !!} </td>
                                 <td> {{ $blog->category ? $blog->category->name : 'Editorial' }} </td>
+                                <td> {{ $blog->active ? 'Yes' : 'No' }} </td>
                                 <td> {{ $blog->created_at->format('d-m-Y') }} </td>
                                 <td class="f18">
                                     <a href="{{ action('Admin\BlogController@show',$blog->id)  }}"

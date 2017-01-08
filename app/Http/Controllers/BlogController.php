@@ -28,7 +28,7 @@ class BlogController extends Controller
     {
         $this->blogRepository = $blogRepository;
         $this->categoryRepository = $categoryRepository;
-        $this->middleware('auth', ['only' => 'create']);
+        $this->middleware('auth', ['except' => 'index','getSubjectPosts','show']);
     }
 
     /**
@@ -40,7 +40,9 @@ class BlogController extends Controller
     {
         $editorialCategory = $this->categoryRepository->where('name_en','Editorials')->first();
         $ids = $editorialCategory ? [$editorialCategory->id] : [];
-        $blogs = $this->blogRepository->model->with(['thumbnail','category'])->whereIn('category_id',$ids)->latest()->paginate(20);
+        $blogs = $this->blogRepository->model->with(['thumbnail','category'])->whereIn('category_id',$ids)
+            ->where('active',1)
+            ->latest()->paginate(20);
         $title = 'Editorials';
         return view('modules.blog.index', compact('blogs','title'));
     }
@@ -58,9 +60,22 @@ class BlogController extends Controller
 
     }
 
+    public function edit($id)
+    {
+        $user = Auth::user();
+        $blog = $this->blogRepository->model->find($id);
+
+        if(!($blog->user_id == $user->id || $user->admin )) {
+            return redirect()->home()->with('success','Wrong access');
+        }
+
+        $categories = $this->categoryRepository->where('name_en','!=','Editorials')->lists('name_en','id');
+        return view('modules.blog.edit', compact('user','blog','categories'));
+    }
+
     public function store(Request $request, PhotoRepository $photoRepository)
     {
-
+        $user = Auth::user();
         $this->validate($request, [
             'title_en'       => 'required',
             'description_en' => 'required',
@@ -71,7 +86,7 @@ class BlogController extends Controller
         $blog = $this->blogRepository->model->create([
             'title_en'       => $request->title_en,
             'description_en' => $request->description_en,
-            'user_id'        => Auth::user()->id,
+            'user_id'        => $user->id,
             'slug'           => $request->title_en,
             'category_id' => $request->category_id
         ]);
@@ -82,10 +97,35 @@ class BlogController extends Controller
             $photoRepository->attach($file, $blog, ['thumbnail' => 1]);
         }
 
-        return redirect()->back()->with('success','Article Saved');
+        return redirect()->action('ProfileController@getArticles',[$user->id])->with('message', 'success');
 
 
     }
+
+    public function update(Request $request, PhotoRepository $photoRepository, $id)
+    {
+        $user = Auth::user();
+
+        $this->validate($request, [
+            'title_en'       => 'required',
+            'description_en' => 'required',
+            'cover'          => 'image',
+            'category_id' => 'required|integer'
+        ]);
+
+        $blog = $this->blogRepository->model->find($id);
+
+        $blog->update(array_merge(['slug' => $request->title_en], $request->except('cover')));
+
+        if ($request->hasFile('cover')) {
+            $file = $request->file('cover');
+            $photoRepository->replace($file, $blog, ['thumbnail' => 1], $id);
+        }
+
+        return redirect()->action('ProfileController@getArticles',[$user->id])->with('message', 'success');
+
+    }
+
 
     public function getSubjectPosts(Request $request)
     {
@@ -95,14 +135,20 @@ class BlogController extends Controller
         } else {
             $subjectCategories = $this->categoryRepository->where('name_en','!=','Editorials')->get()->pluck('id');
         }
-        $blogs = $this->blogRepository->model->with(['thumbnail','category'])->whereIn('category_id',$subjectCategories)->latest()->paginate(20);
+        $blogs = $this->blogRepository->model->with(['thumbnail','category'])
+            ->where('active',1)
+            ->whereIn('category_id',$subjectCategories)->latest()->paginate(20);
         $title = 'Information';
+
         return view('modules.blog.index', compact('blogs','title'));
     }
 
+
     public function show($id)
     {
-        $post = $this->blogRepository->model->with('photos')->find($id);
+        $post = $this->blogRepository->model->with('photos')
+            ->where('active',1)
+            ->find($id);
 
         return view('modules.blog.view', compact('post'));
     }

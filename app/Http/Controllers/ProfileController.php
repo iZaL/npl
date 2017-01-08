@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 
+use App\Src\Blog\Blog;
+use App\Src\Blog\BlogRepository;
+use App\Src\Blog\Category;
 use App\Src\Educator\Educator;
 use App\Src\Educator\EducatorRepository;
 use App\Src\Student\Student;
@@ -60,6 +63,20 @@ class ProfileController extends Controller
         $educator->load('parentAnswers.question.subject');
         $answers = $educator->parentAnswers;
         return view('modules.profile.answers', compact('user','answers'));
+    }
+
+    public function getArticles($id,Category $categoryRepository, BlogRepository $blogRepository)
+    {
+        $user = Auth::user();
+        if($user->id != $id || !$user->isEducator()) {
+            return redirect()->home()->with('warning','Wrong access');
+        }
+
+        $subjectCategories = $categoryRepository->where('name_en','!=','Editorials')->get()->pluck('id');
+        $blogs = $blogRepository->model->with(['thumbnail','category'])->whereIn('category_id',$subjectCategories)
+            ->where('user_id',$user->id)
+            ->latest()->paginate(20);
+        return view('modules.profile.articles', compact('blogs'));
     }
 
     public function show($id)

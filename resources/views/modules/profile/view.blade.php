@@ -102,7 +102,7 @@
                     </table>
                     @if($isOwner)
                         @if($isEducator)
-                            <a href="{{ action('BlogController@create') }}" class="btn btn-primary btn-navy">Create Editorials</a>
+                            <a href="{{ action('ProfileController@getArticles',$user->id) }}" class="btn btn-primary btn-navy">View All Articles</a>
                             <a href="{{ action('ProfileController@getAnswers',$user->id) }}" class="btn btn-primary btn-secondary">View All Answers</a>
                         @elseif($isStudent)
                             <a href="{{ action('ProfileController@getQuestions',$user->id) }}" class="btn btn-primary btn-navy">View All Questions</a>
