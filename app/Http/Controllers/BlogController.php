@@ -28,7 +28,7 @@ class BlogController extends Controller
     {
         $this->blogRepository = $blogRepository;
         $this->categoryRepository = $categoryRepository;
-        $this->middleware('auth', ['except' => 'index','getSubjectPosts','show']);
+        $this->middleware('auth', ['only' => 'create','store','edit','update']);
     }
 
     /**
