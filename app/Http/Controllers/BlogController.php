@@ -147,7 +147,6 @@ class BlogController extends Controller
     public function show($id)
     {
         $post = $this->blogRepository->model->with('photos')
-            ->where('active',1)
             ->find($id);
 
         return view('modules.blog.view', compact('post'));
