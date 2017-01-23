@@ -120,7 +120,6 @@ class AnswerController extends Controller
     public function createReply($questionId, $answerId)
     {
 
-        // check whether valid subject, valid level, valid chat
         $user = Auth::user();
 
         $question = $this->questionRepository->model->find($questionId);
