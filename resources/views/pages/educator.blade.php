@@ -22,7 +22,7 @@
             5. It is hoped that fees will be very reasonable.<br><br>
             6. Educators establish the way of recieving the fee by Paypal, Safepay or whatever means.<br><br>
             7. No home or private lessons are permitted.<br><br>
-            8. Registration on the No Problem website is FREE for one month. After that a fee of $10/year is requested.
+            8. Registration on the No Problem website is FREE.
         </p>
     </div>
 @endsection
