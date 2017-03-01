@@ -39,7 +39,7 @@
             <li>by establishing direct contact with the student for further assistance in terms of private, preferably on line paid assistance. The student NP code will appear next to the raised question.</li>
             <br>
             <span class="pTop10">
-                The objective is to help students understand their subject, answering urgent questions, solving problems, exam preparation etc... Both parties (Educator/Student) can establish the collaboration method, either by hourly or whole semester fee. It is hoped that fees will be very reasonable. Educators fee could be arranged by visa,K-net, Paypal, Safepay or whatever means. The web site management could help in this matter Registration on the No Problem website is FREE for one month. After that a fee of $10/semester for each level is requested.
+                The objective is to help students understand their subject, answering urgent questions, solving problems, exam preparation etc... Both parties (Educator/Student) can establish the collaboration method, either by hourly or whole semester fee. It is hoped that fees will be very reasonable. Educators fee could be arranged by visa,K-net, Paypal, Safepay or whatever means. The web site management could help in this matter Registration on the No Problem website is FREE.
             </span>
         </div>
         <div class="col-md-7 col-sm-12  text-center pull-right">
