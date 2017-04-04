@@ -3,12 +3,22 @@
 @section('title')
     <h1 class="text-center"> Login to your Account</h1>
 @endsection
+
+@section('left')
+    <div class="panel" id="midCol">
+        <div class="panel-body">
+            <iframe class="youtube-player" type="text/html" width="640" height="385" src="http://www.youtube.com/embed/gsF9lv2SCqU" frameborder="0">
+            </iframe>
+        </div>
+    </div>
+@endsection
 @section('middle')
 
     <div class="row">
         <div class="col-sm-12 text-center">
 
             <div class="row inner-top-xs">
+
 
                 <div class="col-md-offset-3 col-md-6 col-sm-6 inner-right-xs inner-bottom-xs">
                     <form role="form" method="POST" action="{{ url('/auth/login') }}">
@@ -48,6 +58,16 @@
                         <a href="{{ action('Auth\PasswordController@getEmail') }}">Forgot Password</a>
                     </div>
                 </div>
+
+                <div class="col-md-offset-3 col-md-6 col-sm-6 inner-right-xs inner-bottom-xs" style="margin-top: 50px">
+                    <iframe class="youtube-player" type="text/html" width="640" height="385" src="http://www.youtube.com/embed/yWvNwvUsKQU" frameborder="0"></iframe>
+                </div>
+
+
+                <div class="col-md-offset-3 col-md-6 col-sm-6 inner-right-xs inner-bottom-xs" style="margin-top: 50px">
+                    <iframe class="youtube-player" type="text/html" width="640" height="385" src="http://www.youtube.com/embed/xhE-iTl6dAE" frameborder="0"></iframe>
+                </div>
+
 
             </div><!-- /.row -->
 

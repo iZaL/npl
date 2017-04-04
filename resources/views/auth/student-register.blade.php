@@ -17,9 +17,9 @@
     @parent
     <script src="/node_modules/select2/dist/js/select2.full.min.js"></script>
     <script>
-        $(document).ready(function () {
-            $(".select2").select2();
-        });
+      $(document).ready(function () {
+        $(".select2").select2();
+      });
     </script>
 
 @endsection
@@ -106,6 +106,10 @@
                 </div>
 
             </form>
+        </div>
+
+        <div class="col-md-offset-3 col-md-6 col-sm-6 inner-right-xs inner-bottom-xs" style="margin-top: 50px">
+            <iframe class="youtube-player" type="text/html" width="640" height="385" src="http://www.youtube.com/embed/gsF9lv2SCqU" frameborder="0"></iframe>
         </div>
 
     </div>
