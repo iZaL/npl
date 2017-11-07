@@ -19,7 +19,6 @@ class CreateEducatorsTable extends Migration
             $table->text('qualification')->nullable();
             $table->timestamps();
             $table->softDeletes();
-
         });
     }
 

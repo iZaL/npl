@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Jobs\SendContactMail;
+use App\Jobs\SendContactEmail;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -31,7 +31,7 @@ class PageController extends Controller
             'body'  => 'required'
         ]);
 
-        $job = (new SendContactMail($request));
+        $job = (new SendContactEmail($request));
 
         try {
             $this->dispatch($job);

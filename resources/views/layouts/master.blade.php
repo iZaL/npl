@@ -3,11 +3,10 @@
 <head>
     <meta charset="utf-8">
     <title>@yield(e('title'),'No Problem Learning')</title>
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Dr Wejdan">
+    <meta name="author" content="Dr Wejdan">
     <meta name="viewport" content="width=device-width">
     @section('style')
-        {{--        <link rel="stylesheet" href="{{ elixir('css/all.css') }}">--}}
         @include('partials.style')
     @show
 </head>
