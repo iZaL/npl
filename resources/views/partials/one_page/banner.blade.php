@@ -4,11 +4,12 @@
             <div class="editorial-wrapper">
                 @if(!is_null($blogPost))
                     <div class="btn btn-danger text-center">
-                        <a href="{{ action('BlogController@index') }}"  style="color:white">Editorial</a>
+                        <a href="{{ action('BlogController@getList') }}"  style="color:white">Editorial</a>
                     </div>
+
                     <div class="pTop10" style="font-size: 18px">
                         <a href="{{ action('BlogController@show',$blogPost->id) }}" >
-                            {{ str_limit($blogPost->title,300) }}
+                            {{ str_limit($blogPost->title,50) }}
                         </a>
                     </div>
                 @endif

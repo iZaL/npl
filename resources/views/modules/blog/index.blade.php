@@ -7,6 +7,7 @@
 @section('left')
     <div class="panel" id="midCol">
         <div class="panel-body">
+
             @foreach($blogs as $post)
                 <h2><a href="{{ action('BlogController@show',$post->id) }}">{{ $post->title }}</a></h2>
 

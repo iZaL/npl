@@ -152,4 +152,9 @@ class BlogController extends Controller
         return view('modules.blog.view', compact('post'));
     }
 
+    public function getList()
+    {
+        return view('modules.blog.list');
+    }
+
 }

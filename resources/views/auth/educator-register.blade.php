@@ -31,12 +31,31 @@
     <div class="row">
         <div class="col-md-4 col-sm-12 signup-info" >
             <h2>Educator Signup Process</h2>
-            <li>Fill out the Requested Details</li>
-            <li>Select one subject of your competence such as mathematics, physics.,,,,</li><br>
-            <li>Select one or several levels such as: first year university, high school, medium or elementary</li>
+            <h2>عملية تسجيل الإستاذ</h2>
+            <li>Fill out the Requested Details
+            <br>
+                إملئ البيانات المطلوبة بما فيها من المؤهلات الجامعية  qualifications  والخبرة التدريسية  experience
+
+            </li>
+            <li>Select one subject of your competence such as mathematics, physics.,,,,
+                <br>
+                إختر تخصصا واحدا فقط وفق مؤهلاتك الجامعية:   mathematics, physics, chemistry, English, French, Arabic
+            </li><br>
+            <li>Select one or several levels such as: first year university, high school, medium or elementary
+            <br>
+                إختر مستوى أو عدة مستويات  دراسية ترغب في مساعدة طلبتها:  first year university, high school, medium
+            </li>
             <h2>The Educator can help students in two ways:</h2>
-            <li>by answering questions raised by students for <b>FREE</b></li>
-            <li>by establishing direct contact with the student for further assistance in terms of private, preferably on line paid assistance. The student NP code will appear next to the raised question.</li>
+            <h2>من الممكن ان يساعد الإستاذ الطلبة كما يلي:</h2>
+            <li>by answering questions raised by students for <b>FREE</b>
+
+            <br>
+                الإجابة على أسئلة الطلبة مجانا
+            </li>
+            <li>by establishing direct contact with the student for further assistance in terms of private, preferably on line paid assistance. The student NP code will appear next to the raised question.
+            <br>
+                عبر دروس خصوصية بإسعار معقولة. يتم ذلك من خلال الإجابة على أسئلة الطلبة
+            </li>
             <br>
             <span class="pTop10">
                 The objective is to help students understand their subject, answering urgent questions, solving problems, exam preparation etc... Both parties (Educator/Student) can establish the collaboration method, either by hourly or whole semester fee. It is hoped that fees will be very reasonable. Educators fee could be arranged by visa,K-net, Paypal, Safepay or whatever means. The web site management could help in this matter Registration on the No Problem website is FREE.

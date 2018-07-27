@@ -27,14 +27,37 @@
     <div class="row">
         <div class="col-md-4 col-sm-12 signup-info" >
             <h2>Student Signup Process</h2>
-            <li>Fill out the Requested Details</li>
-            <li>Select one level: First year University, high school, medium or elementary school</li>
-            <li>You can get assistance in different subjects. Select the subject(s) of which you need assistance: Chemistry, Physics, Mathematics, languages. You have to specify the subject(s) when you file a question</li>
-            <li>Once you have filled out the requested details, press Register. You will receive a message on your Email. Activate the registration. The website will provide you with an ID number</li>
-            <li>Your personal information will not be visible to others. When you ask a question, Educators will only see the question and your ID number. Educators will enter in contact with you to define a way of collaboration that suits you, either by hourly fees or by other ways</li>
-            <li>Your question will appear for a week. However, if you get an answer earlier, you can delete your question</li>
-            <li>Once you have finished, log out</li>
-            <li>Subscription is FREE for one month. After that a fee of $10/semester for each subject</li>
+            <h2>عملية التسجيل الطالب</h2>
+            <li>Fill out the Requested Details <br>
+                أملئ البيانات المطلوبة </li>
+            <li>Select one level: First year University, high school, medium or elementary school
+            <br>
+                إختر مستوى دراسي واحد مما يلي:سنة أولى جامعة, المرحلة الثانوية, المرحلة المتوسطة
+            </li>
+            <li>You can get assistance in different subjects. Select the subject(s) of which you need assistance: Chemistry, Physics, Mathematics, languages. You have to specify the subject(s) when you file a question
+            <br>
+                يمكنك الحصول على المساعدة في موضوع أو أكثر مما يلي: كيمياء, رياضيات, فيزياء, لغات انجليزي, فرنسي, عربي. يجب كتابة ذلك في الفراغ المخصص
+            </li>
+            <li>Once you have filled out the requested details, press Register. You will receive a message on your Email. Activate the registration. The website will provide you with an ID number
+            <br>
+                عندما تنتهي من ملئ البيانات المطلوبة اضغط على التسجيل
+                Registration
+                سوف يقوم الموقع باعطائك رقم هوية. علما بان هوية هذا الرقم (الإسم والعنوان) تبقى سرية. أي ان الرقم فقط يظهر على شاشة الأسئلة والأجوبة.
+            </li>
+            <li>Your personal information will not be visible to others. When you ask a question, Educators will only see the question and your ID number. Educators will enter in contact with you to define a way of collaboration that suits you, either by hourly fees or by other ways
+            <br>
+
+                معلوماتك الشخصية تبقى سرية. عندما تقوم بكتابة سؤال, سوف يظهرسؤالك على شاشة الأساتذة المختصين في موضوع السؤال فقط.من الممكن التعاون مع أي من الأساتذة اللذين أجابوا على السؤال وذلك عبر المكان المخصص لذلك. عندما يوجد جواب أو أجوبة على سؤالك سوف تظهرإشارة وميض.
+            </li>
+            <li>Your question will appear for a week. However, if you get an answer earlier, you can delete your question
+            <br>
+                سوف يبقى سؤالك معلنا على الشاشة لمدة اسبوع</li>
+            <li>Once you have finished, log out
+            <br>
+                عندما تنتهي, يمكنك الخروج من الموقع
+            </li>
+            <li>Subscription is FREE for one month. After that a fee of $10/semester for each subject<br>
+                التسجيل مجاني. لاتوجد أية رسوم</li>
         </div>
         <div class="col-md-7 col-sm-12  text-center pull-right">
             <form class="form-horizontal" role="form" method="POST"

@@ -34,6 +34,7 @@ Route::resource('subject', 'SubjectController');
 Route::resource('level', 'LevelController');
 Route::get('contact', ['as' => 'contact', 'uses' => 'PageController@getContact']);
 Route::post('contact', 'PageController@postContact');
+Route::get('blog/list', 'BlogController@getList');
 Route::resource('blog', 'BlogController');
 Route::get('blog/category/{id}/posts', 'BlogController@getSubjectPosts');
 Route::get('home', ['as' => 'home', 'uses' => 'HomeController@home']);
