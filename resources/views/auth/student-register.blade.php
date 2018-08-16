@@ -27,7 +27,7 @@
     <div class="row">
         <div class="col-md-4 col-sm-12 signup-info" >
             <h2>Student Signup Process</h2>
-            <h2>عملية التسجيل الطالب</h2>
+            <h2>عملية تسجيل الطالب</h2>
             <li>Fill out the Requested Details <br>
                 أملئ البيانات المطلوبة </li>
             <li>Select one level: First year University, high school, medium or elementary school
@@ -56,7 +56,7 @@
             <br>
                 عندما تنتهي, يمكنك الخروج من الموقع
             </li>
-            <li>Subscription is FREE for one month. After that a fee of $10/semester for each subject<br>
+            <li>Subscription is FREE.<br>
                 التسجيل مجاني. لاتوجد أية رسوم</li>
         </div>
         <div class="col-md-7 col-sm-12  text-center pull-right">
